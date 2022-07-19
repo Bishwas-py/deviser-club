@@ -271,6 +271,7 @@ DEPENDENCIES
   sqlite3 (~> 1.4)
   stimulus-rails
   tailwindcss-rails
+  timeout (~> 0.3.0)
   turbo-rails
   tzinfo-data
   web-console

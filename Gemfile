@@ -71,5 +71,7 @@ end
 
 gem "font-awesome-sass", "~> 6.1.1"
 gem 'sass-rails'
+gem 'timeout', "~> 0.3.0"
+
 # gem install bb-ruby
 
