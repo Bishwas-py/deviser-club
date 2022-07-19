@@ -1,8 +1,6 @@
 # config valid for current version and patch releases of Capistrano
 lock "~> 3.17.0"
 
-require 'capistrano/db-tasks'
-
 set :application, "deviser-club"
 set :repo_url, "git@github.com:Bishwas-py/deviser-club.git"
 
@@ -43,10 +41,12 @@ set :db_local_clean, true
 set :db_remote_clean, true
 
 namespace :deploy do
-  desc "Restart application"
+#  deploy:failed
+
+  desc 'Restart application'
   task :restart do
     on roles(:app), in: :sequence, wait: 5 do
-      execute :touch, release_path.join("tmp/restart.txt")
+      invoke 'puma:restart'
     end
   end
 end
