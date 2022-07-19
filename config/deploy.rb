@@ -14,6 +14,9 @@ append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/webpack
 set :keep_releases, 3
 set :keep_assets, 3
 
+set :db_local_clean, true
+set :db_remote_clean, true
+
 namespace :deploy do
   desc 'Restart application'
   task :restart do
