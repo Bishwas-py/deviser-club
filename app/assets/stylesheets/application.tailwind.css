@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    @font-face {
+        font-family: 'DMSans';
+        src: url("DMSans-Bold.ttf") format("truetype");
+        font-weight: bold;
+        font-style: normal;
+    }
+
+    @font-face {
+        font-family: 'DMSans';
+        src: url("DMSans-BoldItalic.ttf") format("truetype");
+        font-weight: bold;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'DMSans';
+        src: url("DMSans-Italic.ttf") format("truetype");
+        font-weight: normal;
+        font-style: italic;
+    }
+
+    @font-face {
+        font-family: 'DMSans';
+        src: url("DMSans-Regular.ttf") format("truetype");
+        font-weight: normal;
+        font-style: normal;
+    }
+}
+
+@layer components {
+    .field_with_errors * {
+        @apply ring;
+    }
+
+    .rounded-button {
+        @apply rounded-full text-white;
+        @apply h-12 w-12;
+        @apply shadow-lg;
+        @apply grid place-items-center;
+        @apply hover:shadow-xl;
+        @apply bg-neutral-700;
+        @apply hover:bg-neutral-800;
+    }
+}
+
+@layer utilities {
+    /* Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+
+    .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
+}

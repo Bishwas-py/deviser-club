@@ -1,0 +1,15 @@
+<div class="break-inside-avoid">
+  <%= link_to quick_tweet, class: "break-inside-avoid" do %>
+    <div class="max-w-sm rounded-xl mx-2 hover:bg-blue-100 cursor-pointer hover:scale-110 duration-300 overflow-hidden shadow-lg">
+      <div class="px-6 py-4">
+        <div class="font-bold text-3xl mb-2"><%= quick_tweet.content.truncate(39) %></div>
+        <span class="text-gray-700 text-2xl text-base">
+          <%= simple_format quick_tweet.content.truncate(999) %>
+        </span>
+        <span class="text-neutral-500" title="<%= quick_tweet.created_at.to_fs %>">
+        <%= time_ago_in_words(quick_tweet.created_at) %>
+      </span>
+      </div>
+    </div>
+  <% end %>
+</div>

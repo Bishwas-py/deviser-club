@@ -1,0 +1,7 @@
+<%= turbo_stream.prepend "quick_tweets" do %>
+  <%= render "quick_tweet", quick_tweet: @quick_tweet %>
+<% end %>
+
+<%= turbo_stream.replace "#{dom_id(QuickTweet.new)}_form" do %>
+  <%= render "form", quick_tweet: QuickTweet.new %>
+<% end %>

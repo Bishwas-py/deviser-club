@@ -1,0 +1,49 @@
+
+<div class="grid grid-cols-12 h-screen">
+  <div class="col-span-2 md:col-span-1 w-full bg-gradient-to-r from-neutral-500/20 h-full grid place-items-center">
+    <div class="grid md:grid-cols-1 px-2 gap-3 sticky top-7">
+      <% if is_same_user @quick_tweet.ip_field %>
+        <%= link_to edit_quick_tweet_path(@quick_tweet), class: "rounded-button" do %>
+          <%= icon 'fa-solid', 'pencil-alt' %>
+        <% end %>
+      <% end %>
+      <% if is_same_user @quick_tweet.ip_field %>
+        <%= button_to quick_tweet_path(@quick_tweet), method: :delete, class: "rounded-button" do %>
+          <%= icon 'fa-solid', 'trash' %>
+        <% end %>
+      <% end %>
+
+      <%= button_to "", class: "relative rounded-button md:hidden", data: {
+        controller: 'comment',
+        action: 'comment#toggleComment',
+        comment_body_param: "comment_box"
+      } do %>
+        <% if @comments.present? %>
+          <span class="h-3 w-3 rounded-full absolute bg-rose-700/70 backdrop-blur top-0 right-0" style="font-size: 9px;">
+            <%= @comments.count %>
+          </span>
+        <% end %>
+        <%= icon 'fa-solid', 'comment' %>
+      <% end %>
+      <%= render "components/home" %>
+      <%= render "components/back" %>
+    </div>
+  </div>
+  <div class="col-span-10 md:col-span-11 flex">
+    <div class="z-0 w-full px-2 grid place-items-center max-h-screen overflow-y-scroll">
+      <div>
+        <%= render "components/notice" %>
+        <%= turbo_stream_from @quick_tweet, class: "hidden" %>
+        <%= render "tweet_cert", quick_tweet: @quick_tweet %>
+      </div>
+    </div>
+    <%= render "comments/box", {quick_tweet: @quick_tweet, comments: @comments} %>
+  </div>
+
+</div>
+
+<div class="mx-auto">
+  <% if notice.present? %>
+    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+  <% end %>
+</div>

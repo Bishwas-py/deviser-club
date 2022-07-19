@@ -1,0 +1,15 @@
+<%= turbo_frame_tag quick_tweet, comment, class: "border group shadow rounded-md p-2" do %>
+    <p>
+      <%= clean_links sanitize comment.body %>
+    </p>
+    <div>
+        <span class="text-neutral-500 float-right text-sm" title="<%= comment.created_at.to_fs %>">
+          <%= time_ago_in_words(comment.created_at) %>
+        </span>
+      <% if is_same_user comment.ip_field %>
+        <%= button_to 'Delete', [quick_tweet, comment], method: :delete,
+                      class: "text-rose-300 hover:text-rose-400 hover:underline float-left
+                  md:scale-0 group-hover:scale-100 duration-100 text-sm" %>
+      <% end %>
+    </div>
+<% end %>

@@ -1,0 +1,2 @@
+module QuickTweetsHelper
+end

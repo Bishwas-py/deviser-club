@@ -1,0 +1,16 @@
+<div class="grid grid-cols-12 min-h-screen h-full w-full">
+  <div class="col-span-2 md:col-span-1 w-full bg-gradient-to-r from-neutral-500/20 h-full grid place-items-center">
+    <div class="grid md:grid-cols-1 px-2 gap-3">
+      <%= link_to @quick_tweet, class: "rounded-button" do %>
+        <%= icon 'fa-solid', 'eye' %>
+      <% end %>
+      <%= render "components/home" %>
+      <%= render "components/back" %>
+    </div>
+  </div>
+  <div class="col-span-10 md:col-span-11 px-2 my-auto">
+    <div class="md:px-20 py-4">
+      <%= render "form", quick_tweet: @quick_tweet %>
+    </div>
+  </div>
+</div>

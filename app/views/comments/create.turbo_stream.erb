@@ -1,0 +1,11 @@
+<%= turbo_stream.prepend "#{dom_id @quick_tweet}_comments" do %>
+  <%= render "comment", quick_tweet: @quick_tweet, comment: @comment %>
+<% end %>
+
+<%= turbo_stream.replace "#{dom_id(Comment.new)}_form" do %>
+  <%= render "form", comment: Comment.new, quick_tweet: @quick_tweet %>
+<% end %>
+
+<%#= turbo_stream.replace "comments_count" do %>
+  <%#= render "comments_count", count:@quick_tweet.comments.count %>
+<%# end %>

@@ -1,0 +1,12 @@
+<%= form_with(model: quick_tweet, class: "w-full", id: "#{dom_id(quick_tweet)}_form") do |form| %>
+  <%= render "components/errors", error_el: quick_tweet %>
+  <div class="my-5">
+    <%= form.text_area :content, rows: 7, placeholder:"Twiq it now!", class: "block text-lg text-neutral-600 shadow
+    rounded-md border border-gray-200
+    focus:ring
+    outline-none px-3 py-2 mt-2 w-full" %>
+  </div>
+  <div class="inline">
+    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  </div>
+<% end %>
