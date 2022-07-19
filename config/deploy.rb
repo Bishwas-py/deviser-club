@@ -5,7 +5,7 @@ set :repo_url, "git@github.com:Bishwas-py/deviser-club.git"
 
 set :deploy_to, "/home/ubuntu/deviser-club"
 
-set :branch, ENV['BRANCH'] if ENV["BRANCH"]
+set :branch, "main"
 
 append :linked_files, "config/database.yml", 'config/master.key'
 
