@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_17_122323) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_20_155550) do
   create_table "comments", force: :cascade do |t|
     t.integer "quick_tweet_id", null: false
     t.datetime "created_at", null: false
@@ -26,6 +26,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_17_122323) do
     t.datetime "updated_at", null: false
     t.string "ip_field"
     t.integer "watches", default: 0
+    t.string "imagefield"
   end
 
   add_foreign_key "comments", "quick_tweets"

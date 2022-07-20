@@ -27,6 +27,8 @@ class QuickTweetsController < ApplicationController
   def create
     @quick_tweet = QuickTweet.new(quick_tweet_params)
     @quick_tweet.ip_field = request.remote_ip
+    @quick_tweet.imagefield = helpers.create_og_image(@quick_tweet.content.truncate(38))
+    
     respond_to do |format|
       if @quick_tweet.save
         format.turbo_stream
