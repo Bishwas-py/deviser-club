@@ -76,7 +76,7 @@ gem 'sass-rails'
 # PostGres SQL
 gem "pg"
 
-gem "rmagick", "~> 4.2.6"
+gem "rmagick"
 
 # gem install bb-ruby
 

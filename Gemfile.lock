@@ -270,7 +270,7 @@ DEPENDENCIES
   puma (~> 5.0)
   rails (~> 7.0.3)
   redis (~> 4.0)
-  rmagick
+  rmagick (~> 4.2.6)
   sass-rails
   selenium-webdriver
   sprockets-rails
