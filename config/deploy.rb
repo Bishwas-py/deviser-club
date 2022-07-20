@@ -9,7 +9,7 @@ set :branch, "main"
 
 append :linked_files, "config/database.yml", 'config/master.key'
 
-append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/webpacker", "public/system", "vendor", "storage"
+append :linked_dirs, "log", "tmp/pids", "tmp/cache", "tmp/sockets", "tmp/webpacker", "public/system", "vendor/bundle"
 
 set :keep_releases, 3
 set :keep_assets, 3
