@@ -47,6 +47,7 @@ class QuickTweetsController < ApplicationController
     respond_to do |format|
       if @quick_tweet.update(quick_tweet_params)
         @quick_tweet.broadcast_update partial: "quick_tweets/tweet_cert", target: "#{helpers.dom_id(@quick_tweet)}_target"
+        @quick_tweet.broadcast_update partial: "quick_tweets/quick_tweet"
         # while updating, the target will be replaced/updated by the partial
         format.html { redirect_to quick_tweet_url(@quick_tweet) }
         format.json { render :show, status: :ok, location: @quick_tweet }
@@ -61,6 +62,10 @@ class QuickTweetsController < ApplicationController
   def destroy
     @quick_tweet.destroy
     respond_to do |format|
+      @quick_tweet.broadcast_remove_to :quick_tweets, target: "#{helpers.dom_id(@quick_tweet)}"
+      @quick_tweet.broadcast_remove_to [@quick_tweet], target: "#{helpers.dom_id(@quick_tweet)}_target"
+      @quick_tweet.broadcast_remove_to [@quick_tweet], target: "#{helpers.dom_id(@quick_tweet)}_comments"
+
       format.html { redirect_to quick_tweets_url }
       format.json { head :no_content }
     end

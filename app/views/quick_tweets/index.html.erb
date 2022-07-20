@@ -1,8 +1,11 @@
 <div class="w-full p-9">
   <div class="container mx-auto py-10" id="nq">
-    <%= render "form", quick_tweet: @quick_tweet, rows:3 %>
+    <%= render "form", quick_tweet: @quick_tweet %>
   </div>
-  <h1 class="font-bold text-2xl md:text-4xl text-center">Quiks</h1>
+  <h1 class="font-bold text-2xl md:text-4xl text-center">
+    Quiks
+  </h1>
+  <%= turbo_stream_from :quick_tweets %>
   <div id="quick_tweets" class="h-auto text-sm text-sm columns-1 sm:columns-1 md:columns-2 lg:columns-3 xl:columns-4 2xl:columns-5 2xl:text-md gap-3 mx-auto space-y-9 py-9 md:px-3">
     <%= render @quick_tweets %>
   </div>

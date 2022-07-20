@@ -10,7 +10,7 @@
   } do %>
     <%= icon "fa-solid", "times" %>
   <% end %>
-  <%= turbo_stream_from quick_tweet, :comments %>
+
   <div class="px-6 py-4 overflow-y-scroll max-h-screen no-scrollbar">
     <div class="container mx-auto py-10">
       <h2 class="text-lg font-medium text-slate-600 flex justify-between mb-3">
@@ -20,6 +20,7 @@
       <%= render "comments/form", quick_tweet: quick_tweet, comment: quick_tweet.comments.new %>
     </div>
 
+    <%= turbo_stream_from quick_tweet, :comments %>
     <div class="grid gap-3" id="<%= dom_id quick_tweet %>_comments">
       <% comments.each do |comment| %>
         <%= render comment, quick_tweet: quick_tweet, comment: comment %>
