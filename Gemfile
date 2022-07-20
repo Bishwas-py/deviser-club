@@ -73,5 +73,8 @@ end
 gem "font-awesome-sass", "~> 6.1.1"
 gem 'sass-rails'
 
+# PostGres SQL
+gem "pg"
+
 # gem install bb-ruby
 

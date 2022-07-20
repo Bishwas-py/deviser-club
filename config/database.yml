@@ -13,9 +13,5 @@ test:
   database: db/test.sqlite3
 
 production:
-  adapter: postgresql
-  encoding: unicode
-  database: quikter
-  username: quikter_user
-  password: Rails.application.credentials.dig(:production, :db_password)
-
+  <<: *default
+  database: dbquikter
