@@ -14,7 +14,9 @@ test:
 
 production:
   <<: *default
-  database: dbquikter
+  adapter: postgresql
+  encoding: unicode
+  database: quikter
   username: quikter_user
   password: Rails.application.credentials.dig(:production, :db_password)
 
