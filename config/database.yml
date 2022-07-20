@@ -13,7 +13,6 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
   adapter: postgresql
   encoding: unicode
   database: quikter
