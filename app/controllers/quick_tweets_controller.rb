@@ -63,6 +63,7 @@ class QuickTweetsController < ApplicationController
     @quick_tweet.destroy
     respond_to do |format|
       @quick_tweet.broadcast_remove_to :quick_tweets, target: "#{helpers.dom_id(@quick_tweet)}"
+      @quick_tweet.broadcast_update partial: "components/notice", target: "#{helpers.dom_id @quick_tweet}_alert_notice", locals: {alert: "This post is deleted completely deleted, try reaching <a class='link' href='/'>Home</a>."}
       @quick_tweet.broadcast_remove_to [@quick_tweet], target: "#{helpers.dom_id(@quick_tweet)}_target"
       @quick_tweet.broadcast_remove_to [@quick_tweet], target: "#{helpers.dom_id(@quick_tweet)}_comments"
 

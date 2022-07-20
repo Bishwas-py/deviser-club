@@ -1,6 +1,6 @@
 module ApplicationHelper
   def clean_links html
-    html.gsub!(/\<a href=["'](.*?)["']\>(.*?)\<\/a\>/mi, '<a href="\1?source=quikter.com" rel="nofollow">\2</a>')
+    html.gsub!(/\<a href=["'](.*?)["']\>(.*?)\<\/a\>/mi, '<a href="\1?source=quikter.com" class="link" rel="nofollow">\2</a>')
     html.html_safe
   end
 

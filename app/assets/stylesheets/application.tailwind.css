@@ -46,6 +46,11 @@
         @apply bg-neutral-700;
         @apply hover:bg-neutral-800;
     }
+    .link {
+        @apply text-teal-500;
+        @apply font-bold;
+        @apply hover:text-blue-500;
+    }
 }
 
 @layer utilities {
