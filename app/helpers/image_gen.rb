@@ -9,7 +9,7 @@ module ImageGen
   end
 
   def self.og_create(my_text)
-    my_text = sanitize(my_text).lines[0].truncate(38)
+    my_text = my_text.lines[0].truncate(38)
     background_image = Dir.glob('app/assets/og_assets/*').sample
     image = Magick::Image.read(background_image).first
 

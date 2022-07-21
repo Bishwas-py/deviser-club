@@ -28,7 +28,7 @@ class QuickTweetsController < ApplicationController
     @quick_tweet = QuickTweet.new(quick_tweet_params)
     @quick_tweet.ip_field = request.remote_ip
 
-    image_file_io, image_name = helpers.create_og_image(@quick_tweet.content)
+    image_file_io, image_name = helpers.create_og_image(helpers.sanitize(@quick_tweet.content, tags: %w()))
     @quick_tweet.image.attach(io: image_file_io, filename: image_name, content_type: 'image/png')
 
     respond_to do |format|
