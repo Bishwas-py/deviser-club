@@ -33,6 +33,7 @@
 
 /public/assets
 app/assets/images/bg-img/*
+public/*
 
 # Ignore master key for decrypting credentials and more.
 /config/master.key
