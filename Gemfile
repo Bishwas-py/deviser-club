@@ -76,5 +76,7 @@ gem "pg"
 
 gem "rmagick"
 
+
 gem 'trestle'
+gem 'trestle-auth'
 
