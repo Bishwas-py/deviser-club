@@ -30,7 +30,7 @@
 /tmp/storage/*
 !/tmp/storage/
 !/tmp/storage/.keep
-
+config/database.yml
 /public/assets
 app/assets/images/bg-img/*
 public/*
