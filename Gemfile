@@ -75,6 +75,3 @@ gem 'sass-rails'
 gem "pg"
 
 gem "rmagick"
-
-# gem install bb-ruby
-

@@ -1,5 +1,5 @@
 <div id="<%= dom_id quick_tweet %>_target" class="px-6 py-4 mt-3">
-  <div class="font-bold text-3xl mb-2x"><%= quick_tweet.content.truncate(38) %></div>
+  <div class="font-bold text-3xl mb-2x"><%= sanitize quick_tweet.content.truncate(38), tags: %w() %></div>
   <div class="ml-2 mb-6">
           <span class="text-neutral-500" title="<%= quick_tweet.created_at.to_fs %>">
           <%= time_ago_in_words(quick_tweet.created_at) %>
@@ -9,6 +9,6 @@
           </span>
   </div>
   <span class="text-gray-700 text-2xl text-base mt-5">
-        <%= quick_tweet.content %>
+        <%= sanitize quick_tweet.content, tags: %w(strong em a b), attributes: %w(href) %>
       </span>
 </div>

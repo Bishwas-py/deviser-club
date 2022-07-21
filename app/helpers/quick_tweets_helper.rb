@@ -3,4 +3,5 @@ module QuickTweetsHelper
   def create_og_image text
     ImageGen.og_create(text)
   end
+
 end
