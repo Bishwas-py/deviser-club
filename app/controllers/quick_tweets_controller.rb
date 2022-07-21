@@ -27,6 +27,7 @@ class QuickTweetsController < ApplicationController
   def create
     @quick_tweet = QuickTweet.new(quick_tweet_params)
     @quick_tweet.ip_field = request.remote_ip
+    @quick_tweet.content = @quick_tweet.content.gsub("\u200D", "").gsub(/\P{Print}|\p{Cf}/, "")
 
     image_file_io, image_name = helpers.create_og_image(helpers.sanitize(@quick_tweet.content, tags: %w()))
     @quick_tweet.image.attach(io: image_file_io, filename: image_name, content_type: 'image/png')
@@ -48,6 +49,7 @@ class QuickTweetsController < ApplicationController
 
   # PATCH/PUT /quick_tweets/1 or /quick_tweets/1.json
   def update
+    @quick_tweet.content = @quick_tweet.content.gsub("\u200D", "").gsub(/\P{Print}|\p{Cf}/, "")
     respond_to do |format|
       if @quick_tweet.update(quick_tweet_params)
         @quick_tweet.broadcast_update partial: "quick_tweets/tweet_cert", target: "#{helpers.dom_id(@quick_tweet)}_target"
@@ -95,5 +97,4 @@ class QuickTweetsController < ApplicationController
   def quick_tweet_params
     params.require(:quick_tweet).permit(:content)
   end
-
 end
