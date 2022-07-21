@@ -2,7 +2,7 @@ class Comment < ApplicationRecord
   include ActionView::RecordIdentifier
 
   belongs_to :quick_tweet
-  validates :body, presence: true, length: { minimum: 10, maximum: 5000 }
+  validates :body, presence: true, length: { minimum: 4, maximum: 500 }
 
   after_create_commit -> {
     broadcast_prepend_to [quick_tweet, :comments], partial: "comments/comment", target: "#{dom_id(quick_tweet)}_comments", locals: { quick_tweet: quick_tweet, comments: :comments }
