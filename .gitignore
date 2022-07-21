@@ -34,7 +34,7 @@ config/database.yml
 /public/assets
 app/assets/images/bg-img/*
 public/*
-
+dbquikter
 # Ignore master key for decrypting credentials and more.
 /config/master.key
 
