@@ -1,6 +1,6 @@
 class QuickTweet < ApplicationRecord
   has_many :comments, dependent: :destroy
-  validates :content, presence: true, length: { minimum: 5, maximum: 9000 }
+  validates :content, presence: true, length: { minimum: 5, maximum: 9000 }, uniqueness: true
 
   has_one_attached :image, dependent: :destroy
 
