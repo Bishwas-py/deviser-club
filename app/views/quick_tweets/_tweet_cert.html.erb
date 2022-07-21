@@ -8,7 +8,7 @@
               <%= quick_tweet.watches %> Views
           </span>
   </div>
-  <span class="text-gray-700 text-2xl text-base mt-5">
-        <%= sanitize quick_tweet.content, tags: %w(strong em a b), attributes: %w(href) %>
-      </span>
+  <span class="content-box">
+      <%= sanitize quick_tweet.content, tags: %w(strong em a b h2 h3 h4 ul li code), attributes: %w(href) %>
+  </span>
 </div>

@@ -37,6 +37,26 @@
         @apply ring;
     }
 
+    .content-box {
+        @apply text-gray-700 text-2xl text-base mt-5;
+    }
+    .content-box h2 {
+        @apply text-xl text-gray-900 font-bold;
+    }
+    .content-box h3 {
+        @apply text-lg font-semibold;
+    }
+    .content-box h4 {
+        @apply font-medium text-gray-900 font-medium;
+    }
+    .content-box a {
+        @apply text-teal-500;
+        @apply font-bold;
+        @apply hover:text-blue-500;
+    }
+    .content-box ul {
+        @apply list-disc;
+    }
     .rounded-button {
         @apply rounded-full text-white;
         @apply h-12 w-12;
@@ -46,11 +66,15 @@
         @apply bg-neutral-700;
         @apply hover:bg-neutral-800;
     }
+    code {
+        @apply font-mono font-medium text-sky-500 dark:text-sky-400;
+    }
     .link {
         @apply text-teal-500;
         @apply font-bold;
         @apply hover:text-blue-500;
     }
+
 }
 
 @layer utilities {

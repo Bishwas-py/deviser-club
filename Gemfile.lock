@@ -69,7 +69,6 @@ GEM
     addressable (2.8.0)
       public_suffix (>= 2.0.2, < 5.0)
     bindex (0.8.1)
-    bluecloth (2.2.0)
     bootsnap (1.12.0)
       msgpack (~> 1.2)
     builder (3.2.4)
@@ -241,7 +240,6 @@ PLATFORMS
   x86_64-linux
 
 DEPENDENCIES
-  bluecloth
   bootsnap
   capybara
   debug
