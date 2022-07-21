@@ -32,8 +32,7 @@ module ImageGen
     file_name.gsub!(/-+/, '-')          # get rid of double-dashes
 
     image.write("app/assets/images/bg-img/#{file_name}.png")
-
-    "bg-img/#{file_name}.png"
+    [File.open("app/assets/images/bg-img/#{file_name}.png"), "#{file_name}.png"]
 
   end
 end

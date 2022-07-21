@@ -27,8 +27,9 @@ class QuickTweetsController < ApplicationController
   def create
     @quick_tweet = QuickTweet.new(quick_tweet_params)
     @quick_tweet.ip_field = request.remote_ip
-    @quick_tweet.imagefield = helpers.create_og_image(@quick_tweet.content.truncate(38))
-    
+    image_file_io, image_name = helpers.create_og_image(@quick_tweet.content.truncate(38))
+    @quick_tweet.image.attach(io: image_file_io, filename: image_name, content_type: 'image/png')
+
     respond_to do |format|
       if @quick_tweet.save
         format.turbo_stream
@@ -36,7 +37,7 @@ class QuickTweetsController < ApplicationController
         format.json { render :show, status: :created, location: @quick_tweet }
       else
         format.turbo_stream {
-          render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@quick_tweet)}_form", partial: 'form', locals: {quick_tweet: @quick_tweet})
+          render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@quick_tweet)}_form", partial: 'form', locals: { quick_tweet: @quick_tweet })
         }
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @quick_tweet.errors, status: :unprocessable_entity }
@@ -65,7 +66,7 @@ class QuickTweetsController < ApplicationController
     @quick_tweet.destroy
     respond_to do |format|
       @quick_tweet.broadcast_remove_to :quick_tweets, target: "#{helpers.dom_id(@quick_tweet)}"
-      @quick_tweet.broadcast_update partial: "components/notice", target: "#{helpers.dom_id @quick_tweet}_alert_notice", locals: {alert: "This post is deleted completely deleted, try reaching <a class='link' href='/'>Home</a>."}
+      @quick_tweet.broadcast_update partial: "components/notice", target: "#{helpers.dom_id @quick_tweet}_alert_notice", locals: { alert: "This post is deleted completely deleted, try reaching <a class='link' href='/'>Home</a>." }
       @quick_tweet.broadcast_remove_to [@quick_tweet], target: "#{helpers.dom_id(@quick_tweet)}_target"
       @quick_tweet.broadcast_remove_to [@quick_tweet], target: "#{helpers.dom_id(@quick_tweet)}_comments"
 

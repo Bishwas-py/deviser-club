@@ -5,8 +5,8 @@
   <meta name="description" content="A creative blogging platform for creative writers, bloggers and developers.">
   <meta property="article:tag" content="creative writing platform, medium alternative, blogging platform, anynomous posting">
 <% else %>
-  <meta property="og:image" content="<%= image_url @quick_tweet.imagefield %>">
-  <meta property="og:image:secure_url" content="<%= image_url @quick_tweet.imagefield %>">
+  <meta property="og:image" content="<%= rails_blob_url @quick_tweet.image %>">
+  <meta property="og:image:secure_url" content="<%= rails_blob_url @quick_tweet.image %>">
   <meta property="og:image:alt" content="<%= @quick_tweet.content.truncate(32) %>">
   <meta name="description" content="<%= @quick_tweet.content.truncate(32) %>">
   <meta property="article:tag" content="<%= @quick_tweet.content.truncate(32) %>">
