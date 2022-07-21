@@ -5,7 +5,7 @@
       <div class="px-6 py-4">
         <div class="font-bold text-3xl mb-2"><%= sanitize quick_tweet.content.truncate(39), tags: %w() %></div>
         <span class="text-gray-700 text-2xl text-base">
-          <%= quick_tweet.content.truncate(999) %>
+          <%= sanitize(quick_tweet.content, tags: %w()).strip.truncate(999) %>
         </span>
         <span class="text-neutral-500" title="<%= quick_tweet.created_at.to_fs %>">
         <%= time_ago_in_words(quick_tweet.created_at) %>
