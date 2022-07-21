@@ -1,6 +1,6 @@
 <%= turbo_frame_tag quick_tweet, comment, class: "border group shadow rounded-md p-2" do %>
     <p>
-      <%= clean_links sanitize comment.body %>
+      <%= clean_links sanitize(comment.body, tags: %w(strong em a b code), attributes: %w(href)) %>
     </p>
     <div>
         <span class="text-neutral-500 float-right text-sm" title="<%= comment.created_at.to_fs %>">
