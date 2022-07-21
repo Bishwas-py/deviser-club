@@ -75,3 +75,6 @@ gem 'sass-rails'
 gem "pg"
 
 gem "rmagick"
+
+gem 'trestle'
+
