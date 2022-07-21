@@ -14,5 +14,5 @@ test:
 
 production:
   <<: *default
-  database: dbquikter
+  database: dbdeviser_club
 
