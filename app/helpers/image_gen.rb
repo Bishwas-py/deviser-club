@@ -4,18 +4,19 @@ include Magick
 module ImageGen
 
   def self.word_wrap(line)
-    return line if line.length <= 26
-    line.gsub(/(.{1,26})(\s+|$)/, "\\1\n").strip
+    return line if line.length <= 25
+    line.gsub(/(.{1,20})(\s+|$)/, "\\1\n").strip
   end
 
   def self.og_create(my_text)
+    my_text = my_text.lines[0].truncate(38)
     background_image = Dir.glob('app/assets/og_assets/*').sample
     image = Magick::Image.read(background_image).first
 
     create = Magick::Draw.new
     position = 0
 
-    create.annotate(image, 0, 0, 3, 0, word_wrap(my_text)) do
+    create.annotate(image, 0, 0, 10, 0, word_wrap(my_text)) do
       self.font = 'ArialUnicode'
       self.pointsize = 75
       self.font_weight = BoldWeight
@@ -23,7 +24,7 @@ module ImageGen
       self.gravity = CenterGravity
     end
 
-    file_name = my_text.dup
+    file_name = my_text
     file_name.downcase!
     file_name.strip!
     file_name.gsub!(/[^a-z0-9\s-]/, '') # Remove non-word characters
