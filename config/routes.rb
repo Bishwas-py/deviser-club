@@ -1,5 +1,15 @@
 Rails.application.routes.draw do
-  devise_for :users
+  resources :posts
+  devise_for :users,
+             :path => 'accounts',
+             :path_names => {
+               :sign_in => 'login',
+               :sign_up => 'register',
+               :sign_out => 'logout',
+               :password => 'recover-password',
+               :confirmation => 'verification'
+             }
+
   # resources :quick_tweets
   root "quick_tweets#index"
   resources :quick_tweets, path: :tweet

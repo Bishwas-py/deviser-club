@@ -5,12 +5,12 @@
 
     <div class="input-father">
       <%= f.label :login, class: "input-label" %>
-      <%= f.text_field :login, class: "input-box", autofocus: true, autocomplete: "email", placeholder: "youremail@gmail.com" %>
+      <%= f.text_field :login, class: "input-box", autofocus: true, autocomplete: "email", placeholder: "youremail@gmail.com", required: true %>
     </div>
 
     <div class="input-father">
       <%= f.label :password, class: "input-label" %>
-      <%= f.password_field :password, class: "input-box", autocomplete: "current-password", placeholder: "P@s$w*rd" %>
+      <%= f.password_field :password, class: "input-box", autocomplete: "current-password", placeholder: "P@s$w*rd", required: true %>
     </div>
 
     <% if devise_mapping.rememberable? %>

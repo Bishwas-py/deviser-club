@@ -12,6 +12,9 @@ module.exports = {
       fontFamily: {
         sans: ['DMSans', ...defaultTheme.fontFamily.sans],
       },
+      transitionProperty: {
+        height: 'height'
+      }
     },
   },
   plugins: [

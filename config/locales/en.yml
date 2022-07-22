@@ -35,3 +35,7 @@ en:
       quick_tweet:
         create: "Publish post"
         update: "Update post"
+  activerecord:
+    attributes:
+      user:
+        login: "Username or Email"

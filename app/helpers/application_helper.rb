@@ -4,7 +4,7 @@ module ApplicationHelper
     html.html_safe
   end
 
-  def is_same_user(post_ip, r:request)
+  def is_same_ip(post_ip, r:request)
     r.remote_ip == post_ip
   end
 

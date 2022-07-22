@@ -1,0 +1,11 @@
+<nav class="sticky top-0 h-20 max-h-full shadow flex backdrop-blur-sm bg-white/80 dark:bg-black/80 border-b dark:border-indigo-900 w-full px-5 text-black dark:text-white">
+  <div class="container flex flex-wrap justify-between items-center mx-auto">
+    <%= link_to root_path, class: "flex justify-center items-center h-full space-x-2" do %>
+      <span class="justify-center items-center">
+        <%= image_tag "fav.png", height: "30", width: "30" %>
+      </span>
+      <span class="hidden sm:block text-2xl font-bold">Deviser Club</span>
+    <% end %>
+    <%= yield %>
+  </div>
+</nav>

@@ -1,6 +1,8 @@
 class QuickTweetsController < ApplicationController
   before_action :set_quick_tweet, only: %i[ show edit update destroy ]
 
+  before_action :check_user!, only: %i[ edit update destroy ]
+
   # GET /quick_tweets or /quick_tweets.json
   def index
     @quick_tweets = QuickTweet.all.order(created_at: :desc)
@@ -86,7 +88,8 @@ class QuickTweetsController < ApplicationController
 
   def check_user!
     if request.remote_ip != @quick_tweet.ip_field
-      redirect_to quick_tweet_url, notice: "You are not authorized to edit this quick tweet."
+      puts "authenticate_user! 101", authenticate_user!
+      authenticate_user! or redirect_to quick_tweet_url, notice: "You are not authorized to edit this quick tweet."
     end
   end
 

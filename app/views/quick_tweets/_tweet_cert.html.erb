@@ -9,9 +9,11 @@
         <%= quick_tweet.watches %> Views
     </span>
     </div>
-    <span class="text-neutral-500 block" title="<%= quick_tweet.created_at.to_fs %>">
-        Posted by <strong><%= quick_tweet.user.inspect %></strong>
-    </span>
+    <% if quick_tweet.user %>
+      <span class="text-neutral-500 block" title="<%= quick_tweet.created_at.to_fs %>">
+          Posted by <strong><%= quick_tweet.user.username %></strong>
+      </span>
+    <% end %>
   </div>
   <span class="content-box">
       <%= sanitize quick_tweet.content, tags: %w(strong em a b h2 h3 h4 ul li code), attributes: %w(href) %>

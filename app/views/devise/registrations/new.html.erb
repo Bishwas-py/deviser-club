@@ -5,12 +5,12 @@
 
     <div class="input-father">
       <%= f.label :email, class: "input-label" %>
-      <%= f.email_field :email, class: "input-box", autofocus: true, autocomplete: "email", placeholder: "youremail@gmail.com" %>
+      <%= f.email_field :email, class: "input-box", autofocus: true, required: true, autocomplete: "email", placeholder: "youremail@gmail.com" %>
     </div>
 
     <div class="input-father">
       <%= f.label :username, class: "input-label" %>
-      <%= f.text_field :username, class: "input-box", autofocus: true, placeholder: "yourusername" %>
+      <%= f.text_field :username, class: "input-box", required: true, autofocus: true, placeholder: "yourusername" %>
     </div>
 
     <div class="input-father">
@@ -18,12 +18,12 @@
       <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %><br/>
-      <%= f.password_field :password, autocomplete: "new-password", class: "input-box", placeholder: "P@s$w*rd" %>
+      <%= f.password_field :password, autocomplete: "new-password", required: true, class: "input-box", placeholder: "P@s$w*rd" %>
     </div>
 
     <div class="input-father">
       <%= f.label :password_confirmation, class: "input-label" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input-box", placeholder: "Confirm Password" %>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", required: true, class: "input-box", placeholder: "Confirm Password" %>
     </div>
 
     <div class="actions">

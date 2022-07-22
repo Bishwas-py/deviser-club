@@ -1,0 +1,9 @@
+<%= render "layouts/navlayout" do %>
+  <div class="flex md:order-2">
+    <% if user_signed_in? %>
+        <%= render "components/navbar_user_drop" %>
+      <% else %>
+        <%= link_to "Log in", new_user_session_path, class: "main-btn" %>
+    <% end %>
+  </div>
+<% end %>

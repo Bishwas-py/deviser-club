@@ -1,12 +1,17 @@
-<%= form_with(model: quick_tweet, class: "w-full", id: "#{dom_id(quick_tweet)}_form") do |form| %>
+<%= form_with(model: quick_tweet, class: "is-wflt", id: "#{dom_id(quick_tweet)}_form", html: {"data-controller": "wflt"}) do |form| %>
   <%= render "components/errors", error_el: quick_tweet %>
-  <div class="my-5">
-    <%= form.text_area :content, rows: 7, placeholder:"Twiq it now!", class: "block text-lg text-neutral-600 shadow
-    rounded-md border border-gray-200
-    focus:ring
-    outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  <div class="editor-box">
+    <%= form.text_area :content, "data-wflt-target": "textArea" %>
+    <div contenteditable="true" class="writing-section" style="height: 80px;" data-wflt-target="contentSection"></div>
+    <%= content_tag :div, class: "flex flex-row p-2 gap-2" do %>
+      <button type="button" data-wflt-target="bold" class="group edit-btn font-extralight hover:font-extrabold hover:scale-110">
+       <span class="group-hover:scale-125">B</span>
+      </button>
+      <%= button_to "", type: "button", "data-wflt-target": "italic", class: "edit-btn group" do %>
+        <%= icon "fa-solid", "i", class:'rotate-3 group-hover:rotate-12' %>
+      <% end %>
+      <%= form.submit class: "edit-btn" %>
+    <% end %>
+
   </div>
 <% end %>

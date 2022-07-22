@@ -1,15 +1,20 @@
 <%= turbo_frame_tag quick_tweet, comment, class: "border group shadow rounded-md p-2" do %>
-    <p>
-      <%= clean_links sanitize(comment.body, tags: %w(strong em a b code), attributes: %w(href)) %>
-    </p>
-    <div>
-        <span class="text-neutral-500 float-right text-sm" title="<%= comment.created_at.to_fs %>">
-          <%= time_ago_in_words(comment.created_at) %>
-        </span>
-      <% if is_same_user comment.ip_field %>
-        <%= button_to 'Delete', [quick_tweet, comment], method: :delete,
-                      class: "text-rose-300 hover:text-rose-400 hover:underline float-left
+  <% if quick_tweet.user %>
+    <span class="text-neutral-500 block" title="<%= quick_tweet.created_at.to_fs %>">
+         <strong><%= quick_tweet.user.username %></strong>
+      </span>
+  <% end %>
+  <p>
+    <%= clean_links sanitize(comment.body, tags: %w(strong em a b code), attributes: %w(href)) %>
+  </p>
+  <div class="mt-3">
+    <span class="text-neutral-500 float-right text-sm" title="<%= comment.created_at.to_fs %>">
+      <%= time_ago_in_words(comment.created_at) %>
+    </span>
+    <% if is_same_ip comment.ip_field or comment.user == current_user %>
+      <%= button_to 'Delete', [quick_tweet, comment], method: :delete,
+                    class: "text-rose-300 hover:text-rose-400 hover:underline float-left
                   md:scale-0 group-hover:scale-100 duration-100 text-sm" %>
-      <% end %>
-    </div>
+    <% end %>
+  </div>
 <% end %>
