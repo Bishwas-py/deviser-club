@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   # resources :quick_tweets
   root "quick_tweets#index"
   resources :quick_tweets, path: :tweet

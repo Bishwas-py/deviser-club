@@ -1,0 +1,22 @@
+<div class="grid place-items-center h-screen bg-slate-100">
+
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post, class: 'max-w-lg px-5 w-full rounded space-y-5' }) do |f| %>
+    <h2 class="auth-heading">Forgot your password?</h2>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="input-father">
+      <%= f.label :email, class: "input-label" %>
+      <%= f.email_field :email, class: "input-box", autofocus: true, autocomplete: "email", placeholder: "youremail@gmail.com" %>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "Send me reset password instructions", class: "auth-btn" %>
+      <%= link_to "Log in", new_session_path(resource_name), class: "auth-co-btn" %>
+    </div>
+    <%= link_to root_path, class: "bg-slate-200/50 hover:bg-slate-300/50 duration-100 border border-grey-200/80 text-neutral-600 mt-7 hover:text-neutral-800 rounded px-3 py-2 block w-fit" do %>
+      <%= icon 'fa-solid', 'chevron-left', class: "text-sm mr-1" %>
+      Go Home
+    <% end %>
+  <% end %>
+
+</div>

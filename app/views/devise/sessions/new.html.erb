@@ -1,0 +1,30 @@
+<div class="grid place-items-center h-screen bg-slate-100">
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'max-w-lg px-5 w-full rounded space-y-5' }) do |f| %>
+    <h1 class="auth-heading">Login Now!</h1>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="input-father">
+      <%= f.label :login, class: "input-label" %>
+      <%= f.text_field :login, class: "input-box", autofocus: true, autocomplete: "email", placeholder: "youremail@gmail.com" %>
+    </div>
+
+    <div class="input-father">
+      <%= f.label :password, class: "input-label" %>
+      <%= f.password_field :password, class: "input-box", autocomplete: "current-password", placeholder: "P@s$w*rd" %>
+    </div>
+
+    <% if devise_mapping.rememberable? %>
+      <div class="input-father">
+        <%= f.check_box :remember_me, class:"focus:ring rounded" %>
+        <%= f.label :remember_me, class: "ml-2" %>
+      </div>
+    <% end %>
+
+    <div class="actions">
+      <%= f.submit "Log in", class: "auth-btn" %>
+      <%= render "devise/shared/links" %>
+    </div>
+  <% end %>
+
+
+</div>

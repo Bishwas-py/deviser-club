@@ -1,6 +1,5 @@
 class QuickTweetsController < ApplicationController
   before_action :set_quick_tweet, only: %i[ show edit update destroy ]
-  before_action :check_user!, only: %i[ edit update destroy ]
 
   # GET /quick_tweets or /quick_tweets.json
   def index
@@ -27,6 +26,8 @@ class QuickTweetsController < ApplicationController
   def create
     @quick_tweet = QuickTweet.new(quick_tweet_params)
     @quick_tweet.ip_field = request.remote_ip
+    @quick_tweet.user = current_user
+
     # should remove invalid chars
     @quick_tweet.content = @quick_tweet.content.gsub("\u200D", "").gsub(/\P{Print}|\p{Cf}/, "")
 

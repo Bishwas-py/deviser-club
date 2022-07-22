@@ -5,6 +5,7 @@ class CommentsController < ApplicationController
   def create
     @comment = @quick_tweet.comments.create(comment_params)
     @comment.ip_field = request.remote_ip
+    @comment.user = current_user
     @comment.body = @comment.body.gsub("\u200D", "").gsub(/\P{Print}|\p{Cf}/, "")
 
     respond_to do |format|

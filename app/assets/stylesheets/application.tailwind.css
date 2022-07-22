@@ -2,36 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-    @font-face {
-        font-family: 'DMSans';
-        src: url("DMSans-Bold.ttf") format("truetype");
-        font-weight: bold;
-        font-style: normal;
-    }
-
-    @font-face {
-        font-family: 'DMSans';
-        src: url("DMSans-BoldItalic.ttf") format("truetype");
-        font-weight: bold;
-        font-style: italic;
-    }
-
-    @font-face {
-        font-family: 'DMSans';
-        src: url("DMSans-Italic.ttf") format("truetype");
-        font-weight: normal;
-        font-style: italic;
-    }
-
-    @font-face {
-        font-family: 'DMSans';
-        src: url("DMSans-Regular.ttf") format("truetype");
-        font-weight: normal;
-        font-style: normal;
-    }
-}
-
 @layer components {
     .field_with_errors * {
         @apply ring;
@@ -74,7 +44,33 @@
         @apply font-bold;
         @apply hover:text-blue-500;
     }
+    .input-box {
+        @apply shadow appearance-none bg-neutral-100/50 focus:bg-white border rounded w-full py-2 px-3 text-gray-700 leading-tight;
+    }
+    .input-label {
+        @apply block text-slate-700 text-sm font-bold mb-2;
+    }
 
+    .auth-btn {
+        @apply bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer;
+    }
+
+    .auth-co-btn {
+        @apply hover:bg-teal-500/10 text-neutral-900 font-bold py-2 px-4 rounded hover:underline inline-block cursor-pointer;
+    }
+    .auth-heading {
+        @apply text-2xl md:text-4xl text-slate-600 font-bold;
+    }
+    .error-box {
+        @apply text-rose-500;
+        @apply font-semibold;
+        @apply text-sm;
+    }
+    .error-box li {
+        @apply rounded-lg;
+        @apply bg-red-50;
+        @apply p-2 my-2;
+    }
 }
 
 @layer utilities {
