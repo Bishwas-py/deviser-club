@@ -111,6 +111,9 @@
         hover:bg-purple-900/50 backdrop-blur
         dark:hover:bg-gray-700 dark:hover:text-white;
     }
+    .editor-controls .header-option .active {
+        @apply bg-dark-100/50 dark:bg-gray-700 dark:hover:bg-gray-800;
+    }
     .editor-controls .header-select {
         @apply absolute md:left-0 w-max z-20 mt-2 overflow-hidden
         bg-purple-700/30 backdrop-blur rounded-md shadow-xl dark:bg-gray-800;
