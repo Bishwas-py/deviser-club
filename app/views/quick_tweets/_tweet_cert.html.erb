@@ -16,6 +16,6 @@
     <% end %>
   </div>
   <span class="content-box">
-      <%= sanitize quick_tweet.content, tags: %w(strong em a b h2 h3 h4 ul li code), attributes: %w(href) %>
+      <%= sanitize quick_tweet.content, tags: %w(strong em p a b h2 h3 h4 ul li code), attributes: %w(href) %>
   </span>
 </div>

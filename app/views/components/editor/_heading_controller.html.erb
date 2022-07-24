@@ -1,0 +1,5 @@
+<%= button_tag '',
+               data: { action: "click->tiptap#setHeading", heading_level: level, id: "h#{level}" },
+               class: "header-option" do %>
+  H <%= level %>
+<% end %>

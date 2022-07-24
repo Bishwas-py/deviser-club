@@ -80,30 +80,87 @@
         py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
     }
 
-    /* wflt editor */
-    .is-wflt {
-        @apply w-full;
+    /* EDITOR CSS */
+    .editor {
+        @apply p-3 h-full;
     }
-    .is-wflt .edit-btn {
+    .editor-controls {
+        @apply w-full bg-sky-100/30 dark:bg-black p-2 rounded-t;
+    }
+    .editor-controls .edit-btn, .editor-controls .header-chooser {
         @apply cursor-pointer duration-100;
-        @apply text-slate-700 font-bold text-sm;
-        @apply dark:text-white dark:hover:bg-blue-800/30 dark:focus:ring-blue-800;
-        @apply bg-indigo-500/20 hover:bg-indigo-800/30;
+        @apply text-slate-500 font-bold text-sm;
+        @apply dark:text-white dark:hover:bg-blue-100/50 dark:focus:ring-blue-800;
+        @apply bg-indigo-500/40 hover:bg-indigo-800/30;
         @apply rounded focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-indigo-900;
-        @apply px-4 py-2.5 text-center;
+        @apply h-7 text-center;
     }
-    .is-wflt .edit-btn * {
+    .editor-controls .edit-btn {
+        @apply w-7;
+    }
+
+    .editor-controls .edit-btn * {
         @apply duration-100;
     }
-    .is-wflt .editor-box {
-        @apply bg-indigo-700/20 rounded;
+
+    .editor-controls .header-option {
+        @apply block px-4 py-2 text-sm text-gray-200 font-bold capitalize transition-colors
+        duration-200 transform
+        dark:text-gray-300
+        hover:text-white
+        hover:bg-purple-900/50 backdrop-blur
+        dark:hover:bg-gray-700 dark:hover:text-white;
     }
-    .is-wflt textarea {
-        @apply hidden;
+    .editor-controls .header-select {
+        @apply absolute md:left-0 w-max z-20 mt-2 overflow-hidden
+        bg-purple-700/30 backdrop-blur rounded-md shadow-xl dark:bg-gray-800;
     }
-    .is-wflt .writing-section {
-        @apply p-3 bg-white/20 border-none rounded w-full focus:ring focus:outline-none transition-height ease-in-out duration-500;
+
+    /* Editor Content CSS */
+    .ProseMirror {
+        @apply space-y-2 text-slate-800 dark:text-slate-100 focus:outline-none rounded-b bg-indigo-300/20 dark:bg-slate-900 p-3 w-full;
     }
+
+    .ProseMirror p a {
+        @apply text-gray-400 underline underline-offset-0;
+    }
+
+    .ProseMirror ul {
+        @apply list-outside list-disc space-y-2 pl-6;
+    }
+
+    .ProseMirror ol {
+        @apply list-outside list-decimal space-y-2 pl-6;
+    }
+
+    .ProseMirror h1 {
+        @apply pt-4 pb-2 text-6xl font-bold text-slate-700;
+    }
+
+    .ProseMirror h2 {
+        @apply pt-3 pb-1 text-5xl font-semibold;
+    }
+
+    .ProseMirror h3 {
+        @apply pt-2 pb-1 text-4xl font-semibold;
+    }
+
+    .ProseMirror h4 {
+        @apply pt-1 pb-1 text-3xl font-semibold;
+    }
+
+    .ProseMirror h5 {
+        @apply pt-1 pb-1 text-2xl font-semibold;
+    }
+
+    .ProseMirror h6 {
+        @apply pt-1 pb-1 text-xl font-semibold;
+    }
+
+    .ProseMirror blockquote {
+        @apply border-l-4 border-slate-800 py-1 pl-4;
+    }
+
 }
 
 @layer utilities {
@@ -118,3 +175,4 @@
     }
 
 }
+@import 'actiontext.css';

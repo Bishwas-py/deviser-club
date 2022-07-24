@@ -1,0 +1,34 @@
+<div class="h-screen w-full bg-slate-300 overflow-y-scroll no-scrollbar">
+  <%= content_tag :div, data: { controller: "tiptap" }, class: "editor" do %>
+    <%= content_tag :div, class: "editor-controls" do %>
+      <%= button_tag '', data: { action: "click->tiptap#boldText" }, class: "group edit-btn font-extralight hover:font-extrabold hover:scale-110" do %>
+        <%= icon "fa-solid", "b", class: 'group-hover:scale-125' %>
+      <% end %>
+      <%= button_tag '', data: { action: "click->tiptap#italicText" }, class: "group edit-btn" do %>
+        <%= icon "fa-solid", "i", class: 'group-hover:rotate-45 group-focus:rotate-0' %>
+      <% end %>
+      <%= button_tag '', data: { action: "click->tiptap#setHeading", heading_level: 1 }, class: "group edit-btn" do %>
+        H 1
+      <% end %>
+
+      <div class="relative inline-block">
+        <%= button_to "", class: "header-chooser", data: {
+          controller: 'navbar',
+          action: 'navbar#toggleNavDrop',
+          navbar_body_param: "nav-bar-body"
+        } do %>
+          <span class="mx-2">Heading</span>
+          <%= icon "fa", "chevron-down", class: "text-sm w-5 mr-1" %>
+        <% end %>
+        <div id="nav-bar-body" class="hidden">
+          <div data-tiptap-target="heading" class="flex flex-col md:flex-row header-select">
+            <% (1..6).each do |level| %>
+              <%= render "components/editor/heading_controller", level: level %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+    <%= content_tag :div, '', data: { tiptap_target: "content", action: "click->tiptap#checkActiveHeading" } %>
+  <% end %>
+</div>
