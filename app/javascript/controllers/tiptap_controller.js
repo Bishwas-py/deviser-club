@@ -1,46 +1,31 @@
 import {Controller} from "@hotwired/stimulus"
 
-import {Editor} from '@tiptap/core'
-import StarterKit from '@tiptap/starter-kit'
-
+import {Editor} from '@tiptap/core';
+import StarterKit from '@tiptap/starter-kit';
+import Link from "@tiptap/extension-link";
 
 let textHandlers = ['bold', 'italic']
 
 // Connects to data-controller="tiptap"
 export default class extends Controller {
-    static targets = ['content', 'headingmarker', 'heading', ...textHandlers]
+    static targets = ['content', 'headingmarker', 'heading', 'textbox', ...textHandlers]
 
     connect() {
         this.editor = new Editor({
             element: this.contentTarget,
             extensions: [
                 StarterKit,
+                Link.configure({
+                    protocols: ['https://', 'mailto'],
+                })
             ],
-            content: `
-            <p>Yes, this is a document.</p>
-        <p>with <strong>bold</strong> and <em>italic</em> text.</p>
-        <p>😬</p>
-        <h2>Header 2</h2>
-        <p><a href="https://google.com">https://google.com</a></p>
-        <ul>
-          <li>
-            <p>Hello World!<br />Yes, you!</p>
-          </li>
-        </ul>
-        <h3>Header 3</h3>
-        <ol>
-          <li>
-            <p>item 1<br />line 2</p>
-          </li>
-          <li><p>item 2</p></li>
-        </ol>
-        <p>Great work</p>
-        <blockquote>I really said this.<br />Important stuff.</blockquote>
-        <div>
-          <img src="https://images.unsplash.com/photo-1449034446853-66c86144b0ad?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb" />
-        </div>
-        <p>Good right?</p>
-            `,
+            onUpdate: ({ editor }) => {
+                const html = editor.getHTML();
+                this.textboxTarget.value = html;
+                console.log(this.textboxTarget.value);
+            },
+            content: this.textboxTarget.value,
+            origcontent: `Just Gold Old Text wandering around!`,
         })
     }
 

@@ -7,6 +7,7 @@
   "license": "MIT",
   "dependencies": {
     "@tiptap/core": "^2.0.0-beta.182",
+    "@tiptap/extension-link": "^2.0.0-beta.43",
     "@tiptap/starter-kit": "^2.0.0-beta.191"
   }
 }

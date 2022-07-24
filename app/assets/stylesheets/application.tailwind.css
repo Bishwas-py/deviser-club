@@ -82,12 +82,12 @@
 
     /* EDITOR CSS */
     .editor {
-        @apply p-3 h-full;
+        @apply w-full h-full;
     }
     .editor-controls {
         @apply w-full bg-sky-100/30 dark:bg-black p-2 rounded-t;
     }
-    .editor-controls .edit-btn, .editor-controls .header-chooser {
+    .editor-controls .edit-btn, .editor-flex-button {
         @apply cursor-pointer duration-100;
         @apply text-slate-500 font-bold text-sm;
         @apply dark:text-white dark:hover:bg-blue-100/50 dark:focus:ring-blue-800;
@@ -98,7 +98,6 @@
     .editor-controls .edit-btn {
         @apply w-7;
     }
-
     .editor-controls .edit-btn * {
         @apply duration-100;
     }
@@ -111,9 +110,7 @@
         hover:bg-purple-900/50 backdrop-blur
         dark:hover:bg-gray-700 dark:hover:text-white;
     }
-    .editor-controls .header-option .active {
-        @apply bg-dark-100/50 dark:bg-gray-700 dark:hover:bg-gray-800;
-    }
+
     .editor-controls .header-select {
         @apply absolute md:left-0 w-max z-20 mt-2 overflow-hidden
         bg-purple-700/30 backdrop-blur rounded-md shadow-xl dark:bg-gray-800;
@@ -121,11 +118,14 @@
 
     /* Editor Content CSS */
     .ProseMirror {
-        @apply space-y-2 text-slate-800 dark:text-slate-100 focus:outline-none rounded-b bg-indigo-300/20 dark:bg-slate-900 p-3 w-full;
+        @apply space-y-2 text-slate-800 dark:text-slate-100 focus:outline-none bg-indigo-300/20 dark:bg-slate-900 p-3 w-full;
     }
 
     .ProseMirror p a {
         @apply text-gray-400 underline underline-offset-0;
+    }
+    .ProseMirror p {
+        @apply text-lg;
     }
 
     .ProseMirror ul {

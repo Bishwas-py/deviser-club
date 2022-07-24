@@ -1,9 +1,8 @@
+<%= render "components/errors", error_el: quick_tweet %>
 
-<%= form_with(model: quick_tweet, id: "#{dom_id(quick_tweet)}_form") do |form| %>
-  <%= render "components/errors", error_el: quick_tweet %>
-  <%= form.text_area :content, rows: 7, class: "block text-lg text-neutral-600 shadow
-    rounded-md border border-gray-200
-    focus:ring
-    outline-none px-3 py-2 mt-2 w-full my-5" %>
-  <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-<% end %>
+<div class="bg-slate-100 rounded overflow-hidden">
+  <%= form_with model: quick_tweet do |form| %>
+    <%= render "components/editor/edit", form: form, id: "#{dom_id(quick_tweet)}_form", field: 'content' %>
+    <%= form.submit class: "editor-flex-button px-2" %>
+  <% end %>
+</div>
