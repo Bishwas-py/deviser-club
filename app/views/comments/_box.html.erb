@@ -1,30 +1,31 @@
-<div
-  id="comment_box"
-  class="w-full md:w-1/3 h-full left-0 backdrop-blur-sm bg-white/90
-      bottom-0 md:col-span-4 px-2 border-l
-      hidden md:static fixed md:block">
-  <%= button_to "", class: "md:hidden absolute fil rounded-button right-2 top-2 h-7 w-7", data: {
-    controller: 'comment',
-    action: 'comment#toggleComment',
-    comment_body_param: "comment_box"
-  } do %>
+<%= turbo_stream_from quick_tweet, :comments %>
+
+<%= content_tag :div,
+                class: "w-full md:w-1/3 h-full shadow left-0 backdrop-blur-sm bg-white/90 bottom-0 md:col-span-4 px-2 border-l hidden fixed",
+                id: "comment_box" do %>
+
+  <%= button_to "", class: "absolute fil rounded-button right-2 top-2 h-7 w-7", data: {
+    action: 'comment#toggleComment' } do %>
     <%= icon "fa-solid", "times" %>
   <% end %>
 
-  <div class="px-6 py-4 overflow-y-scroll max-h-screen no-scrollbar">
-    <div class="container mx-auto py-10">
-      <h2 class="text-lg font-medium text-slate-600 flex justify-between mb-3">
-        Comment section
-        <%= render "comments/comments_count", count: comments.count %>
-      </h2>
-      <%= render "comments/form", quick_tweet: quick_tweet, comment: quick_tweet.comments.new %>
-    </div>
+  <%= audio_tag "audio/notification.mp3", data_target: "commentNotification" %>
 
-    <%= turbo_stream_from quick_tweet, :comments %>
-    <div class="grid gap-3" id="<%= dom_id quick_tweet %>_comments">
-      <% comments.each do |comment| %>
-        <%= render comment, quick_tweet: quick_tweet, comment: comment %>
+  <div class="px-6 py-4 overflow-y-scroll max-h-screen no-scrollbar">
+  <div class="container mx-auto py-10">
+    <h2 class="text-lg font-medium text-slate-600 flex justify-between mb-3">
+      Comment section
+      <%= turbo_frame_tag "comments_count_top", class: "rounded bg-slate-300 px-3 my-auto text-sm" do %>
+        <%= comments.count %>
       <% end %>
-    </div>
+    </h2>
+    <%= render "comments/form", quick_tweet: quick_tweet, comment: quick_tweet.comments.new %>
+  </div>
+
+  <div class="grid gap-3" id="<%= dom_id quick_tweet %>_comments">
+    <% comments.each do |comment| %>
+      <%= render comment, quick_tweet: quick_tweet, comment: comment %>
+    <% end %>
   </div>
 </div>
+<% end %>

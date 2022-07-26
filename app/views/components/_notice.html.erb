@@ -1,12 +1,12 @@
 <div id="<%= "#{dom_id quick_tweet}_alert_notice" %>">
   <% if notice %>
-    <div id="error_explanation" class="bg-green-50 text-red-500 px-3 py-2 font-medium rounded-lg my-3">
+    <div id="error_explanation" class="bg-green-50 text-red-500 px-3 py-2 font-medium">
       <%= simple_format notice %>
     </div>
   <% end %>
 
   <% if alert %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg my-3">
+    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium">
       <%= simple_format alert %>
     </div>
   <% end %>

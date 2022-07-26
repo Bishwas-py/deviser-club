@@ -1,17 +1,17 @@
-<div id="<%= dom_id post %>">
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Title:</strong>
-    <%= post.title %>
-  </p>
 
-  <p class="my-5">
-    <strong class="block font-medium mb-1">Body:</strong>
-    <%= post.body %>
-  </p>
-
-  <% if action_name != "show" %>
-    <%= link_to "Show this post", post, class: "rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <%= link_to 'Edit this post', edit_post_path(post), class: "rounded-lg py-3 ml-2 px-5 bg-gray-100 inline-block font-medium" %>
-    <hr class="mt-6">
+<%= turbo_stream_from post %>
+<div class="break-inside-avoid" id="<%= dom_id post %>">
+  <%= link_to post do %>
+    <div class="max-w-sm rounded-xl mx-2 hover:bg-blue-100 cursor-pointer hover:scale-110 duration-300 overflow-hidden shadow-lg">
+      <div class="px-6 py-4">
+        <div class="font-bold text-3xl mb-2"><%= post.title %></div>
+        <span class="text-gray-700 text-2xl text-base">
+          <%= sanitize(post.body, tags: %w()).strip.truncate(599) %>
+        </span>
+        <span class="text-neutral-500" title="<%= post.created_at.to_fs %>">
+        <%= time_ago_in_words(post.created_at) %>
+      </span>
+      </div>
+    </div>
   <% end %>
 </div>

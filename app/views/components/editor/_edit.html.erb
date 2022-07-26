@@ -1,23 +1,23 @@
 <%= content_tag :div, data: { controller: "tiptap" }, class: "editor" do %>
-  <%= content_tag :div, class: "editor-controls" do %>
-    <%= button_tag '', data: { action: "click->tiptap#boldText", tiptap_target: "bold" }, class: "group edit-btn font-extralight hover:font-extrabold hover:scale-110" do %>
+  <%= content_tag :div, class: "editor-controls rounded sticky top-0 z-20" do %>
+    <%= button_tag '', data: { action: "click->tiptap#boldText", tiptap_target: "bold" }, type: "button", class: "group edit-btn font-extralight hover:font-extrabold hover:scale-110" do %>
       <%= icon "fa-solid", "b", class: 'group-hover:scale-125' %>
     <% end %>
-    <%= button_tag '', data: { action: "click->tiptap#italicText", tiptap_target: "italic" }, class: "group edit-btn" do %>
+    <%= button_tag '', data: { action: "click->tiptap#italicText", tiptap_target: "italic" }, type: "button", class: "group edit-btn" do %>
       <%= icon "fa-solid", "i", class: 'group-hover:rotate-45 group-focus:rotate-0' %>
     <% end %>
 
-    <%= button_tag '', data: { action: "click->tiptap#setHeading", heading_level: 1 }, class: "group edit-btn" do %>
+    <%= button_tag '', data: { action: "click->tiptap#setHeading", heading_level: 1 }, type: "button", class: "group edit-btn" do %>
       H 1
     <% end %>
-
     <div class="relative inline-block">
-      <%= button_to "", class: "editor-flex-button", data: {
-        controller: 'navbar',
-        action: 'navbar#toggleNavDrop',
-        navbar_body_param: "heading",
-        tiptap_target: "headingmarker",
-      } do %>
+      <%= button_to "", class: "editor-button-strech", type: "button",
+                    data: {
+                      controller: 'navbar',
+                      action: 'navbar#toggleNavDrop',
+                      navbar_body_param: "heading",
+                      tiptap_target: "headingmarker",
+                    } do %>
         <span class="mx-2">Heading</span>
         <%= icon "fa", "chevron-down", class: "text-sm w-5 mr-1" %>
       <% end %>
@@ -29,6 +29,17 @@
     </div>
   <% end %>
 
-    <%= form.hidden_field field, data: { tiptap_target: "textbox" } %>
-    <%= content_tag :div, '', data: { tiptap_target: "content" } %>
+  <%= form.hidden_field field, data: { tiptap_target: "textbox" } %>
+  <%= content_tag :div, '', data: { tiptap_target: "content" }, class: 'p-3 rounded' do %>
+    <textarea class="ProseMirror"></textarea>
+  <% end %>
+  <%= content_tag :div, class: "editor-controls rounded p-2 sticky bottom-2" do %>
+    <%= button_tag '', data: { action: "click->tiptap#codeText", tiptap_target: "code" }, type: "button", class: "group edit-btn" do %>
+      <%= icon "fa-solid", "code", class: 'group-hover:rotate-45 group-focus:rotate-0' %>
+    <% end %>
+    <%= button_tag '', data: { action: "click->tiptap#codeBlockText", tiptap_target: "codeBlock" }, type: "button", class: "group editor-button-strech px-2" do %>
+      [ <%= icon "fa-solid", "code", class: 'group-hover:text-slate-600 group-focus:text-green-300 group-focus:scale-110' %> ]
+    <% end %>
+    <%= form.submit class: "editor-button-strech float-right px-2" %>
+  <% end %>
 <% end %>

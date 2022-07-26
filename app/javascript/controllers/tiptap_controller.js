@@ -4,19 +4,28 @@ import {Editor} from '@tiptap/core';
 import StarterKit from '@tiptap/starter-kit';
 import Link from "@tiptap/extension-link";
 
-let textHandlers = ['bold', 'italic']
+import Code from "@tiptap/extension-code";
+import CodeBlock from "@tiptap/extension-code-block";
+
+let textHandlers = ['bold', 'italic', 'code', 'codeBlock']
 
 // Connects to data-controller="tiptap"
 export default class extends Controller {
-    static targets = ['content', 'headingmarker', 'heading', 'textbox', ...textHandlers]
+    static targets = ['content', 'headingmarker', 'heading', 'textbox', 'audioplayer', ...textHandlers]
 
     connect() {
+        this.textboxTarget.hidden = true;
         this.editor = new Editor({
             element: this.contentTarget,
             extensions: [
                 StarterKit,
                 Link.configure({
                     protocols: ['https://', 'mailto'],
+                }),
+                Code.configure({}),
+                CodeBlock.configure({
+                    languageClassPrefix: 'language-',
+                    exitOnTripleEnter: true,
                 })
             ],
             onUpdate: ({ editor }) => {
@@ -27,9 +36,14 @@ export default class extends Controller {
             content: this.textboxTarget.value,
             origcontent: `Just Gold Old Text wandering around!`,
         })
+
     }
 
     initialize() {
+        let oldEditor = document.querySelector('.ProseMirror');
+        if (oldEditor){
+            oldEditor.outerHTML = '';
+        }
         ['click','input', 'keydown', 'keypress', 'change'].forEach( evt =>
             {
                 this.element.addEventListener(evt, ()=> {
@@ -47,6 +61,14 @@ export default class extends Controller {
 
     italicText() {
         this.editor.chain().focus().toggleItalic().run()
+    }
+
+    codeBlockText() {
+        this.editor.chain().focus().toggleCodeBlock().run()
+    }
+
+    codeText() {
+        this.editor.chain().focus().toggleCode().run()
     }
 
     setHeading(event) {
@@ -89,10 +111,4 @@ export default class extends Controller {
         }
     }
 
-    // makeText(event) {
-    //     let functionName = event.target.dataset.command;
-    //     if (functionName) {
-    //         eval("this.editor.chain().focus()." + functionName + ".run()");
-    //     }
-    // }
 }

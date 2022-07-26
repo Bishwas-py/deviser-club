@@ -9,27 +9,11 @@
     .field_with_errors * {
         @apply ring;
     }
+    .menu-drop-down {
+        @apply relative z-10 flex items-center p-2 text-sm text-gray-600 border border-slate-200 rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300
+        dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none;
+    }
 
-    .content-box {
-        @apply text-gray-700 text-slate-700 text-2xl text-base mt-5;
-    }
-    .content-box h2 {
-        @apply text-xl text-neutral-600 font-bold;
-    }
-    .content-box h3 {
-        @apply text-lg text-neutral-700 font-semibold;
-    }
-    .content-box h4 {
-        @apply font-medium text-neutral-700 font-bold;
-    }
-    .content-box a {
-        @apply text-teal-500;
-        @apply font-bold;
-        @apply hover:text-blue-500;
-    }
-    .content-box ul {
-        @apply list-disc;
-    }
     .rounded-button {
         @apply rounded-full text-white;
         @apply h-12 w-12;
@@ -39,9 +23,27 @@
         @apply bg-neutral-700;
         @apply hover:bg-neutral-800;
     }
+
     code {
         @apply font-mono font-medium text-sky-500 dark:text-sky-400;
     }
+    code:not(pre code) {
+        @apply p-1 rounded bg-slate-200;
+    }
+
+
+    pre {
+        @apply flex bg-slate-700 dark:bg-slate-600;
+        @apply rounded-xl;
+        @apply whitespace-pre-wrap;
+        @apply overflow-hidden;
+        @apply p-3 m-3;
+    }
+
+    pre code {
+        @apply text-lg;
+    }
+
     .link {
         @apply text-teal-500;
         @apply font-bold;
@@ -79,24 +81,28 @@
         focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5
         py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
     }
+    .page-posting-section {
+        @apply min-h-screen px-5 sm:px-10 md:px-28 py-10 lg:px-48;
+    }
+    .page-title-heading {
+        @apply font-bold text-slate-600 text-xl md:text-4xl sm:text-2xl mb-4;
+    }
 
     /* EDITOR CSS */
-    .editor {
-        @apply w-full h-full;
-    }
     .editor-controls {
-        @apply w-full bg-sky-100/30 dark:bg-black p-2 rounded-t;
+        @apply w-full bg-blue-400/50 dark:bg-black p-2;
+        @apply space-y-1 sm:space-y-0 backdrop-blur;
     }
-    .editor-controls .edit-btn, .editor-flex-button {
+    .editor-controls .edit-btn, .editor-button-strech {
         @apply cursor-pointer duration-100;
-        @apply text-slate-500 font-bold text-sm;
+        @apply text-slate-100 font-bold text-lg;
         @apply dark:text-white dark:hover:bg-blue-100/50 dark:focus:ring-blue-800;
         @apply bg-indigo-500/40 hover:bg-indigo-800/30;
         @apply rounded focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-indigo-900;
-        @apply h-7 text-center;
+        @apply h-9 text-center;
     }
     .editor-controls .edit-btn {
-        @apply w-7;
+        @apply w-9;
     }
     .editor-controls .edit-btn * {
         @apply duration-100;
@@ -118,49 +124,49 @@
 
     /* Editor Content CSS */
     .ProseMirror {
-        @apply space-y-2 text-slate-800 dark:text-slate-100 focus:outline-none bg-indigo-300/20 dark:bg-slate-900 p-3 w-full;
+        @apply rounded border-none text-slate-800 dark:text-slate-100 focus:outline-none bg-white shadow dark:bg-slate-900 p-3 w-full;
     }
 
-    .ProseMirror p a {
+    :is(.ProseMirror, .content-box) p a {
         @apply text-gray-400 underline underline-offset-0;
     }
-    .ProseMirror p {
-        @apply text-lg;
+    :is(.ProseMirror, .content-box) p {
+        @apply text-lg sm:text-xl my-2;
     }
 
-    .ProseMirror ul {
+    :is(.ProseMirror, .content-box) ul {
         @apply list-outside list-disc space-y-2 pl-6;
     }
 
-    .ProseMirror ol {
+    :is(.ProseMirror, .content-box) ol {
         @apply list-outside list-decimal space-y-2 pl-6;
     }
 
-    .ProseMirror h1 {
-        @apply pt-4 pb-2 text-6xl font-bold text-slate-700;
+    :is(.ProseMirror, .content-box) h1 {
+        @apply pt-4 pb-2 mb-2 text-4xl md:text-6xl font-bold text-slate-800;
     }
 
-    .ProseMirror h2 {
-        @apply pt-3 pb-1 text-5xl font-semibold;
+    :is(.ProseMirror, .content-box) h2 {
+        @apply pt-3 pb-1 mb-2 text-3xl md:text-5xl font-semibold text-slate-700;
     }
 
-    .ProseMirror h3 {
-        @apply pt-2 pb-1 text-4xl font-semibold;
+    :is(.ProseMirror, .content-box) h3 {
+        @apply pt-2 pb-1 text-2xl md:text-4xl font-semibold text-slate-600;
     }
 
-    .ProseMirror h4 {
-        @apply pt-1 pb-1 text-3xl font-semibold;
+    :is(.ProseMirror, .content-box) h4 {
+        @apply pt-1 pb-1 text-xl md:text-3xl font-bold text-stone-600;
     }
 
-    .ProseMirror h5 {
-        @apply pt-1 pb-1 text-2xl font-semibold;
+    :is(.ProseMirror, .content-box) h5 {
+        @apply pt-1 pb-1 text-lg md:text-2xl font-semibold text-slate-700;
     }
 
-    .ProseMirror h6 {
-        @apply pt-1 pb-1 text-xl font-semibold;
+    :is(.ProseMirror, .content-box) h6 {
+        @apply pt-1 pb-1 text-sm md:text-2xl font-medium text-slate-700;
     }
 
-    .ProseMirror blockquote {
+    :is(.ProseMirror, .content-box) blockquote {
         @apply border-l-4 border-slate-800 py-1 pl-4;
     }
 
@@ -178,4 +184,6 @@
     }
 
 }
+
+/* trix-assets */
 @import 'actiontext.css';

@@ -4,13 +4,16 @@ module ApplicationHelper
     html.html_safe
   end
 
-  def is_same_ip(post_ip, r:request)
-    r.remote_ip == post_ip
-  end
-
   def dom_id_for_records(*records)
     records.map do |record|
       dom_id(record)
     end.join "_"
+  end
+
+  def purify content
+    if content
+      content = content.gsub("\u200D", "").gsub(/\P{Print}|\p{Cf}/, "")
+    end
+    sanitize(content, tags: %w(strong em p a b h1 h2 h3 h4 h5 h6 ul li pre code), attributes: %w(href))
   end
 end

@@ -31,14 +31,13 @@ class QuickTweetsController < ApplicationController
     @quick_tweet.user = current_user
 
     # should remove invalid chars
-    @quick_tweet.content = @quick_tweet.content.gsub("\u200D", "").gsub(/\P{Print}|\p{Cf}/, "")
+    @quick_tweet.content = helpers.purify @quick_tweet.content
 
     image_file_io, image_name = helpers.create_og_image(helpers.sanitize(@quick_tweet.content, tags: %w()))
     @quick_tweet.image.attach(io: image_file_io, filename: image_name, content_type: 'image/png')
 
     respond_to do |format|
       if @quick_tweet.save
-        format.turbo_stream
         format.html { redirect_to quick_tweet_url(@quick_tweet) }
         format.json { render :show, status: :created, location: @quick_tweet }
       else

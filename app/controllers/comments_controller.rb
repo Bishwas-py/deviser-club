@@ -6,10 +6,11 @@ class CommentsController < ApplicationController
     @comment = @quick_tweet.comments.create(comment_params)
     @comment.ip_field = request.remote_ip
     @comment.user = current_user
-    @comment.body = @comment.body.gsub("\u200D", "").gsub(/\P{Print}|\p{Cf}/, "")
+    @comment.body = helpers.purify @comment.body
 
     respond_to do |format|
       if @comment.save
+        @comment.broadcast_prepend_to [@quick_tweet, :comments], partial: "comments/comment", target: "#{helpers.dom_id(@quick_tweet)}_comments", locals: { quick_tweet: @quick_tweet, current_user: current_user }
         format.turbo_stream
         format.html { redirect_to quick_tweet_url(@quick_tweet), notice: "Commented successfully." }
         format.json { render :show, status: :created, location: @quick_tweet }

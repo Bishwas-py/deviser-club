@@ -1,15 +1,33 @@
-<div class="mx-auto md:w-2/3 w-full flex">
-  <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
+<div id="<%= dom_id @post %>">
+  <div class="px-5 py-5 font-bold h-72 grid bg-blue-50 place-items-center text-neutral-700">
+    <div class="text-center">
+      <div class="text-cyan-500" title="<%= @post.created_at.to_fs %>">
 
-    <%= render @post %>
+      </div>
+      <div class="text-cyan-500" title="<%= @post.created_at.to_fs %>">
+        Posted by <strong><%= @post.user.username %></strong> • <span class="text-cyan-600"><%= time_ago_in_words(@post.created_at) %></span>
+      </div>
+      <h1 class="text-4xl"><%= @post.title %></h1>
+      <div class="ml-2 mb-6">
 
-    <%= link_to 'Edit this post', edit_post_path(@post), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
-    <div class="inline-block ml-2">
-      <%= button_to 'Destroy this post', post_path(@post), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      </div>
     </div>
-    <%= link_to 'Back to posts', posts_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  </div>
+  <div class="min-h-screen">
+    <div class="content-box col-span-2 py-16 md:px-48">
+      <%= @post.body.html_safe %>
+    </div>
+  </div>
+  <div class="place-items-center grid sticky bottom-3">
+    <div class="h-50 p-0 space-x-2 flex text-right w-fit">
+      <%= button_to @post, method: :delete,
+                    class: "rounded-button hover:text-rose-100 hover:bg-rose-800" do %>
+        <%= icon "fa-solid", "trash" %>
+      <% end %>
+      <%= link_to edit_post_path,
+                  class: "rounded-button hover:text-cyan-100 hover:bg-cyan-800" do %>
+        <%= icon "fa-solid", "edit" %>
+      <% end %>
+    </div>
   </div>
 </div>

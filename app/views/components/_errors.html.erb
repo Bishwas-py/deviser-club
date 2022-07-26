@@ -1,7 +1,6 @@
 <% if error_el.errors.any? %>
-  <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg my-3">
-    <b><%= pluralize(error_el.errors.count, "error") %> popped!</b>
-    <ul>
+  <div id="error_explanation" class="bg-red-50 text-red-500 font-medium">
+    <ul class="py-2 px-3 grid place-items-center">
       <% error_el.errors.each do |error| %>
         <li><%= error.full_message %></li>
       <% end %>

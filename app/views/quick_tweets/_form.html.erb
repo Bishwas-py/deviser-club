@@ -3,6 +3,5 @@
 <div class="bg-slate-100 rounded overflow-hidden">
   <%= form_with model: quick_tweet do |form| %>
     <%= render "components/editor/edit", form: form, id: "#{dom_id(quick_tweet)}_form", field: 'content' %>
-    <%= form.submit class: "editor-flex-button px-2" %>
   <% end %>
 </div>
