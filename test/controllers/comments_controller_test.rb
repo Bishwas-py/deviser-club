@@ -1,7 +1,6 @@
 require "test_helper"
 
 class CommentsControllerTest < ActionDispatch::IntegrationTest
-  # test "the truth" do
-  #   assert true
-  # end
+  include Devise::Test::ControllerHelpers # Rails < 5
+
 end

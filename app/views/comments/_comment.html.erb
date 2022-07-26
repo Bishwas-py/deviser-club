@@ -11,12 +11,12 @@
     <span class="text-neutral-500 text-sm" title="<%= comment.created_at.to_fs %>">
       <%= time_ago_in_words(comment.created_at) %>
     </span>
-    <span class="float-right">
-      <% if current_user == comment.user %>
+    <span class="float-right" data-controller="user-auth" data-user-auth-uid="<%= comment.user.id %>">
+      <div class="hidden" data-user-auth-target="delete">
         <%= button_to 'Delete', [quick_tweet, comment], method: :delete,
                       class: "text-rose-300 hover:text-rose-400 hover:underline
                     md:scale-0 group-hover:scale-100 duration-100 text-sm" %>
-      <% end %>
+      </div>
     </span>
   </div>
 <% end %>
