@@ -26,10 +26,15 @@
         @apply relative z-10 flex items-center p-2 text-sm text-gray-600 border border-slate-200 rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300
         dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none;
     }
-
+    .post-reaction-box {
+        @apply rounded-xl overflow-hidden bg-slate-200 flex text-right w-fit;
+    }
+    .post-reaction-box > * {
+        @apply text-slate-500 hover:text-slate-700 p-2 hover:bg-slate-300;
+    }
     .rounded-button {
         @apply rounded-full text-white;
-        @apply h-12 w-12;
+        @apply md:h-12 md:w-12 h-8 w-8;
         @apply shadow-lg;
         @apply grid place-items-center;
         @apply hover:shadow-xl;

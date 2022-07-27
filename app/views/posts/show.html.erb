@@ -1,10 +1,21 @@
 <%= render "components/aside_bar" do %>
-  <div id="<%= dom_id @post %>" class="w-full py-16">
+  <div id="<%= dom_id @post %>" class="w-full py-7 md:py-10">
     <%= render "posts/post-profile" %>
     <div class="min-h-screen">
-      <div class="content-box page-posting-section">
+      <div class="content-box page-posting-section md:py-7 py-0">
         <h1><%= @post.title %></h1>
         <%= @post.body.html_safe %>
+      </div>
+      <div class="place-items-center grid sticky bottom-3">
+        <div class="post-reaction-box divide-x divide-blue-200 flex" >
+          <%= render "likes/create", post: @post, like: current_user.likes.find_by(post: @post) %>
+          <%= link_to edit_post_path, class: "px-3" do %>
+            <%= icon "fa-regular", "edit" %>
+          <% end %>
+          <%= link_to edit_post_path, class: "px-3" do %>
+            <%= icon "fa-regular", "comment" %>
+          <% end %>
+        </div>
       </div>
     </div>
   </div>

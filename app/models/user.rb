@@ -9,6 +9,7 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :quick_tweets, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 

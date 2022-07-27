@@ -1,0 +1,26 @@
+
+<%= turbo_frame_tag "like-#{post.id}" do %>
+  <% if like.nil? %>
+    <%= button_to likes_path,
+                  params: {
+                    like: {
+                      post_id: post.id,
+                    }
+                  },
+                  class: "hover:text-rose-800 text-rose-500 focus:text-sky-500 duration-400" do %>
+      <span>
+        <%= icon "fa-solid", "heart" %>
+          <%= post.likes.count %>
+      </span>
+    <% end %>
+  <% else %>
+    <%= button_to like_path(like),
+                  method: :delete,
+                  class: "hover:text-blue-800 text-blue-500 focus:text-rose-500 duration-400" do %>
+      <span>
+        <%= icon "fa-solid", "heart" %>
+        <%= post.likes.count %>
+      </span>
+    <% end %>
+  <% end %>
+<% end %>
