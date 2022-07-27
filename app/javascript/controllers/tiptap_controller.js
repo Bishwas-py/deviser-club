@@ -5,6 +5,7 @@ import StarterKit from '@tiptap/starter-kit';
 import Link from "@tiptap/extension-link";
 
 import Code from "@tiptap/extension-code";
+import Placeholder from "@tiptap/extension-placeholder";
 import CodeBlock from "@tiptap/extension-code-block";
 
 let textHandlers = ['bold', 'italic', 'code', 'codeBlock']
@@ -26,12 +27,14 @@ export default class extends Controller {
                 CodeBlock.configure({
                     languageClassPrefix: 'language-',
                     exitOnTripleEnter: true,
-                })
+                }),
+                Placeholder.configure({
+                    placeholder: "Write your story...",
+                    emptyNodeClass: 'tiptap-placeholder',})
             ],
             onUpdate: ({ editor }) => {
                 const html = editor.getHTML();
                 this.textboxTarget.value = html;
-                console.log(this.textboxTarget.value);
             },
             content: this.textboxTarget.value,
             origcontent: `Just Gold Old Text wandering around!`,

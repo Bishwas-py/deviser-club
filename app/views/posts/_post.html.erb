@@ -1,5 +1,5 @@
 <%= turbo_stream_from post %>
-<div class="break-inside-avoid group" id="<%= dom_id post %>">
+<div class="break-inside-avoid group w-full" id="<%= dom_id post %>">
   <%= link_to post do %>
     <div class="px-6 py-10">
       <span class="text-neutral-500 block mb-2" title="Author: <%= post.user.username %>">

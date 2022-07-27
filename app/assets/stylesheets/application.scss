@@ -16,12 +16,6 @@
 
 @import "font-awesome";
 
-
-.ProseMirror {
-  overflow-y: scroll;
-  height: 70vh;
-}
-
 :is(.ProseMirror, .cute-scroll)::-webkit-scrollbar {
   width: 20px;
 }

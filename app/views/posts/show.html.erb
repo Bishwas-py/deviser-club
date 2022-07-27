@@ -6,17 +6,28 @@
         <h1><%= @post.title %></h1>
         <%= @post.body.html_safe %>
       </div>
-      <div class="place-items-center grid sticky bottom-3">
-        <div class="post-reaction-box divide-x divide-blue-200 flex" >
-          <%= render "likes/create", post: @post, like: current_user.likes.find_by(post: @post) %>
-          <%= link_to edit_post_path, class: "px-3" do %>
-            <%= icon "fa-regular", "edit" %>
-          <% end %>
-          <%= link_to edit_post_path, class: "px-3" do %>
-            <%= icon "fa-regular", "comment" %>
-          <% end %>
-        </div>
-      </div>
     </div>
   </div>
+
+  <%= content_for :down_bar_up_kit do %>
+    <div class="post-reaction-box divide-x divide-blue-200 flex" >
+      <% if current_user.nil? %>
+        <%= content_tag :div, class: "hover:text-rose-800 text-rose-500 focus:text-sky-500 duration-400 box" do %>
+          <span>
+            <%= icon "fa-solid", "heart" %>
+            <%= @post.likes.count %>
+          </span>
+        <% end %>
+      <% else %>
+        <%= render "likes/create", post: @post, like: current_user.likes.find_by(post: @post) %>
+      <% end %>
+      <%= link_to edit_post_path, class: "box" do %>
+        <%= icon "fa-regular", "edit" %>
+      <% end %>
+      <%= link_to edit_post_path, class: "box" do %>
+        <%= icon "fa-regular", "comment" %>
+      <% end %>
+    </div>
+  <% end %>
 <% end %>
+

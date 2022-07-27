@@ -7,7 +7,7 @@
                       post_id: post.id,
                     }
                   },
-                  class: "hover:text-rose-800 text-rose-500 focus:text-sky-500 duration-400" do %>
+                  class: "p-2 px-4 hover:text-rose-800 text-rose-500 focus:text-sky-500 duration-400" do %>
       <span>
         <%= icon "fa-solid", "heart" %>
           <%= post.likes.count %>
@@ -16,7 +16,7 @@
   <% else %>
     <%= button_to like_path(like),
                   method: :delete,
-                  class: "hover:text-blue-800 text-blue-500 focus:text-rose-500 duration-400" do %>
+                  class: "p-2 px-4 hover:text-blue-800 text-blue-500 focus:text-rose-500 duration-400" do %>
       <span>
         <%= icon "fa-solid", "heart" %>
         <%= post.likes.count %>

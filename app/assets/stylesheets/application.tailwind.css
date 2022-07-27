@@ -10,7 +10,7 @@
         @apply ring;
     }
     .aside-menu-element {
-        @apply md:mx-auto items-stretch flex justify-center md:px-5 md:py-7 p-3 w-full
+        @apply items-stretch flex justify-center px-5 py-7
         hover:bg-blue-50 text-2xl text-slate-500 hover:text-slate-700;
     }
     .aside-menu-element.active {
@@ -29,8 +29,8 @@
     .post-reaction-box {
         @apply rounded-xl overflow-hidden bg-slate-200 flex text-right w-fit;
     }
-    .post-reaction-box > * {
-        @apply text-slate-500 hover:text-slate-700 p-2 hover:bg-slate-300;
+    .post-reaction-box .box {
+        @apply p-2 px-4 text-slate-500 hover:text-slate-700 hover:bg-slate-300;
     }
     .rounded-button {
         @apply rounded-full text-white;
@@ -108,14 +108,14 @@
 
     /* EDITOR CSS */
     .editor-controls {
-        @apply w-full bg-blue-400/50 dark:bg-black p-2;
+        @apply w-full bg-white/50 dark:bg-black p-2;
         @apply space-y-1 sm:space-y-0 backdrop-blur;
     }
     .editor-controls .edit-btn, .editor-button-strech {
         @apply cursor-pointer duration-100;
         @apply text-slate-100 font-bold text-lg;
-        @apply dark:text-white dark:hover:bg-blue-100/50 dark:focus:ring-blue-800;
-        @apply bg-indigo-500/40 hover:bg-indigo-800/30;
+        @apply dark:text-white dark:hover:bg-slate-100/50 dark:focus:ring-blue-800;
+        @apply bg-slate-900/70 hover:bg-slate-800/70;
         @apply rounded focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-indigo-900;
         @apply h-9 text-center;
     }
@@ -131,7 +131,7 @@
         duration-200 transform
         dark:text-gray-300
         hover:text-white
-        hover:bg-purple-900/50 backdrop-blur
+        hover:bg-slate-900/50 backdrop-blur
         dark:hover:bg-gray-700 dark:hover:text-white;
     }
 
@@ -142,7 +142,14 @@
 
     /* Editor Content CSS */
     .ProseMirror {
-        @apply rounded border-none text-slate-800 dark:text-slate-100 focus:outline-none bg-white shadow dark:bg-slate-900 p-3 w-full;
+        @apply h-full text-slate-800 dark:text-slate-100 focus:outline-none bg-white p-3 w-full;
+    }
+    .tiptap-placeholder {
+        @apply first:before:text-2xl first:before:text-gray-400
+        first:before:h-0
+        first:before:float-left
+        first:before:content-[attr(data-placeholder)]
+        first:before:pointer-events-none;
     }
 
     :is(.ProseMirror, .content-box) p a {
