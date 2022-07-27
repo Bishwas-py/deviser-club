@@ -1,12 +1,11 @@
 <%= turbo_stream_from quick_tweet %>
 <div class="break-inside-avoid" id="<%= dom_id quick_tweet %>">
   <%= link_to quick_tweet do %>
-    <div class="px-6 py-4">
-
+    <div class="px-6 py-10">
       <span class="text-neutral-500 block mb-2" title="Author: <%= quick_tweet.user.username %>">
           Posted by <strong><%= quick_tweet.user.username %></strong>
-         <span class="bg-blue-100 px-2 ml-2 py-1 rounded-lg text-sm text-slate-700">
-           Quick Tweet <%= icon "fa-solid", "clock", class: "text-sm" %>
+         <span class="posts-tag bg-blue-100">
+           Quick Tweet <%= icon "fa-solid", "truck-fast", class: "text-sm" %>
           </span>
       </span>
       <div>
@@ -14,7 +13,7 @@
           <%= sanitize(quick_tweet.content, tags: %w()).truncate(39) %>
         </h3>
         <span class="text-gray-700 text-2xl text-base">
-        <%= sanitize(quick_tweet.content, tags: %w()).strip.truncate(999) %>
+        <%= sanitize(quick_tweet.content, tags: %w()).strip.truncate(399) %>
       </span>
       </div>
       <div class="mt-3">

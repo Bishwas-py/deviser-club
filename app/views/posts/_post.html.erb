@@ -1,12 +1,11 @@
 <%= turbo_stream_from post %>
-<div class="break-inside-avoid" id="<%= dom_id post %>">
+<div class="break-inside-avoid group" id="<%= dom_id post %>">
   <%= link_to post do %>
-    <div class="px-6 py-4">
+    <div class="px-6 py-10">
       <span class="text-neutral-500 block mb-2" title="Author: <%= post.user.username %>">
-        Posted by <strong><%= post.user.username %></strong>
-       <span class="bg-purple-100 px-1 ml-2 rounded-lg text-slate-700"
-             style="font-size: 12px;">
-         Post <%= icon "fa-solid", "clock", style: "font-size: 12px;" %>
+        Posted by <strong><%= post.user.username %></strong>	•
+       <span class="bg-neutral-50 posts-tag">
+         Article Post
         </span>
       </span>
       <div class="font-bold text-3xl mb-2"><%= post.title %></div>
