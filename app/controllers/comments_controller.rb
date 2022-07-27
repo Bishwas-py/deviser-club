@@ -15,8 +15,7 @@ class CommentsController < ApplicationController
             partial: "comments/comment",
             target: "#{helpers.dom_id(@quick_tweet)}_comments",
             locals: {
-              quick_tweet: @quick_tweet,
-              current_user: current_user
+              quick_tweet: @quick_tweet
             }
         format.turbo_stream
         format.html { redirect_to quick_tweet_url(@quick_tweet), notice: "Commented successfully." }
