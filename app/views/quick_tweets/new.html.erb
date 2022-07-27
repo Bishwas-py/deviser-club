@@ -1,14 +1,15 @@
 <%= render "components/errors", error_el: @quick_tweet %>
 
-<div class="page-posting-section bg-indigo-50">
-  <h1 class="page-title-heading">New quick tweet</h1>
-  <%= form_with model: @quick_tweet, class: "w-full rounded overflow-hidden", id: "#{dom_id(@quick_tweet)}_form" do |form| %>
-    <%= render "components/editor/edit", form: form, field: 'content' %>
+<div class="grid place-items-center bg-blue-100 min-h-screen md:px-48">
+  <%= form_with(model: @post, class: "w-full rounded-xl overflow-hidden") do |form| %>
+    <%= render "components/editor/edit", field: :quick_tweet, form: form, placeholder: "Write a new quick tweet" %>
   <% end %>
 </div>
 
 <style>
   .ProseMirror {
-      height: 60vh;
+      min-height: 50vh;
+      max-height: 70vh;
+      overflow-y: scroll;
   }
 </style>

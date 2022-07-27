@@ -12,7 +12,7 @@ let textHandlers = ['bold', 'italic', 'code', 'codeBlock']
 
 // Connects to data-controller="tiptap"
 export default class extends Controller {
-    static targets = ['content', 'headingmarker', 'heading', 'textbox', 'audioplayer', ...textHandlers]
+    static targets = ['content', 'headingmarker', 'heading', 'textbox', 'audioplayer', 'placeholder', ...textHandlers]
 
     connect() {
         this.textboxTarget.hidden = true;
@@ -30,7 +30,7 @@ export default class extends Controller {
                     exitOnTripleEnter: true,
                 }),
                 Placeholder.configure({
-                    placeholder: "Write your story...",
+                    placeholder: this.data.get("placeholder"),
                     emptyNodeClass: 'tiptap-placeholder',})
             ],
             onUpdate: ({ editor }) => {

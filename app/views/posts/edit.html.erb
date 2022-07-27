@@ -1,20 +1,21 @@
 <%= render "components/errors", error_el: @post %>
 
 <div class="flex justify-between px-10 md:px-32 py-7 w-full">
-  <div class="flex items-stretch flex justify-center">
-    <%= image_tag "fav.png", class: "w-7" %>
+  <div class="flex items-stretch space-x-2 flex justify-center">
+    <%= link_to root_path do %>
+      <%= image_tag "fav.png", class: "w-7 rounded-full bg-purple-50 hover:bg-purple-100" %>
+    <% end %>
     <span class="my-auto">Posting something new</span>
     <span class="my-auto mx-4 text-sm font-light text-slate-500">Saved!</span>
   </div>
-  <div class="space-x-6">
-    <button class="bg-cyan-600 text-cyan-50 px-2 py-0 rounded-xl inline-block">
-      Publish
+  <div class="space-x-1">
+    <button class="text-slate-500 px-2 py-0 rounded-xl inline-block">
+      <%= current_user.username %>
     </button>
     <%= image_tag "fav.png", class: "w-9 rounded-full bg-sky-100 inline-block" %>
   </div>
 </div>
 <div class="grid place-items-center md:px-48">
-
   <%= form_with(model: @post, class: "w-full") do |form| %>
     <div class="my-5">
       <%= form.text_field :title,

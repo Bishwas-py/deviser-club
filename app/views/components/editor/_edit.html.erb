@@ -1,4 +1,4 @@
-<%= content_tag :div, data: { controller: "tiptap" }, class: "editor" do %>
+<%= content_tag :div, data: { controller: "tiptap", tiptap_placeholder: defined?(placeholder) ? placeholder : "Write your story..."}, class: "editor" do %>
   <%= content_tag :div, class: "editor-controls sticky top-0 z-20" do %>
     <%= button_tag '', data: { action: "click->tiptap#boldText", tiptap_target: "bold" }, type: "button", class: "group edit-btn font-extralight hover:font-extrabold hover:scale-110" do %>
       <%= icon "fa-solid", "b", class: 'group-hover:scale-125' %>
