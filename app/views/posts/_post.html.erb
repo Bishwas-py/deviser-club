@@ -1,17 +1,21 @@
-
 <%= turbo_stream_from post %>
 <div class="break-inside-avoid" id="<%= dom_id post %>">
   <%= link_to post do %>
-    <div class="max-w-sm rounded-xl mx-2 hover:bg-blue-100 cursor-pointer hover:scale-110 duration-300 overflow-hidden shadow-lg">
-      <div class="px-6 py-4">
-        <div class="font-bold text-3xl mb-2"><%= post.title %></div>
-        <span class="text-gray-700 text-2xl text-base">
+    <div class="px-6 py-4">
+      <span class="text-neutral-500 block mb-2" title="Author: <%= post.user.username %>">
+        Posted by <strong><%= post.user.username %></strong>
+       <span class="bg-purple-100 px-1 ml-2 rounded-lg text-slate-700"
+             style="font-size: 12px;">
+         Post <%= icon "fa-solid", "clock", style: "font-size: 12px;" %>
+        </span>
+      </span>
+      <div class="font-bold text-3xl mb-2"><%= post.title %></div>
+      <span class="text-gray-700 text-2xl text-base">
           <%= sanitize(post.body, tags: %w()).strip.truncate(599) %>
         </span>
-        <span class="text-neutral-500" title="<%= post.created_at.to_fs %>">
+      <span class="text-neutral-500" title="<%= post.created_at.to_fs %>">
         <%= time_ago_in_words(post.created_at) %>
       </span>
-      </div>
     </div>
   <% end %>
 </div>

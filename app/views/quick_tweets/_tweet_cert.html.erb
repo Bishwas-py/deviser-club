@@ -5,8 +5,8 @@
       <span class="text-neutral-500" title="<%= quick_tweet.created_at.to_fs %>">
       <%= time_ago_in_words(quick_tweet.created_at) %>
     </span>
-      <span class="text-neutral-500 float-right" title="<%= quick_tweet.created_at.to_fs %>">
-        <%= quick_tweet.watches %> Views
+    <span class="text-neutral-500 float-right" title="<%= quick_tweet.created_at.to_fs %>">
+      <%= quick_tweet.watches %> Views
     </span>
     </div>
     <% if quick_tweet.user %>

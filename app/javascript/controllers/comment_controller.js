@@ -8,8 +8,14 @@ export default class extends Controller {
   toggleComment(event) {
     event.preventDefault()
     event.stopPropagation()
-    const commentBodyID = event.params.body;
+    console.log(event.target.dataset)
+    const commentBodyID = event.target.dataset.commentId;
+    console.log("commentBodyID: " + commentBodyID)
     const commentBody = document.getElementById(commentBodyID);
     commentBody.classList.toggle('hidden');
+
+    console.log("this.element " + this.element)
+    this.element.classList.toggle('bg-blue-300');
+    this.element.classList.toggle('hover:bg-blue-400');
   }
 }

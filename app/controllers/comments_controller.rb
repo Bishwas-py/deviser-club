@@ -12,11 +12,11 @@ class CommentsController < ApplicationController
       if @comment.save
 
         @comment.broadcast_prepend_to [@quick_tweet, :comments],
-            partial: "comments/comment",
-            target: "#{helpers.dom_id(@quick_tweet)}_comments",
-            locals: {
-              quick_tweet: @quick_tweet
-            }
+                                      partial: "comments/comment",
+                                      target: "#{helpers.dom_id(@quick_tweet)}_comments",
+                                      locals: {
+                                        quick_tweet: @quick_tweet
+                                      }
         format.turbo_stream
         format.html { redirect_to quick_tweet_url(@quick_tweet), notice: "Commented successfully." }
         format.json { render :show, status: :created, location: @quick_tweet }
@@ -32,17 +32,10 @@ class CommentsController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if request.remote_ip != @comment.ip_field
-        format.html { redirect_to quick_tweet_path(@quick_tweet), alert: "You can't delete other people's comments." }
-      else
-        @comment.destroy
-        @comment.broadcast_remove_to [@quick_tweet, :comments], target: "#{helpers.dom_id_for_records(@quick_tweet, @comment)}"
-        format.turbo_stream {
-          render turbo_stream: turbo_stream.remove("#{helpers.dom_id_for_records(@quick_tweet, @comment)}")
-        }
-        format.html { redirect_to quick_tweet_path, notice: "Todo was successfully destroyed." }
-        format.json { head :no_content }
-      end
+      @comment.destroy
+      @comment.broadcast_remove_to [@quick_tweet, :comments], target: "#{helpers.dom_id_for_records(@quick_tweet, @comment)}"
+      format.html { redirect_to quick_tweet_path, notice: "Todo was successfully destroyed." }
+      format.json { head :no_content }
     end
   end
 
