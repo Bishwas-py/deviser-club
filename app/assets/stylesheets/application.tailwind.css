@@ -10,11 +10,17 @@
         @apply ring;
     }
     .aside-menu-element {
-        @apply mx-auto flex px-5 justify-center py-7 w-full
-            hover:bg-blue-50 text-2xl text-slate-500 hover:text-slate-700;
+        @apply md:mx-auto items-stretch flex justify-center md:px-5 md:py-7 p-3 w-full
+        hover:bg-blue-50 text-2xl text-slate-500 hover:text-slate-700;
+    }
+    .aside-menu-element.active {
+        @apply hover:bg-blue-100 bg-indigo-100;
     }
     .posts-tag {
         @apply px-2 ml-2 py-1 rounded-lg text-sm text-slate-700
+    }
+    .icon-share {
+        @apply rounded-full p-2 bg-slate-100 hover:bg-slate-200 hover:text-stone-600 text-stone-500;
     }
     .menu-drop-down {
         @apply relative z-10 flex items-center p-2 text-sm text-gray-600 border border-slate-200 rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300

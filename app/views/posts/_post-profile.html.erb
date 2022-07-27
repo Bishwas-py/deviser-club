@@ -1,0 +1,44 @@
+<div class="col-span-2 md:px-48">
+  <div class="px-5 py-5 font-bold text-neutral-700 object-cover">
+    <div class="grid grid-cols-1 md:grid-cols-2">
+      <div class="flex space-x-4 mb-2">
+        <div class="grid place-items-center">
+          <%= image_tag "fav.png", class: "w-11 rounded-full bg-sky-100" %>
+        </div>
+        <div>
+          <div class="text-cyan-500 font-light">
+            <%= @post.user.username %>
+          </div>
+          <span class="text-slate-600 font-light" title="<%= @post.created_at.to_fs %>"><%= time_ago_in_words(@post.created_at) %></span>
+          <span class="mx-1">·</span>
+          <span class="text-slate-600 font-light" title="<%= @post.created_at.to_fs %>"><%= "#{@post.reading_time} #{"minute".pluralize @post.reading_time} read" %></span>
+        </div>
+      </div>
+      <div class="flex justify-end space-x-2">
+
+        <a
+           target="popup"
+           href="https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url %>&amp;src=sdkpreparse"
+           data-size="large">
+          <%= icon "fab", 'facebook', class: "icon-share" %>
+        </a>
+
+        <a
+          target="popup"
+          href="https://twitter.com/intent/tweet?text=<%= "#{@post.title} #{request.original_url}" %>"
+          data-size="large">
+          <%= icon "fab", 'twitter', class: "icon-share" %>
+        </a>
+
+        <a
+          target="popup"
+          href="https://www.linkedin.com/sharing/share-offsite/?mini=true&url=<%= CGI.escape(request.original_url) %>"
+          data-size="large">
+          <%= icon "fab", 'linkedin', class: "icon-share" %>
+        </a>
+      </div>
+    </div>
+
+  </div>
+
+</div>

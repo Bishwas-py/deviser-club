@@ -1,26 +1,31 @@
-<div class="space-x-4 flex justify-content-between flex-row">
-  <aside class="border-r sticky top-0 shrink-0 min-h-screen h-full w-24">
-    <nav class="h-screen flex flex-col">
-      <div class="mx-auto flex px-5 justify-center py-7 w-full hover:bg-blue-50">
+<div class="md:space-x-4 flex justify-content-between flex-col md:flex-row">
+  <aside class="md:border-r border-t md:border-t-0 bg-white md:sticky md:top-0 fixed w-full bottom-0 shrink-0 md:min-h-screen md:h-full md:w-24">
+    <nav class="md:h-screen md:flex md:flex-col flex-row">
+      <div class="hidden mx-auto md:flex px-5 justify-center py-7 w-full hover:bg-blue-50">
         <%= image_tag "fav.png", class: "w-12" %>
       </div>
-      <div class="navigational-items h-full justify-center flex  flex-col">
+      <div class="navigational-items h-full justify-center flex flex-row md:flex-col divide-x">
+        <%= link_to new_post_path, class: "aside-menu-element #{is_active "global"}" do %>
+          <%= icon "fa-solid", "house-user", class: "self-center" %>
+        <% end %>
         <a href="/" class="aside-menu-element">
-          <%= icon "fa-solid", "house-user" %>
-        </a>
-        <a href="/" class="aside-menu-element">
-          <%= icon "fa-regular", "bell" %>
+          <%= icon "fa-regular", "bell", class: "self-center" %>
         </a>
         <a href="/"
            class="aside-menu-element">
-          <%= icon "fa-regular", "bookmark" %>
+          <%= icon "fa-regular", "bookmark", class: "self-center" %>
         </a>
-        <hr class="w-7 self-center"/>
-        <%= link_to new_post_path, class: "aside-menu-element" do %>
-          <%= icon "fa-regular", "edit" %>
+        <hr class="hidden md:block w-7 self-center"/>
+        <%= link_to new_post_path, class: "aside-menu-element #{is_active "posts"}" do %>
+          <%= icon "fa-regular", "edit", class: "self-center" %>
         <% end %>
+        <div class="aside-menu-element md:hidden flex">
+          <%= image_tag "https://miro.medium.com/max/1000/1*pd9XqkTCXjNzmV3FTS85tw.jpeg", class: "w-12
+            rounded-full object-cover" %>
+        </div>
       </div>
-      <div class="mx-auto flex px-5 justify-center py-7 w-full hover:bg-blue-50 bg-slate-100">
+
+      <div class="hidden mx-auto md:flex md:px-5 justify-center md:py-7 md:w-full hover:bg-blue-50 bg-slate-100">
         <%= image_tag "https://miro.medium.com/max/1000/1*pd9XqkTCXjNzmV3FTS85tw.jpeg", class: "w-12
             rounded-full object-cover" %>
       </div>
@@ -30,8 +35,10 @@
 
   <%= yield %>
 
-  <div class="w-full bg-blue-100 shrink-1 h-full">
-    <%= yield (:right_aside_bar) %>
-  </div>
+  <% if yield(:right_aside_bar).presence %>
+    <div class="w-full bg-blue-100 shrink-1 h-full">
+      <%= yield (:right_aside_bar) %>
+    </div>
+  <% end %>
 
 </div>

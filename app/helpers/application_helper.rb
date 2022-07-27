@@ -16,4 +16,8 @@ module ApplicationHelper
     end
     sanitize(content, tags: %w(strong em p a b h1 h2 h3 h4 h5 h6 ul li pre code), attributes: %w(href))
   end
+
+  def is_active controller_name
+    params[:controller] == controller_name && 'active'
+  end
 end
