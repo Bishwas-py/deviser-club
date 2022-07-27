@@ -16,6 +16,7 @@ export default class extends Controller {
 
     connect() {
         this.textboxTarget.hidden = true;
+        console.log(this.textboxTarget.value)
         this.editor = new Editor({
             element: this.contentTarget,
             extensions: [
@@ -84,13 +85,16 @@ export default class extends Controller {
             let normalButton = eval(`this.${h}Target`);
             if (this.editor.isActive(h)) {
                 normalButton.style.backgroundColor = "transparent";
-                normalButton.style.border = "1px solid white";
+                normalButton.style.border = "1px solid #031f2b";
+                normalButton.style.color = "#031f2b";
             } else {
+                normalButton.style.color = null;
                 normalButton.style.backgroundColor = null;
                 normalButton.style.border = null;
             }
         })
         let numberOfInActiveHeadings = 0;
+
         let headerButton = eval(this.headingmarkerTarget);
         for (let i of Array(6).keys()) {
             let headingName = `h${i+1}`;
@@ -106,11 +110,14 @@ export default class extends Controller {
         if (numberOfInActiveHeadings === 6) {
             headerButton.style.backgroundColor = null;
             headerButton.classList.remove('ring-1')
-            headerButton.classList.remove('ring-white/50')
+            headerButton.classList.remove('text-slate-700')
+            headerButton.classList.remove('ring-slate/50')
         } else {
             headerButton.classList.add('ring-1')
             headerButton.style.backgroundColor = "transparent";
-            headerButton.classList.add('ring-white/50')
+            headerButton.classList.add('text-slate-700')
+
+            headerButton.classList.add('ring-slate/50')
         }
     }
 
