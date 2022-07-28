@@ -1,5 +1,5 @@
-<%= form_with(model: [quick_tweet, comment], class: "w-full", id: "#{dom_id(Comment.new)}_form") do |form| %>
-  <%= render "components/errors", error_el: comment %>
+<%= form_with(model: commentable.comments.new, class: "w-full", id: "#{dom_id(Comment.new)}_form") do |form| %>
+  <%= render "components/errors", error_el: commentable %>
   <div class="my-5">
     <%= form.text_area :body, rows: 3, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>

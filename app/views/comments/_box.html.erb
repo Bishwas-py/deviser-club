@@ -1,4 +1,4 @@
-<%= turbo_stream_from quick_tweet, :comments %>
+<%= turbo_stream_from commentable, :comments %>
 
 <%= content_tag :div,
                 class: "w-full md:w-2/3 lg:w-1/3 z-20 h-full shadow left-0 backdrop-blur-sm bg-white/90 bottom-0 md:col-span-4 px-2 border-l hidden fixed",
@@ -17,15 +17,15 @@
       <h2 class="text-lg font-medium text-slate-600 flex justify-between mb-3">
         Comment section
         <%= turbo_frame_tag "comments_count_top", class: "rounded bg-slate-300 px-3 my-auto text-sm" do %>
-          <%= comments.count %>
+          <%= commentable.comments.count %>
         <% end %>
       </h2>
-      <%= render "comments/form", quick_tweet: quick_tweet, comment: quick_tweet.comments.new %>
+      <%= render "comments/form", commentable: @quick_tweet %>
     </div>
 
-    <div class="grid gap-3" id="<%= dom_id quick_tweet %>_comments">
-      <% comments.each do |comment| %>
-        <%= render comment, quick_tweet: quick_tweet, comment: comment %>
+    <div class="grid gap-3" id="<%= dom_id @quick_tweet %>_comments">
+      <% @quick_tweet.comments.each do |comment| %>
+        <%= render comment, commentable: @quick_tweet %>
       <% end %>
     </div>
   </div>

@@ -1,7 +1,10 @@
 Rails.application.routes.draw do
+  root "global#index"
   resources :likes, only: [:create, :destroy]
   resources :posts
-
+  resources :quick_tweets, path: :tweet
+  resources :quick_tweets
+  resources :comments, only: [:create, :destroy, :update]
 
 
   devise_for :users,
@@ -13,13 +16,4 @@ Rails.application.routes.draw do
                :password => 'recover-password',
                :confirmation => 'verification'
              }
-
-  # resources :quick_tweets
-  root "global#index"
-  resources :quick_tweets, path: :tweet
-  resources :quick_tweets do
-    resources :comments
-  end
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html '
-  # Defines the root path route ("/")
 end

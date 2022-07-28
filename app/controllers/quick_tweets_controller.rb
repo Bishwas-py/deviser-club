@@ -26,7 +26,6 @@ class QuickTweetsController < ApplicationController
 
   # POST /quick_tweets or /quick_tweets.json
   def create
-    puts "create", params
     @quick_tweet = QuickTweet.new(quick_tweet_params)
     @quick_tweet.ip_field = request.remote_ip
     @quick_tweet.user = current_user
