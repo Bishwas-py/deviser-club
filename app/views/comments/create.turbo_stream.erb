@@ -2,6 +2,6 @@
   <%= render @comment %>
 <% end %>
 
-<%= turbo_stream.replace "#{dom_id(@comment.commentable.comments.new)}" do %>
-  <%= render "form", commentable: @comment.commentable %>
+<%= turbo_stream.replace @comment.commentable.comments.new do %>
+  <%= render "comments/form", commentable: @comment.commentable %>
 <% end %>

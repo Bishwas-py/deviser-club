@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
   def create
-
+    puts "comment_params: #{comment_params}"
     @comment = current_user.comments.create(comment_params)
     @comment.body = helpers.purify @comment.body
     respond_to do |format|
@@ -9,11 +9,8 @@ class CommentsController < ApplicationController
         format.html { redirect_to @comment.commentable, notice: "Commented successfully." }
         # format.json { render :show, status: :created, location: @commentable }
       else
-        format.turbo_stream {
-          render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@comment)}_form", partial: 'form', locals: { commentable: @commentable, comment: @comment })
-        }
-        format.html { render :new, status: :unprocessable_entity }
-        # format.json { render json: @commentable.errors, status: :unprocessable_entity }
+        format.html { redirect_to @comment.commentable, status: :unprocessable_entity }
+        format.json { render json: @commentable.errors, status: :unprocessable_entity }
       end
     end
   end
