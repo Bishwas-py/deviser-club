@@ -1,7 +1,7 @@
-<%= turbo_stream.prepend "#{dom_id @quick_tweet}_comments" do %>
-  <%= render "comment", quick_tweet: @quick_tweet, comment: @comment, current_user: current_user %>
+<%= turbo_stream.prepend "#{dom_id @comment.commentable}_comments" do %>
+  <%= render @comment %>
 <% end %>
 
-<%= turbo_stream.replace "#{dom_id(Comment.new)}_form" do %>
-  <%= render "form", comment: Comment.new, quick_tweet: @quick_tweet %>
+<%= turbo_stream.replace "#{dom_id(@comment.commentable.comments.new)}" do %>
+  <%= render "form", commentable: @comment.commentable %>
 <% end %>

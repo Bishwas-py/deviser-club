@@ -59,7 +59,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_28_111459) do
     t.string "commentable_type"
     t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
     t.index ["commentable_id"], name: "index_comments_on_commentable_id"
-    t.index ["user_id", "commentable_id", "commentable_type"], name: "index_comments_on_user_id_and_comable_id_and_comable_type", unique: true
+    t.index ["user_id", "commentable_id", "commentable_type"], name: "index_comments_on_user_id_and_comable_id_and_comable_type"
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
