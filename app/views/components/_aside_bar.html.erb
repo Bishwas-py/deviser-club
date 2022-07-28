@@ -38,8 +38,6 @@
       <%= yield (:right_aside_bar) %>
     </div>
   <% end %>
-
-
 </div>
 
 <aside class="sticky bottom-0 sm:bottom-7 w-full shrink-0">
@@ -69,3 +67,7 @@
     </div>
   </nav>
 </aside>
+
+<% if yield(:below_block).presence %>
+    <%= yield (:below_block) %>
+<% end %>
