@@ -4,9 +4,9 @@
     <div class="px-6 py-10">
       <span class="text-neutral-500 block mb-2" title="Author: <%= quick_tweet.user.username %>">
           Posted by <strong><%= quick_tweet.user.username %></strong>
-         <span class="posts-tag bg-blue-100">
-           Quick Tweet <%= icon "fa-solid", "truck-fast", class: "text-sm" %>
-          </span>
+         <div class="posts-tag inline-block ">
+           <%= icon "fa-solid", "truck-fast", class: "text-sm" %>
+          </div>
       </span>
       <div>
         <h3 class="font-bold text-slate-700 text-2xl mb-2">

@@ -17,7 +17,7 @@
         @apply hover:bg-blue-100 bg-indigo-100;
     }
     .posts-tag {
-        @apply px-2 ml-2 py-1 rounded-lg text-sm text-slate-700
+        @apply px-2 py-1 rounded-lg text-sm text-slate-700
     }
     .icon-share {
         @apply rounded-full p-2 bg-slate-100 hover:bg-slate-200 hover:text-stone-600 text-stone-500;
