@@ -1,8 +1,9 @@
 class CommentsController < ApplicationController
-  before_action :set_commentable, only: [:create, :destroy, :update]
+  # before_action :set_commentable, only: [:create, :destroy, :update]
 
   def create
-    @comment = current_user.comment.create(like_params)
+    puts "comment_params #{params}"
+    @comment = current_user.comments.create(comment_params)
     @comment.body = helpers.purify @comment.body
 
     respond_to do |format|
@@ -45,11 +46,8 @@ class CommentsController < ApplicationController
 
   private
 
-  def set_commentable
-    @commentable = QuickTweet.find(params[:commentable_id])
-  end
-
   def comment_params
+    puts "comment_params #{params}"
     params.require(:comment).permit(:body, :commentable_id, :commentable_type)
   end
 

@@ -1,7 +1,7 @@
-<%= turbo_frame_tag commentable.comments, class: "min-w-full border group shadow rounded-md p-2" do %>
+<%= turbo_frame_tag comment, class: "min-w-full border group shadow rounded-md p-2" do %>
   <div class="w-full overflow-scroll cute-scroll">
-    <% if commentable.user %>
-    <span class="text-neutral-500 block" title="<%= commentable.created_at.to_fs %>">
+    <% if comment.user %>
+    <span class="text-neutral-500 block" title="<%= comment.created_at.to_fs %>">
          <strong><%= comment.user.username %></strong>
       </span>
     <% end %>
@@ -15,7 +15,7 @@
   </span>
     <span class="float-right" data-controller="user-auth" data-user-auth-uid="<%= comment.user.id %>">
       <div class="hidden" data-user-auth-target="delete">
-        <%= button_to 'Delete', [commentable, comment], method: :delete,
+        <%= button_to 'Delete', comment, method: :delete,
                       class: "text-rose-300 hover:text-rose-400 hover:underline
                     md:scale-0 group-hover:scale-100 duration-100 text-sm" %>
       </div>
@@ -25,18 +25,18 @@
 
 <%= turbo_stream.replace "comments_count_top" do %>
   <%= turbo_frame_tag "comments_count_top",
-        data: {
-          controller: "ring-notification",
-          ring_notification_comment_uid: comment.user.id,
-          ring_notification_comment_notification_id: "#commentNotification"
-        },
-          class: "rounded bg-slate-300 px-3 my-auto text-sm" do %>
-    <%= commentable.comments.count %>
+                      data: {
+                        controller: "ring-notification",
+                        ring_notification_comment_uid: comment.user.id,
+                        ring_notification_comment_notification_id: "#commentNotification"
+                      },
+                      class: "rounded bg-slate-300 px-3 my-auto text-sm" do %>
+    <%= comment.commentable.comments.count %>
   <% end %>
 <% end %>
 
 <%= turbo_stream.replace "comments_count_bottom" do %>
   <%= turbo_frame_tag "comments_count_bottom", class: "h-3 w-3 rounded-full absolute bg-rose-700/70 backdrop-blur top-0 right-0", style: "font-size: 9px;" do %>
-    <%= commentable.comments.count %>
+    <%= comment.commentable.comments.count %>
   <% end %>
 <% end %>

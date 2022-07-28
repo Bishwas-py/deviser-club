@@ -1,5 +1,7 @@
-<%= form_with(model: commentable.comments.new, class: "w-full", id: "#{dom_id(Comment.new)}_form") do |form| %>
-  <%= render "components/errors", error_el: commentable %>
+<%= form_for commentable.comments.new do |form| %>
+
+  <%= form.hidden_field :commentable_id, value: params["id"] %>
+  <%= form.hidden_field :commentable_type, value: commentable.model_name.name %>
   <div class="my-5">
     <%= form.text_area :body, rows: 3, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
