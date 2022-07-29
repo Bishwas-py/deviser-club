@@ -1,42 +1,37 @@
-<%= render "components/notice", quick_tweet: @quick_tweet %>
 <%= content_for(:title, "#{sanitize(@quick_tweet.content, tags: %w()).truncate(38)} - Deviser Club") %>
-
-<div class="page-posting-section grid place-items-center">
+<%= render "components/aside_bar" do %>
+  <div class="page-posting-section grid place-items-center">
     <div>
       <%= turbo_stream_from @quick_tweet, class: "hidden" %>
       <%= render "tweet_cert", quick_tweet: @quick_tweet %>
     </div>
-</div>
+  </div>
 
-<%= render "comments/box", { commentable: @quick_tweet } %>
+  <%= render "comments/box", { commentable: @quick_tweet } %>
 
-<div class="place-items-center grid sticky bottom-3">
-
-  <div class="h-50 p-0 space-x-2 flex text-right w-fit">
-    <% if @quick_tweet.user == current_user %>
-      <%= link_to edit_quick_tweet_path(@quick_tweet), class: "rounded-button" do %>
-        <%= icon 'fa-solid', 'pencil-alt' %>
+  <%= content_for :down_bar_up_kit do %>
+    <div class="post-reaction-box divide-x divide-blue-200 flex">
+      <%= link_to '', class: "box", data: {
+        controller: "comment",
+        comment_id: "comment-box",
+        action: 'comment#toggleComment'
+      } do %>
+        <% if @comments.present? %>
+          <%= turbo_frame_tag "comments_count_bottom", class: "h-3 w-3 rounded-full absolute bg-rose-700/70 backdrop-blur top-0 right-0", style: "font-size: 9px;" do %>
+            <%= @comments.count %>
+          <% end %>
+        <% end %>
+        <%= icon 'fa-regular', 'comment' %>
       <% end %>
-    <% end %>
-    <% if @quick_tweet.user == current_user %>
-      <%= button_to quick_tweet_path(@quick_tweet), method: :delete, class: "rounded-button" do %>
-        <%= icon 'fa-solid', 'trash' %>
-      <% end %>
-    <% end %>
-
-    <%= button_tag class: "relative rounded-button", data: {
-      controller: "comment",
-      comment_id: "comment_box",
-      action: 'comment#toggleComment'
-    } do %>
-      <% if @comments.present? %>
-        <%= turbo_frame_tag "comments_count_bottom", class: "h-3 w-3 rounded-full absolute bg-rose-700/70 backdrop-blur top-0 right-0", style: "font-size: 9px;" do %>
-          <%= @comments.count %>
+      <% if current_user == @quick_tweet.user %>
+        <%= link_to edit_quick_tweet_path, class: "box" do %>
+          <%= icon "fa-regular", "edit" %>
+        <% end %>
+        <%= link_to edit_post_path, class: "box" do %>
+          <%= icon "fa-solid", "trash" %>
         <% end %>
       <% end %>
-      <span><%= icon 'fa-solid', 'comment' %></span>
-    <% end %>
-    <%= render "components/home" %>
-    <%= render "components/back" %>
-  </div>
-</div>
+    </div>
+  <% end %>
+
+<% end %>

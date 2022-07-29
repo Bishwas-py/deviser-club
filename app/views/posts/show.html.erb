@@ -9,6 +9,13 @@
     </div>
   </div>
 
+
+  <%= content_for :right_aside_bar do %>
+    <div class="px-6 py-4">
+      Comment Will Be here
+    </div>
+  <% end %>
+
   <%= content_for :down_bar_up_kit do %>
     <div class="post-reaction-box divide-x divide-blue-200 flex" >
       <% if current_user.nil? %>
@@ -24,8 +31,6 @@
       <%= link_to edit_post_path, class: "box" do %>
         <%= icon "fa-regular", "comment" %>
       <% end %>
-
-
       <% if current_user == @post.user %>
         <%= link_to edit_post_path, class: "box" do %>
           <%= icon "fa-regular", "edit" %>
@@ -34,11 +39,6 @@
           <%= icon "fa-solid", "trash" %>
         <% end %>
       <% end %>
-    </div>
-  <% end %>
-  <%= content_for :right_aside_bar do %>
-    <div class="px-6 py-4">
-      Comment Will Be here
     </div>
   <% end %>
 

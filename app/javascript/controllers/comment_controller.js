@@ -8,7 +8,7 @@ export default class extends Controller {
   toggleComment(event) {
     event.preventDefault()
     event.stopPropagation()
-    console.log(event.target.dataset)
+    console.log("dataset: ", event.target.dataset)
     const commentBodyID = event.target.dataset.commentId;
     console.log("commentBodyID: " + commentBodyID)
     const commentBody = document.getElementById(commentBodyID);

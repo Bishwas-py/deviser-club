@@ -1,8 +1,8 @@
 <%= turbo_stream_from commentable, :comments %>
 <%= audio_tag "notification.mp3", id: "audiosource" %>
 <%= content_tag :div,
-                class: "fixed bg-slate-300/50 backdrop-blur h-screen w-full top-0 right-0",
-                id: "comment_box" do %>
+                class: "hidden fixed bg-slate-300/50 backdrop-blur h-screen w-full top-0 right-0",
+                id: "comment-box" do %>
   <div class="float-right p-7 bg-white/90 backdrop-blur shadow-xl w-96 h-full flex flex-col">
     <div class="flex flex-col gap-3">
       <%= turbo_frame_tag "comments_count_top", class: "" do %>
