@@ -3,14 +3,11 @@ class CommentsController < ApplicationController
     puts "comment_params: #{comment_params}"
     @comment = current_user.comments.create(comment_params)
     @comment.body = helpers.purify @comment.body
+    comment = @comment.save
     respond_to do |format|
-      if @comment.save
+      if comment
         format.turbo_stream
         format.html { redirect_to @comment.commentable, notice: "Commented successfully." }
-        # format.json { render :show, status: :created, location: @commentable }
-      else
-        format.html { redirect_to @comment.commentable, status: :unprocessable_entity }
-        format.json { render json: @commentable.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -36,6 +33,7 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
+    puts "n_params: #{params}"
     params.require(:comment).permit(:body, :commentable_id, :commentable_type)
   end
 

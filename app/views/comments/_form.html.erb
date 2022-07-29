@@ -1,6 +1,5 @@
 <%= form_for commentable.comments.new do |form| %>
-
-  <%= form.hidden_field :commentable_id, value: params["id"] %>
+  <%= form.hidden_field :commentable_id, value: commentable.id %>
   <%= form.hidden_field :commentable_type, value: commentable.model_name.name %>
   <div class="my-5">
     <%= form.text_area :body, rows: 3, class: "w-full border-0 focus:outline-0 focus:ring-0" %>
