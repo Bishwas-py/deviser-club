@@ -4,12 +4,11 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   connect() {
     let commentNotificationId = this.data.get("comment-notification-id")
-    let commentNotification = document.querySelector(commentNotificationId)
-    let current_user_id = document.querySelector('meta[name="current-usr-id"]').content
+    let current_user_id = document.querySelector('input[name="current-usr-id"]').value
     let comment_uid = this.data.get("comment-uid")
-
+    console.log(comment_uid, current_user_id);
     if (comment_uid !== current_user_id) {
-      commentNotification.play()
+      document.querySelector(commentNotificationId).play()
     }
   }
 }

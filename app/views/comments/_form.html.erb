@@ -1,10 +1,18 @@
+
 <%= form_for commentable.comments.new do |form| %>
+  <!-- HEY -->
+  <%= render "components/errors", error_id: "comment_error_explanation" %>
+
+  <!-- /HEY -->
   <%= form.hidden_field :commentable_id, value: commentable.id %>
+
+  <input name="current-usr-id" value="<% if current_user %><%= current_user.id %><% else %>000<% end %>" hidden>
+
   <%= form.hidden_field :commentable_type, value: commentable.model_name.name %>
   <div class="my-5">
-    <%= form.text_area :body, rows: 3, class: "w-full border-0 focus:outline-0 focus:ring-0" %>
+    <%= form.text_area :body, placeholder: "Your thoughts on this", rows: 3, class: "w-full border-0 focus:outline-0 focus:ring-0" %>
   </div>
-  <div class="inline">
-    <%= form.submit class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+  <div class="flex justify-end">
+    <%= form.submit "Reply", class: "rounded-lg px-2 py-1 bg-green-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>

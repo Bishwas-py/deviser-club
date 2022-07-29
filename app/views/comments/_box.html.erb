@@ -1,27 +1,25 @@
 <%= turbo_stream_from commentable, :comments %>
-
+<%= audio_tag "notification.mp3", id: "audiosource" %>
 <%= content_tag :div,
                 class: "fixed bg-slate-300/50 backdrop-blur h-screen w-full top-0 right-0",
                 id: "comment_box" do %>
-  <div class="float-right p-7 bg-white/90 backdrop-blur shadow-xl w-96 h-full">
+  <div class="float-right p-7 bg-white/90 backdrop-blur shadow-xl w-96 h-full flex flex-col">
     <div class="flex flex-col gap-3">
-      <span class="text-xl font-bold">
-        <%= turbo_frame_tag "comments_count_top", class: "" do %>
-          Comments(<%= commentable.comments.count %>)
-        <% end %>
-      </span>
-      <div class="bg-white w-full flex flex-col gap-2 shadow rounded-xl px-3 py-2">
+      <%= turbo_frame_tag "comments_count_top", class: "" do %>
+        Comments(<%= commentable.comments.count %>)
+      <% end %>
+      <div class="bg-white w-full flex flex-col gap-2 shadow rounded-md px-3 py-2">
         <div class="flex gap-x-2">
           <%= image_tag "fav.png", class: "w-7 rounded-full object-cover bg-rose-50" %>
           <span class="my-auto font-light text-sm">
-                  <%= current_user.username %>
-                </span>
+            <%= current_user.nil? ? "Anon" : current_user.username %>
+          </span>
         </div>
         <%= render "comments/form", commentable: commentable %>
       </div>
     </div>
-    <div class="grid gap-3" id="<%= dom_id commentable %>_comments">
-      <%= render @comments %>
+    <div class="grid gap-3 mt-5 overflow-y-scroll cute-scroll" id="<%= "#{dom_id commentable}_comments" %>">
+      <%= render @comments, user: current_user %>
     </div>
   </div>
 

@@ -7,7 +7,11 @@ class CommentsController < ApplicationController
     respond_to do |format|
       if comment
         format.turbo_stream
-        format.html { redirect_to @comment.commentable, notice: "Commented successfully." }
+      else
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.replace("comment_error_explanation", partial: 'components/errors', locals: { errors: @comment.errors })
+        }
+        format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
     end
   end

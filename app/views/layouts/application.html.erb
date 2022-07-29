@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <title><%= yield(:title) %></title>
-    <meta name="current-usr-id" content="<% if current_user %><%= current_user.id %><% end %>">
 
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= favicon_link_tag "fav.png" %>
@@ -18,9 +17,8 @@
 
   <body>
     <main class="h-full w-full">
+      <%= render "components/errors" %>
       <%= yield %>
     </main>
   </body>
-
-  <%= audio_tag "notification.mp3", id: "commentNotification" %>
 </html>

@@ -44,20 +44,20 @@
 
   <%= content_for :below_block do %>
     <div class="fixed bg-slate-300/50 backdrop-blur h-screen w-full top-0 right-0">
-      <div class="float-right p-7 bg-white/90 backdrop-blur shadow-xl w-96 h-full">
-          <div class="flex flex-col gap-3">
-            <span class="text-xl font-bold">Comments (8)</span>
-            <div class="bg-white w-full flex flex-col gap-2 shadow rounded-xl px-3 py-2">
-              <div class="flex gap-x-2">
-                <%= image_tag "fav.png", class: "w-7 rounded-full object-cover bg-rose-50" %>
-                <span class="my-auto font-light text-sm">
-                  <%= current_user.username %>
-                </span>
-              </div>
-              <%= content_tag :textarea, "", class: "border-0 focus:outline-0 focus:ring-0" %>
+    <div class="float-right p-7 bg-white/90 backdrop-blur shadow-xl w-96 h-full">
+        <div class="flex flex-col gap-3">
+          <span class="text-xl font-bold">Comments (8)</span>
+          <div class="bg-white w-full flex flex-col gap-2 shadow rounded-xl px-3 py-2">
+            <div class="flex gap-x-2">
+              <%= image_tag "fav.png", class: "w-7 rounded-full object-cover bg-rose-50" %>
+              <span class="my-auto font-light text-sm">
+                <%= current_user.username %>
+              </span>
             </div>
+            <%= content_tag :textarea, "", class: "border-0 focus:outline-0 focus:ring-0" %>
           </div>
-      </div>
+        </div>
+    </div>
     </div>
   <% end %>
 
