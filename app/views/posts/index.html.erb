@@ -1,14 +1,20 @@
-<div class="w-full">
-  <% if notice.present? %>
-    <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+<%= content_for(:title, "Deviser Club ~ A club for anon discussion ~ Rails App") %>
+
+<%= render "components/aside_bar" do %>
+  <main id="all_posts" class="h-auto min-w-0 block text-sm smart-padding pt-28 divide-y">
+    <%= link_to new_post_path, class: "group flex space-x-2 text-center mb-7 text-xl" do %>
+      <div class="group-hover:rotate-180 duration-200 group-hover:bg-stone-200 rounded-full bg-stone-100 w-9 h-9 grid place-items-center">
+        <%= icon "fa-regular", "plus", class: "text-xl" %>
+      </div>
+      <div class="self-center">
+        Add a new article post
+      </div>
+    <% end %>
+    <div id="posts" class="w-full">
+      <%= render @posts %>
+    </div>
+  </main>
+  <%= content_for :right_aside_bar do %>
+    Hey
   <% end %>
-
-  <div class="flex justify-between items-center">
-    <h1 class="font-bold text-4xl">Posts</h1>
-    <%= link_to 'New post', new_post_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-  </div>
-
-  <div id="posts" class="min-w-full">
-    <%= render @posts %>
-  </div>
-</div>
+<% end %>

@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root "global#index"
   resources :likes, only: [:create, :destroy]
+  resources :bookmark, only: [:create, :destroy, :index]
   resources :posts
   resources :quick_tweets, path: :tweet
   resources :quick_tweets

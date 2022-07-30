@@ -1,5 +1,6 @@
 class QuickTweet < ApplicationRecord
   has_many :comments, as: :commentable, dependent: :destroy
+  has_many :likes, as: :likeable, dependent: :destroy
   validates :content, presence: true, length: { minimum: 10, maximum: 1000 }, uniqueness: true
   belongs_to :user, optional: true
   has_one_attached :image, dependent: :destroy

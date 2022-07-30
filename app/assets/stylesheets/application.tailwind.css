@@ -126,7 +126,7 @@
         @apply duration-100;
     }
     .smart-padding {
-        @apply md:px-10 lg:px-16 xl:px-32;
+        @apply sm:px-5 md:px-10 lg:px-16 xl:px-32;
     }
     .editor-controls .header-option {
         @apply block px-4 py-2 text-sm text-gray-200 font-bold capitalize transition-colors

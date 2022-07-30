@@ -9,6 +9,16 @@
 
   <%= content_for :down_bar_up_kit do %>
     <div class="post-reaction-box divide-x divide-blue-200 shadow flex">
+      <% if current_user.nil? %>
+        <%= content_tag :div, class: "hover:text-rose-800 text-rose-500 focus:text-sky-500 duration-400 box" do %>
+          <span>
+            <%= icon "fa-solid", "heart" %>
+            <%= @quick_tweet.likes.count %>
+          </span>
+        <% end %>
+      <% else %>
+        <%= render "likes/create", likeable: @quick_tweet %>
+      <% end %>
       <%= link_to '', class: "box", data: { controller: "comment" } do %>
         <% if @comments.present? %>
           <%= turbo_frame_tag "comments_count_bottom", class: "h-3 w-3 rounded-full absolute bg-rose-700/70 backdrop-blur top-0 right-0", style: "font-size: 9px;" do %>

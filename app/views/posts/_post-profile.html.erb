@@ -1,9 +1,9 @@
 <div class="col-span-2 smart-padding">
-  <div class="px-5 py-5 font-bold text-neutral-700 object-cover">
+  <div class="px-1 py-5 font-bold text-neutral-700 object-cover">
     <div class="grid grid-cols-1 md:grid-cols-2">
       <div class="flex space-x-4 mb-2">
         <div class="grid place-items-center">
-          <%= image_tag "fav.png", class: "w-11 rounded-full bg-sky-100" %>
+          <%= image_tag "fav.png", class: "max-w-fit w-11 rounded-full bg-sky-100" %>
         </div>
         <div>
           <div class="text-cyan-500 font-light">
@@ -14,7 +14,17 @@
           <span class="text-slate-600 font-light" title="<%= @post.created_at.to_fs %>"><%= "#{@post.reading_time} #{"minute".pluralize @post.reading_time} read" %></span>
         </div>
       </div>
-      <div class="flex justify-end space-x-2">
+      <div class="flex sm:justify-end space-x-2">
+        <% if current_user.nil? %>
+          <%= content_tag :div, class: "hover:text-rose-800 text-rose-500 focus:text-sky-500 duration-400 box" do %>
+          <span>
+            <%= icon "fa-regular", "bookmark" %>
+            <%= @post.bookmarks.count %>
+          </span>
+          <% end %>
+        <% else %>
+          <%= render "bookmark/create", bookmarkable: @post %>
+        <% end %>
         <a
            target="popup"
            href="https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url %>&amp;src=sdkpreparse"

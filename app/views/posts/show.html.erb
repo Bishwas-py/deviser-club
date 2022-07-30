@@ -2,7 +2,7 @@
   <div id="<%= dom_id @post %>" class="w-full py-7 md:py-10">
     <%= render "posts/post-profile" %>
     <div class="min-h-screen">
-      <div class="content-box min-h-screen smart-padding px-5 py-7">
+      <div class="content-box min-h-screen smart-padding py-7">
         <h1><%= @post.title %></h1>
         <%= @post.body.html_safe %>
       </div>
@@ -28,6 +28,7 @@
       <% else %>
         <%= render "likes/create", likeable: @post %>
       <% end %>
+
       <%= link_to '', class: "box", data: { controller: "comment" } do %>
         <% if @comments.present? %>
           <%= turbo_frame_tag "comments_count_bottom", class: "h-3 w-3 rounded-full absolute bg-rose-700/70 backdrop-blur top-0 right-0", style: "font-size: 9px;" do %>
@@ -40,7 +41,7 @@
         <%= link_to edit_post_path, class: "box" do %>
           <%= icon "fa-regular", "edit" %>
         <% end %>
-        <%= link_to edit_post_path, class: "box" do %>
+        <%= button_to post_path, method: :delete, class: "box" do %>
           <%= icon "fa-solid", "trash" %>
         <% end %>
       <% end %>

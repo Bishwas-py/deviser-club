@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :quick_tweets, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :bookmarks, dependent: :destroy
 
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 

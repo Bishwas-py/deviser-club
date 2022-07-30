@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   belongs_to :user, optional: false
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
+  has_many :bookmarks, as: :bookmarkable, dependent: :destroy
 
   def reading_time
     words_per_minute = 150

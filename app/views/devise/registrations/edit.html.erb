@@ -1,38 +1,39 @@
 <%= render "components/aside_bar" do %>
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'max-w-lg px-5 w-full rounded space-y-5' }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'smart-padding py-9 w-full rounded space-y-5 min-h-screen' }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <div class="max-w-lg space-y-5">
+      <div class="input-father">
+        <%= f.label :email, class: "input-label" %>
+        <%= f.email_field :email, class: "input-box", autofocus: true, required: true, autocomplete: "email", placeholder: "youremail@gmail.com" %>
+      </div>
 
-    <div class="input-father">
-      <%= f.label :email, class: "input-label" %>
-      <%= f.email_field :email, class: "input-box", autofocus: true, required: true, autocomplete: "email", placeholder: "youremail@gmail.com" %>
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="input-father">
+        <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br/>
+        <%= f.password_field :password, autocomplete: "new-password", class: "input-box" %>
+        <% if @minimum_password_length %>
+          <br/>
+          <em><%= @minimum_password_length %> characters minimum</em>
+        <% end %>
+      </div>
+
+      <div class="input-father">
+        <%= f.label :password_confirmation %><br/>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input-box" %>
+      </div>
+
+      <div class="input-father">
+        <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br/>
+        <%= f.password_field :current_password, autocomplete: "current-password", class: "input-box" %>
+      </div>
+
+      <div class="input-father">
+        <%= f.submit "Update", class: "auth-btn" %>
+        <%= link_to "Back", :back, class: "auth-co-btn" %>
+      </div>
     </div>
-
-  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
-    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
   <% end %>
-
-  <div class="field">
-    <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br />
-    <%= f.password_field :password, autocomplete: "new-password", class: "input-box" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input-box" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password", class: "input-box" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Update", class: "auth-btn" %>
-    <%= link_to "Back", :back, class: "auth-co-btn" %>
-  </div>
-<% end %>
 <% end %>

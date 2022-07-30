@@ -17,7 +17,7 @@
       </p>
     </div>
 
-    <div class="float-right flex flex-row divide-x" data-controller="comment-auth" data-comment-auth-uid="<%= comment.user.id %>">
+    <div class="flex flex-row justify-between" data-controller="comment-auth" data-comment-auth-uid="<%= comment.user.id %>">
         <span class="hidden" data-comment-auth-target="delete">
           <%= button_to comment, method: :delete,
                         class: "p-2 px-4 hover:text-rose-800 text-slate-500 focus:text-sky-500 duration-400" do %>
