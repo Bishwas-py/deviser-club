@@ -21,10 +21,10 @@
         <% end %>
       </div>
 
-      <div class="mx-auto flex px-5 justify-center py-7 w-full hover:bg-blue-50 bg-slate-100">
+      <%= link_to 'edit_registration_path(current_user), class:"mx-auto flex px-5 justify-center py-7 w-full hover:bg-blue-50 bg-slate-100" do %>
         <%= image_tag "https://miro.medium.com/max/1000/1*pd9XqkTCXjNzmV3FTS85tw.jpeg", class: "w-12
             rounded-full object-cover" %>
-      </div>
+      <% end %>
 
     </nav>
   </aside>
@@ -61,10 +61,10 @@
     <%= link_to new_post_path, class: "aside-menu-element #{is_active "posts"} w-full" do %>
       <%= icon "fa-regular", "edit", class: "self-center" %>
     <% end %>
-    <div class="aside-menu-element flex w-full">
+    <% link_to edit_registration_path(current_user), class:"aside-menu-element flex w-full" do %>
       <%= image_tag "https://miro.medium.com/max/1000/1*pd9XqkTCXjNzmV3FTS85tw.jpeg", class: "w-12
             rounded-full object-cover" %>
-    </div>
+    <% end %>
   </nav>
 </aside>
 
