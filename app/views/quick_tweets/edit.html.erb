@@ -2,4 +2,10 @@
   <%= form_with model: @quick_tweet, class: "w-full rounded overflow-hidden", id: "#{dom_id(@quick_tweet)}_form" do |form| %>
     <%= render "components/editor/edit", form: form, field: :content %>
   <% end %>
+
+  <style>
+    .ProseMirror {
+        min-height: 30rem;
+    }
+  </style>
 </div>

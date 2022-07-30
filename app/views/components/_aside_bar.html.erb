@@ -34,7 +34,7 @@
   </div>
 
   <% if yield(:right_aside_bar).presence %>
-    <div class="hidden sm:block border-r bg-green-50 shrink-0 sticky top-0 min-h-screen h-full w-80">
+    <div class="hidden lg:block border-r bg-green-50 shrink-0 sticky top-0 min-h-screen h-full w-80">
       <%= yield (:right_aside_bar) %>
     </div>
   <% end %>
@@ -42,7 +42,7 @@
 
 <aside class="sticky bottom-0 sm:bottom-7 w-full shrink-0">
   <% if yield(:down_bar_up_kit).presence %>
-    <div class="place-items-center grid mb-7">
+    <div class="place-items-center grid mb-7 ">
       <%= yield (:down_bar_up_kit) %>
     </div>
   <% end %>

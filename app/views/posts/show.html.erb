@@ -2,7 +2,7 @@
   <div id="<%= dom_id @post %>" class="w-full py-7 md:py-10">
     <%= render "posts/post-profile" %>
     <div class="min-h-screen">
-      <div class="content-box page-posting-section md:py-7 py-0">
+      <div class="content-box min-h-screen smart-padding px-5 py-7">
         <h1><%= @post.title %></h1>
         <%= @post.body.html_safe %>
       </div>
@@ -17,7 +17,7 @@
   <% end %>
 
   <%= content_for :down_bar_up_kit do %>
-    <div class="post-reaction-box divide-x divide-blue-200 flex" >
+    <div class="post-reaction-box divide-x divide-blue-200 shadow flex" >
       <% if current_user.nil? %>
         <%= content_tag :div, class: "hover:text-rose-800 text-rose-500 focus:text-sky-500 duration-400 box" do %>
           <span>
@@ -28,8 +28,13 @@
       <% else %>
         <%= render "likes/create", likeable: @post %>
       <% end %>
-      <%= link_to edit_post_path, class: "box" do %>
-        <%= icon "fa-regular", "comment" %>
+      <%= link_to '', class: "box", data: { controller: "comment" } do %>
+        <% if @comments.present? %>
+          <%= turbo_frame_tag "comments_count_bottom", class: "h-3 w-3 rounded-full absolute bg-rose-700/70 backdrop-blur top-0 right-0", style: "font-size: 9px;" do %>
+            <%= @comments.count %>
+          <% end %>
+        <% end %>
+        <%= icon 'fa-regular', 'comment' %>
       <% end %>
       <% if current_user == @post.user %>
         <%= link_to edit_post_path, class: "box" do %>
@@ -43,22 +48,7 @@
   <% end %>
 
   <%= content_for :below_block do %>
-    <div class="fixed bg-slate-300/50 backdrop-blur h-screen w-full top-0 right-0">
-    <div class="float-right p-7 bg-white/90 backdrop-blur shadow-xl w-96 h-full">
-        <div class="flex flex-col gap-3">
-          <span class="text-xl font-bold">Comments (8)</span>
-          <div class="bg-white w-full flex flex-col gap-2 shadow rounded-xl px-3 py-2">
-            <div class="flex gap-x-2">
-              <%= image_tag "fav.png", class: "w-7 rounded-full object-cover bg-rose-50" %>
-              <span class="my-auto font-light text-sm">
-                <%= current_user.username %>
-              </span>
-            </div>
-            <%= content_tag :textarea, "", class: "border-0 focus:outline-0 focus:ring-0" %>
-          </div>
-        </div>
-    </div>
-    </div>
+    <%= render "comments/box", { commentable: @post, comments: @comments } %>
   <% end %>
 
 <% end %>

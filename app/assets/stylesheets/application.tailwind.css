@@ -125,7 +125,9 @@
     .editor-controls .edit-btn * {
         @apply duration-100;
     }
-
+    .smart-padding {
+        @apply md:px-10 lg:px-16 xl:px-32;
+    }
     .editor-controls .header-option {
         @apply block px-4 py-2 text-sm text-gray-200 font-bold capitalize transition-colors
         duration-200 transform
@@ -168,27 +170,27 @@
     }
 
     :is(.ProseMirror, .content-box) h1 {
-        @apply pt-4 pb-2 mb-2 text-4xl md:text-6xl font-bold text-slate-800;
+        @apply pt-4 pb-2 mb-2 text-4xl lg:text-6xl font-bold text-slate-800;
     }
 
     :is(.ProseMirror, .content-box) h2 {
-        @apply pt-3 pb-1 mb-2 text-3xl md:text-5xl font-semibold text-slate-700;
+        @apply pt-3 pb-1 mb-2 text-3xl lg:text-5xl font-semibold text-slate-700;
     }
 
     :is(.ProseMirror, .content-box) h3 {
-        @apply pt-2 pb-1 text-2xl md:text-4xl font-semibold text-slate-600;
+        @apply pt-2 pb-1 text-2xl lg:text-4xl font-semibold text-slate-600;
     }
 
     :is(.ProseMirror, .content-box) h4 {
-        @apply pt-1 pb-1 text-xl md:text-3xl font-bold text-stone-600;
+        @apply pt-1 pb-1 text-xl lg:text-3xl font-bold text-stone-600;
     }
 
     :is(.ProseMirror, .content-box) h5 {
-        @apply pt-1 pb-1 text-lg md:text-2xl font-semibold text-slate-700;
+        @apply pt-1 pb-1 text-lg lg:text-2xl font-semibold text-slate-700;
     }
 
     :is(.ProseMirror, .content-box) h6 {
-        @apply pt-1 pb-1 text-sm md:text-2xl font-medium text-slate-700;
+        @apply pt-1 pb-1 text-sm lg:text-2xl font-medium text-slate-700;
     }
 
     :is(.ProseMirror, .content-box) blockquote {

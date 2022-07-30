@@ -7,10 +7,8 @@
     </div>
   </div>
 
-  <%= render "comments/box", { commentable: @quick_tweet } %>
-
   <%= content_for :down_bar_up_kit do %>
-    <div class="post-reaction-box divide-x divide-blue-200 flex">
+    <div class="post-reaction-box divide-x divide-blue-200 shadow flex">
       <%= link_to '', class: "box", data: { controller: "comment" } do %>
         <% if @comments.present? %>
           <%= turbo_frame_tag "comments_count_bottom", class: "h-3 w-3 rounded-full absolute bg-rose-700/70 backdrop-blur top-0 right-0", style: "font-size: 9px;" do %>
@@ -30,4 +28,7 @@
     </div>
   <% end %>
 
+  <%= content_for :below_block do %>
+    <%= render "comments/box", { commentable: @quick_tweet, comments: @comments } %>
+  <% end %>
 <% end %>

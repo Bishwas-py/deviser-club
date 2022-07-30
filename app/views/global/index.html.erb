@@ -1,7 +1,7 @@
 <%= content_for(:title, "Deviser Club ~ A club for anon discussion ~ Rails App") %>
 
 <%= render "components/aside_bar" do %>
-  <main id="all_posts" class="h-auto min-w-0 block text-sm md:px-32 pt-28 divide-y">
+  <main id="all_posts" class="h-auto min-w-0 block text-sm smart-padding pt-28 divide-y">
     <%= link_to new_quick_tweet_path, class:"group flex space-x-2 text-center mb-7 text-xl" do %>
       <div class="group-hover:rotate-180 duration-200 group-hover:bg-stone-200 rounded-full bg-stone-100 w-9 h-9 grid place-items-center">
             <%= icon "fa-regular", "plus", class: "text-xl" %>
