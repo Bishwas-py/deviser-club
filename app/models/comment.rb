@@ -4,6 +4,7 @@ class Comment < ApplicationRecord
   belongs_to :commentable, polymorphic: true
   belongs_to :user
   validates :body, presence: true, length: { minimum: 2, maximum: 500 }
+  has_many :likes, as: :likeable, dependent: :destroy
 
 
   after_create_commit -> {

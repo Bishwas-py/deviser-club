@@ -17,14 +17,14 @@
       </p>
     </div>
 
-    <div class="float-right" data-controller="comment-auth" data-comment-auth-uid="<%= comment.user.id %>">
+    <div class="float-right flex flex-row divide-x" data-controller="comment-auth" data-comment-auth-uid="<%= comment.user.id %>">
         <span class="hidden" data-comment-auth-target="delete">
           <%= button_to comment, method: :delete,
-                        class: "text-rose-600 hover:text-rose-700 hover:underline
-                      md:scale-0 group-hover:scale-100 duration-100 text-sm" do %>
+                        class: "p-2 px-4 hover:text-rose-800 text-slate-500 focus:text-sky-500 duration-400" do %>
             <%= icon "fa-solid", "trash" %>
           <% end %>
         </span>
+        <%= render "likes/create", likeable: comment %>
     </div>
   </div>
 
