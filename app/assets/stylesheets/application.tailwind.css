@@ -67,6 +67,15 @@
         @apply font-bold;
         @apply hover:text-blue-500;
     }
+    .tab-button {
+        @apply text-sm md:text-xl hover:underline cursor-pointer bg-purple-50 py-2 px-4 rounded-xl;
+    }
+    .tab-button.active {
+        @apply bg-slate-50 underline;
+    }
+    .input-box-2 {
+        @apply border-0 focus:outline-none focus:ring-0 w-full shadow p-3 rounded;
+    }
     .input-box {
         @apply shadow appearance-none bg-neutral-100/50 focus:bg-white border rounded w-full py-2 px-3 text-gray-700 leading-tight;
     }

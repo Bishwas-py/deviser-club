@@ -8,4 +8,8 @@
   </div>
 <% end %>
 
-
+<% if yield.presence %>
+  <div class="h-screen w-full">
+    <%= yield %>
+  </div>
+<% end %>

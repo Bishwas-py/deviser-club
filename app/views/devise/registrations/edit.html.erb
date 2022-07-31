@@ -1,10 +1,10 @@
-<%= render "components/aside_bar" do %>
-  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'smart-padding py-9 w-full rounded space-y-5 min-h-screen' }) do |f| %>
+<%= render "components/setting-navbar" do %>
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'space-x-5 w-full w-lg' }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
-    <div class="max-w-lg space-y-5">
+    <div class="space-y-7">
       <div class="input-father">
         <%= f.label :email, class: "input-label" %>
-        <%= f.email_field :email, class: "input-box", autofocus: true, required: true, autocomplete: "email", placeholder: "youremail@gmail.com" %>
+        <%= f.email_field :email, class: "input-box-2", autofocus: true, required: true, autocomplete: "email", placeholder: "youremail@gmail.com" %>
       </div>
 
       <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -13,7 +13,7 @@
 
       <div class="input-father">
         <%= f.label :password %> <i>(leave blank if you don't want to change it)</i><br/>
-        <%= f.password_field :password, autocomplete: "new-password", class: "input-box" %>
+        <%= f.password_field :password, autocomplete: "new-password", class: "input-box-2" %>
         <% if @minimum_password_length %>
           <br/>
           <em><%= @minimum_password_length %> characters minimum</em>
@@ -22,12 +22,12 @@
 
       <div class="input-father">
         <%= f.label :password_confirmation %><br/>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input-box" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input-box-2" %>
       </div>
 
       <div class="input-father">
         <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br/>
-        <%= f.password_field :current_password, autocomplete: "current-password", class: "input-box" %>
+        <%= f.password_field :current_password, autocomplete: "current-password", class: "input-box-2" %>
       </div>
 
       <div class="input-father">

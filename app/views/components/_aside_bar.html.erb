@@ -5,26 +5,18 @@
         <%= image_tag "fav.png", class: "w-12" %>
       </div>
       <div class="navigational-items h-full justify-center flex flex-col">
-        <%= link_to root_path, class: "aside-menu-element #{is_active "global"}" do %>
-          <%= icon "fa-solid", "house-user", class: "self-center" %>
-        <% end %>
-        <a href="/" class="aside-menu-element">
-          <%= icon "fa-regular", "bell", class: "self-center" %>
-        </a>
-        <%= link_to bookmark_index_path, class: "aside-menu-element #{is_active "bookmark"}" do %>
-          <%= icon "fa-regular", "bookmark", class: "self-center" %>
-        <% end %>
-        <hr class="block w-7 self-center"/>
-        <%= link_to new_post_path, class: "aside-menu-element #{is_active "posts"}" do %>
-          <%= icon "fa-regular", "edit", class: "self-center" %>
-        <% end %>
+        <%= render "components/aside_bar_links" %>
       </div>
-
-      <%= link_to edit_user_registration_path(current_user), class:"mx-auto flex px-5 justify-center py-7 w-full hover:bg-blue-50 bg-slate-100" do %>
-        <%= image_tag "https://miro.medium.com/max/1000/1*pd9XqkTCXjNzmV3FTS85tw.jpeg", class: "w-12
-            rounded-full object-cover" %>
+      <% if user_signed_in? %>
+        <%= link_to edit_user_registration_path(current_user), class:"mx-auto flex px-5 justify-center py-7 w-full hover:bg-blue-50 bg-slate-100" do %>
+          <%= image_tag current_user.avatar, class: "w-12
+              rounded-full object-cover" %>
+        <% end %>
+      <% else %>
+        <%= link_to new_user_session_path, class: "aside-menu-element #{is_active "bookmark"}" do %>
+          <%= icon "fa-regular", "login", class: "self-center" %>
+        <% end %>
       <% end %>
-
     </nav>
   </aside>
 
@@ -46,24 +38,14 @@
     </div>
   <% end %>
 
-  <nav class="navigational-items sm:hidden border-t bg-white h-20 justify-between flex flex-row divide-x">
-    <%= link_to root_path, class: "aside-menu-element #{is_active "global"} w-full" do %>
-      <%= icon "fa-solid", "house-user", class: "self-center" %>
-    <% end %>
-    <a href="/" class="aside-menu-element w-full">
-      <%= icon "fa-regular", "bell", class: "self-center" %>
-    </a>
-    <a href="/"
-       class="aside-menu-element w-full">
-      <%= icon "fa-regular", "bookmark", class: "self-center" %>
-    </a>
-    <%= link_to new_post_path, class: "aside-menu-element #{is_active "posts"} w-full" do %>
-      <%= icon "fa-regular", "edit", class: "self-center" %>
-    <% end %>
-    <% link_to edit_user_registration_path(current_user), class:"aside-menu-element flex w-full" do %>
+  <nav class="navigational-items sm:hidden border-t bg-white h-full justify-between grid grid-cols-5 divide-x">
+
+    <%= render "components/aside_bar_links" %>
+    <%= link_to edit_user_registration_path(current_user), class:"mx-auto flex px-5 justify-center py-7 w-full hover:bg-blue-50 bg-slate-100" do %>
       <%= image_tag "https://miro.medium.com/max/1000/1*pd9XqkTCXjNzmV3FTS85tw.jpeg", class: "w-12
             rounded-full object-cover" %>
     <% end %>
+
   </nav>
 </aside>
 

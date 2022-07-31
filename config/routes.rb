@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+
+  resources :profile do
+    collection do
+      get :edit
+    end
+  end
   root "global#index"
   resources :likes, only: [:create, :destroy]
   resources :bookmark, only: [:create, :destroy, :index]

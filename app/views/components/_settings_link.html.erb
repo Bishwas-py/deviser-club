@@ -1,0 +1,6 @@
+<div class="h-full w-80 flex md:flex-col md:space-y-4 md:space-x-0 space-x-2 mb-7">
+  <span class="tab-button">Tweak Profile</span>
+  <%= link_to edit_user_registration_path, class: "tab-button #{is_active "devise/registrations"}" do %>
+    Account Settings
+  <% end %>
+</div>

@@ -1,0 +1,17 @@
+<%= render "components/setting-navbar" do %>
+    <%= form_for(@profile, html: { method: :put, class: 'space-x-5 w-full' }) do |f| %>
+
+      <div class="space-y-7">
+        <div class="input-father">
+          <%= f.label :name, class: "input-label" %>
+          <%= f.text_field :name, class: "input-box-2", autofocus: true, required: true, autocomplete: "email", placeholder: "First Last Name" %>
+        </div>
+
+        <div class="input-father">
+          <%= f.submit "Update", class: "auth-btn" %>
+          <%= link_to "Back", :back, class: "auth-co-btn" %>
+        </div>
+      </div>
+    <% end %>
+
+<% end %>
