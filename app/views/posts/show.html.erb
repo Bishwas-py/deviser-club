@@ -11,9 +11,7 @@
 
 
   <%= content_for :right_aside_bar do %>
-    <div class="px-6 py-4">
-      Comment Will Be here
-    </div>
+    <%= render "profile/profile", profile: @post.user.profile %>
   <% end %>
 
   <%= content_for :down_bar_up_kit do %>

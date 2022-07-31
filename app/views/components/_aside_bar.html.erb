@@ -7,16 +7,7 @@
       <div class="navigational-items h-full justify-center flex flex-col">
         <%= render "components/aside_bar_links" %>
       </div>
-      <% if user_signed_in? %>
-        <%= link_to edit_user_registration_path(current_user), class:"mx-auto flex px-5 justify-center py-7 w-full hover:bg-blue-50 bg-slate-100" do %>
-          <%= image_tag current_user.profile.avatar, class: "w-12
-              rounded-full object-cover" %>
-        <% end %>
-      <% else %>
-        <%= link_to new_user_session_path, class: "aside-menu-element #{is_active "bookmark"}" do %>
-          <%= icon "fa-regular", "login", class: "self-center" %>
-        <% end %>
-      <% end %>
+      <%= render "components/aside_bar_logger" %>
     </nav>
   </aside>
 
@@ -25,7 +16,7 @@
   </div>
 
   <% if yield(:right_aside_bar).presence %>
-    <div class="hidden lg:block border-r bg-green-50 shrink-0 sticky top-0 min-h-screen h-full w-80">
+    <div class="hidden lg:block border-l bg-neutral-50 shrink-0 sticky top-0 min-h-screen h-full w-80">
       <%= yield (:right_aside_bar) %>
     </div>
   <% end %>

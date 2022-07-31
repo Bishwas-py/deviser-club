@@ -3,9 +3,9 @@
   <div class="relative inline-block">
     <!-- Dropdown toggle button -->
     <%= button_to "", class: "menu-drop-down", data: {
-      controller: 'navbar',
-      action: 'navbar#toggleNavDrop',
-      navbar_body_param: "nav-bar-body"
+      controller: 'togglebar',
+      action: 'togglebar#toggleNavDrop',
+      togglebar_body_param: "nav-bar-body"
     } do %>
       <span class="mx-1"><%= current_user.username %></span>
       <%= icon "fa", "chevron-down", class: "text-sm w-5 h-5 mx-1" %>
@@ -22,35 +22,35 @@
 
       <hr class="border-gray-200 dark:border-gray-700 ">
 
-      <a href="#" class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+      <a href="#" class="toogle-bar-item">
         view profile
       </a>
 
-      <a href="#" class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+      <a href="#" class="toogle-bar-item">
         Settings
       </a>
 
-      <a href="#" class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+      <a href="#" class="toogle-bar-item">
         Keyboard shortcuts
       </a>
 
       <hr class="border-gray-200 dark:border-gray-700 ">
 
-      <a href="#" class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+      <a href="#" class="toogle-bar-item">
         Company profile
       </a>
 
-      <a href="#" class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+      <a href="#" class="toogle-bar-item">
         Team
       </a>
 
-      <a href="#" class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+      <a href="#" class="toogle-bar-item">
         Invite colleagues
       </a>
 
       <hr class="border-gray-200 dark:border-gray-700 ">
 
-      <a href="#" class="block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+      <a href="#" class="toogle-bar-item">
         Help
       </a>
       <%= button_to destroy_user_session_path, method: :delete,

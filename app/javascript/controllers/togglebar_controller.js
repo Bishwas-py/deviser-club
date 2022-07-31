@@ -10,8 +10,8 @@ export default class extends Controller {
   toggleNavDrop(event) {
     event.preventDefault()
     event.stopPropagation()
-    const navbarBodyID = event.params.body;
-    const navbar_body = document.getElementById(navbarBodyID);
-    navbar_body.classList.toggle('hidden');
+    const toogleBarBodyID = event.params.body;
+    const togglebar_body = document.getElementById(toogleBarBodyID);
+    togglebar_body.classList.toggle('hidden');
   }
 }

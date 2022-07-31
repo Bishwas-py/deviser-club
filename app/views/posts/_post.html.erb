@@ -1,23 +1,26 @@
 <%= turbo_stream_from post %>
 <div class="break-inside-avoid group w-full" id="<%= dom_id post %>">
-  <%= link_to post do %>
-    <div class="px-6 py-10">
+
+  <div class="px-6 py-10">
       <span class="text-neutral-500 block mb-2" title="Author: <%= post.user.username %>">
-        Posted by <strong><%= post.user.username %></strong>	•
+       <%= link_to profile_index_path(post.user.username), class: "text-neutral-500 group inline-block mb-2", title: "Author: #{post.user.username}" do %>
+        Posted by <strong class="group-hover:text-slate-800"><%= post.user.username %></strong>
+       <% end %>  •
        <span class="bg-neutral-50 posts-tag">
            <%= icon "fa-solid", "newspaper", class: "text-sm" %>
         </span>
         <div class="inline-block text-slate-600 font-light"><%= "#{post.reading_time} #{"minute".pluralize post.reading_time} read" %></div>
-
       </span>
-      <div class="font-bold text-3xl mb-2"><%= post.title %></div>
-      <span class="text-gray-700 text-2xl text-base">
-          <%= sanitize(post.body, tags: %w()).strip.truncate(299) %>
+      <%= link_to post do %>
+        <div class="font-bold text-3xl mb-2"><%= post.title %></div>
+        <span class="text-gray-700 text-2xl text-base">
+            <%= sanitize(post.body, tags: %w()).strip.truncate(299) %>
+          </span>
+        <span class="text-neutral-500" title="<%= post.created_at.to_fs %>">
+          <%= time_ago_in_words(post.created_at) %>
         </span>
-      <span class="text-neutral-500" title="<%= post.created_at.to_fs %>">
-        <%= time_ago_in_words(post.created_at) %>
-      </span>
-    </div>
-  <% end %>
+
+      <% end %>
+  </div>
 
 </div>

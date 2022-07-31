@@ -13,9 +13,9 @@
     <div class="relative inline-block">
       <%= button_to "", class: "editor-button-strech", type: "button",
                     data: {
-                      controller: 'navbar',
-                      action: 'navbar#toggleNavDrop',
-                      navbar_body_param: "heading",
+                      controller: 'togglebar',
+                      action: 'togglebar#toggleNavDrop',
+                      togglebar_body_param: "heading",
                       tiptap_target: "headingmarker",
                     } do %>
         <span class="mx-2">Heading</span>

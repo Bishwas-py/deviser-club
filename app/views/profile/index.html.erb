@@ -1,6 +1,23 @@
-<div>
-  <h1 class="font-bold text-4xl">Profile#edit</h1>
-  <p>Find me in app/views/profile/edit.html.erb</p>
+<%= content_for(:title, "Profile #{@profile.user.username}") %>
 
-  <%= @profile.inspect %>
-</div>
+<%= render "components/aside_bar" do %>
+  <main class="h-auto min-w-0 block text-sm smart-padding md:pt-28">
+    <div class="hidden lg:block">
+      <div class="content-box">
+        <h1 class=""><%= @profile.get_name %></h1>
+      </div>
+      <h3 class="font-light text-lg px-1 border-b">
+        <%= @profile.bio %>
+      </h3>
+    </div>
+    <div class="lg:hidden">
+      <%= render "profile/profile", profile: @profile %>
+    </div>
+    <div id="posts" class="w-full">
+      <%= render @profile.user.posts %>
+    </div>
+  </main>
+  <%= content_for :right_aside_bar do %>
+    <%= render "profile/profile", profile: @profile %>
+  <% end %>
+<% end %>
