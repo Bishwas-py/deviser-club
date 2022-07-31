@@ -1,5 +1,9 @@
 class ProfileController < ApplicationController
-  before_action :set_profile, only: %i[ index edit update ]
+  before_action :set_profile, only: %i[ index update edit ]
+
+  def show
+    @profile = User.find_by(username: params[:id]).profile
+  end
 
   def index
   end
