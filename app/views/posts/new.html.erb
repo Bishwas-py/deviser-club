@@ -4,13 +4,25 @@
       <%= image_tag "fav.png", class: "w-7 rounded-full bg-purple-50 hover:bg-purple-100" %>
     <% end %>
     <span class="my-auto">Posting something new</span>
-    <span class="my-auto mx-4 text-sm font-light text-slate-500">Saved!</span>
+    <span class="my-auto mx-4 text-sm font-light text-slate-500">Unsaved!</span>
   </div>
-  <div class="space-x-1">
+  <div class="space-x-1 flex">
     <button class="text-slate-500 px-2 py-0 rounded-xl inline-block">
       <%= current_user.username %>
     </button>
-    <%= image_tag "fav.png", class: "w-9 rounded-full bg-sky-100 inline-block" %>
+
+    <div class="relative">
+      <%= button_to "", class: "inline-block", data: {
+        controller: 'togglebar',
+        action: 'togglebar#toggleNavDrop',
+        togglebar_body_param: "nav-bar-body"
+      } do %>
+        <%= image_tag current_user.profile.my_avatar, class: "w-9 rounded-full bg-sky-100 inline-block" %>
+      <% end %>
+      <div id="nav-bar-body" class="hidden z-30 duration-200 absolute -bottom-56 right-0 bottom-0 z-20 w-56 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800">
+        <%= render "components/aside_bar_logger_links" %>
+      </div>
+    </div>
   </div>
 </div>
 <div class="grid place-items-center md:px-48">

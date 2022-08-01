@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :authenticate_user!, except: [:index, :show]
 
   # GET /posts or /posts.json
   def index
@@ -29,6 +30,9 @@ class PostsController < ApplicationController
         format.html { redirect_to post_url(@post), notice: "Post was successfully created." }
         format.json { render :show, status: :created, location: @post }
       else
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.replace("error_explanation", partial: 'components/errors', locals: { errors: @post.errors })
+        }
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @post.errors, status: :unprocessable_entity }
       end

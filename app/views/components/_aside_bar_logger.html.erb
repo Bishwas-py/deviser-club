@@ -6,36 +6,15 @@
       action: 'togglebar#toggleNavDrop',
       togglebar_body_param: "nav-bar-body"
     } do %>
-      <%= image_tag current_user.profile.avatar, class: "w-12 h-12
+      <%= image_tag current_user.profile.my_avatar, class: "w-12 h-12
               rounded-full object-cover" %>
     <% end %>
     <div id="nav-bar-body" class="hidden duration-200 absolute left-32 bottom-7 z-20 w-56 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800">
-      <a href="#" class="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
-        <%= image_tag current_user.profile.avatar, class: "flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9" %>
-        <div class="mx-1">
-          <h1 class="text-sm font-semibold text-gray-700 dark:text-gray-200"><%= current_user.username %></h1>
-          <p class="text-sm text-gray-500 dark:text-gray-400"><%= current_user.email %></p>
-        </div>
-      </a>
-
-      <hr class="border-gray-200 dark:border-gray-700 ">
-      <%= link_to edit_user_registration_path, class: "toogle-bar-item" do %>
-        View Profile
-      <% end %>
-      <%= link_to edit_user_registration_path, class: "toogle-bar-item" do %>
-        Settings
-      <% end %>
-      <hr class="border-gray-200 dark:border-gray-700 ">
-      <%= button_to destroy_user_session_path, method: :delete,
-                    class: "block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform
-                    text-left
-                    dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white w-full" do %>
-        Sign Out
-      <% end %>
+        <%= render "components/aside_bar_logger_links" %>
     </div>
   </div>
 <% else %>
   <%= link_to new_user_session_path, class: "aside-menu-element #{is_active "bookmark"}" do %>
-    <%= icon "fa-regular", "login", class: "self-center" %>
+    <%= icon "fa-solid", "sign-in", class: "self-center" %>
   <% end %>
 <% end %>

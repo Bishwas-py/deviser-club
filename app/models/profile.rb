@@ -6,4 +6,7 @@ class Profile < ApplicationRecord
   def get_name
     self.name || self.user.username
   end
+  def my_avatar
+    (self and self.avatar.attached?) ? self.avatar : "fav.png"
+  end
 end

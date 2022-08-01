@@ -1,0 +1,22 @@
+<a href="#" class="flex items-center p-3 -mt-2 text-sm text-gray-600 transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white">
+  <%= image_tag current_user.profile.my_avatar, class: "flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9" %>
+  <div class="mx-1">
+    <h1 class="text-sm font-semibold text-gray-700 dark:text-gray-200"><%= current_user.username %></h1>
+    <p class="text-sm text-gray-500 dark:text-gray-400"><%= current_user.email %></p>
+  </div>
+</a>
+
+<hr class="border-gray-200 dark:border-gray-700 ">
+<%= link_to profile_path(current_user.username), class: "toogle-bar-item" do %>
+  View Profile
+<% end %>
+<%= link_to edit_user_registration_path, class: "toogle-bar-item" do %>
+  Settings
+<% end %>
+<hr class="border-gray-200 dark:border-gray-700 ">
+<%= button_to destroy_user_session_path, method: :delete,
+              class: "block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform
+                    text-left
+                    dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white w-full" do %>
+  Sign Out
+<% end %>

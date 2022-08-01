@@ -7,3 +7,14 @@
     </ul>
   <% end %>
 </div>
+<% if notice %>
+  <div id="error_explanation" class="bg-green-50 text-green-500 px-3 py-2 font-medium py-2 px-3 grid place-items-center">
+    <%= simple_format notice %>
+  </div>
+<% end %>
+
+<% if alert %>
+  <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium grid place-items-center">
+    <%= simple_format alert %>
+  </div>
+<% end %>

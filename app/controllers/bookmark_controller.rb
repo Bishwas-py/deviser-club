@@ -1,4 +1,6 @@
 class BookmarkController < ApplicationController
+  before_action :authenticate_user! #-> routes to the login / signup if not authenticated
+
   def index
     @bookmarks = current_user.bookmarks
   end

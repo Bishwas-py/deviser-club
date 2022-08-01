@@ -1,7 +1,6 @@
 class QuickTweetsController < ApplicationController
   before_action :set_quick_tweet, only: %i[ show edit update destroy ]
-
-  before_action :check_user!, only: %i[ edit update destroy ]
+  before_action :authenticate_user!, only: %i[ edit update create destroy ]
 
   # GET /quick_tweets or /quick_tweets.json
   def index
@@ -33,16 +32,17 @@ class QuickTweetsController < ApplicationController
     # should remove invalid chars
     @quick_tweet.content = helpers.purify @quick_tweet.content
 
-    image_file_io, image_name = helpers.create_og_image(helpers.sanitize(@quick_tweet.content, tags: %w()))
-    @quick_tweet.image.attach(io: image_file_io, filename: image_name, content_type: 'image/png')
-
     respond_to do |format|
       if @quick_tweet.save
+        image_file_io, image_name = helpers.create_og_image(helpers.sanitize(@quick_tweet.content, tags: %w()))
+        @quick_tweet.image.attach(io: image_file_io, filename: image_name, content_type: 'image/png')
+        @quick_tweet.save
+
         format.html { redirect_to quick_tweet_url(@quick_tweet) }
         format.json { render :show, status: :created, location: @quick_tweet }
       else
         format.turbo_stream {
-          render turbo_stream: turbo_stream.replace("#{helpers.dom_id(@quick_tweet)}_form", partial: 'form', locals: { quick_tweet: @quick_tweet })
+          render turbo_stream: turbo_stream.replace("error_explanation", partial: 'components/errors', locals: { errors: @quick_tweet.errors })
         }
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @quick_tweet.errors, status: :unprocessable_entity }
@@ -52,7 +52,8 @@ class QuickTweetsController < ApplicationController
 
   # PATCH/PUT /quick_tweets/1 or /quick_tweets/1.json
   def update
-    @quick_tweet.content = @quick_tweet.content.gsub("\u200D", "").gsub(/\P{Print}|\p{Cf}/, "")
+    @quick_tweet.content = helpers.purify @quick_tweet.content
+
     respond_to do |format|
       if @quick_tweet.update(quick_tweet_params)
         @quick_tweet.broadcast_update partial: "quick_tweets/tweet_cert", target: "#{helpers.dom_id(@quick_tweet)}_target"
