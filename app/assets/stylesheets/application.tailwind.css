@@ -1,7 +1,6 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
 @layer components {
     h1 {
         @apply block;
@@ -209,9 +208,11 @@
         @apply border-l-4 border-slate-800 py-1 pl-4;
     }
 
+
 }
 
 @layer utilities {
+
     /* Chrome, Safari and Opera */
     .no-scrollbar::-webkit-scrollbar {
         display: none;
@@ -223,3 +224,4 @@
     }
 
 }
+

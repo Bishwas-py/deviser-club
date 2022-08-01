@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_31_033620) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_01_070201) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -109,6 +109,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_31_033620) do
     t.integer "watches", default: 0
     t.integer "user_id"
     t.index ["user_id"], name: "index_quick_tweets_on_user_id"
+  end
+
+  create_table "tags", force: :cascade do |t|
+    t.string "name"
+    t.text "description"
+    t.integer "added_by_id"
+    t.integer "last_edited_id"
+    t.integer "tagable_id"
+    t.string "tagable_type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

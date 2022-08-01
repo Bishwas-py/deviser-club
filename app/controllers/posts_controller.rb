@@ -24,6 +24,9 @@ class PostsController < ApplicationController
   # POST /posts or /posts.json
   def create
     @post = Post.new(post_params)
+    tags = params[:post][:raw_tags].split(",")
+    puts "tags = #{tags}"
+    # @post.tags.find_or_create_by(name: params[:tag])
     @post.user = current_user
     respond_to do |format|
       if @post.save
@@ -43,6 +46,10 @@ class PostsController < ApplicationController
   def update
     respond_to do |format|
       if @post.update(post_params)
+        puts "params = #{params[:post][:raw_tags]}"
+        raw_tags = params[:post][:raw_tags].split(",")
+
+        @post.save
         format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
         format.json { render :show, status: :ok, location: @post }
       else
@@ -70,6 +77,6 @@ class PostsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def post_params
-      params.require(:post).permit(:title, :body)
+      params.require(:post).permit(:title, :body, :id)
     end
 end

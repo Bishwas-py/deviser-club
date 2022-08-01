@@ -3,6 +3,7 @@
   <head>
     <title><%= yield(:title) %></title>
 
+    <%= yield (:content_up) %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= favicon_link_tag "fav.png" %>
     <%= render "components/meta" %>
@@ -24,4 +25,5 @@
       <%= yield %>
     </main>
   </body>
+  <%= yield (:content_down) %>
 </html>

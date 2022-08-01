@@ -6,7 +6,10 @@ Rails.application.routes.draw do
     end
   end
   root "global#index"
+  get "/select" => "global#select"
+
   resources :likes, only: [:create, :destroy]
+  resources :tags
   resources :bookmark, only: [:create, :destroy, :index]
   resources :posts
   resources :quick_tweets, path: :tweet

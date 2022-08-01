@@ -1,0 +1,5 @@
+<% post = Post.first %>
+<div class="smart-padding bg-rose-50 py-16 w-full h-screen">
+  <input id="select" data-controller="select" data-select-json-selects="<%= Tag.all.to_json(:only => [:name]) %>"
+         data-select-json-value="<%= post.tags.to_json(:only => [:name]) %>"/>
+</div>

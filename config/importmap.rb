@@ -45,5 +45,6 @@ pin "prosemirror-gapcursor", to: "node_modules/prosemirror-gapcursor/dist/index.
 pin "prosemirror-history", to: "node_modules/prosemirror-history/dist/index.js"
 
 pin "rope-sequence", to: "node_modules/rope-sequence/dist/index.es.js"
+pin "tom-select", to: "tom-select.js"
 
-pin "tom-select", to: "node_modules/dist/js/tom-select.complete.js"
+
