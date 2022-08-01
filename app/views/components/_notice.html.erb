@@ -1,13 +1,27 @@
-<div id="<%= "#{dom_id quick_tweet}_alert_notice" %>">
-  <% if notice %>
-    <div id="error_explanation" class="bg-green-50 text-green-500 px-3 py-2 font-medium py-2 px-3 grid place-items-center">
-          <%= simple_format notice %>
-    </div>
-  <% end %>
+<% if notice %>
+  <div id="notification" class="smart-padding py-2 bg-green-50 text-green-500 font-medium flex justify-between"
+       onload="">
+    <span class="text-center w-full">
+      <%= simple_format notice %>
+    </span>
+    <button
+        onclick="document.getElementById('notification').style.display = 'none'"
+        class="rounded-full h-6 w-6 grid place-items-center my-auto bg-teal-700/90 text-white">
+      &times;
+    </button>
+  </div>
+<% end %>
 
-  <% if alert %>
-    <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium grid place-items-center">
+<% if alert %>
+  <div id="alert" class="smart-padding py-2 bg-red-50 text-red-500 font-medium flex justify-between"
+       onload="">
+    <span class="text-center w-full">
       <%= simple_format alert %>
-    </div>
-  <% end %>
-</div>
+    </span>
+    <button
+        onclick="document.getElementById('alert').style.display = 'none'"
+        class="rounded-full h-6 w-6 grid place-items-center my-auto bg-rose-700/90 text-white">
+      &times;
+    </button>
+  </div>
+<% end %>

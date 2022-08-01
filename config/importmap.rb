@@ -46,6 +46,4 @@ pin "prosemirror-history", to: "node_modules/prosemirror-history/dist/index.js"
 
 pin "rope-sequence", to: "node_modules/rope-sequence/dist/index.es.js"
 
-# trix-assets
-pin "trix"
-pin "@rails/actiontext", to: "actiontext.js"
+pin "tom-select", to: "node_modules/dist/js/tom-select.complete.js"

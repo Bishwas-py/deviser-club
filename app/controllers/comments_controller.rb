@@ -1,6 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :authenticate_user!
   def create
-    puts "comment_params: #{comment_params}"
     @comment = current_user.comments.create(comment_params)
     @comment.body = helpers.purify @comment.body
     comment = @comment.save

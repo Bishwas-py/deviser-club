@@ -17,7 +17,10 @@
 
   <body>
     <main class="h-full w-full">
-      <%= render "components/errors" %>
+      <% unless params[:controller].include? 'devise/' %>
+        <%=   render "components/errors"   %>
+        <%= render "components/notice" %>
+      <% end %>
       <%= yield %>
     </main>
   </body>

@@ -31,7 +31,7 @@
         <%= link_to edit_quick_tweet_path, class: "box" do %>
           <%= icon "fa-regular", "edit" %>
         <% end %>
-        <%= link_to edit_post_path, class: "box" do %>
+        <%= button_to @quick_tweet, method: :delete, class: "box" do %>
           <%= icon "fa-solid", "trash" %>
         <% end %>
       <% end %>

@@ -62,7 +62,7 @@ class QuickTweetsController < ApplicationController
         format.html { redirect_to quick_tweet_url(@quick_tweet) }
         format.json { render :show, status: :ok, location: @quick_tweet }
       else
-        format.html { render :edit, status: :unprocessable_entity }
+        format.html { render :edit, status: :unprocessable_entity, alert: "Quick Tweet was not updated." }
         format.json { render json: @quick_tweet.errors, status: :unprocessable_entity }
       end
     end
@@ -72,26 +72,12 @@ class QuickTweetsController < ApplicationController
   def destroy
     @quick_tweet.destroy
     respond_to do |format|
-      @quick_tweet.broadcast_remove_to :quick_tweets, target: "#{helpers.dom_id(@quick_tweet)}"
-      @quick_tweet.broadcast_update partial: "components/notice", target: "#{helpers.dom_id @quick_tweet}_alert_notice", locals: { alert: "This post is deleted completely deleted, try reaching <a class='link' href='/'>Home</a>." }
-      @quick_tweet.broadcast_remove_to [@quick_tweet], target: "#{helpers.dom_id(@quick_tweet)}_target"
-      @quick_tweet.broadcast_remove_to [@quick_tweet], target: "#{helpers.dom_id(@quick_tweet)}_comments"
-
-      format.html { redirect_to quick_tweets_url }
+      format.html { redirect_to root_path, alert: "Quick Tweet was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-
-  # user logged in permission
-
-  def check_user!
-    if request.remote_ip != @quick_tweet.ip_field
-      puts "authenticate_user! 101", authenticate_user!
-      authenticate_user! or redirect_to quick_tweet_url, notice: "You are not authorized to edit this quick tweet."
-    end
-  end
 
   # Use callbacks to share common setup or constraints between actions.
   def set_quick_tweet
