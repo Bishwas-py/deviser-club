@@ -32,6 +32,14 @@
                           placeholder: 'Story Title',
                           class: "block text-4xl focus:border-l focus:border-slate-700 font-light py-2 border-0 bg-white/10 backdrop-blur focus:outline-none focus:ring-0 h-12 px-3 py-2 mt-2 w-full" %>
     </div>
+    <div class="my-5">
+      <%= form.text_field :tags,
+                          value: @post.tags.map(&:name).join(','),
+                          data: { controller: "select",
+                                  select_json_selects:Tag.all.to_json(:only => [:name])
+                          } %>
+    </div>
+
     <%= render "components/editor/edit", field: :body, form: form %>
   <% end %>
 </div>
