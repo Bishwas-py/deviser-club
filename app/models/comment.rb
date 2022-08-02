@@ -8,9 +8,10 @@ class Comment < ApplicationRecord
 
 
   after_create_commit -> {
-    broadcast_prepend_later_to commentable, target: "#{dom_id commentable}_comments",
-                               partial:  "comments/comment",
-                               locals: { user: :current_user, comment: self }
+    broadcast_prepend_to commentable, :comments, target: "#{dom_id commentable}_comments",
+                               partial:  "comments/broadcast_comment",
+                               locals: { comment: self }
+  #  pushed to this listener: turbo_stream_from commentable, :comments
   }
 
 end

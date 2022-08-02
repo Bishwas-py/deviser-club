@@ -1,4 +1,4 @@
-<% unless current_user.nil? %>
+<% if user_signed_in? %>
   <%= turbo_frame_tag "#{likeable.model_name.name}-#{likeable.id}", class: "py-2 px-4" do %>
     <% like = current_user.likes.find_by(likeable: likeable) %>
     <% if like.nil? %>
@@ -27,13 +27,13 @@
     <% end %>
   <% end %>
 
-  <% else %>
-    <div class="py-2 px-4">
-      <%= button_tag "", class: "hover:text-blue-800 text-blue-500 focus:text-yellow-500 duration-400" do %>
+<% else %>
+  <div class="py-2 px-4">
+    <%= button_tag "", class: "hover:text-blue-800 text-blue-500 focus:text-yellow-500 duration-400" do %>
       <span>
           <%= icon "fa-solid", "heart" %>
         <%= likeable.likes.count %>
         </span>
-      <% end %>
-    </div>
+    <% end %>
+  </div>
 <% end %>

@@ -1,4 +1,4 @@
-<% unless current_user.nil? %>
+<% if user_signed_in? %>
   <%= turbo_frame_tag "#{bookmarkable.model_name.name}-#{bookmarkable.id}_bookmarks", class: "py-2 px-4" do %>
     <% bookmark = current_user.bookmarks.find_by(bookmarkable: bookmarkable) %>
     <% if bookmark.nil? %>
@@ -9,7 +9,7 @@
                         bookmarkable_type: bookmarkable.model_name.name
                       }
                     },
-                    class: "hover:text-teal-700 text-teal-500 focus:text-sky-500 duration-400" do %>
+                    class: "hover:text-cyan-700 text-slate-700 focus:text-sky-500 duration-400" do %>
         <span>
           <%= icon "fa-solid", "bookmark" %>
           <%= bookmarkable.bookmarks.count %>
@@ -18,20 +18,27 @@
     <% else %>
       <%= button_to bookmark_path(bookmark),
                     method: :delete,
-                    class: "hover:text-blue-800 text-blue-500 focus:text-rose-500 duration-400" do %>
+                    class: "hover:text-cyan-600 text-cyan-800 focus:text-green-500 duration-400" do %>
         <span>
-        <%= icon "fa-solid", "bookmark" %>
-          <%= bookmarkable.bookmarks.count %>
-      </span>
+          <%= icon "fa-solid", "bookmark" %>
+            <%= bookmarkable.bookmarks.count %>
+        </span>
       <% end %>
     <% end %>
   <% end %>
 <% else %>
   <div class="py-2 px-4">
-    <%= button_tag "", class: "hover:text-blue-800 text-blue-500 focus:text-yellow-500 duration-400" do %>
-    <span>
+    <%= button_to bookmark_index_path,
+                  params: {
+                    bookmark: {
+                      bookmarkable_id: bookmarkable.id,
+                      bookmarkable_type: bookmarkable.model_name.name
+                    }
+                  },
+                  class: "hover:text-cyan-800 text-cyan-600 focus:text-yellow-500 duration-400" do %>
+      <span>
         <%= icon "fa-solid", "bookmark" %>
-      <%= bookmarkable.bookmarks.count %>
+        <%= bookmarkable.bookmarks.count %>
       </span>
     <% end %>
   </div>

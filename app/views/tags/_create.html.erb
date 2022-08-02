@@ -1,4 +1,4 @@
-<% unless current_user.nil? %>
+<% if user_signed_in? %>
   <%= turbo_frame_tag "#{bookmarkable.model_name.name}-#{bookmarkable.id}_bookmarks", class: "py-2 px-4" do %>
     <% bookmark = current_user.bookmarks.find_by(bookmarkable: bookmarkable) %>
     <% if bookmark.nil? %>

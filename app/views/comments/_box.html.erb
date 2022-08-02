@@ -1,4 +1,5 @@
 <%= turbo_stream_from commentable, :comments %>
+
 <%= audio_tag "notification.mp3", id: "audiosource" %>
 <div class="hidden" id="comment-box">
   <div class="z-20 fixed bg-slate-300/50 backdrop-blur h-screen w-full top-0 right-0" data-controller="comment"></div>
@@ -8,14 +9,14 @@
         <%= icon 'fa-solid', 'times', class: "" %>
       <% end %>
       <div class="flex flex-col gap-3">
-        <%= turbo_frame_tag "comments_count_top", class: "" do %>
+        <%= turbo_frame_tag "comments_count_top", class: "text-2xl font-bold" do %>
           Comments(<%= commentable.comments.count %>)
         <% end %>
         <div class="bg-white w-full flex flex-col gap-2 shadow rounded-md px-3 py-2">
           <div class="flex gap-x-2">
             <%= image_tag "fav.png", class: "w-7 rounded-full object-cover bg-rose-50" %>
             <span class="my-auto font-light text-sm">
-            <%= current_user.nil? ? "Anon" : current_user.username %>
+            <%= user_signed_in? ? current_user.username : "Anon" %>
           </span>
           </div>
           <%= render "comments/form", commentable: commentable %>

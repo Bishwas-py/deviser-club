@@ -18,7 +18,6 @@ class CommentsController < ApplicationController
 
   def destroy
     respond_to do |format|
-
       @comment = current_user.comments.find(params[:id])
       @comment.destroy
       @comment.broadcast_remove_to [@comment.commentable, :comments], target: "#{helpers.dom_id @comment}"

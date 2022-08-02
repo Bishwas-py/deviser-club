@@ -16,25 +16,19 @@
         <%= clean_links sanitize(comment.body, tags: %w(strong em a b code), attributes: %w(href)) %>
       </p>
     </div>
-    <div class="flex flex-row justify-between">
-      <% if user_signed_in? %>
-        <%= button_to comment, method: :delete,
-                      class: "p-2 px-4 hover:text-rose-800 text-slate-500 focus:text-sky-500 duration-400" do %>
-          <%= icon "fa-solid", "trash" %>
-        <% end %>
-        <%= render "likes/create", likeable: comment %>
-      <% else %>
-        <span class="text-right w-full">
-          <div class="py-2 px-4">
-            <%= button_tag "", class: "hover:text-blue-800 text-blue-500 focus:text-yellow-500 duration-400" do %>
-              <span>
-                  <%= icon "fa-solid", "heart" %>
-                <%= comment.likes.count %>
-                </span>
-            <% end %>
-          </div>
-        </span>
-      <% end %>
-    </div>
   </div>
+<% end %>
+
+
+<%= turbo_stream.replace "comments_count_top" do %>
+  <%= turbo_frame_tag "comments_count_top",
+                      data: {
+                        controller: "ring-notification",
+                        ring_notification_comment_uid: comment.user.id,
+                        ring_notification_comment_notification_id: "#audiosource"
+                      } do %>
+    <span class="text-2xl font-bold">
+      Comments(<%= comment.commentable.comments.count %>)
+    </span>
+  <% end %>
 <% end %>
