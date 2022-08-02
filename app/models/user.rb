@@ -13,7 +13,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_one :profile
-
+  has_many :tags, foreign_key: :created_by_id, dependent: :destroy
   validates :username, presence: true, uniqueness: { case_sensitive: false }
 
   attr_writer :login

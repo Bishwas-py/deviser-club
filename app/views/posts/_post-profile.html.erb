@@ -15,16 +15,7 @@
         </div>
       </div>
       <div class="flex sm:justify-end space-x-2">
-        <% if current_user.nil? %>
-          <%= content_tag :div, class: "hover:text-rose-800 text-rose-500 focus:text-sky-500 duration-400 box" do %>
-          <span>
-            <%= icon "fa-regular", "bookmark" %>
-            <%= @post.bookmarks.count %>
-          </span>
-          <% end %>
-        <% else %>
-          <%= render "bookmark/create", bookmarkable: @post %>
-        <% end %>
+        <%= render "bookmark/create", bookmarkable: @post %>
         <a
            target="popup"
            href="https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url %>&amp;src=sdkpreparse"

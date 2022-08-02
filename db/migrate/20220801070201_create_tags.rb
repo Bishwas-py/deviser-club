@@ -3,10 +3,8 @@ class CreateTags < ActiveRecord::Migration[7.0]
     create_table :tags do |t|
       t.string :name
       t.text :description
-      t.integer :added_by_id
-      t.integer :last_edited_id
-      t.integer :tagable_id
-      t.string :tagable_type
+      t.references :created_by, index: true, foreign_key: { to_table: :users }
+      t.references :modified_by, index: true, foreign_key: { to_table: :users }, null: true
 
       t.timestamps
     end

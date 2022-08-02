@@ -1,0 +1,27 @@
+<%= render "components/aside_bar" do %>
+  <div class="w-full h-screen px-3 lg:px-16 py-7 md:py-10">
+    <h1 class="font-bold text-xl md:text-2xl lg:text-4xl">Tag: <%= @tag.name %></h1>
+    <% if user_signed_in? %>
+      <%= form_with(model: @tag, class: "w-full rounded-xl overflow-hidden") do |form| %>
+        <div class="my-5">
+          <%= form.text_area :description, placeholder: "Explain this tag", rows: 3, class: "w-full rounded border focus:outline-0 focus:ring-0" %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="my-5">
+        <%= @tag.description %>
+      </div>
+    <% end %>
+    <%= render @tag.posts %>
+
+  </div>
+
+
+  <%= content_for :right_aside_bar do %>
+    <div class="px-6 py-4">
+      <h3 class="font-bold text-xl md:text-2xl lg:text-4xl mb-3">Tags</h3>
+      <%= render "tags/tag_list" %>
+    </div>
+  <% end %>
+<% end %>
+

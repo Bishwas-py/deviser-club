@@ -13,7 +13,6 @@ Rails.application.routes.draw do
   resources :bookmark, only: [:create, :destroy, :index]
   resources :posts
   resources :quick_tweets, path: :tweet
-  resources :quick_tweets
   resources :comments, only: [:create, :destroy, :update]
 
 

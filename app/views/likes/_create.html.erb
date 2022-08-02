@@ -26,4 +26,14 @@
       <% end %>
     <% end %>
   <% end %>
+
+  <% else %>
+    <div class="py-2 px-4">
+      <%= button_tag "", class: "hover:text-blue-800 text-blue-500 focus:text-yellow-500 duration-400" do %>
+      <span>
+          <%= icon "fa-solid", "heart" %>
+        <%= likeable.likes.count %>
+        </span>
+      <% end %>
+    </div>
 <% end %>

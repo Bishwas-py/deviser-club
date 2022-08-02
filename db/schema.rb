@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_01_070201) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_02_025048) do
   create_table "action_text_rich_texts", force: :cascade do |t|
     t.string "name", null: false
     t.text "body"
@@ -111,15 +111,24 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_01_070201) do
     t.index ["user_id"], name: "index_quick_tweets_on_user_id"
   end
 
+  create_table "taggables", force: :cascade do |t|
+    t.integer "post_id", null: false
+    t.integer "tag_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["post_id"], name: "index_taggables_on_post_id"
+    t.index ["tag_id"], name: "index_taggables_on_tag_id"
+  end
+
   create_table "tags", force: :cascade do |t|
     t.string "name"
     t.text "description"
-    t.integer "added_by_id"
-    t.integer "last_edited_id"
-    t.integer "tagable_id"
-    t.string "tagable_type"
+    t.integer "created_by_id"
+    t.integer "modified_by_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_tags_on_created_by_id"
+    t.index ["modified_by_id"], name: "index_tags_on_modified_by_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -142,4 +151,8 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_01_070201) do
   add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "quick_tweets", "users"
+  add_foreign_key "taggables", "posts"
+  add_foreign_key "taggables", "tags"
+  add_foreign_key "tags", "users", column: "created_by_id"
+  add_foreign_key "tags", "users", column: "modified_by_id"
 end

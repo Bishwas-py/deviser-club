@@ -8,6 +8,9 @@
     .field_with_errors * {
         @apply ring;
     }
+    .tag-block {
+        @apply bg-neutral-100 px-2 py-1 rounded-lg text-neutral-700 inline-block;
+    }
     .aside-menu-element {
         @apply items-stretch flex justify-center px-5 py-7
         hover:bg-blue-50 text-2xl text-slate-500 hover:text-slate-700;

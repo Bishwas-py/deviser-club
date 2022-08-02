@@ -16,16 +16,7 @@
 
   <%= content_for :down_bar_up_kit do %>
     <div class="post-reaction-box divide-x divide-blue-200 shadow flex" >
-      <% if current_user.nil? %>
-        <%= content_tag :div, class: "hover:text-rose-800 text-rose-500 focus:text-sky-500 duration-400 box" do %>
-          <span>
-            <%= icon "fa-solid", "heart" %>
-            <%= @post.likes.count %>
-          </span>
-        <% end %>
-      <% else %>
-        <%= render "likes/create", likeable: @post %>
-      <% end %>
+      <%= render "likes/create", likeable: @post %>
 
       <%= link_to '', class: "box", data: { controller: "comment" } do %>
         <% if @comments.present? %>

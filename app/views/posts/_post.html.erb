@@ -11,16 +11,23 @@
         </span>
         <div class="inline-block text-slate-600 font-light"><%= "#{post.reading_time} #{"minute".pluralize post.reading_time} read" %></div>
       </span>
-      <%= link_to post do %>
-        <div class="font-bold text-3xl mb-2"><%= post.title %></div>
-        <span class="text-gray-700 text-2xl text-base">
+    <%= link_to post do %>
+      <div class="font-bold text-3xl mb-2"><%= post.title %></div>
+      <span class="text-gray-700 text-2xl text-base">
             <%= sanitize(post.body, tags: %w()).strip.truncate(299) %>
           </span>
-        <span class="text-neutral-500" title="<%= post.created_at.to_fs %>">
+      <span class="text-neutral-500" title="<%= post.created_at.to_fs %>">
           <%= time_ago_in_words(post.created_at) %>
         </span>
-
+    <% end %>
+    <% post.tags.each do |tag| %>
+      <%= link_to tag_path(tag.name.downcase) do %>
+        <span class="tag-block" title="<%= tag.created_at.to_fs %>">
+          <%= icon "fa-solid", "tag", class: "mr-2" %>
+          <%= tag.name %>
+        </span>
       <% end %>
+    <% end %>
   </div>
 
 </div>
