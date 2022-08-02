@@ -23,10 +23,8 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @post = Post.new(post_params)
-    tags = params[:post][:raw_tags].split(",")
-    puts "tags = #{tags}"
-    # @post.tags.find_or_create_by(name: params[:tag])
+    @post = Post.new(post_params.except(:tags))
+    create_or_delete_post_tags(@post, params[:post][:tags],)
     @post.user = current_user
     respond_to do |format|
       if @post.save
@@ -84,7 +82,7 @@ class PostsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = Post.find(params[:id])
+    @post = Post.friendly.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.

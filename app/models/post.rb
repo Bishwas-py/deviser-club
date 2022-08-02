@@ -9,6 +9,9 @@ class Post < ApplicationRecord
   has_many :taggables, dependent: :destroy
   has_many :tags, through: :taggables
 
+  extend FriendlyId
+  friendly_id :title, use: :slugged
+
   def reading_time
     words_per_minute = 150
     text = Nokogiri::HTML(self.body).at('body').inner_text

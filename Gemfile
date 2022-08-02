@@ -82,3 +82,5 @@ gem "devise", "~> 4.8"
 gem "tailwindcss-rails", "~> 2.0"
 
 gem "hotwire-livereload", "~> 1.2", :group => :development
+
+gem 'friendly_id', '~> 5.4.0'

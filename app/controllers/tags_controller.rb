@@ -4,8 +4,7 @@ class TagsController < ApplicationController
   end
 
   def show
-    tag_name = params[:id].capitalize
-    @tag = Tag.find_by(name: tag_name)
+    @tag = Tag.friendly.find(params[:id])
   end
 
   private
