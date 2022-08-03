@@ -1,3 +1,7 @@
+<%= content_for :meta do %>
+  <% render "posts/meta" %>
+<% end %>
+
 <%= render "components/aside_bar" do %>
   <div id="<%= dom_id @post %>" class="w-full py-7 md:py-10">
     <%= render "posts/post-profile" %>

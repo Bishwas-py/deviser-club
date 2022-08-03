@@ -1,8 +1,13 @@
 require 'rmagick'
 include Magick
+module ImageGenHelper
+  include ImageGen
+  def create_og_image text
+    ImageGen.og_create(text)
+  end
+end
 
 module ImageGen
-
   def self.word_wrap(line)
     return line if line.length <= 25
     line.gsub(/(.{1,20})(\s+|$)/, "\\1\n").strip

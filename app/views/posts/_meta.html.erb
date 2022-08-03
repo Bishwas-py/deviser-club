@@ -1,0 +1,7 @@
+<% if @post.image.attached? %>
+  <meta property="og:image" content="<%= rails_blob_url @post.image %>"/>
+  <meta property="og:image:secure_url" content="<%= rails_blob_url @post.image %>"/>
+<% end %>
+<meta property="og:image:alt" content="<%= @post.excerpt %>"/>
+<meta name="description" content="<%= @post.excerpt %>"/>
+<meta property="article:tag" content="<%= @post.excerpt %>"/>

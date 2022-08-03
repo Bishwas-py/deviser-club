@@ -34,7 +34,7 @@ class QuickTweetsController < ApplicationController
 
     respond_to do |format|
       if @quick_tweet.save
-        image_file_io, image_name = helpers.create_og_image(helpers.purify @quick_tweet.content)
+        image_file_io, image_name = helpers.create_og_image(helpers.strip_tags @quick_tweet.content)
         @quick_tweet.image.attach(io: image_file_io, filename: image_name, content_type: 'image/png')
         @quick_tweet.save
 

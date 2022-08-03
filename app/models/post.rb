@@ -9,11 +9,16 @@ class Post < ApplicationRecord
   has_many :taggables, dependent: :destroy
   has_many :tags, through: :taggables
 
+  has_one_attached :image, dependent: :destroy
+
   extend FriendlyId
   friendly_id :title, use: :slugged
 
   default_scope { order(created_at: :desc) }
 
+  def excerpt
+    ActionController::Base.helpers.strip_tags(self.body).truncate(300)
+  end
   def reading_time
     words_per_minute = 150
     text = Nokogiri::HTML(self.body).at('body').inner_text
