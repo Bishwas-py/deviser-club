@@ -1,3 +1,5 @@
+<%= content_for(:title, "#{@tag.name} - Deviser Club") %>
+
 <%= render "components/aside_bar" do %>
   <div class="w-full h-screen px-3 lg:px-16 py-7 md:py-10">
     <h1 class="font-bold text-xl md:text-2xl lg:text-4xl">Tag: <%= @tag.name %></h1>

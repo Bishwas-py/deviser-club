@@ -1,3 +1,5 @@
+<%= content_for(:title, "New Article Post - Deviser Club") %>
+
 <%= render "posts/editor" do %>
   <%= form_with(model: @post, class: "w-full") do |form| %>
     <div class="my-5">

@@ -1,3 +1,5 @@
+<%= content_for(:title, "Edit your deviser profile") %>
+
 <%= render "components/setting-navbar" do %>
   <%= form_for(@profile, html: { method: :put, class: 'space-x-5 w-full' }) do |f| %>
 
