@@ -9,21 +9,25 @@
     <p class="text-md text-neutral-700">
       <%= profile.description %>
     </p>
-    <p class="text-md md:hidden text-neutral-700">
-      <%= profile.bio %>
-    </p>
+    <% if yield(:extra_content).presence %>
+      <%= yield(:extra_content) %>
+    <% else %>
+      <p class="text-md md:hidden text-neutral-700">
+        <%= profile.bio %>
+      </p>
+    <% end %>
   </div>
   <div class="space-y-2">
     <div class="inline-block mx-2 px-2 bg-slate-100 rounded-md p-1">
-      <%=  "#{profile.user.posts.count} #{'post'.pluralize profile.user.posts.count}" %>
+      <%= "#{profile.user.posts.count} #{'post'.pluralize profile.user.posts.count}" %>
     </div>
     <div class="inline-block mx-2 px-2 bg-slate-100 rounded-md p-1">
       <%= likes_count = Like.where(likeable: profile.user.posts).count + Like.where(likeable: profile.user.quick_tweets).count %>
-      <%=  "#{'like'.pluralize likes_count}" %>
+      <%= "#{'like'.pluralize likes_count}" %>
     </div>
     <div class="inline-block mx-2 px-2 bg-slate-100 rounded-md p-1">
       <%= bookmarked_count = Bookmark.where(bookmarkable: profile.user.posts).count %>
-      <%=  "#{'bookmarked content'.pluralize bookmarked_count}" %>
+      <%= "#{'bookmarked content'.pluralize bookmarked_count}" %>
     </div>
     <div class="inline-block mx-2 px-2 bg-slate-100 rounded-md p-1">
       <%= tweets_count = profile.user.bookmarks.count %>

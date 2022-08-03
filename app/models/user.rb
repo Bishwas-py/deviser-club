@@ -21,6 +21,9 @@ class User < ApplicationRecord
     @login || self.username || self.email
   end
 
+  extend FriendlyId
+  friendly_id :username, use: :slugged
+
   def create_profile
     Profile.create(user: self)
   end

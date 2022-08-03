@@ -15,6 +15,8 @@ Rails.application.routes.draw do
   resources :quick_tweets, path: :tweet
   resources :comments, only: [:create, :destroy, :update]
 
+  match '@:id' => 'profile#show', :via => [:get], :as => 'profile_show'
+
 
   devise_for :users,
              :path => 'accounts',

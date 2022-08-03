@@ -1,0 +1,7 @@
+<% unless @quick_tweet.image.nil? %>
+  <meta property="og:image" content="<%= rails_blob_url @quick_tweet.image %>"/>
+  <meta property="og:image:secure_url" content="<%= rails_blob_url @quick_tweet.image %>"/>
+<% end %>
+<meta property="og:image:alt" content="<%= sanitize(@quick_tweet.content, tags: %w()).strip.truncate(255) %>"/>
+<meta name="description" content="<%= sanitize(@quick_tweet.content, tags: %w()).strip.truncate(255) %>"/>
+<meta property="article:tag" content="<%= sanitize(@quick_tweet.content, tags: %w()).strip.truncate(255) %>"/>

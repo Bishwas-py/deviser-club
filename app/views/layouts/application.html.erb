@@ -4,9 +4,23 @@
     <title><%= yield(:title) %></title>
 
     <%= yield (:content_up) %>
+
+    <meta property="og:image:type" content="image/png"/>
+    <meta property="og:image:width" content="1024"/>
+    <meta property="og:image:height" content="512"/>
+
+    <% if yield(:meta).presence %>
+      <%= yield(:meta) %>
+    <% else %>
+      <meta property="og:image" content="<%= image_url "deviser.club.png" %>"/>
+      <meta property="og:image:secure_url" content="<%= image_url "deviser.club.png" %>"/>
+      <meta property="og:image:alt" content="creative blogging platform for creative writers, bloggers and developers"/>
+      <meta name="description" content="A creative blogging platform for creative writers, bloggers and developers."/>
+      <meta property="article:tag" content="creative writing platform, medium alternative, blogging platform, anynomous posting"/>
+    <% end %>
+
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= favicon_link_tag "fav.png" %>
-    <%= render "components/meta" %>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>

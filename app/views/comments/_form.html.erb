@@ -6,7 +6,6 @@
   <!-- /HEY -->
   <%= form.hidden_field :commentable_id, value: commentable.id %>
 
-  <input name="current-usr-id" value="<% if current_user %><%= current_user.id %><% else %>000<% end %>" hidden>
 
   <%= form.hidden_field :commentable_type, value: commentable.model_name.name %>
   <div class="my-5">

@@ -1,3 +1,8 @@
+
+<%= content_for :meta do %>
+  <% render "quick_tweets/meta" %>
+<% end %>
+
 <%= content_for(:title, "#{sanitize(@quick_tweet.content, tags: %w()).truncate(38)} - Deviser Club") %>
 <%= render "components/aside_bar" do %>
   <div class="page-posting-section grid place-items-center">

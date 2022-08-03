@@ -3,6 +3,9 @@
     <%= render "posts/post-profile" %>
     <div class="min-h-screen">
       <div class="content-box min-h-screen smart-padding py-7">
+        <div class="space-y-1 space-x-2">
+          <%= render @post.tags %>
+        </div>
         <h1><%= @post.title %></h1>
         <%= @post.body.html_safe %>
       </div>

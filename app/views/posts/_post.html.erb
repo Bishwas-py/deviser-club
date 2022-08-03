@@ -2,9 +2,9 @@
 <div class="break-inside-avoid group w-full" id="<%= dom_id post %>">
 
   <div class="px-6 py-10">
-      <span class="text-neutral-500 block mb-2" title="Author: <%= post.user.username %>">
-       <%= link_to profile_index_path(post.user.username), class: "text-neutral-500 group inline-block mb-2", title: "Author: #{post.user.username}" do %>
-        Posted by <strong class="group-hover:text-slate-800"><%= post.user.username %></strong>
+      <span class="text-neutral-500 block mb-2" title="Author: <%= post.user.profile.get_name %>">
+       <%= link_to profile_show_path(post.user.friendly_id), class: "hover:text-blue-800 text-neutral-500 group inline-block mb-2", title: "Author: #{post.user.profile.get_name}" do %>
+        Posted by <strong><%= post.user.profile.get_name %></strong>
        <% end %>  •
        <span class="bg-neutral-50 posts-tag">
            <%= icon "fa-solid", "newspaper", class: "text-sm" %>
@@ -15,19 +15,21 @@
       <div class="font-bold text-3xl mb-2"><%= post.title %></div>
       <span class="text-gray-700 text-2xl text-base">
             <%= sanitize(post.body, tags: %w()).strip.truncate(299) %>
-          </span>
-      <span class="text-neutral-500" title="<%= post.created_at.to_fs %>">
-          <%= time_ago_in_words(post.created_at) %>
-        </span>
+      </span>
     <% end %>
-    <% post.tags.each do |tag| %>
-      <%= link_to tag_path(tag.friendly_id) do %>
+    <div>
+      <% post.tags.each do |tag| %>
+        <%= link_to tag_path(tag.friendly_id) do %>
         <span class="tag-block" title="<%= tag.created_at.to_fs %>">
           <%= icon "fa-solid", "tag", class: "mr-2" %>
           <%= tag.name %>
         </span>
+        <% end %>
       <% end %>
-    <% end %>
+    </div>
+    <div class="text-neutral-500 text-right" title="<%= post.created_at.to_fs %>">
+      <%= time_ago_in_words(post.created_at) %>
+    </div>
   </div>
 
 </div>

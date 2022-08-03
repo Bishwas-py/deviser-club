@@ -2,9 +2,9 @@
 
 <%= render "components/aside_bar" do %>
   <main id="all_posts" class="h-auto min-h-screen min-w-0 block text-sm smart-padding pt-28 divide-y">
-    <%= link_to new_quick_tweet_path, class:"group flex space-x-2 text-center mb-7 text-xl" do %>
+    <%= link_to new_quick_tweet_path, class: "group flex space-x-2 text-center mb-7 text-xl" do %>
       <div class="group-hover:rotate-180 duration-200 group-hover:bg-stone-200 rounded-full bg-stone-100 w-9 h-9 grid place-items-center">
-            <%= icon "fa-regular", "plus", class: "text-xl" %>
+        <%= icon "fa-regular", "plus", class: "text-xl" %>
       </div>
       <div class="self-center">
         Add a new quick tweet
@@ -27,6 +27,13 @@
     </a>
   </footer>
   <%= content_for :right_aside_bar do %>
-      Hey
+    <div class="p-3 flex flex-col gap-5">
+      <h2 class="text-2xl font-extrabold text-neutral-700">Latest Posts</h2>
+      <%= render "global/post_titles", posts: Post.last(5) %>
+    </div>
+    <div class="p-3 flex flex-col gap-5">
+      <h2 class="text-2xl font-extrabold text-neutral-700">Latest Comments</h2>
+      <%= render "global/post_titles", posts: Post.last(5) %>
+    </div>
   <% end %>
 <% end %>
