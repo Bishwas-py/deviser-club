@@ -1,0 +1,10 @@
+<% comments.each do |comment| %>
+  <%= link_to comment.commentable, class: "hover:bg-slate-100 rounded-xl p-2" do %>
+    <div>
+      <span class="text-sm text-slate-500">
+        <strong><%= comment.user.username %></strong> commented "<%= comment.body %>" on
+        <strong><%= comment.commentable.title %></strong>, by <strong><%= comment.commentable.user.username %></strong>
+      </span>
+    </div>
+  <% end %>
+<% end %>
