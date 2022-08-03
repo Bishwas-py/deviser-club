@@ -1,19 +1,12 @@
 require 'rmagick'
 include Magick
 module ImageGenHelper
-  include ImageGen
-  def create_og_image text
-    ImageGen.og_create(text)
-  end
-end
-
-module ImageGen
-  def self.word_wrap(line)
+  def word_wrap(line)
     return line if line.length <= 25
     line.gsub(/(.{1,20})(\s+|$)/, "\\1\n").strip
   end
 
-  def self.og_create(my_text)
+  def create_og_image(my_text)
     my_text = my_text.lines[0].truncate(38)
     background_image = Dir.glob('app/assets/og_assets/*').sample
     image = Magick::Image.read(background_image).first
