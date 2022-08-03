@@ -12,6 +12,8 @@ class Post < ApplicationRecord
   extend FriendlyId
   friendly_id :title, use: :slugged
 
+  default_scope { order(created_at: :desc) }
+
   def reading_time
     words_per_minute = 150
     text = Nokogiri::HTML(self.body).at('body').inner_text

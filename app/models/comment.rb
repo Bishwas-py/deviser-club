@@ -6,6 +6,7 @@ class Comment < ApplicationRecord
   validates :body, presence: true, length: { minimum: 2, maximum: 500 }
   has_many :likes, as: :likeable, dependent: :destroy
 
+  default_scope { order(created_at: :desc) }
 
   after_create_commit -> {
     broadcast_prepend_to commentable, :comments, target: "#{dom_id commentable}_comments",

@@ -1,5 +1,5 @@
 <div class="flex flex-row">
-  <aside class="hidden sm:block border-r bg-white shrink-0 sticky top-0 min-h-screen h-full w-24">
+  <aside class="hidden md:block border-r bg-white shrink-0 sticky top-0 min-h-screen h-full w-24">
     <nav class="h-screen flex flex-col">
       <div class="mx-auto flex px-5 justify-center py-7 w-full hover:bg-blue-50">
         <%= image_tag "fav.png", class: "w-12" %>
@@ -13,19 +13,35 @@
 
   <div class="w-full">
     <%= yield %>
-    <aside class="sticky bottom-0 sm:bottom-7 w-full shrink-0">
+    <aside class="sticky bottom-0 md:bottom-7 w-full shrink-0">
       <% if yield(:down_bar_up_kit).presence %>
         <div class="place-items-center grid mb-7 ">
           <%= yield (:down_bar_up_kit) %>
         </div>
       <% end %>
 
-      <nav class="navigational-items sm:hidden border-t bg-white h-full justify-between grid grid-cols-5 divide-x">
+      <nav class="navigational-items md:hidden border-t bg-white h-full justify-between grid grid-cols-5 divide-x">
 
         <%= render "components/aside_bar_links" %>
-        <%= link_to edit_user_registration_path(current_user), class:"mx-auto flex px-5 justify-center py-7 w-full hover:bg-blue-50 bg-slate-100" do %>
-          <%= image_tag "https://miro.medium.com/max/1000/1*pd9XqkTCXjNzmV3FTS85tw.jpeg", class: "w-12
-            rounded-full object-cover" %>
+        <% if user_signed_in? %>
+          <div class="relative">
+            <%= button_to "", class: "mx-auto cursor-pointer flex px-5 justify-center py-7 h-full w-full hover:bg-blue-50 bg-slate-100", data: {
+              controller: 'togglebar',
+              action: 'togglebar#toggleNavDrop',
+              togglebar_body_param: "bottom-nav-bar-body"
+            } do %>
+              <%= image_tag current_user.profile.my_avatar, class: "w-12 h-12
+              rounded-full object-cover" %>
+            <% end %>
+            <div id="bottom-nav-bar-body" class="duration-200 absolute right-0 bottom-32 z-20 w-56 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800">
+              <%= render "components/aside_bar_logger_links" %>
+              <hr/>
+            </div>
+          </div>
+        <% else %>
+          <%= link_to new_user_session_path, class: "aside-menu-element" do %>
+            <%= icon "fa-solid", "sign-in", class: "self-center" %>
+          <% end %>
         <% end %>
 
       </nav>
@@ -33,12 +49,18 @@
   </div>
 
   <% if yield(:right_aside_bar).presence %>
-    <div class="hidden lg:block border-l bg-neutral-50 shrink-0 sticky top-0 min-h-screen h-full w-80">
+    <div class="hidden fixed lg:block border-l overflow-y-scroll no-scrollbar bg-neutral-50 shrink-0 lg:sticky top-0 min-h-screen h-full lg:w-80 w-full" id="right_aside_bar">
+      <%= button_to '',
+        class: "lg:hidden hover:bg-yellow-50 bg-slate-50 rounded-full h-7 w-7 grid place-items-center float-right mr-7 mt-7", data: { controller: "togglebar",
+        togglebar_body_param:"right_aside_bar",
+        action: "togglebar#toggleNavDrop"} do %>
+        <%= icon 'fa-solid', 'times', class: "" %>
+      <% end %>
       <%= yield (:right_aside_bar) %>
     </div>
   <% end %>
 </div>
 
 <% if yield(:below_block).presence %>
-    <%= yield (:below_block) %>
+  <%= yield (:below_block) %>
 <% end %>

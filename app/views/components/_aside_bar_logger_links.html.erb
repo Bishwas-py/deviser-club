@@ -5,7 +5,16 @@
     <p class="text-sm text-gray-500 dark:text-gray-400"><%= current_user.email %></p>
   </div>
 </a>
-
+<hr class="border-gray-200 dark:border-gray-700 ">
+<% if yield(:right_aside_bar).presence %>
+  <button class="toogle-bar-item text-left w-full" data-controller="togglebar"
+          data-togglebar-body-param="right_aside_bar"
+          data-action='togglebar#toggleNavDrop'>
+    <div>
+      Toogle Power Nav
+    </div>
+  </button>
+<% end %>
 <hr class="border-gray-200 dark:border-gray-700 ">
 <%= link_to profile_show_path(current_user.friendly_id), class: "toogle-bar-item" do %>
   View Profile

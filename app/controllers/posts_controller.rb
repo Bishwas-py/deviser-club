@@ -71,7 +71,7 @@ class PostsController < ApplicationController
     tag_names = tags.strip.split(",")
     tag_names.each do |tag_name|
       if tag_names.length > 0
-        tag = Tag.find_by(name: tag_name.capitalize)
+        tag = Tag.find_by(name: tag_name)
         if tag.nil?
           tag = Tag.create(name: tag_name, created_by: current_user)
         end

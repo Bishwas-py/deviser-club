@@ -15,7 +15,7 @@
           <%= sanitize(quick_tweet.content, tags: %w()).truncate(39) %>
         </h3>
         <span class="text-gray-700 text-2xl text-base">
-        <%= sanitize(quick_tweet.content, tags: %w()).strip.truncate(399) %>
+        <%= quick_tweet.excerpt %>
       </span>
       </div>
       <div class="mt-3">

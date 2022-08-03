@@ -1,0 +1,28 @@
+<div class="flex justify-center sm:justify-between sm:px-10 md:px-32 py-7 w-full">
+  <div class="flex items-stretch space-x-2">
+    <%= link_to root_path do %>
+      <%= image_tag "fav.png", class: "w-7 h-7 rounded-full bg-purple-50 hover:bg-purple-100" %>
+    <% end %>
+    <span class="my-auto"><%= defined?(editing_title) ? editing_title : "Posting something new" %></span>
+    <span class="my-auto mx-4 text-sm font-light text-slate-500"><%= defined?(editing_status) ? editing_status : "UnSaved!" %></span>
+  </div>
+  <div class="hidden sm:block space-x-1">
+    <button class="text-slate-500 px-2 py-0 rounded-xl inline-block">
+      <%= current_user.username %>
+    </button>
+    <%= image_tag current_user.profile.my_avatar, class: "h-9 w-9 rounded-full bg-sky-100 inline-block" %>
+  </div>
+</div>
+<div class="grid place-items-center px-5 sm:px-20 md:px-32 lg:px-48">
+  <%= yield %>
+</div>
+
+<% content_for :content_down do %>
+  <style>
+      .ProseMirror {
+          height: 75vh;
+          overflow: scroll;
+          max-height: 60vh;
+      }
+  </style>
+<% end %>
