@@ -1,4 +1,4 @@
-<%= content_for(:title, "#{@quick_tweet.title} - Edit - Deviser Tweet") %>
+<%= content_for(:title, "Edit: #{@quick_tweet.title} - Deviser Tweet") %>
 
 <div class="grid place-items-center h-screen bg-indigo-100 px-5 md:px-10 lg:px-28">
   <%= form_with model: @quick_tweet, class: "w-full rounded overflow-hidden", id: "#{dom_id(@quick_tweet)}_form" do |form| %>

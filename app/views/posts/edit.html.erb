@@ -1,4 +1,4 @@
-<%= content_for(:title, "#{@post.title} - Edit - Deviser Post") %>
+<%= content_for(:title, "Edit: #{@post.title} - Deviser Post") %>
 
 <%= render "posts/editor", editing_status: "Saved!", editing_title: "Editing the post..." do %>
   <%= form_with(model: @post, class: "w-full") do |form| %>
