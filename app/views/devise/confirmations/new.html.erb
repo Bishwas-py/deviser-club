@@ -1,16 +1,18 @@
-<h2>Resend confirmation instructions</h2>
+<%= content_for(:title, "Resend confirmation instructions - Deviser Club") %>
 
-<%= form_for(resource, as: resource_name, url: confirmation_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+<div class="grid place-items-center h-screen bg-slate-100">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :post, class: 'max-w-lg px-5 w-full rounded space-y-5' }) do |f| %>
+    <h1 class="auth-heading">Resend confirmation instructions!</h1>
+    <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
-  </div>
+    <div class="field">
+      <%= f.label :email %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "input-box", value: (resource.pending_reconfirmation? ? resource.unconfirmed_email : resource.email) %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Resend confirmation instructions" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+    <div class="actions">
+      <%= f.submit "Resend confirmation instructions", class: "auth-btn" %>
+      <%= link_to "Log in", new_session_path(resource_name), class: "auth-co-btn" %>
+    </div>
+  <% end %>
+</div>
