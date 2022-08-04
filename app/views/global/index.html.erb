@@ -27,19 +27,6 @@
     </a>
   </footer>
   <%= content_for :right_aside_bar do %>
-    <div class="p-3 flex flex-col gap-5">
-      <h2 class="text-2xl font-extrabold text-neutral-700">Latest Posts</h2>
-      <%= render "global/post_titles", posts: Post.first(5) %>
-    </div>
-    <hr/>
-    <div class="p-3 flex flex-col gap-5">
-      <h2 class="text-2xl font-extrabold text-neutral-700">Latest Tweets</h2>
-      <%= render "global/quik_tweet_titles", quick_tweets: QuickTweet.first(5) %>
-    </div>
-    <hr/>
-    <div class="p-3 flex flex-col gap-5">
-      <h2 class="text-2xl font-extrabold text-neutral-700">Latest Comments</h2>
-      <%= render "global/post_comments", comments: Comment.first(7) %>
-    </div>
+    <%= render "components/latest_posts_and_comment" %>
   <% end %>
 <% end %>
