@@ -62,6 +62,9 @@ class QuickTweetsController < ApplicationController
         format.html { redirect_to quick_tweet_url(@quick_tweet) }
         format.json { render :show, status: :ok, location: @quick_tweet }
       else
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.replace("error_explanation", partial: 'components/errors', locals: { errors: @quick_tweet.errors })
+        }
         format.html { render :edit, status: :unprocessable_entity, alert: "Quick Tweet was not updated." }
         format.json { render json: @quick_tweet.errors, status: :unprocessable_entity }
       end
