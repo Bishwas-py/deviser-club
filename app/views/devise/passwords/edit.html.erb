@@ -1,25 +1,28 @@
-<h2>Change your password</h2>
+<%= content_for(:title, "Set New Password - Deviser Club") %>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-  <%= f.hidden_field :reset_password_token %>
+<div class="grid place-items-center h-screen bg-slate-100">
 
-  <div class="field">
-    <%= f.label :password, "New password" %><br />
-    <% if @minimum_password_length %>
-      <em>(<%= @minimum_password_length %> characters minimum)</em><br />
-    <% end %>
-    <%= f.password_field :password, autofocus: true, autocomplete: "new-password" %>
-  </div>
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'max-w-lg px-5 w-full rounded space-y-5' }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+    <%= f.hidden_field :reset_password_token %>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "Confirm new password" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="field">
+      <%= f.label :password, "New password" %><br/>
+      <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> characters minimum)</em><br/>
+      <% end %>
+      <%= f.password_field :password, autofocus: true, autocomplete: "new-password", class: "input-box" %>
+    </div>
 
-  <div class="actions">
-    <%= f.submit "Change my password" %>
-  </div>
-<% end %>
+    <div class="field">
+      <%= f.label :password_confirmation, "Confirm new password" %><br/>
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "input-box" %>
+    </div>
 
-<%= render "devise/shared/links" %>
+    <div class="actions">
+      <%= f.submit "Change my password", class: "auth-btn" %>
+      <%= link_to "Log in", new_session_path(resource_name), class: "auth-co-btn" %>
+    </div>
+  <% end %>
+
+</div>

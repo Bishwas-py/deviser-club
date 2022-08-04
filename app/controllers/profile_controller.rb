@@ -1,4 +1,5 @@
 class ProfileController < ApplicationController
+  before_action :authenticate_user!, only: %i[ index edit update ]
   before_action :set_profile, only: %i[ index update edit ]
 
   def show
