@@ -1,24 +1,6 @@
-# README
+# Deviser Club : A Multi Blogging Platform with Ruby On Rails
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+[Deviser Club](http://deviser.club/) is developed with the heart of publishers freedom and author's authority, with better audience experience. No overly complexified stuff here, simple is better than complex. 
 
-Things you may want to cover:
+Ruby on `Rails 7` is used to develop this blogging platform. It is still on development mode, any one who is willing to contribute is welcomed.
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
