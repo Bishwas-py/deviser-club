@@ -48,17 +48,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_07_143942) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.integer "commentable_id", null: false
+    t.integer "comment_id"
+    t.string "commentable_id"
+    t.string "commentable_type"
+    t.string "body"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "body"
+    t.integer "user_id"
     t.string "ip_field"
-    t.integer "user_id", null: false
-    t.string "commentable_type"
-    t.index ["commentable_id", "commentable_type"], name: "index_comments_on_commentable_id_and_commentable_type"
-    t.index ["commentable_id"], name: "index_comments_on_commentable_id"
-    t.index ["user_id", "commentable_id", "commentable_type"], name: "index_comments_on_user_id_and_comable_id_and_comable_type"
-    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -73,15 +70,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_07_143942) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "likeable_id", null: false
+    t.integer "like_id"
+    t.string "likeable_id"
+    t.string "likeable_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "likeable_type"
-    t.index ["likeable_id", "likeable_type"], name: "index_likes_on_likeable_id_and_likeable_type"
-    t.index ["likeable_id"], name: "index_likes_on_likeable_id"
-    t.index ["user_id", "likeable_id", "likeable_type"], name: "index_likes_on_user_id_and_likeable_id_and_likeable_type", unique: true
-    t.index ["user_id"], name: "index_likes_on_user_id"
+    t.integer "user_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -106,9 +100,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_07_143942) do
 
   create_table "quick_tweets", force: :cascade do |t|
     t.text "content"
+    t.string "ip_field"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "ip_field"
     t.integer "watches", default: 0
     t.integer "user_id"
     t.index ["user_id"], name: "index_quick_tweets_on_user_id"
@@ -158,9 +152,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_07_143942) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "comments", "quick_tweets", column: "commentable_id"
-  add_foreign_key "comments", "users"
-  add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "quick_tweets", "users"
   add_foreign_key "taggables", "posts"
