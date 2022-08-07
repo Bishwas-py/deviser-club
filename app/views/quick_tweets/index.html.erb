@@ -1,23 +1,22 @@
+<%= content_for(:title, "Quick Tweets ~ Deviser Club") %>
 
-<%= content_for(:title, "Deviser Club ~ A club for anon discussion ~ Rails App") %>
-<div class="w-full p-9">
-  <div id="quick_tweets" class="h-auto text-sm text-sm columns-1 sm:columns-1 md:columns-2 lg:columns-3 xl:columns-4 2xl:columns-5 2xl:text-md gap-3 mx-auto space-y-9 py-9 md:px-3">
-    <%= render @quick_tweets %>
-  </div>
-</div>
+<%= render "components/aside_bar" do %>
+  <main id="all_quick_tweets" class="h-auto min-w-0 block text-sm smart-padding pt-28 divide-y">
+    <%= link_to new_quick_tweet_path, class: "group flex space-x-2 text-center mb-7 text-xl" do %>
+      <div class="group-hover:rotate-180 duration-200 group-hover:bg-stone-200 rounded-full bg-stone-100 w-9 h-9 grid place-items-center">
+        <%= icon "fa-regular", "plus", class: "text-xl" %>
+      </div>
+      <div class="self-center">
+        Add a new <u>tweet</u> post
+      </div>
+    <% end %>
+    <div id="quick_tweets" class="w-full">
+      <%= render @quick_tweets %>
+    </div>
+  </main>
+  <%= content_for :right_aside_bar do %>
+    <%= render "components/latest_posts_and_comment" %>
+  <% end %>
+<% end %>
 
-<%= render "components/nav_add_posts" %>
 
-<footer
-  class="flex bg-white/80 dark:bg-black/80 dark:text-indigo-100
-                h-24 w-full items-center justify-center border-t dark:border-gray-900">
-  <a
-    class="flex items-center justify-center gap-2"
-    href="https://webmatrices.com/"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
-    Powered by
-    <span class="text-2xl font-bold">Webmatrices</span>
-  </a>
-</footer>
