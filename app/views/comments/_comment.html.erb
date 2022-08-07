@@ -17,7 +17,7 @@
       </p>
     </div>
     <div class="flex flex-row justify-between">
-      <% if user_signed_in? %>
+      <% if user_signed_in? and current_user == comment.user %>
         <%= button_to comment, method: :delete,
                       class: "p-2 px-4 hover:text-rose-800 text-slate-500 focus:text-sky-500 duration-400" do %>
           <%= icon "fa-solid", "trash" %>
