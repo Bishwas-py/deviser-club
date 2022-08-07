@@ -55,7 +55,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_07_143942) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.string "ip_field"
   end
 
   create_table "friendly_id_slugs", force: :cascade do |t|
@@ -101,9 +100,9 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_07_143942) do
   create_table "quick_tweets", force: :cascade do |t|
     t.text "content"
     t.string "ip_field"
+    t.integer "watches", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "watches", default: 0
     t.integer "user_id"
     t.index ["user_id"], name: "index_quick_tweets_on_user_id"
   end

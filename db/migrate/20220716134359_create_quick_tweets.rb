@@ -4,7 +4,7 @@ class CreateQuickTweets < ActiveRecord::Migration[7.0]
       t.text :content
       t.string :ip_field
       t.integer :watches, default: 0
-
+      
       t.timestamps
     end
   end
