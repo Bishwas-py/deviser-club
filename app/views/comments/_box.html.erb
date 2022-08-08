@@ -14,7 +14,7 @@
         <% end %>
         <div class="bg-white w-full flex flex-col gap-2 shadow rounded-md px-3 py-2">
           <div class="flex gap-x-2">
-            <%= image_tag "fav.png", class: "w-7 rounded-full object-cover bg-rose-50" %>
+            <%= image_tag current_user.profile.my_avatar, class: "w-7 rounded-full object-cover bg-rose-50" %>
             <span class="my-auto font-light text-sm">
             <%= user_signed_in? ? current_user.username : "Anon" %>
           </span>
