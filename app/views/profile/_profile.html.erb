@@ -30,7 +30,7 @@
       <%= "#{'bookmarked content'.pluralize bookmarked_count}" %>
     </div>
     <div class="inline-block mx-2 px-2 bg-slate-100 rounded-md p-1">
-      <%= tweets_count = profile.user.bookmarks.count %>
+      <%= tweets_count = profile.user.quick_tweets.count %>
       <%= "#{'tweet'.pluralize tweets_count}" %>
     </div>
   </div>
