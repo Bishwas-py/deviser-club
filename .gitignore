@@ -45,3 +45,6 @@ dbdeviser_club
 # Ignore everything inside app/javascript/node_modules but just keep the directory
 /app/javascript/node_modules/*
 !/app/javascript/node_modules/.keep
+
+
+*.swp
