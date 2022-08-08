@@ -13,6 +13,10 @@ test:
   database: db/test.sqlite3
 
 production:
-  <<: *default
-  database: dbdeviser_club
-
+  adapter: postgresql
+  encoding: unicode
+  host: localhost
+  pool: 5
+  database: deviser_club_database_name
+  username: deviser_club_database_username
+  password: deviser_club_database_password

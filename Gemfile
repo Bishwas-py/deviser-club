@@ -50,6 +50,8 @@ gem "bootsnap", require: false
 gem "image_processing", "~> 1.2"
 
 group :development, :test do
+  gem "hotwire-livereload", "~> 1.2"
+  gem "mailcatcher", "~> 0.2.4"
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
 
@@ -81,6 +83,5 @@ gem "devise", "~> 4.8"
 
 gem "tailwindcss-rails", "~> 2.0"
 
-gem "hotwire-livereload", "~> 1.2", :group => :development
-
 gem 'friendly_id', '~> 5.4.0'
+
