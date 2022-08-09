@@ -1,8 +1,8 @@
 <%= content_for(:title, "(#{@bookmarks.count}) Your Bookmarks - Deviser Club") %>
 
 <%= render "components/aside_bar" do %>
-  <div class="w-full h-screen lg:px-16 py-7 md:py-10">
-      <h1 class="font-bold text-xl md:text-2xl lg:text-4xl">Your Bookmarks</h1>
+  <div class="w-full min-h-screen lg:px-16 py-7 md:py-10">
+      <h1 class="font-bold px-3 text-xl md:text-2xl lg:text-4xl">Your Bookmarks</h1>
       <%= render "bookmark/bookmark", bookmarks: @bookmarks %>
   </div>
 
