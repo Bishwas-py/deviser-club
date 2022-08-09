@@ -151,14 +151,25 @@
     .tab-button.active {
         @apply bg-slate-50 underline;
     }
+
+    .bg-authentication {
+        @apply grid place-items-center h-screen bg-slate-100 dark:bg-slate-900;
+    }
     .input-box-2 {
         @apply border-0 focus:outline-none focus:ring-0 w-full shadow p-3 rounded;
     }
     .input-box {
-        @apply shadow appearance-none bg-neutral-100/50 focus:bg-white border rounded w-full py-2 px-3 text-gray-700 leading-tight;
+        @apply shadow appearance-none border rounded w-full py-2 px-3 leading-tight;
+        @apply bg-neutral-100/50 focus:bg-white text-gray-700;
+        @apply dark:bg-neutral-900 dark:focus:bg-black text-gray-50;
+    }
+    .home-btn {
+        @apply duration-100  rounded px-3 py-2 block border mt-7 w-fit;
+        @apply bg-slate-200/50 hover:bg-slate-300/50 text-neutral-600 hover:text-neutral-800;
+        @apply dark:bg-slate-50/10 dark:hover:bg-slate-100/50 dark:text-neutral-50;
     }
     .input-label {
-        @apply block text-slate-700 text-sm font-bold mb-2;
+        @apply block text-slate-700 dark:text-slate-100 text-sm font-bold mb-2;
     }
 
     .auth-btn {
@@ -166,10 +177,12 @@
     }
 
     .auth-co-btn {
-        @apply hover:bg-teal-500/10 text-neutral-900 font-bold py-2 px-4 rounded hover:underline inline-block cursor-pointer;
+        @apply font-bold py-2 px-4 rounded hover:underline inline-block cursor-pointer;
+        @apply hover:bg-teal-500/10 text-neutral-900;
+        @apply dark:hover:bg-teal-900/10 dark:text-neutral-50;
     }
     .auth-heading {
-        @apply text-2xl md:text-4xl text-slate-600 font-bold;
+        @apply text-2xl md:text-4xl text-slate-600 dark:text-slate-300 font-bold;
     }
     .error-box {
         @apply text-rose-500;

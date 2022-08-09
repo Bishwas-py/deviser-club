@@ -1,6 +1,6 @@
 <%= content_for(:title, "Set New Password - Deviser Club") %>
 
-<div class="grid place-items-center h-screen bg-slate-100">
+<div class="bg-authentication">
 
   <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'max-w-lg px-5 w-full rounded space-y-5' }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
