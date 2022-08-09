@@ -6,13 +6,13 @@
     <h2 class="text-xl text-neutral-700 font-bold dark:text-neutral-50">
       <%= profile.get_name %>
     </h2>
-    <p class="text-md text-neutral-700">
+    <p class="sweet-info">
       <%= profile.description %>
     </p>
     <% if yield(:extra_content).presence %>
       <%= yield(:extra_content) %>
     <% else %>
-      <p class="text-md md:hidden text-neutral-700">
+      <p class="sweet-info md:hidden">
         <%= profile.bio %>
       </p>
     <% end %>
