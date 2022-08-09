@@ -146,10 +146,11 @@
         @apply hover:text-blue-500;
     }
     .tab-button {
-        @apply text-sm md:text-xl hover:underline cursor-pointer bg-purple-50 py-2 px-4 rounded-xl;
+        @apply text-sm md:text-xl hover:underline cursor-pointer py-2 px-4 rounded-xl;
+        @apply bg-purple-50 dark:bg-neutral-800;
     }
     .tab-button.active {
-        @apply bg-slate-50 underline;
+        @apply bg-slate-50 dark:bg-slate-500 underline;
     }
 
     .bg-authentication {
@@ -157,6 +158,7 @@
     }
     .input-box-2 {
         @apply border-0 focus:outline-none focus:ring-0 w-full shadow p-3 rounded;
+        @apply dark:bg-slate-700 dark:focus:bg-black text-gray-50;
     }
     .input-box {
         @apply shadow appearance-none border rounded w-full py-2 px-3 leading-tight;
