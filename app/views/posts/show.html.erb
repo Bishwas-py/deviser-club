@@ -31,7 +31,7 @@
   <% end %>
 
   <%= content_for :down_bar_up_kit do %>
-    <div class="post-reaction-box divide-x divide-blue-200 shadow flex" >
+    <div class="post-reaction-box" >
       <%= render "likes/create", likeable: @post %>
 
       <%= link_to '', class: "box", data: { controller: "comment" } do %>

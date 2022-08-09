@@ -20,11 +20,11 @@
         </div>
       <% end %>
 
-      <nav class="navigational-items md:hidden border-t bg-white h-16 sm:h-20 justify-between grid grid-cols-5 divide-x">
+      <nav class="md:hidden navigational-items">
         <%= render "components/aside_bar_links" %>
         <% if user_signed_in? %>
           <div class="relative">
-            <%= button_tag class: "mx-auto cursor-pointer flex justify-center h-full w-full hover:bg-blue-50 bg-slate-100", data: {
+            <%= button_tag class: "mx-auto cursor-pointer flex justify-center h-full w-full aside-menu-element", data: {
               controller: 'togglebar',
               action: 'togglebar#toggleNavDrop',
               togglebar_body_param: "bottom-nav-bar-body"
@@ -32,7 +32,7 @@
               <%= image_tag current_user.profile.my_avatar, class: "w-7 h-7 sm:w-10 sm:h-10 self-center
               rounded-full object-cover" %>
             <% end %>
-            <div id="bottom-nav-bar-body" class="hidden duration-200 absolute right-0 bottom-32 z-20 w-56 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800">
+            <div id="bottom-nav-bar-body" class="hidden duration-200 absolute right-0 bottom-20 sm:bottom-24 right-3 z-20 w-56 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800">
               <%= render "components/aside_bar_logger_links" %>
             </div>
           </div>

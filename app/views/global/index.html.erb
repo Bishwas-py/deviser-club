@@ -3,7 +3,7 @@
 <%= render "components/aside_bar" do %>
   <main id="all_posts" class="h-auto min-h-screen min-w-0 block text-sm smart-padding pt-28 divide-y">
     <%= link_to new_quick_tweet_path, class: "group flex space-x-2 text-center mb-7 text-xl" do %>
-      <div class="group-hover:rotate-180 duration-200 group-hover:bg-stone-200 rounded-full bg-stone-100 w-9 h-9 grid place-items-center">
+      <div class="plus-new-button">
         <%= icon "fa-regular", "plus", class: "text-xl" %>
       </div>
       <div class="self-center">
@@ -14,7 +14,7 @@
   </main>
 
   <footer
-    class="flex bg-white/80 dark:bg-black/80 dark:text-indigo-100
+    class="flex bg-white/80 dark:bg-neutral-900/80 dark:text-indigo-100
                 h-24 w-full items-center justify-center border-t dark:border-gray-900">
     <a
       class="flex items-center justify-center gap-2"

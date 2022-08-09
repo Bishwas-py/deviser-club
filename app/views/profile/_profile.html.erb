@@ -3,7 +3,7 @@
     <div class="rounded-full p-2 bg-gradient-to-b from-blue-300 to-indigo-400 w-24 h-24">
       <%= image_tag profile.my_avatar, class: "h-full w-full rounded-full shadow object-cover" %>
     </div>
-    <h2 class="text-xl text-neutral-700 font-bold">
+    <h2 class="text-xl text-neutral-700 font-bold dark:text-neutral-50">
       <%= profile.get_name %>
     </h2>
     <p class="text-md text-neutral-700">
@@ -18,18 +18,18 @@
     <% end %>
   </div>
   <div class="space-y-2">
-    <div class="inline-block mx-2 px-2 bg-slate-100 rounded-md p-1">
+    <div class="small-badge">
       <%= "#{profile.user.posts.count} #{'post'.pluralize profile.user.posts.count}" %>
     </div>
-    <div class="inline-block mx-2 px-2 bg-slate-100 rounded-md p-1">
+    <div class="small-badge">
       <%= likes_count = Like.where(likeable: profile.user.posts).count + Like.where(likeable: profile.user.quick_tweets).count %>
       <%= "#{'like'.pluralize likes_count}" %>
     </div>
-    <div class="inline-block mx-2 px-2 bg-slate-100 rounded-md p-1">
+    <div class="small-badge">
       <%= bookmarked_count = Bookmark.where(bookmarkable: profile.user.posts).count %>
       <%= "#{'bookmarked content'.pluralize bookmarked_count}" %>
     </div>
-    <div class="inline-block mx-2 px-2 bg-slate-100 rounded-md p-1">
+    <div class="small-badge">
       <%= tweets_count = profile.user.quick_tweets.count %>
       <%= "#{'tweet'.pluralize tweets_count}" %>
     </div>

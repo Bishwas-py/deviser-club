@@ -85,8 +85,8 @@ export default class extends Controller {
             let normalButton = eval(`this.${h}Target`);
             if (this.editor.isActive(h)) {
                 normalButton.style.backgroundColor = "transparent";
-                normalButton.style.border = "1px solid #031f2b";
-                normalButton.style.color = "#031f2b";
+                normalButton.style.border = "1px solid rgb(128, 0, 255, 0.5)";
+                normalButton.style.color = "rgb(85, 0, 255, 0.5)";
             } else {
                 normalButton.style.color = null;
                 normalButton.style.backgroundColor = null;
@@ -110,14 +110,14 @@ export default class extends Controller {
         if (numberOfInActiveHeadings === 6) {
             headerButton.style.backgroundColor = null;
             headerButton.classList.remove('ring-1')
-            headerButton.classList.remove('text-slate-700')
+            headerButton.classList.remove('text-slate-700 dark:text-slate-50')
             headerButton.classList.remove('ring-slate/50')
         } else {
             headerButton.classList.add('ring-1')
             headerButton.style.backgroundColor = "transparent";
-            headerButton.classList.add('text-slate-700')
+            headerButton.classList.add('text-slate-700 dark:text-slate-50')
 
-            headerButton.classList.add('ring-slate/50')
+            headerButton.classList.add('ring-slate/50 dark:text-slate-300')
         }
     }
 

@@ -32,7 +32,7 @@
     <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
 
-  <body>
+  <body class="main-body">
     <main class="h-full w-full">
       <% unless params[:controller].include? 'devise/' %>
         <%=   render "components/errors"   %>

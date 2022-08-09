@@ -9,7 +9,9 @@
                         bookmarkable_type: bookmarkable.model_name.name
                       }
                     },
-                    class: "hover:text-cyan-700 text-slate-700 focus:text-sky-500 duration-400" do %>
+                    class: "hover:text-cyan-700 text-slate-700 focus:text-sky-500
+                     dark:hover:text-cyan-50 dark:text-slate-100 dark:focus:text-sky-100
+                     duration-400" do %>
         <span>
           <%= icon "fa-solid", "bookmark" %>
           <%= bookmarkable.bookmarks.count %>
@@ -18,7 +20,9 @@
     <% else %>
       <%= button_to bookmark_path(bookmark),
                     method: :delete,
-                    class: "hover:text-cyan-600 text-cyan-800 focus:text-green-500 duration-400" do %>
+                    class: "hover:text-cyan-600 text-cyan-800 focus:text-green-500
+                    dark:hover:text-cyan-100 dark:text-cyan-200 dark:focus:text-green-100
+                    duration-400" do %>
         <span>
           <%= icon "fa-solid", "bookmark" %>
             <%= bookmarkable.bookmarks.count %>
@@ -35,7 +39,9 @@
                       bookmarkable_type: bookmarkable.model_name.name
                     }
                   },
-                  class: "hover:text-cyan-800 text-cyan-600 focus:text-yellow-500 duration-400" do %>
+                  class: "hover:text-cyan-800 text-cyan-600 focus:text-yellow-500
+                   dark:hover:text-cyan-200 dark:text-cyan-200 dark:focus:text-yellow-200
+                   duration-400" do %>
       <span>
         <%= icon "fa-solid", "bookmark" %>
         <%= bookmarkable.bookmarks.count %>

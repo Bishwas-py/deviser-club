@@ -2,18 +2,18 @@
 <div class="break-inside-avoid group w-full" id="<%= dom_id post %>">
 
   <div class="px-6 py-10">
-      <span class="text-neutral-500 block mb-2" title="Author: <%= post.user.profile.get_name %>">
-       <%= link_to profile_show_path(post.user.friendly_id), class: "hover:text-blue-800 text-neutral-500 group inline-block mb-2", title: "Author: #{post.user.profile.get_name}" do %>
+      <span class="text-neutral-500 space-x-2 block mb-2" title="Author: <%= post.user.profile.get_name %>">
+       <%= link_to profile_show_path(post.user.friendly_id), class: "author-info group inline-block mb-2", title: "Author: #{post.user.profile.get_name}" do %>
         Posted by <strong><%= post.user.profile.get_name %></strong>
        <% end %>  •
-       <span class="bg-neutral-50 posts-tag">
+       <span class="posts-tag">
            <%= icon "fa-solid", "newspaper", class: "text-sm" %>
         </span>
-        <div class="inline-block text-slate-600 font-light"><%= "#{post.reading_time} #{"minute".pluralize post.reading_time} read" %></div>
+        <div class="dark:text-slate-50 inline-block text-slate-600 font-light"><%= "#{post.reading_time} #{"minute".pluralize post.reading_time} read" %></div>
       </span>
     <%= link_to post_path(post.friendly_id) do %>
       <div class="font-bold text-3xl mb-2"><%= post.title %></div>
-      <span class="text-gray-700 text-2xl text-base">
+      <span class="excerpt">
             <%= sanitize(post.body, tags: %w()).strip.truncate(299) %>
       </span>
     <% end %>
