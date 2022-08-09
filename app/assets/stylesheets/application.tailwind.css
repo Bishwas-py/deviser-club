@@ -25,7 +25,8 @@
         @apply dark:hover:text-blue-100 dark:text-neutral-50;
     }
     .side-bar {
-        @apply hidden md:block border-r dark:border-slate-800 bg-white shrink-0 sticky top-0 min-h-screen h-full w-24;
+        @apply hidden md:block border-r dark:border-slate-800
+        dark:bg-gray-800 bg-white shrink-0 sticky top-0 min-h-screen h-full w-24;
     }
     .side-bar-top-item {
         @apply mx-auto flex px-5 justify-center py-7 w-full hover:bg-blue-50;
@@ -34,7 +35,11 @@
     .side-bar-bottom-item {
         @apply mx-auto cursor-pointer flex px-5 justify-center py-7 h-full w-full
         hover:bg-blue-50 bg-slate-100;
-        @apply dark:hover:bg-sky-900 dark:bg-slate-700;
+        @apply dark:hover:bg-sky-900 dark:bg-black/10;
+    }
+    .side-bar-bottom-item.active {
+        @apply hover:bg-blue-100 bg-indigo-100;
+        @apply dark:hover:bg-gray-600 dark:bg-gray-700;
     }
     .super-rounded-btn {
         @apply rounded-full h-7 w-7 grid place-items-center float-right;
@@ -42,8 +47,8 @@
         @apply  dark:hover:bg-yellow-500 bg-slate-500;
     }
     .navigational-items {
-        @apply dark:bg-slate-700 border-t bg-white;
-        @apply h-16 sm:h-20 justify-between grid grid-cols-5 divide-x sm:divide-x-0 sm:divide-y;
+        @apply dark:bg-transparent border-t bg-white;
+        @apply h-16 sm:h-20 justify-between grid grid-cols-5 divide-x sm:divide-x-0;
         @apply dark:divide-neutral-800 dark:border-t dark:border-slate-800;
     }
     .aside-menu-element {

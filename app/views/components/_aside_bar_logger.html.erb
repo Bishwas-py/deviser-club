@@ -1,7 +1,7 @@
 <% if user_signed_in? %>
 
   <div class="relative">
-    <%= button_to "", class: "side-bar-bottom-item", data: {
+    <%= button_to "", class: "side-bar-bottom-item #{is_active "profile"}", data: {
       controller: 'togglebar',
       action: 'togglebar#toggleNavDrop',
       togglebar_body_param: "nav-bar-body"

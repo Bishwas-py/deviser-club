@@ -13,7 +13,7 @@
 
   <div class="w-full">
     <%= yield %>
-    <aside class="sticky bottom-0 md:bottom-7 w-full shrink-0">
+    <aside class="sticky bottom-0 md:bottom-7 w-full shrink-0 dark:bg-gray-800">
       <% if yield(:down_bar_up_kit).presence %>
         <div class="place-items-center grid mb-7 ">
           <%= yield (:down_bar_up_kit) %>
@@ -24,7 +24,7 @@
         <%= render "components/aside_bar_links" %>
         <% if user_signed_in? %>
           <div class="relative">
-            <%= button_tag class: "mx-auto cursor-pointer flex justify-center h-full w-full aside-menu-element", data: {
+            <%= button_tag class: "mx-auto cursor-pointer flex justify-center h-full w-full aside-menu-element #{is_active "profile"}", data: {
               controller: 'togglebar',
               action: 'togglebar#toggleNavDrop',
               togglebar_body_param: "bottom-nav-bar-body"
