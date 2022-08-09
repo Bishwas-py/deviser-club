@@ -13,14 +13,14 @@
 
   <div class="w-full">
     <%= yield %>
-    <aside class="sticky bottom-0 md:bottom-7 w-full shrink-0 dark:bg-gray-800">
+    <aside class="sticky bottom-0 md:bottom-7 w-full shrink-0">
       <% if yield(:down_bar_up_kit).presence %>
         <div class="place-items-center grid mb-7 ">
           <%= yield (:down_bar_up_kit) %>
         </div>
       <% end %>
 
-      <nav class="md:hidden navigational-items">
+      <nav class="md:hidden navigational-items dark:bg-gray-800">
         <%= render "components/aside_bar_links" %>
         <% if user_signed_in? %>
           <div class="relative">
