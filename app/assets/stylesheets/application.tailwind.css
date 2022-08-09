@@ -163,11 +163,11 @@
     }
     .input-box-2 {
         @apply border-0 focus:outline-none focus:ring-0 w-full shadow p-3 rounded;
-        @apply dark:bg-slate-700 dark:focus:bg-black dark:text-gray-50 focus:text-black;
+        @apply dark:bg-slate-700 dark:focus:bg-black dark:text-gray-50 focus:text-black dark:focus:text-white;
     }
     .input-box {
         @apply shadow appearance-none border rounded w-full py-2 px-3 leading-tight;
-        @apply bg-neutral-100/50 focus:bg-white text-gray-700 focus:text-black;
+        @apply bg-neutral-100/50 focus:bg-white text-gray-700 focus:text-black dark:focus:text-white;
         @apply dark:bg-neutral-900 dark:focus:bg-black dark:text-gray-50;
     }
     .home-btn {
