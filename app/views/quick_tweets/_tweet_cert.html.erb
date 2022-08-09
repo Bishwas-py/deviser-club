@@ -2,15 +2,15 @@
   <div class="font-bold text-3xl mb-2x"><%= sanitize quick_tweet.content.truncate(38), tags: %w() %></div>
   <div class="ml-2 mb-6">
     <div class="block mb-2">
-      <span class="text-neutral-500" title="<%= quick_tweet.created_at.to_fs %>">
+      <span class="sweet-info" title="<%= quick_tweet.created_at.to_fs %>">
       <%= time_ago_in_words(quick_tweet.created_at) %>
     </span>
-    <span class="text-neutral-500 float-right" title="<%= quick_tweet.created_at.to_fs %>">
+    <span class="sweet-info float-right" title="<%= quick_tweet.created_at.to_fs %>">
       <%= quick_tweet.watches %> Views
     </span>
     </div>
     <% if quick_tweet.user %>
-      <span class="text-neutral-500 block" title="<%= quick_tweet.created_at.to_fs %>">
+      <span class="sweet-info" title="<%= quick_tweet.created_at.to_fs %>">
           Posted by <strong><%= quick_tweet.user.username %></strong>
       </span>
     <% end %>
