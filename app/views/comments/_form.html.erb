@@ -9,7 +9,7 @@
 
   <%= form.hidden_field :commentable_type, value: commentable.model_name.name %>
   <div class="my-5">
-    <%= form.text_area :body, placeholder: "Your thoughts on this", rows: 3, class: "w-full border-0 focus:outline-0 focus:ring-0" %>
+    <%= form.text_area :body, placeholder: "Your thoughts on this", rows: 3, class: "dark:bg-white/10 w-full border-0 focus:outline-0 focus:ring-0" %>
   </div>
   <div class="flex justify-end">
     <%= form.submit "Reply", class: "rounded-lg px-2 py-1 bg-green-600 text-white inline-block font-medium cursor-pointer" %>

@@ -1,7 +1,7 @@
 <div class="flex flex-row">
-  <aside class="hidden md:block border-r bg-white shrink-0 sticky top-0 min-h-screen h-full w-24">
+  <aside class="side-bar">
     <nav class="h-screen flex flex-col">
-      <div class="mx-auto flex px-5 justify-center py-7 w-full hover:bg-blue-50">
+      <div class="side-bar-top-item">
         <%= image_tag "fav.png", class: "w-12 rounded-xl" %>
       </div>
       <div class="navigational-items h-full justify-center flex flex-col">
@@ -46,9 +46,9 @@
   </div>
 
   <% if yield(:right_aside_bar).presence %>
-    <div class="hidden fixed lg:block border-l overflow-y-scroll no-scrollbar bg-neutral-50 shrink-0 lg:sticky top-0 min-h-screen h-full lg:w-80 w-full" id="right_aside_bar">
+    <div class="hidden lg:block power-nav" id="right_aside_bar">
       <%= button_to '',
-        class: "lg:hidden hover:bg-yellow-50 bg-slate-50 rounded-full h-7 w-7 grid place-items-center float-right mr-7 mt-7", data: { controller: "togglebar",
+        class: "lg:hidden super-rounded-btn mr-7 mt-7", data: { controller: "togglebar",
         togglebar_body_param:"right_aside_bar",
         action: "togglebar#toggleNavDrop"} do %>
         <%= icon 'fa-solid', 'times', class: "" %>

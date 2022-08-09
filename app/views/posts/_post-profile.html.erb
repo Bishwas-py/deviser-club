@@ -6,12 +6,12 @@
           <%= image_tag @post.user.profile.my_avatar, class: "max-w-fit h-11 w-11 rounded-full bg-sky-100" %>
         </div>
         <div>
-          <div class="text-cyan-500 font-light">
+          <div class="text-cyan-500 dark:text-cyan-200 font-light">
             <%= @post.user.profile.get_name %>
           </div>
-          <span class="text-slate-600 font-light" title="<%= @post.created_at.to_fs %>"><%= time_ago_in_words(@post.created_at) %></span>
+          <span class="text-slate-600 font-light dark:text-slate-100" title="<%= @post.created_at.to_fs %>"><%= time_ago_in_words(@post.created_at) %></span>
           <span class="mx-1">·</span>
-          <span class="text-slate-600 font-light" title="<%= @post.created_at.to_fs %>"><%= "#{@post.reading_time} #{"minute".pluralize @post.reading_time} read" %></span>
+          <span class="text-slate-600 font-light dark:text-slate-100" title="<%= @post.created_at.to_fs %>"><%= "#{@post.reading_time} #{"minute".pluralize @post.reading_time} read" %></span>
         </div>
       <% end %>
       <div class="flex sm:justify-end space-x-2">

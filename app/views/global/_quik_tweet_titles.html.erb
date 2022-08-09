@@ -1,10 +1,10 @@
 <% quick_tweets.each do |quick_tweet| %>
-  <%= link_to quick_tweet_path(quick_tweet.id), class: "hover:bg-slate-100 rounded-xl p-2" do %>
+  <%= link_to quick_tweet_path(quick_tweet.id), class: "sweet-box" do %>
     <div>
       <h3 class="text-md font-bold">
         <%= quick_tweet.title %>
       </h3>
-      <span class="text-sm text-slate-500">
+      <span class="sweet-info">
         Posted by <strong><%= quick_tweet.user.username %></strong>
       </span>
     </div>

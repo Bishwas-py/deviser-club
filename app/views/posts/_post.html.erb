@@ -9,7 +9,7 @@
        <span class="posts-tag">
            <%= icon "fa-solid", "newspaper", class: "text-sm" %>
         </span>
-        <div class="dark:text-slate-50 inline-block text-slate-600 font-light"><%= "#{post.reading_time} #{"minute".pluralize post.reading_time} read" %></div>
+        <div class="dark:text-slate-50 inline-block text-slate-600 font-light dark:text-slate-100"><%= "#{post.reading_time} #{"minute".pluralize post.reading_time} read" %></div>
       </span>
     <%= link_to post_path(post.friendly_id) do %>
       <div class="font-bold text-3xl mb-2"><%= post.title %></div>
@@ -27,7 +27,7 @@
         <% end %>
       <% end %>
     </div>
-    <div class="text-neutral-500 text-right" title="<%= post.created_at.to_fs %>">
+    <div class="text-neutral-500 dark:text-neutral-50 text-right" title="<%= post.created_at.to_fs %>">
       <%= time_ago_in_words(post.created_at) %>
     </div>
   </div>

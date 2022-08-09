@@ -7,7 +7,7 @@
           <span class="my-auto font-light text-sm">
             <%= comment.user.username %>
           </span>
-          <span class="text-neutral-500 text-sm" title="<%= comment.created_at.to_fs %>">
+          <span class="sweet-info" title="<%= comment.created_at.to_fs %>">
             <%= time_ago_in_words(comment.created_at) %>
           </span>
         </div>
