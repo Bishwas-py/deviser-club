@@ -120,21 +120,22 @@ nano ~/.bash_profile
 ```
 Now, add the following data below of the file according to your choice.
 ```bash
-RAILS_ENV=production bundle exec rails s -p 3000
-export FROM_EMAIL = 'Platform Name <no-reply@platform.club>' 
+export FROM_EMAIL='Platform Name <no-reply@platform.club>' 
 # replace `platform` with your platform name
-export HOST_NAME = 'platform.club'
-export SMTP_ADDRESS = 'host.ip.address'
-export DOMAIN = 'platform.club'
-export SMTP_USERNAME = 'smtp_username'
-export SMTP_PASSWORD = 'smtp_password'
+export HOST_NAME='platform.club'
+export SMTP_ADDRESS='host.ip.address'
+export DOMAIN='platform.club'
+export SMTP_USERNAME='smtp_username'
+export SMTP_PASSWORD='smtp_password'
 ```
 
 ##### Check server
 Allow port `3000` by `ufw` or equivalent, and
 go to `http://SERVER.PUBLIC.IP.ADDRESS:3000`, and it'll show your webapp,
 which is the sign of good installation.
-
+```shell
+RAILS_ENV=production bundle exec rails s -p 3000
+```
 ##### Deployment
 To deploy your app, you need to install `capistrano` and `capistrano-rails` must of the
 time. If you want that you can do that too but for me, I like doing things manually.
