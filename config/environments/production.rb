@@ -69,19 +69,24 @@ Rails.application.configure do
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
 
-  # POST FIX
-  config.action_mailer.delivery_method = :sendmail
-  # Defaults to:
-  # config.action_mailer.sendmail_settings = {
-  #   location: '/usr/sbin/sendmail',
-  #   arguments: '-i -t'
-  # }
+  # Send Email
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_options = {from: ENV.fetch["FROM_EMAIL", 'Deviser Club <no-reply@deviser.club>']}
+  config.action_mailer.default_url_options = { :host => ENV.fetch["HOST_NAME", "deviser.club"] }
+  config.action_mailer.smtp_settings = {
+    :address                => ENV.fetch["SMTP_ADDRESS", "email-smtp.us-west-1.amazonaws.com"],   # i.e. "email-smtp.us-west-1.amazonaws.com"
+    :port                   => 587,
+    :domain                 => ENV["DOMAIN", "deviser.club"],   # i.e. "deviser.club"
+    :authentication         => :login,
+    :user_name              => ENV["SMTP_USERNAME"], # i.e. AXKIA***
+    :password               => ENV["SMTP_PASSWORD"], # i.e. BDtqKM***
+  }
+
+  config.action_mailer.raise_delivery_errors = false
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_options = {from: 'no-reply@deviser.club'}
-  config.action_mailer.default_url_options = { :host => "deviser.club" }
-  # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
-  # the I18n.default_locale when a translation cannot be found).
+
+  # # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
+  # # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
 
   # Don't log any deprecations.
