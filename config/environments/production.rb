@@ -74,8 +74,8 @@ Rails.application.configure do
   config.action_mailer.default_options = {from: ENV["FROM_EMAIL"]}    # i.e 'Club Name <no-reply@platform.club>'
   config.action_mailer.default_url_options = { :host => ENV["HOST_NAME"] }
   config.action_mailer.smtp_settings = {
-    :address                => ENV.fetch["SMTP_ADDRESS", "email-smtp.us-west-1.amazonaws.com"],   # i.e. "email-smtp.us-west-1.amazonaws.com"
-    :port                   => ENV.fetch["SMTP_PORT", 587],
+    :address                => ENV.fetch("SMTP_ADDRESS", "email-smtp.us-west-1.amazonaws.com"),   # i.e. "email-smtp.us-west-1.amazonaws.com"
+    :port                   => ENV.fetch("SMTP_PORT", 587),
     :domain                 => ENV["DOMAIN"],   # i.e. "platform.club"
     :authentication         => :login,
     :user_name              => ENV["SMTP_USERNAME"], # i.e. AXKIA***
