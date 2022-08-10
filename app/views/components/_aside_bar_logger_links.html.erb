@@ -2,7 +2,7 @@
   <%= image_tag current_user.profile.my_avatar, class: "flex-shrink-0 object-cover mx-1 rounded-full w-9 h-9" %>
   <div class="mx-1">
     <h1 class="text-sm font-semibold text-gray-700 dark:text-gray-200"><%= current_user.username %></h1>
-    <p class="text-sm text-gray-500 dark:text-gray-400"><%= current_user.email %></p>
+    <p class="text-sm text-gray-500 dark:text-gray-400 truncate w-min"><%= current_user.email %></p>
   </div>
 </a>
 <hr class="border-gray-200 dark:border-gray-700 ">

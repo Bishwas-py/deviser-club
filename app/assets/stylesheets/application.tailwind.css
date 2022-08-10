@@ -44,7 +44,7 @@
     .super-rounded-btn {
         @apply rounded-full h-7 w-7 grid place-items-center float-right;
         @apply  hover:bg-yellow-50 bg-slate-50;
-        @apply  dark:hover:bg-yellow-500 bg-slate-500;
+        @apply  dark:hover:bg-yellow-500 dark:bg-slate-500;
     }
     .navigational-items {
         @apply dark:bg-transparent border-t bg-white;

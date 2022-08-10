@@ -17,23 +17,12 @@
       </p>
     </div>
     <div class="flex flex-row justify-between">
+      <%= render "likes/create", likeable: comment %>
       <% if user_signed_in? and current_user == comment.user %>
         <%= button_to comment, method: :delete,
                       class: "p-2 px-4 hover:text-rose-800 text-slate-500 focus:text-sky-500 duration-400" do %>
           <%= icon "fa-solid", "trash" %>
         <% end %>
-        <%= render "likes/create", likeable: comment %>
-      <% else %>
-        <span class="text-right w-full">
-          <div class="py-2 px-4">
-            <%= button_tag "", class: "hover:text-blue-800 text-blue-500 focus:text-yellow-500 duration-400" do %>
-              <span>
-                  <%= icon "fa-solid", "heart" %>
-                <%= comment.likes.count %>
-                </span>
-            <% end %>
-          </div>
-        </span>
       <% end %>
     </div>
   </div>
