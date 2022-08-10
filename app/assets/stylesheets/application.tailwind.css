@@ -80,7 +80,7 @@
     }
     .power-nav {
         @apply fixed border-l overflow-y-scroll no-scrollbar bg-neutral-50 shrink-0
-        lg:sticky top-0 min-h-screen h-full lg:w-80 w-full;
+        lg:sticky top-0 max-h-screen min-h-screen h-full lg:w-80 w-full;
 
         @apply dark:bg-slate-900 dark:border-slate-800 dark:divide-slate-800;
     }
