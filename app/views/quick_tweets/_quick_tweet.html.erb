@@ -12,7 +12,7 @@
     <%= link_to quick_tweet do %>
       <div>
         <h3 class="font-bold text-2xl mb-2 text-slate-700 dark:text-stone-100">
-          <%= sanitize(quick_tweet.content, tags: %w()).truncate(39) %>
+          <%= quick_tweet.title %>
         </h3>
         <span class="excerpt">
         <%= quick_tweet.excerpt %>
