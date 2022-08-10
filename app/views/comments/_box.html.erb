@@ -12,7 +12,7 @@
         <%= turbo_frame_tag "comments_count_top", class: "text-2xl font-bold" do %>
           Comments(<%= commentable.comments.count %>)
         <% end %>
-        <div class="bg-white dark:bg-black w-full flex flex-col gap-2 shadow rounded-md px-3 py-2">
+        <div class="bg-white dark:bg-black/80 w-full flex flex-col gap-2 shadow rounded-md px-3 py-2">
           <div class="flex gap-x-2">
             <%= image_tag user_signed_in? ? current_user.profile.my_avatar : "fav.png", class: "w-7 rounded-full object-cover bg-rose-50" %>
             <span class="my-auto font-light text-sm">
