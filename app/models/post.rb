@@ -18,7 +18,7 @@ class Post < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   def excerpt
-    ActionController::Base.helpers.strip_tags(self.body).truncate(300)
+    Nokogiri::HTML(self.body).xpath('//text()').map(&:text).join(' ').truncate(300)
   end
   def reading_time
     words_per_minute = 150

@@ -9,11 +9,11 @@ class QuickTweet < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   def title
-    ActionController::Base.helpers.strip_tags(self.content).truncate(100)
+    Nokogiri::HTML(self.content).xpath('//text()').map(&:text).join(' ').truncate(100)
   end
 
   def excerpt
-    ActionController::Base.helpers.strip_tags(self.content).truncate(300)
+    Nokogiri::HTML(self.content).xpath('//text()').map(&:text).join(' ').truncate(300)
   end
   after_create_commit -> {
     broadcast_prepend_to :quick_tweets, target: "quick_tweets", locals: { quick_tweets: :quick_tweets }
