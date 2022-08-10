@@ -9,7 +9,7 @@ class QuickTweet < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   def title
-    ActionController::Base.helpers.strip_tags(self.content).truncate(38)
+    ActionController::Base.helpers.strip_tags(self.content).truncate(100)
   end
 
   def excerpt
