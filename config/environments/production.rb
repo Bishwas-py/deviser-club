@@ -71,12 +71,12 @@ Rails.application.configure do
 
   # Send Email
   config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_options = {from: ENV.fetch["FROM_EMAIL", 'Deviser Club <no-reply@deviser.club>']}
-  config.action_mailer.default_url_options = { :host => ENV.fetch["HOST_NAME", "deviser.club"] }
+  config.action_mailer.default_options = {from: ENV["FROM_EMAIL"]}    # i.e 'Club Name <no-reply@platform.club>'
+  config.action_mailer.default_url_options = { :host => ENV["HOST_NAME"] }
   config.action_mailer.smtp_settings = {
     :address                => ENV.fetch["SMTP_ADDRESS", "email-smtp.us-west-1.amazonaws.com"],   # i.e. "email-smtp.us-west-1.amazonaws.com"
-    :port                   => 587,
-    :domain                 => ENV["DOMAIN", "deviser.club"],   # i.e. "deviser.club"
+    :port                   => ENV.fetch["SMTP_PORT", 587],
+    :domain                 => ENV["DOMAIN"],   # i.e. "platform.club"
     :authentication         => :login,
     :user_name              => ENV["SMTP_USERNAME"], # i.e. AXKIA***
     :password               => ENV["SMTP_PASSWORD"], # i.e. BDtqKM***

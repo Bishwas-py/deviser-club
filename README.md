@@ -110,11 +110,27 @@ Now, you need to migrate the database explicitly for production.
 ```bash
 RAILS_ENV=production bundle exec rails db:migrate
 ```
+##### Email Setup
+Edit your `~/.bash_profile` for setting environment variable for email.
 
-##### Check server
+For that, type following commands
+```shell
+nano ~/.bash_profile
+# probably you might need sudo authority
+```
+Now, add the following data below of the file according to your choice.
 ```bash
 RAILS_ENV=production bundle exec rails s -p 3000
+export FROM_EMAIL = 'Platform Name <no-reply@platform.club>' 
+# replace `platform` with your platform name
+export HOST_NAME = 'platform.club'
+export SMTP_ADDRESS = 'host.ip.address'
+export DOMAIN = 'platform.club'
+export SMTP_USERNAME = 'smtp_username'
+export SMTP_PASSWORD = 'smtp_password'
 ```
+
+##### Check server
 Allow port `3000` by `ufw` or equivalent, and
 go to `http://SERVER.PUBLIC.IP.ADDRESS:3000`, and it'll show your webapp,
 which is the sign of good installation.

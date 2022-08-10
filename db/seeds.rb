@@ -59,7 +59,7 @@ dummy_posts = [
   },
 ]
 
-user = User.create(email: 'dummybuddy22zz@deviser.club', username: 'dummybuddy22zz', password: 'password', password_confirmation: 'password')
+user = User.create(email: 'dummybuddy22zz@gamil.com', username: 'dummybuddy22zz', password: 'password', password_confirmation: 'password')
 user.skip_confirmation!
 user.save!
 dummy_posts.each do |dummy|
