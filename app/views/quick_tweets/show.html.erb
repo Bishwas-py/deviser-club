@@ -22,14 +22,14 @@
             <%= @comments.count %>
           <% end %>
         <% end %>
-        <%= icon 'fa-regular', 'comment' %>
+        <%= icon 'fa-regular', 'comment', class: "dark:text-white" %>
       <% end %>
       <% if current_user == @quick_tweet.user %>
         <%= link_to edit_quick_tweet_path, class: "box" do %>
-          <%= icon "fa-regular", "edit" %>
+          <%= icon "fa-regular", "edit", class: "dark:text-white" %>
         <% end %>
         <%= button_to @quick_tweet, method: :delete, class: "box" do %>
-          <%= icon "fa-solid", "trash" %>
+          <%= icon "fa-solid", "trash", class: "dark:text-white" %>
         <% end %>
       <% end %>
     </div>
