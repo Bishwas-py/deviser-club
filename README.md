@@ -111,22 +111,27 @@ Now, you need to migrate the database explicitly for production.
 RAILS_ENV=production bundle exec rails db:migrate
 ```
 ##### Email Setup
-Edit your `~/.bash_profile` for setting environment variable for email.
+Do `rails credentials:edit` for setting environment variable for email.
 
 For that, type following commands
 ```shell
-nano ~/.bash_profile
+RAILS_ENV=production bundle exec EDITOR=vim rails credentials:edit
 # probably you might need sudo authority
 ```
+
 Now, add the following data below of the file according to your choice.
-```bash
-export FROM_EMAIL='Platform Name <no-reply@platform.club>' 
+```yaml
+mail:
+     method: :smtp
+     from_email: 'Platform Name <no-reply@platform.club>' 
+     host_name: platform.club
+     address: host.ip.address
+     domain: platform.club
+     port: 587
+     user_name: smtp_username
+     password: smtp_password
+
 # replace `platform` with your platform name
-export HOST_NAME='platform.club'
-export SMTP_ADDRESS='host.ip.address'
-export DOMAIN='platform.club'
-export SMTP_USERNAME='smtp_username'
-export SMTP_PASSWORD='smtp_password'
 ```
 
 ##### Check server
