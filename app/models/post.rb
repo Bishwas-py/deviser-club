@@ -25,4 +25,16 @@ class Post < ApplicationRecord
     text = Nokogiri::HTML(self.body).at('body').inner_text
     (text.scan(/\w+/).length / words_per_minute).to_i
   end
+
+  def similiar_posts
+    self.taggables.joins(:tag)
+        .where.not(id: id)
+        .where(tags: { id: tags.ids })
+        .select(
+          'posts.*',
+          'COUNT(tags.*) AS tags_in_common'
+        )
+        .group(:id)
+        .order(tags_in_common: :desc)
+  end
 end

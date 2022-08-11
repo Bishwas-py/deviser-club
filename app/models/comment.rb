@@ -15,4 +15,8 @@ class Comment < ApplicationRecord
   #  pushed to this listener: turbo_stream_from commentable, :comments
   }
 
+  after_commit -> {
+    broadcast_replace_to commentable, :comments, partial: "comments/comments_count", target: "comments_count_bottom", locals: { count: commentable.comments.count }
+  }
+
 end
