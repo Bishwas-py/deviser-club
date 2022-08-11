@@ -117,9 +117,9 @@
     }
     .rounded-button {
         @apply rounded-full text-white;
-        @apply md:h-12 h-8 grid place-items-center;
+        @apply py-1 md:py-2 sm:px-4 px-2;
         @apply hover:scale-110 duration-200;
-        @apply px-4 flex space-x-3 w-fit;
+        @apply inline-block space-x-3 m-1 sm:w-fit;
         @apply shadow-lg;
         @apply hover:shadow-xl;
         @apply bg-neutral-700;
