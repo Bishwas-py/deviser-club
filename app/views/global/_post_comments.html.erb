@@ -2,8 +2,8 @@
   <%= link_to comment.commentable, class: "sweet-box" do %>
     <div>
       <span class="sweet-info">
-        <strong><%= comment.user.username %></strong> commented "<%= comment.body %>" on
-        <strong><%= comment.commentable.title %></strong>, by <strong><%= comment.commentable.user.username %></strong>
+        <strong><%= comment.user.username %></strong> commented "<%= comment.body.truncate(42) %>" on
+        <strong><%= comment.commentable.title.truncate(42) %></strong>, by <strong><%= comment.commentable.user.username %></strong>
       </span>
     </div>
   <% end %>
