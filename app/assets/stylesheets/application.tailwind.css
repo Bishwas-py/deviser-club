@@ -117,12 +117,15 @@
     }
     .rounded-button {
         @apply rounded-full text-white;
-        @apply md:h-12 md:w-12 h-8 w-8;
+        @apply md:h-12 h-8 grid place-items-center;
+        @apply hover:scale-110 duration-200;
+        @apply px-4 flex space-x-3 w-fit;
         @apply shadow-lg;
-        @apply grid place-items-center;
         @apply hover:shadow-xl;
         @apply bg-neutral-700;
         @apply hover:bg-neutral-800;
+
+        @apply dark:bg-gray-50 dark:hover:bg-white dark:text-neutral-800;
     }
 
     code {

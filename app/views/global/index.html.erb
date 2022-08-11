@@ -1,6 +1,16 @@
+
 <%= content_for(:title, "Deviser Club ~ A discussion club for devised people") %>
 
 <%= render "components/aside_bar" do %>
+  <div class="sticky w-full px-1 py-3 flex justify-center space-x-4" >
+    <%= link_to quick_tweets_path, class: "rounded-button" do %>
+      <%= icon 'fa-solid', 'truck' %> <span>Quick Tweets</span>
+    <% end %>
+
+    <%= link_to posts_path, class: "rounded-button" do %>
+      <%= icon 'fa-solid', 'newspaper' %> <span>Posts</span>
+    <% end %>
+  </div>
   <main id="all_posts" class="h-auto min-h-screen min-w-0 block text-sm smart-padding pt-28 divide-y dark:divide-slate-700">
     <%= link_to new_quick_tweet_path, class: "group flex space-x-2 text-center mb-7 text-xl" do %>
       <div class="plus-new-button">
@@ -12,6 +22,10 @@
     <% end %>
     <%= render @all_posts %>
   </main>
+
+  <%= content_for :right_aside_bar do %>
+    <%= render "components/latest_posts_and_comment" %>
+  <% end %>
 
   <footer
     class="flex bg-white/80 dark:bg-neutral-900/80 dark:text-indigo-100
@@ -26,7 +40,4 @@
       <span class="text-2xl font-bold">Webmatrices</span>
     </a>
   </footer>
-  <%= content_for :right_aside_bar do %>
-    <%= render "components/latest_posts_and_comment" %>
-  <% end %>
 <% end %>
