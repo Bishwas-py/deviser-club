@@ -2,7 +2,7 @@
   <%= link_to quick_tweet_path(quick_tweet.id), class: "sweet-box" do %>
     <div>
       <h3 class="text-md font-bold">
-        <%= quick_tweet.title %>
+        <%= quick_tweet.title.truncate(38) %>
       </h3>
       <span class="sweet-info">
         Posted by <strong><%= quick_tweet.user.username %></strong>

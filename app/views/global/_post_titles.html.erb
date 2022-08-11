@@ -2,7 +2,7 @@
   <%= link_to post_path(post.friendly_id), class: "sweet-box" do %>
     <div>
       <h3 class="text-md font-bold">
-        <%= post.title %>
+        <%= post.title.truncate(39) %>
       </h3>
       <span class="sweet-info">
         Posted by <strong><%= post.user.username %></strong>
