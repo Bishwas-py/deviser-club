@@ -17,12 +17,8 @@
       <%= render "likes/create", likeable: @quick_tweet %>
       <%= render "bookmark/create", bookmarkable: @quick_tweet %>
       <%= link_to '', class: "box", data: { controller: "comment" } do %>
-        <% if @comments.present? %>
-          <%= turbo_frame_tag "comments_count_bottom", class: "h-3 w-3 rounded-full absolute bg-rose-700/70 backdrop-blur top-0 right-0", style: "font-size: 9px;" do %>
-            <%= @comments.count %>
-          <% end %>
-        <% end %>
-        <%= icon 'fa-regular', 'comment', class: "dark:text-white" %>
+        <%= icon 'fa-regular', 'comment' %>
+        <%= render "comments/comments_count", count: @comments.count %>
       <% end %>
       <% if current_user == @quick_tweet.user %>
         <%= link_to edit_quick_tweet_path, class: "box" do %>

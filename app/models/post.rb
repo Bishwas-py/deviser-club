@@ -30,11 +30,11 @@ class Post < ApplicationRecord
     self.taggables.joins(:tag)
         .where.not(id: id)
         .where(tags: { id: tags.ids })
-        .select(
-          'posts.*',
-          'COUNT(tags.*) AS tags_in_common'
-        )
-        .group(:id)
-        .order(tags_in_common: :desc)
+        # .select(
+        #   'posts.*',
+        #   'COUNT(tags.*) AS tags_in_common'
+        # )
+        # .group(:id)
+        # .order(tags_in_common: :desc)
   end
 end
