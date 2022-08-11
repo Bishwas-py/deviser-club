@@ -70,16 +70,25 @@ Rails.application.configure do
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.
 
   # Send Email
-  config.action_mailer.delivery_method = :smtp
-  config.action_mailer.default_options = {from: ENV["FROM_EMAIL"]}    # i.e 'Club Name <no-reply@platform.club>'
-  config.action_mailer.default_url_options = { :host => ENV["HOST_NAME"] }
+  mail_method = Rails.application.credentials.dig(:mail, :method) || :smtp
+  mail_from_email = Rails.application.credentials.dig(:mail, :from_email)
+  mail_host_name = Rails.application.credentials.dig(:mail, :host_name)
+  mail_address = Rails.application.credentials.dig(:mail, :address)
+  mail_port = Rails.application.credentials.dig(:mail, :port) || 587
+  mail_domain = Rails.application.credentials.dig(:mail, :domain)
+  mail_user_name = Rails.application.credentials.dig(:mail, :user_name)
+  mail_password = Rails.application.credentials.dig(:mail, :password)
+
+  config.action_mailer.delivery_method = mail_method
+  config.action_mailer.default_options = {from: mail_from_email}    # i.e 'Club Name <no-reply@platform.club>'
+  config.action_mailer.default_url_options = { :host => mail_host_name }
   config.action_mailer.smtp_settings = {
-    :address                => ENV.fetch("SMTP_ADDRESS", "email-smtp.us-west-1.amazonaws.com"),   # i.e. "email-smtp.us-west-1.amazonaws.com"
-    :port                   => ENV.fetch("SMTP_PORT", 587),
-    :domain                 => ENV["DOMAIN"],   # i.e. "platform.club"
+    :address                => mail_address,   # i.e. "email-smtp.us-west-1.amazonaws.com"
+    :port                   => mail_port,
+    :domain                 => mail_domain,   # i.e. "platform.club"
     :authentication         => :login,
-    :user_name              => ENV["SMTP_USERNAME"], # i.e. AXKIA***
-    :password               => ENV["SMTP_PASSWORD"], # i.e. BDtqKM***
+    :user_name              => mail_user_name, # i.e. AXKIA***
+    :password               => mail_password, # i.e. BDtqKM***
   }
 
   config.action_mailer.raise_delivery_errors = false
