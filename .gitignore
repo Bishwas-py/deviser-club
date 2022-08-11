@@ -48,3 +48,4 @@ dbdeviser_club
 
 
 *.swp
+config/credentials.yml.enc
