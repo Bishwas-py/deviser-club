@@ -5,7 +5,12 @@ Rails.application.routes.draw do
       get :edit
     end
   end
+
   root "global#index"
+
+  match 'search' => 'global#search', :via => [:post], :as => 'search_content'
+
+
   get "/select" => "global#select"
 
   resources :likes, only: [:create, :destroy]

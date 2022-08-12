@@ -1,0 +1,20 @@
+<div class="">
+  <div class="flex justify-end mb-7">
+    <%= link_to quick_tweets_path, class: "go-to-btn #{is_active "quick_tweets"}" do %>
+      <%= icon 'fa-solid', 'truck' %> <span>Quick Tweets</span>
+    <% end %>
+
+    <%= link_to posts_path, class: "go-to-btn #{is_active "posts"}" do %>
+      <%= icon 'fa-solid', 'newspaper' %> <span>Posts</span>
+    <% end %>
+  </div>
+  <hr/>
+  <%= link_to path, class: "group flex space-x-2 text-center py-5 text-xl" do %>
+    <div class="plus-new-button">
+      <%= icon "fa-regular", "plus", class: "text-xl" %>
+    </div>
+    <div class="self-center">
+      <%= text %>
+    </div>
+  <% end %>
+</div>

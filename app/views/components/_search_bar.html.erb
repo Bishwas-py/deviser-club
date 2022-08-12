@@ -1,0 +1,14 @@
+<div class="bg-gradient-to-b from-gray-100 sticky flex flex-col top-0 px-3 py-2">
+  <%= form_with url: search_content_path, class: "p-2 w-full flex bg-white rounded-full border" do |form| %>
+    <div class="px-2 w-fit self-center">
+      <%= icon "fa-solid", "search" %>
+    </div>
+    <div class="self-center">
+      <%= form.search_field :search_term,
+        oninput: "this.form.requestSubmit()",
+        placeholder: "Search Here",
+        class: "text-gray-700 border-0 focus:outline-none focus:ring-0" %>
+    </div>
+  <% end %>
+    <div id="search-results"></div>
+</div>

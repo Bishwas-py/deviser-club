@@ -80,7 +80,7 @@
     }
     .power-nav {
         @apply fixed border-l overflow-y-scroll no-scrollbar bg-neutral-50 shrink-0
-        lg:sticky top-0 max-h-screen min-h-screen h-full lg:w-80 w-full;
+        lg:sticky top-0 max-h-screen min-h-screen h-full lg:w-96 w-full;
 
         @apply dark:bg-slate-900 dark:border-slate-800 dark:divide-slate-800;
     }
@@ -99,9 +99,17 @@
     .profile-box {
         @apply min-h-screen h-auto min-w-0 block text-sm smart-padding md:pt-28;
     }
+    .go-to-btn {
+        @apply px-4 py-2 text-lg text-gray-600 hover:text-gray-800;
+        @apply hover:font-bold dark:text-gray-100 dark:hover:text-gray-50;
+    }
+    .go-to-btn.active {
+        @apply rounded-full text-gray-900;
+        @apply bg-stone-200 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-white;
+    }
     .small-badge {
         @apply inline-block mx-2 px-2 bg-slate-100 rounded-md p-1;
-        @apply dark:bg-slate-800
+        @apply dark:bg-slate-800;
     }
     .menu-drop-down {
         @apply relative z-10 flex items-center p-2 text-sm text-gray-600 border border-slate-200 rounded-md focus:border-blue-500 focus:ring-opacity-40 dark:focus:ring-opacity-40 focus:ring-blue-300

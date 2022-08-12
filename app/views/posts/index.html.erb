@@ -1,16 +1,9 @@
 <%= content_for(:title, "Posts ~ Deviser Club") %>
 
 <%= render "components/aside_bar" do %>
-  <main id="all_posts" class="h-auto min-w-0 block text-sm smart-padding pt-28 divide-y">
-    <%= link_to new_post_path, class: "group flex space-x-2 text-center mb-7 text-xl" do %>
-      <div class="plus-new-button">
-        <%= icon "fa-regular", "plus", class: "text-xl" %>
-      </div>
-      <div class="self-center">
-        Add a new article post
-      </div>
-    <% end %>
-    <div id="posts" class="w-full">
+  <main id="all_posts" class="h-auto min-h-screen min-w-0 block smart-padding pt-20">
+    <%= render "components/tab_menus", path: new_post_path, text: "Add a new article post" %>
+    <div id="posts" class="w-full divide-y dark:divide-slate-700">
       <%= render @posts %>
     </div>
   </main>

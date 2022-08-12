@@ -1,4 +1,5 @@
 <div class="flex flex-row">
+  <%# LEFT CONTENT %>
   <aside class="side-bar">
     <nav class="h-screen flex flex-col">
       <div class="side-bar-top-item">
@@ -10,9 +11,13 @@
       <%= render "components/aside_bar_logger" %>
     </nav>
   </aside>
+
+  <%# MIDDLE CONTENT %>
   <div class="w-full">
+
     <%= yield %>
-    <aside class="sticky bottom-0 md:bottom-7 w-full shrink-0">
+
+    <div class="sticky bottom-0 md:bottom-7 w-full shrink-0">
       <% if yield(:down_bar_up_kit).presence %>
         <div class="place-items-center grid mb-7 ">
           <%= yield (:down_bar_up_kit) %>
@@ -41,9 +46,10 @@
           <% end %>
         <% end %>
       </nav>
-    </aside>
+    </div>
   </div>
 
+  <%# RIGHT CONTENT %>
   <% if yield(:right_aside_bar).presence %>
     <div class="hidden lg:block power-nav" id="right_aside_bar">
       <%= button_to '',
@@ -52,6 +58,7 @@
         action: "togglebar#toggleNavDrop"} do %>
         <%= icon 'fa-solid', 'times', class: "" %>
       <% end %>
+      <%= render "components/search_bar" %>
       <div class="min-h-screen">
         <%= yield (:right_aside_bar) %>
       </div>
