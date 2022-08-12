@@ -1,0 +1,8 @@
+<% tags.each do |tag| %>
+  <%= link_to tag_path(tag.friendly_id) do %>
+    <span class="tag-block" title="<%= tag.created_at.to_fs %>">
+          <%= icon "fa-solid", "tag", class: "mr-2" %>
+      <%= tag.name %>
+        </span>
+  <% end %>
+<% end %>

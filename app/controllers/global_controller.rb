@@ -6,13 +6,14 @@ class GlobalController < ApplicationController
   end
 
   def search
-    @posts =  Post.where('title LIKE ?', "%#{params[:search_term]}%")
-    @quick_tweets = QuickTweet.where('content LIKE ?', "%#{params[:search_term]}%")
-    @all_posts = @posts + @quick_tweets
+    @posts =  Post.where('title LIKE ?', "%#{params[:search_term]}%").limit(9)
+    @quick_tweets = QuickTweet.where('content LIKE ?', "%#{params[:search_term]}%").limit(9)
+    @users = User.where('username LIKE ?', "%#{params[:search_term]}%").limit(9)
+    @tags = Tag.where('name LIKE ?', "%#{params[:search_term]}%").limit(9)
+
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.update("search-results", @all_posts.count
-        )
+        render turbo_stream: turbo_stream.update("search-results", partial: "components/search_results")
       end
     end
   end

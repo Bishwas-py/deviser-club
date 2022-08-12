@@ -1,0 +1,35 @@
+<div class="px-4 pt-7 space-y-6">
+  <% if @posts.any? %>
+    <div class="space-y-1">
+      <h2 class="power-nav-heading">Posts</h2>
+      <div class="flex flex-col gap-3">
+        <%= render "global/post_titles", posts: @posts %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @quick_tweets.any? %>
+    <div class="space-y-1">
+      <h2 class="power-nav-heading">Quick Tweets</h2>
+      <div class="flex flex-col gap-3">
+        <%= render "global/quick_tweet_titles", quick_tweets: @quick_tweets %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @users.any? %>
+    <div class="space-y-1">
+      <h2 class="power-nav-heading">Users</h2>
+      <div class="block">
+        <%= render "global/user_titles", users: @users %>
+      </div>
+    </div>
+  <% end %>
+
+  <% if @tags.any? %>
+    <div class="space-y-1">
+      <h2 class="power-nav-heading mb-2">Tags</h2>
+      <div><%= render "global/tag_titles", tags: @tags %></div>
+    </div>
+  <% end %>
+</div>

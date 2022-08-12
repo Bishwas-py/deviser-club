@@ -1,14 +1,42 @@
 <div class="bg-gradient-to-b from-gray-100 sticky flex flex-col top-0 px-3 py-2">
-  <%= form_with url: search_content_path, class: "p-2 w-full flex bg-white rounded-full border" do |form| %>
+  <%= button_tag class: "py-3 px-2 w-full flex bg-white rounded-full border",
+     data: {
+       controller: 'togglebar',
+       action: 'togglebar#toggleNavDrop',
+       togglebar_body_param: "search-section"
+     }      do |form| %>
     <div class="px-2 w-fit self-center">
       <%= icon "fa-solid", "search" %>
     </div>
     <div class="self-center">
-      <%= form.search_field :search_term,
-        oninput: "this.form.requestSubmit()",
-        placeholder: "Search Here",
-        class: "text-gray-700 border-0 focus:outline-none focus:ring-0" %>
+      <%= content_tag :div, 'Search', class: "text-gray-700 border-0 focus:outline-none focus:ring-0" %>
     </div>
   <% end %>
-    <div id="search-results"></div>
 </div>
+
+<div id="search-section" class="hidden overflow-y-scroll overflow-x-hidden max-h-screen no-scrollbar fixed top-0 left-0 w-full min-h-screen bg-purple-50/80 dark:bg-black/80 py-11 backdrop-blur smart-padding">
+  <div class="flex flex-col top-0 px-3 py-2">
+    <%= form_with url: search_content_path, class: "h-16 overflow-hidden w-full flex bg-white rounded-full border" do |form| %>
+      <div class="px-7 w-fit self-center">
+        <%= icon "fa-solid", "search", class: "dark:text-black" %>
+      </div>
+      <div class="self-center w-full">
+        <%= form.search_field :search_term,
+                              oninput: "this.form.requestSubmit()",
+                              placeholder: "Search Here",
+                              class: "w-full text-gray-700 border-0 focus:outline-none focus:ring-0" %>
+      </div>
+      <%= button_to '',
+          class: "h-full bg-neutral-200 dark:bg-neutral-900 px-5 self-center",
+          data: {
+            controller: 'togglebar',
+            action: 'togglebar#toggleNavDrop',
+            togglebar_body_param: "search-section"
+          } do %>
+        <%= icon 'fa-solid', 'times', class: "" %>
+      <% end %>
+    <% end %>
+    <div id="search-results"></div>
+  </div>
+</div>
+
