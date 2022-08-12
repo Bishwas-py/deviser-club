@@ -105,7 +105,7 @@
     }
     .go-to-btn.active {
         @apply rounded-full text-gray-900;
-        @apply bg-stone-200 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-white;
+        @apply bg-slate-100 dark:bg-gray-800 dark:text-gray-50 dark:hover:text-white;
     }
     .small-badge {
         @apply inline-block mx-2 px-2 bg-slate-100 rounded-md p-1;
