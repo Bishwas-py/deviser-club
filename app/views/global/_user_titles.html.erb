@@ -1,6 +1,6 @@
 <% users.each do |user| %>
   <%= link_to profile_show_path(user.friendly_id), class: "bg-white dark:bg-slate-700 m-1 rounded-full px-3 py-2 inline-block" do %>
-    <div class="flex">
+    <div class="flex space-x-2">
       <%= image_tag user.profile.my_avatar, class: "w-7 h-7 self-center rounded-full object-cover" %>
       <%= user.username %>
     </div>
