@@ -27,14 +27,14 @@ class Post < ApplicationRecord
   end
 
   def similiar_posts
-    self.taggables.joins(:tag)
-        .where.not(id: id)
-        .where(tags: { id: tags.ids })
-        # .select(
-        #   'posts.*',
-        #   'COUNT(tags.*) AS tags_in_common'
-        # )
-        # .group(:id)
-        # .order(tags_in_common: :desc)
+    Post.joins(:tags). # You need to query the Post table
+    where.not(posts: { id: self.id }). # Exclude this post
+    where(tags: { id: self.tags.ids }). # Get similar tags
+      #select(
+      #       'posts.*',
+      #       'COUNT(tags.*) AS tags_in_common'
+      #     ).
+      group(:id).
+      order(tags_in_common: :desc)
   end
 end

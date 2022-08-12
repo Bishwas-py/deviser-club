@@ -23,9 +23,7 @@
     <%= render "profile/profile", profile: @post.user.profile %>
     <div class="px-7 flex flex-col gap-5">
       <h2 class="power-nav-heading">Some related posts</h2>
-      <% @post.tags.each do |tag| %>
-        <%= render "global/post_titles", posts: tag.posts.where.not(id: @post.id).limit(7) %>
-      <% end %>
+      <%= render "global/post_titles", posts: @post.similiar_posts.limit(7) %>
     </div>
   <% end %>
 
