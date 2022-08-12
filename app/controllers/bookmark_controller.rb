@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BookmarkController < ApplicationController
   before_action :authenticate_user! #-> routes to the login / signup if not authenticated
 
@@ -9,11 +11,13 @@ class BookmarkController < ApplicationController
     respond_to do |format|
       @bookmark = current_user.bookmarks.create(bookmark_params)
       if @bookmark.save
-        format.turbo_stream {
-          render turbo_stream: turbo_stream.replace("#{@bookmark.bookmarkable.model_name.name}-#{@bookmark.bookmarkable.id}_bookmarks", partial: "bookmark/create", locals: { bookmarkable: @bookmark.bookmarkable })
-        }
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.replace(
+            "#{@bookmark.bookmarkable.model_name.name}-#{@bookmark.bookmarkable.id}_bookmarks", partial: 'bookmark/create', locals: { bookmarkable: @bookmark.bookmarkable }
+          )
+        end
       else
-        format.html { redirect_to @bookmark.bookmarkable, notice: "Unable to bookmark." }
+        format.html { redirect_to @bookmark.bookmarkable, notice: 'Unable to bookmark.' }
       end
     end
   end
@@ -22,10 +26,12 @@ class BookmarkController < ApplicationController
     @bookmark = current_user.bookmarks.find(params[:id])
     @bookmark.destroy
     respond_to do |format|
-      format.turbo_stream {
-        render turbo_stream: turbo_stream.replace("#{@bookmark.bookmarkable.model_name.name}-#{@bookmark.bookmarkable.id}_bookmarks", partial: "bookmark/create", locals: { bookmarkable: @bookmark.bookmarkable })
-      }
-      format.html { redirect_to @bookmark.bookmarkable, notice: "Unable to bookmark." }
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace(
+          "#{@bookmark.bookmarkable.model_name.name}-#{@bookmark.bookmarkable.id}_bookmarks", partial: 'bookmark/create', locals: { bookmarkable: @bookmark.bookmarkable }
+        )
+      end
+      format.html { redirect_to @bookmark.bookmarkable, notice: 'Unable to bookmark.' }
     end
   end
 

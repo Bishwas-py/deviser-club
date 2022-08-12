@@ -1,21 +1,21 @@
+# frozen_string_literal: true
+
 class ProfileController < ApplicationController
-  before_action :authenticate_user!, only: %i[ index edit update ]
-  before_action :set_profile, only: %i[ index update edit ]
+  before_action :authenticate_user!, only: %i[index edit update]
+  before_action :set_profile, only: %i[index update edit]
 
   def show
     @profile = User.friendly.find(params[:id]).profile
   end
 
-  def index
-  end
+  def index; end
 
-  def edit
-  end
+  def edit; end
 
   def update
     respond_to do |format|
       if @profile.update(profile_params)
-        format.html { redirect_to edit_profile_index_path, notice: "Profile was successfully updated." }
+        format.html { redirect_to edit_profile_index_path, notice: 'Profile was successfully updated.' }
         format.json { render :show, status: :ok, location: @profile }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -23,7 +23,9 @@ class ProfileController < ApplicationController
       end
     end
   end
+
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_profile
     @profile = Profile.find_or_create_by(user_id: current_user.id)
@@ -33,5 +35,4 @@ class ProfileController < ApplicationController
   def profile_params
     params.require(:profile).permit(:name, :bio, :description, :avatar)
   end
-
 end

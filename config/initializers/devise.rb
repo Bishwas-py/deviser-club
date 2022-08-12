@@ -19,10 +19,9 @@ class TurboFailureApp < Devise::FailureApp
   end
 
   def skip_format?
-    %w(html turbo_stream */*).include? request_format.to_s
+    %w[html turbo_stream */*].include? request_format.to_s
   end
 end
-
 
 Devise.setup do |config|
   # The secret key used by Devise. Devise uses this key to generate
@@ -41,7 +40,7 @@ Devise.setup do |config|
   # note that it will be overwritten if you use your own mailer class
   # with default "from" parameter.
 
-  config.mailer_sender = ENV.fetch("FROM_EMAIL", 'informer@deviser.club')
+  config.mailer_sender = ENV.fetch('FROM_EMAIL', 'informer@deviser.club')
 
   # Configure the class responsible to send e-mails.
   # config.mailer = 'Devise::Mailer'
@@ -63,7 +62,7 @@ Devise.setup do |config|
   # session. If you need permissions, you should implement that in a before filter.
   # You can also supply a hash where the value is a boolean determining whether
   # or not authentication should be aborted when the value is not present.
-  config.authentication_keys = [ :login ]
+  config.authentication_keys = [:login]
 
   # Configure parameters from the request object used for authentication. Each entry
   # given should be a request method and it will automatically be passed to the

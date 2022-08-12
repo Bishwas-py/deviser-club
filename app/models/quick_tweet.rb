@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class QuickTweet < ApplicationRecord
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
@@ -9,17 +11,14 @@ class QuickTweet < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   def title
-    Nokogiri::HTML(self.content).xpath('//text()').map(&:text).join(' ').truncate(100)
+    Nokogiri::HTML(content).xpath('//text()').map(&:text).join(' ').truncate(100)
   end
 
   def excerpt
-    Nokogiri::HTML(self.content).xpath('//text()').map(&:text).join(' ').truncate(300)
+    Nokogiri::HTML(content).xpath('//text()').map(&:text).join(' ').truncate(300)
   end
-  after_create_commit -> {
-    broadcast_prepend_to :quick_tweets, target: "quick_tweets", locals: { quick_tweets: :quick_tweets }
+  after_create_commit lambda {
+    broadcast_prepend_to :quick_tweets, target: 'quick_tweets', locals: { quick_tweets: :quick_tweets }
     #                      turbo_stream_from          with be replace by this            with this id             using these values
   }
-
 end
-
-

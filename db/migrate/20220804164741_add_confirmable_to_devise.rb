@@ -1,12 +1,15 @@
+# frozen_string_literal: true
+
 class AddConfirmableToDevise < ActiveRecord::Migration[7.0]
   def self.up
     add_column :users, :confirmation_token, :string
     add_column :users, :confirmed_at,       :datetime
-    add_column :users, :confirmation_sent_at , :datetime
+    add_column :users, :confirmation_sent_at, :datetime
     add_column :users, :unconfirmed_email, :string
 
-    add_index  :users, :confirmation_token, :unique => true
+    add_index  :users, :confirmation_token, unique: true
   end
+
   def self.down
     remove_index  :users, :confirmation_token
 
@@ -21,5 +24,4 @@ class AddConfirmableToDevise < ActiveRecord::Migration[7.0]
   # t.datetime :confirmed_at
   # t.datetime :confirmation_sent_at
   # t.string   :unconfirmed_email # Only if using reconfirmable
-
 end

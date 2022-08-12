@@ -1,8 +1,11 @@
+# frozen_string_literal: true
+
 require 'rmagick'
 include Magick
 module ImageGenHelper
   def word_wrap(line)
     return line if line.length <= 25
+
     line.gsub(/(.{1,20})(\s+|$)/, "\\1\n").strip
   end
 
