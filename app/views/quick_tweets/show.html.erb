@@ -4,7 +4,7 @@
   <% render "quick_tweets/meta" %>
 <% end %>
 
-<%= render "components/aside_bar" do %>
+<%= render "components/aside_bar/aside_bar" do %>
   <div class="page-posting-section grid place-items-center">
     <div>
       <%= turbo_stream_from @quick_tweet, class: "hidden" %>

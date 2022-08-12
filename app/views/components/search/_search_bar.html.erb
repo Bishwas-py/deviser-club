@@ -1,0 +1,16 @@
+<div class="flex flex-col w-full px-3 py-2">
+  <%= button_tag class: "py-3 px-2 w-full flex bg-white rounded-full border",
+     data: {
+       controller: 'togglebar',
+       action: 'togglebar#toggleNavDrop',
+       togglebar_body_param: "search-section"
+     }      do |form| %>
+    <div class="px-2 w-fit self-center">
+      <%= icon "fa-solid", "search", class: "dark:text-black" %>
+    </div>
+    <div class="self-center">
+      <%= content_tag :div, 'Search', class: "text-gray-700 border-0 focus:outline-none focus:ring-0" %>
+    </div>
+  <% end %>
+</div>
+

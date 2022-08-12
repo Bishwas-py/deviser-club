@@ -42,7 +42,7 @@
         @apply dark:hover:bg-gray-600 dark:bg-gray-700;
     }
     .super-rounded-btn {
-        @apply rounded-full h-7 w-7 grid place-items-center float-right;
+        @apply rounded-full h-7 w-7 grid place-items-center;
         @apply  hover:bg-yellow-50 bg-slate-50;
         @apply  dark:hover:bg-yellow-500 dark:bg-slate-500;
     }

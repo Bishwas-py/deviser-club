@@ -1,6 +1,6 @@
 <%= content_for(:title, "Quick Tweets ~ Deviser Club") %>
 
-<%= render "components/aside_bar" do %>
+<%= render "components/aside_bar/aside_bar" do %>
   <main id="all_quick_tweets" class="h-auto min-h-screen min-w-0 block smart-padding pt-20">
     <%= render "components/tab_menus", path: new_quick_tweet_path, text: "Add a new quick tweet" %>
 

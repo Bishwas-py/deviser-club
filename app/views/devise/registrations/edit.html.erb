@@ -1,6 +1,6 @@
 <%= content_for(:title, "Your deviser account settings") %>
 
-<%= render "components/setting-navbar" do %>
+<%= render "components/setting/setting-navbar" do %>
   <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put, class: 'space-x-5 w-full w-lg' }) do |f| %>
     <%= render "devise/shared/error_messages", resource: resource %>
     <div class="space-y-7">
