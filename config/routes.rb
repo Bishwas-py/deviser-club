@@ -6,8 +6,13 @@ Rails.application.routes.draw do
       get :edit
     end
   end
-  root 'global#index'
-  get '/select' => 'global#select'
+  
+  root "global#index"
+  match 'search' => 'global#search', :via => [:post], :as => 'search_content'
+
+
+  get "/select" => "global#select"    # only for text editor testing purpose!
+
 
   resources :likes, only: %i[create destroy]
   resources :tags

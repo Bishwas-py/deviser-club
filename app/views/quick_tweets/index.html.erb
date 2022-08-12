@@ -1,16 +1,10 @@
 <%= content_for(:title, "Quick Tweets ~ Deviser Club") %>
 
-<%= render "components/aside_bar" do %>
-  <main id="all_quick_tweets" class="h-auto min-w-0 block text-sm smart-padding pt-28 divide-y">
-    <%= link_to new_quick_tweet_path, class: "group flex space-x-2 text-center mb-7 text-xl" do %>
-      <div class="plus-new-button">
-        <%= icon "fa-regular", "plus", class: "text-xl" %>
-      </div>
-      <div class="self-center">
-        Add a new <u>tweet</u> post
-      </div>
-    <% end %>
-    <div id="quick_tweets" class="w-full">
+<%= render "components/aside_bar/aside_bar" do %>
+  <main id="all_quick_tweets" class="h-auto min-h-screen min-w-0 block smart-padding pt-20">
+    <%= render "components/tab_menus", path: new_quick_tweet_path, text: "Add a new quick tweet" %>
+
+    <div id="quick_tweets" class="w-full divide-y dark:divide-slate-700">
       <%= render @quick_tweets %>
     </div>
   </main>

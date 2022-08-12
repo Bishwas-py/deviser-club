@@ -12,4 +12,19 @@ class GlobalController < ApplicationController
                               .limit(20)
     @all_posts = (@posts + @quick_tweets).shuffle
   end
+
+  def search
+    @posts =  Post.where(
+      "title ILIKE '%#{params[:search_term]}%' OR
+      body ILIKE '%#{params[:search_term]}%'").limit(9)
+    @quick_tweets = QuickTweet.where('content ILIKE ?', "%#{params[:search_term]}%").limit(9)
+    @users = User.where('username ILIKE ?', "%#{params[:search_term]}%").limit(9)
+    @tags = Tag.where('name ILIKE ?', "%#{params[:search_term]}%").limit(9)
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update("search-results", partial: "components/search/search_results")
+      end
+    end
+  end
 end

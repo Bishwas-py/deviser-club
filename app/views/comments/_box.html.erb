@@ -5,9 +5,11 @@
   <div class="z-20 fixed bg-slate-300/50 backdrop-blur h-screen w-full top-0 right-0" data-controller="comment"></div>
   <div class="z-20 fixed h-screen w-full md:w-96 top-0 right-0">
     <div class="float-right p-7 dark:bg-cyan-900 bg-white/90 backdrop-blur shadow-xl w-full h-full flex flex-col">
-      <%= button_to '', class: "super-rounded-btn", data: { controller: "comment" } do %>
-        <%= icon 'fa-solid', 'times', class: "" %>
-      <% end %>
+      <div class="flex justify-end">
+        <%= button_tag '', class: "super-rounded-btn", data: { controller: "comment" } do %>
+          <%= icon 'fa-solid', 'times', class: "" %>
+        <% end %>
+      </div>
       <div class="flex flex-col gap-3">
         <%= turbo_frame_tag "comments_count_top", class: "text-2xl font-bold" do %>
           Comments(<%= commentable.comments.count %>)

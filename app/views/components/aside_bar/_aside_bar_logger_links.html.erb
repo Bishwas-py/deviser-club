@@ -14,6 +14,17 @@
       Toogle Power Nav
     </div>
   </button>
+
+  <%= button_tag class: "toogle-bar-item text-left w-full",
+                 data: {
+                   controller: 'togglebar',
+                   action: 'togglebar#toggleNavDrop',
+                   togglebar_body_param: "search-section"
+                 }      do |form| %>
+    <div>
+      Search
+    </div>
+  <% end %>
 <% end %>
 <hr class="border-gray-200 dark:border-gray-700 ">
 <%= link_to profile_show_path(current_user.friendly_id), class: "toogle-bar-item" do %>

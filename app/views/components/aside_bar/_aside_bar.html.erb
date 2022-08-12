@@ -1,18 +1,23 @@
 <div class="flex flex-row">
+  <%# LEFT CONTENT %>
   <aside class="side-bar">
     <nav class="h-screen flex flex-col">
       <div class="side-bar-top-item">
         <%= image_tag "fav.png", class: "w-12 rounded-xl" %>
       </div>
       <div class="navigational-items h-full justify-center flex flex-col">
-        <%= render "components/aside_bar_links" %>
+        <%= render "components/aside_bar/aside_bar_links" %>
       </div>
-      <%= render "components/aside_bar_logger" %>
+      <%= render "components/aside_bar/aside_bar_logger" %>
     </nav>
   </aside>
+
+  <%# MIDDLE CONTENT %>
   <div class="w-full">
+
     <%= yield %>
-    <aside class="sticky bottom-0 md:bottom-7 w-full shrink-0">
+
+    <div class="sticky bottom-0 md:bottom-7 w-full shrink-0">
       <% if yield(:down_bar_up_kit).presence %>
         <div class="place-items-center grid mb-7 ">
           <%= yield (:down_bar_up_kit) %>
@@ -20,7 +25,7 @@
       <% end %>
 
       <nav class="md:hidden navigational-items dark:bg-gray-800">
-        <%= render "components/aside_bar_links" %>
+        <%= render "components/aside_bar/aside_bar_links" %>
         <% if user_signed_in? %>
           <div class="relative">
             <%= button_tag class: "mx-auto cursor-pointer flex justify-center h-full w-full aside-menu-element #{is_active "profile"}", data: {
@@ -32,7 +37,7 @@
               rounded-full object-cover" %>
             <% end %>
             <div id="bottom-nav-bar-body" class="hidden duration-200 absolute right-0 bottom-20 sm:bottom-24 right-3 z-20 w-56 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800">
-              <%= render "components/aside_bar_logger_links" %>
+              <%= render "components/aside_bar/aside_bar_logger_links" %>
             </div>
           </div>
         <% else %>
@@ -41,22 +46,29 @@
           <% end %>
         <% end %>
       </nav>
-    </aside>
+    </div>
   </div>
 
+  <%# RIGHT CONTENT %>
   <% if yield(:right_aside_bar).presence %>
     <div class="hidden lg:block power-nav" id="right_aside_bar">
-      <%= button_to '',
-        class: "lg:hidden super-rounded-btn mr-7 mt-7", data: { controller: "togglebar",
-        togglebar_body_param:"right_aside_bar",
-        action: "togglebar#toggleNavDrop"} do %>
-        <%= icon 'fa-solid', 'times', class: "" %>
-      <% end %>
+      <div class="mt-4">
+        <div class="lg:hidden flex justify-end pr-4">
+          <%= button_tag '',
+                         class: "super-rounded-btn self-center",
+                         data: { controller: "togglebar",
+                                 togglebar_body_param:"right_aside_bar",
+                                 action: "togglebar#toggleNavDrop"} do %>
+            <%= icon 'fa-solid', 'times', class: "" %>
+          <% end %>
+        </div>
+        <%= render "components/search/search_bar" %>
+      </div>
       <div class="min-h-screen">
         <%= yield (:right_aside_bar) %>
       </div>
-      <div class="w-full h-10 bg-gradient-to-t from-neutral-300  sticky bottom-0"></div>
     </div>
+    <%= render "components/search/search_bar_overlay" %>
   <% end %>
 
 </div>
