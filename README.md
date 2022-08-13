@@ -1,4 +1,5 @@
 # Deviser Club : A Multi Blogging Platform with Ruby On Rails
+> Open source medium alternative: A discussion club for devised people
 
 [Deviser Club](http://deviser.club/) is developed with the heart of publishers
 freedom and author's authority, with better audience experience. No overly complexified stuff here, simple is better than complex. 
