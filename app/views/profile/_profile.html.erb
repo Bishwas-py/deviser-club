@@ -26,7 +26,7 @@
       <%= "#{'like'.pluralize likes_count}" %>
     </div>
     <div class="small-badge">
-      <%= bookmarked_count = Bookmark.where(bookmarkable: profile.user.posts).count %>
+      <%= bookmarked_count = Bookmark.where(bookmarkable: profile.user.posts).count + Bookmark.where(bookmarkable: profile.user.quick_tweets).count %>
       <%= "#{'bookmarked content'.pluralize bookmarked_count}" %>
     </div>
     <div class="small-badge">
