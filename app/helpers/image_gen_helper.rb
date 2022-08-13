@@ -29,7 +29,7 @@ module ImageGenHelper
     file_name.gsub!(/\s+/, '-')         # Convert whitespaces to dashes
     file_name.gsub!(/-\z/, '')          # Remove trailing dashes
     file_name.gsub!(/-+/, '-')          # get rid of double-dashes
-    FileUtils.mkdir_p 'app/assets/bg-img'
+    FileUtils.mkdir_p 'app/bg-img'
 
     image.write("app/bg-img/#{file_name}.png")
     [File.open("app/bg-img/#{file_name}.png"), "#{file_name}.png"]
