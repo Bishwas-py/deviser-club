@@ -23,7 +23,7 @@
       <div class="input-father">
         <%= f.label :avatar, class: "input-label" %>
         <div class="flex space-x-3">
-          <%= image_tag(@profile.my_avatar, class: "rounded-full w-12 h-12 my-auto") %>
+          <%= image_tag(@profile.my_avatar, class: "rounded-full w-12 h-12 my-auto object-cover") %>
 
           <%= f.file_field :avatar, class: "input-box-2" %>
         </div>
