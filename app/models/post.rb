@@ -20,6 +20,7 @@ class Post < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
 
+  # trim leading and trailing spaces: suggested by @diwash007
   def content_emptiness
     pure_text = Nokogiri::HTML(body).
       xpath('//text()').map(&:text).join('').

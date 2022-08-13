@@ -15,6 +15,7 @@ class QuickTweet < ApplicationRecord
   has_one_attached :image, dependent: :destroy
   has_many :bookmarks, as: :bookmarkable, dependent: :destroy
 
+  # trim leading and trailing spaces: suggested by @diwash007
   def content_emptiness
     pure_text = Nokogiri::HTML(content).
       xpath('//text()').map(&:text).join('').
