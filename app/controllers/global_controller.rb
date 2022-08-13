@@ -22,6 +22,7 @@ class GlobalController < ApplicationController
     end
   end
 
+  protected
   def csp(param)
     # Clear search parameter,
     # basically removes all the html and return clean text.

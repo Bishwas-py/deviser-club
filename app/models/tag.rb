@@ -8,4 +8,9 @@ class Tag < ApplicationRecord
   extend FriendlyId
   friendly_id :name, use: :slugged
 
+
+  def mixed_posts
+    self.posts + QuickTweet.where("content ILIKE '%#{self.name}%'")
+  end
+
 end
