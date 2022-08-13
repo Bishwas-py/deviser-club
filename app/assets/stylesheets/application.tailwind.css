@@ -16,7 +16,18 @@
         @apply dark:bg-slate-900;
         @apply dark:text-slate-50;
     }
+    .posts-father {
+        @apply h-auto min-h-screen block smart-padding pt-14;
+    }
+    .posts-seperator {
+        @apply divide-y dark:divide-slate-700;
+    }
+    .post-box {
+        @apply overflow-hidden;
+        @apply px-6 py-10;
+    }
     .excerpt {
+        @apply break-all;
         @apply text-gray-700 text-2xl text-base;
         @apply dark:text-gray-100;
     }

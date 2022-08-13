@@ -2,9 +2,9 @@
 <%= content_for(:title, "Deviser Club ~ A discussion club for devised people") %>
 
 <%= render "components/aside_bar/aside_bar" do %>
-  <main id="all_posts" class="h-auto min-h-screen min-w-0 block smart-padding pt-20">
+  <main id="all_posts" class="posts-father">
     <%= render "components/tab_menus", path: new_quick_tweet_path, text: "Add a new quick tweet" %>
-    <div class="divide-y dark:divide-slate-700">
+    <div class="posts-seperator">
       <%= render @all_posts %>
     </div>
   </main>

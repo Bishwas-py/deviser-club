@@ -1,9 +1,9 @@
 <%= content_for(:title, "Posts ~ Deviser Club") %>
 
 <%= render "components/aside_bar/aside_bar" do %>
-  <main id="all_posts" class="h-auto min-h-screen min-w-0 block smart-padding pt-20">
+  <main id="all_posts" class="posts-father">
     <%= render "components/tab_menus", path: new_post_path, text: "Add a new article post" %>
-    <div id="posts" class="w-full divide-y dark:divide-slate-700">
+    <div id="posts" class="posts-seperator">
       <%= render @posts %>
     </div>
   </main>

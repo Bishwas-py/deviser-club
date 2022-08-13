@@ -12,8 +12,10 @@
         <div class="space-y-1 space-x-2">
           <%= render @post.tags %>
         </div>
-        <h1><%= @post.title %></h1>
-        <%= @post.body.html_safe %>
+        <h1 class="break-all"><%= @post.title %></h1>
+        <div class="break-all">
+          <%= @post.body.html_safe %>
+        </div>
       </div>
     </div>
   </div>
