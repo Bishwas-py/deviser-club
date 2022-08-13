@@ -11,7 +11,7 @@
     </div>
     <%= link_to profile_show_path(quick_tweet.user.friendly_id) do %>
       <span class="sweet-info group" title="<%= quick_tweet.created_at.to_fs %>">
-          Posted by <strong class="group-hover:bg-indigo-700"><%= quick_tweet.user.username %></strong>
+          Posted by <strong class="group-hover:text-indigo-700"><%= quick_tweet.user.username %></strong>
       </span>
     <% end %>
   </div>
