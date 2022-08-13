@@ -17,13 +17,22 @@ class Post < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
 
+  before_save -> {
+    self.generate_og_image
+  }
   def excerpt
     Nokogiri::HTML(self.body).xpath('//text()').map(&:text).join(' ').truncate(300)
   end
+
   def reading_time
     words_per_minute = 150
     text = Nokogiri::HTML(self.body).at('body').inner_text
     (text.scan(/\w+/).length / words_per_minute).to_i
+  end
+
+  def generate_og_image
+    image_file_io, image_name = ApplicationController.helpers.create_og_image(self.title)
+    self.image.attach(io: image_file_io, filename: image_name, content_type: 'image/png')
   end
 
   def similiar_posts
