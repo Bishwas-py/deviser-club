@@ -29,9 +29,6 @@ class QuickTweetsController < ApplicationController
     @quick_tweet.ip_field = request.remote_ip
     @quick_tweet.user = current_user
 
-    # should remove invalid chars
-    @quick_tweet.content = helpers.purify @quick_tweet.content
-
     respond_to do |format|
       if @quick_tweet.save
         @quick_tweet.generate_og_image
@@ -49,8 +46,6 @@ class QuickTweetsController < ApplicationController
 
   # PATCH/PUT /quick_tweets/1 or /quick_tweets/1.json
   def update
-    @quick_tweet.content = helpers.purify @quick_tweet.content
-
     respond_to do |format|
       if @quick_tweet.update(quick_tweet_params)
         @quick_tweet.broadcast_update partial: "quick_tweets/tweet_cert", target: "#{helpers.dom_id(@quick_tweet)}_target"

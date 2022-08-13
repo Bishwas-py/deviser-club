@@ -1,7 +1,7 @@
 <%= turbo_stream_from post %>
 <div class="break-inside-avoid group w-full" id="<%= dom_id post %>">
 
-  <div class="px-6 py-10">
+  <div class="px-6 py-10 max-w-3xl overflow-x-hidden">
       <span class="text-neutral-500 space-x-2 block mb-2" title="Author: <%= post.user.profile.get_name %>">
        <%= link_to profile_show_path(post.user.friendly_id), class: "author-info group inline-block mb-2", title: "Author: #{post.user.profile.get_name}" do %>
         Posted by <strong><%= post.user.profile.get_name %></strong>

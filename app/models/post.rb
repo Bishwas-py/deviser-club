@@ -1,6 +1,9 @@
 class Post < ApplicationRecord
   validates :title,  length: { minimum: 4, maximum: 500 }
   validates :body,  length: { minimum: 70, maximum: 99889 }
+  validate :content_emptiness
+  before_save :purify
+
   belongs_to :user, optional: false
 
   has_many :comments, as: :commentable, dependent: :destroy
@@ -16,6 +19,19 @@ class Post < ApplicationRecord
   friendly_id :title, use: :slugged
 
   default_scope { order(created_at: :desc) }
+
+  def content_emptiness
+    pure_text = Nokogiri::HTML(body).
+      xpath('//text()').map(&:text).join('').
+      strip
+    if pure_text.length <= 0
+      errors.add :post, "is completely empty, please write something!"
+    end
+  end
+
+  def purify
+    self.body = ApplicationController.helpers.purify self.body
+  end
 
   def excerpt
     Nokogiri::HTML(self.body).xpath('//text()').map(&:text).join(' ').truncate(300)

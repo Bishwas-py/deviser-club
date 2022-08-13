@@ -1,6 +1,6 @@
 <%= turbo_stream_from quick_tweet %>
 <div class="break-inside-avoid" id="<%= dom_id quick_tweet %>">
-  <div class="px-6 py-10">
+  <div class="px-6 py-10 max-w-3xl overflow-x-hidden" >
     <%= link_to profile_show_path(quick_tweet.user.friendly_id), class: "text-neutral-500 group inline-block mb-2", title: "Author: #{quick_tweet.user.username}" do %>
         <span class="author-info block mb-2" title="Author: <%= quick_tweet.user.username %>">
             Posted by <strong><%= quick_tweet.user.username %></strong>
