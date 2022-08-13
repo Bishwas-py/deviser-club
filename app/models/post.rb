@@ -20,6 +20,7 @@ class Post < ApplicationRecord
   before_save -> {
     self.generate_og_image
   }
+
   def excerpt
     Nokogiri::HTML(self.body).xpath('//text()').map(&:text).join(' ').truncate(300)
   end
@@ -30,15 +31,15 @@ class Post < ApplicationRecord
     (text.scan(/\w+/).length / words_per_minute).to_i
   end
 
-  def generate_og_image
-    image_file_io, image_name = ApplicationController.helpers.create_og_image(self.title)
-    self.image.attach(io: image_file_io, filename: image_name, content_type: 'image/png')
-  end
-
   def similiar_posts
     Post.joins(:tags). # You need to query the Post table
     where.not(posts: { id: self.id }). # Exclude this post
     where(tags: { id: self.tags.ids }). # Get similar tags
       group(:id)
+  end
+
+  def generate_og_image
+    image_file_io, image_name = ApplicationController.helpers.create_og_image(self.title)
+    self.image.attach(io: image_file_io, filename: image_name, content_type: 'image/png')
   end
 end

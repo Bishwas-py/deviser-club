@@ -21,14 +21,15 @@ class QuickTweet < ApplicationRecord
     Nokogiri::HTML(self.content).xpath('//text()').map(&:text).join(' ').truncate(100)
   end
 
+  def excerpt
+    Nokogiri::HTML(self.content).xpath('//text()').map(&:text).join(' ').truncate(300)
+  end
+
   def generate_og_image
     image_file_io, image_name = ApplicationController.helpers.create_og_image(self.title)
     self.image.attach(io: image_file_io, filename: image_name, content_type: 'image/png')
   end
 
-  def excerpt
-    Nokogiri::HTML(self.content).xpath('//text()').map(&:text).join(' ').truncate(300)
-  end
 end
 
 
