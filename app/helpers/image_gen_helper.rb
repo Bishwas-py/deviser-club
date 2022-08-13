@@ -32,6 +32,9 @@ module ImageGenHelper
     FileUtils.mkdir_p 'app/bg-img'
 
     image.write("app/bg-img/#{file_name}.png")
-    [File.open("app/bg-img/#{file_name}.png"), "#{file_name}.png"]
+    image_file_io = File.open("app/bg-img/#{file_name}.png") # object
+    image_data = [image_file_io, "#{file_name}.png"]
+    File.delete(image_file_io)
+    image_data
   end
 end
