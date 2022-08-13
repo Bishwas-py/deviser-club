@@ -11,7 +11,11 @@ class GlobalController < ApplicationController
       "title ILIKE '%#{params[:search_term]}%' OR
       body ILIKE '%#{params[:search_term]}%'").limit(9)
     @quick_tweets = QuickTweet.where('content ILIKE ?', "%#{params[:search_term]}%").limit(9)
-    @users = User.where('username ILIKE ?', "%#{params[:search_term]}%").limit(9)
+    @users =  User.joins(:profile).where(
+      "username ILIKE '%#{params[:search_term]}%' OR
+      name ILIKE '%#{params[:search_term]}%' OR
+      bio ILIKE '%#{params[:search_term]}%'"
+    ).limit(9)
     @tags = Tag.where('name ILIKE ?', "%#{params[:search_term]}%").limit(9)
 
     respond_to do |format|
