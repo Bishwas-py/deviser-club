@@ -29,9 +29,10 @@ class QuickTweetsController < ApplicationController
     @quick_tweet.ip_field = request.remote_ip
     @quick_tweet.user = current_user
 
+    @quick_tweet.generate_og_image
+
     respond_to do |format|
       if @quick_tweet.save
-        @quick_tweet.generate_og_image
         format.html { redirect_to quick_tweet_url(@quick_tweet) }
         format.json { render :show, status: :created, location: @quick_tweet }
       else

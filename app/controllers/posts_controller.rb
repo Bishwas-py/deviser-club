@@ -26,10 +26,10 @@ class PostsController < ApplicationController
     @post = Post.new(post_params.except(:tags))
     create_or_delete_post_tags(@post, params[:post][:tags],)
     @post.user = current_user
+
+    @post.generate_og_image
     respond_to do |format|
       if @post.save
-        @post.generate_og_image
-
         format.html { redirect_to post_url(@post) }
         format.json { render :show, status: :created, location: @post }
       else
