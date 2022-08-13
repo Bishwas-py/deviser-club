@@ -34,6 +34,7 @@ class QuickTweetsController < ApplicationController
 
     respond_to do |format|
       if @quick_tweet.save
+        @quick_tweet.generate_og_image
         format.html { redirect_to quick_tweet_url(@quick_tweet) }
         format.json { render :show, status: :created, location: @quick_tweet }
       else

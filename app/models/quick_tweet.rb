@@ -9,9 +9,6 @@ class QuickTweet < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
 
-  before_save -> {
-    self.generate_og_image
-  }
   after_create_commit -> {
     broadcast_prepend_to :quick_tweets, target: "quick_tweets", locals: { quick_tweets: :quick_tweets }
     #                      turbo_stream_from          with be replace by this            with this id             using these values

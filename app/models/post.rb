@@ -17,10 +17,6 @@ class Post < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
 
-  before_save -> {
-    self.generate_og_image
-  }
-
   def excerpt
     Nokogiri::HTML(self.body).xpath('//text()').map(&:text).join(' ').truncate(300)
   end
