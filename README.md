@@ -41,6 +41,7 @@ rails db:create
 
 Then, you need to migrate the database.
 
+
 ```bash
 rails db:migrate
 ```
@@ -200,11 +201,6 @@ domain url and start serving the world through Deviser Club.
 
 ## Preview
 Here are some screenshots of deviser club
-![home](https://user-images.githubusercontent.com/42182303/183409826-bbed839c-93f7-4db6-8c96-f245683bfad0.png)
-![bookmarks](https://user-images.githubusercontent.com/42182303/183409854-5001ebdb-fc32-4979-98df-0614ecb9d429.png)
-![post page](https://user-images.githubusercontent.com/42182303/183409868-15624423-d255-4a43-b8e8-eaefbdbaab4f.png)
-![comments in posts](https://user-images.githubusercontent.com/42182303/183409883-f07c18fd-e8d6-435c-a6c0-414e4b2f789e.png)
-![quick tweets](https://user-images.githubusercontent.com/42182303/183409916-f15c4c61-543c-4255-a20b-be651dbd556d.png)
-![comment in quick tweets](https://user-images.githubusercontent.com/42182303/183409928-d2e61f03-d0e2-47db-bc78-18753b815463.png)
-![writing a post](https://user-images.githubusercontent.com/42182303/183409938-9f3e6992-4acf-4198-bf23-da9c8f57dfc4.png)
+![image](https://user-images.githubusercontent.com/42182303/184522909-5823b02f-9fd9-4949-bf94-43a10a101f3b.png)
+
 
