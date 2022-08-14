@@ -201,6 +201,6 @@ domain url and start serving the world through Deviser Club.
 
 ## Preview
 Here are some screenshots of deviser club
-![image](https://user-images.githubusercontent.com/42182303/184522909-5823b02f-9fd9-4949-bf94-43a10a101f3b.png)
+[![open source medium alternative: deviser club](https://user-images.githubusercontent.com/42182303/184522909-5823b02f-9fd9-4949-bf94-43a10a101f3b.png)](https://imgur.com/gallery/gaWxaBT)
 
 
