@@ -30,6 +30,9 @@
         @apply overflow-hidden;
         @apply px-6 py-10;
     }
+    .content-box {
+        @apply break-words;
+    }
     .excerpt {
         @apply break-words;
         @apply text-gray-700 text-2xl text-base;
