@@ -31,9 +31,10 @@
 !/tmp/storage/
 !/tmp/storage/.keep
 config/database.yml
-/public/assets
 
-public/*
+/public/*
+!/public/fav.png
+
 dbdeviser_club
 # Ignore master key for decrypting credentials and more.
 /config/master.key
