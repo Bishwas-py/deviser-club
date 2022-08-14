@@ -6,7 +6,7 @@
 
 <%= render "components/aside_bar/aside_bar" do %>
   <div class="page-posting-section">
-    <div>
+    <div class="mt-20">
       <%= turbo_stream_from @quick_tweet, class: "hidden" %>
       <%= render "tweet_cert", quick_tweet: @quick_tweet %>
     </div>
