@@ -24,9 +24,7 @@
         <%= link_to edit_quick_tweet_path, class: "box" do %>
           <%= icon "fa-regular", "edit", class: "dark:text-white" %>
         <% end %>
-        <%= button_to @quick_tweet, method: :delete, class: "box" do %>
-          <%= icon "fa-solid", "trash", class: "dark:text-white" %>
-        <% end %>
+        <%= render "components/delete_btn", delete_path: quick_tweet_path %>
       <% end %>
     </div>
   <% end %>

@@ -1,0 +1,20 @@
+<div class="relative">
+  <%= button_tag '',
+                 data: {
+                   controller: 'togglebar',
+                   action: 'togglebar#toggleNavDrop',
+                   togglebar_body_param: "deletePost"
+                 },
+                 class: "box rounded-r-xl" do %>
+    <%= icon "fa-solid", "trash" %>
+  <% end %>
+  <div id='deletePost' class="hidden group absolute flex flex-col w-56 bottom-12 right-0 rounded gap-y-2 bg-rose-100/90 dark:bg-rose-700/90 p-3">
+    <span class="font-extrabold text-rose-600 dark:text-rose-100">
+      Are you really really sure?
+    </span>
+    <%= button_to delete_path, method: :delete, class: "space-x-2 rounded-full bg-rose-400/20 px-4 py-2" do %>
+      <%= icon "fa-solid", "trash", class: "my-auto group-hover:animate-bounce" %>
+      <span>Delete, OK!</span>
+    <% end %>
+  </div>
+</div>

@@ -41,9 +41,7 @@
         <%= link_to edit_post_path, class: "box" do %>
           <%= icon "fa-regular", "edit" %>
         <% end %>
-        <%= button_to post_path, method: :delete, class: "box" do %>
-          <%= icon "fa-solid", "trash" %>
-        <% end %>
+        <%= render "components/delete_btn", delete_path: post_path %>
       <% end %>
     </div>
   <% end %>
