@@ -16,8 +16,12 @@
         @apply dark:bg-slate-900;
         @apply dark:text-slate-50;
     }
+    .smart-margin {
+        @apply mx-3 sm:mx-5 md:mx-10 lg:mx-16 xl:mx-20;
+    }
     .posts-father {
-        @apply h-auto min-h-screen block smart-padding pt-14;
+        @apply h-auto min-h-screen block mt-7 md:mt-10;
+        @apply smart-padding;
     }
     .posts-seperator {
         @apply divide-y dark:divide-slate-700;
@@ -27,7 +31,7 @@
         @apply px-6 py-10;
     }
     .excerpt {
-        @apply break-all;
+        @apply break-words;
         @apply text-gray-700 text-2xl text-base;
         @apply dark:text-gray-100;
     }

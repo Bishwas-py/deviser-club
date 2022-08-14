@@ -13,10 +13,8 @@
   </aside>
 
   <%# MIDDLE CONTENT %>
-  <div class="w-full">
-
+  <div class="w-full min-w-0">
     <%= yield %>
-
     <div class="sticky bottom-0 md:bottom-7 w-full shrink-0">
       <% if yield(:down_bar_up_kit).presence %>
         <div class="place-items-center grid mb-7 ">

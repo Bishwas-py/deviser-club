@@ -11,12 +11,12 @@
     <% end %>
     <%= link_to quick_tweet do %>
       <div>
-        <h3 class="font-bold break-all text-3xl mb-2 text-slate-700 dark:text-stone-100">
+        <h3 class="font-bold break-words text-3xl mb-2 text-slate-700 dark:text-stone-100">
           <%= quick_tweet.title.truncate(40) %>
         </h3>
-        <span class="excerpt">
-        <%= quick_tweet.excerpt %>
-      </span>
+        <div class="excerpt">
+          <%= quick_tweet.excerpt %>
+        </div>
       </div>
       <div class="mt-3">
         <div class="block mb-2 space-x-2">
