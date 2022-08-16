@@ -36,6 +36,7 @@ export default class extends Controller {
             onUpdate: ({ editor }) => {
                 const html = editor.getHTML();
                 this.textboxTarget.value = html;
+                this.textboxTarget.form.requestSubmit();
             },
             content: this.textboxTarget.value,
             origcontent: `Just Gold Old Text wandering around!`,
@@ -110,12 +111,10 @@ export default class extends Controller {
         if (numberOfInActiveHeadings === 6) {
             headerButton.style.backgroundColor = null;
             headerButton.classList.remove('ring-1')
-            headerButton.classList.remove('text-slate-700 dark:text-slate-50')
             headerButton.classList.remove('ring-slate/50')
         } else {
             headerButton.classList.add('ring-1')
             headerButton.style.backgroundColor = "transparent";
-            headerButton.classList.add('text-slate-700 dark:text-slate-50')
 
             headerButton.classList.add('ring-slate/50 dark:text-slate-300')
         }

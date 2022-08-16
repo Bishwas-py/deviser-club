@@ -1,6 +1,10 @@
 class Post < ApplicationRecord
-  validates :title,  length: { minimum: 4, maximum: 500 }
-  validates :body,  length: { minimum: 70, maximum: 99889 }
+  attr_accessor :skip_validations
+
+  validates :title,  length: { minimum: 4, maximum: 500 }, unless: :skip_validations
+  validates :body,  length: { minimum: 70, maximum: 99889 }, unless: :skip_validations
+  validates :draft, uniqueness: { scope: :user_id }, if: :draft?
+
   validate :content_emptiness
   before_save :purify
 

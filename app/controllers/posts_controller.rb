@@ -14,7 +14,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.new
+    @post = Post.find_by(draft: true, user: current_user) || Post.new
   end
 
   # GET /posts/1/edit
@@ -23,35 +23,69 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @post = Post.new(post_params.except(:tags))
+    @post = Post.find_by(draft: true, user: current_user) || Post.new(post_params.except(:tags))
+    @post.title = post_params[:title]
+    @post.body = post_params[:body]
+    @post.draft = params[:commit].nil?
+
     create_or_delete_post_tags(@post, params[:post][:tags],)
     @post.user = current_user
-
-    @post.generate_og_image
     respond_to do |format|
-      if @post.save
-        format.html { redirect_to post_url(@post) }
-        format.json { render :show, status: :created, location: @post }
+      if @post.draft
+        @post.skip_validations = true
+        if @post.save
+          format.turbo_stream {
+            render turbo_stream: turbo_stream.replace(
+              "error_explanation", partial: 'components/errors',
+              locals: { errors: @post.errors })
+          }
+        end
+        format.turbo_stream
       else
-        format.turbo_stream {
-          render turbo_stream: turbo_stream.replace("error_explanation", partial: 'components/errors', locals: { errors: @post.errors })
-        }
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        if @post.save
+          @post.generate_og_image
+          format.html { redirect_to post_url(@post) }
+          format.json { render :show, status: :created, location: @post }
+        else
+          format.turbo_stream {
+            render turbo_stream: turbo_stream.replace(
+              "error_explanation", partial: 'components/errors',
+              locals: { errors: @post.errors })
+          }
+          format.html { render :new, status: :unprocessable_entity }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
+    @post.draft = params[:commit].nil?
     create_or_delete_post_tags(@post, params[:post][:tags],)
     respond_to do |format|
-      if @post.update(post_params.except(:tags))
-        format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
-        format.json { render :show, status: :ok, location: @post }
+      if @post.draft
+        @post.skip_validations = true
+        if @post.update(post_params.except(:tags))
+          format.turbo_stream {
+            render turbo_stream: turbo_stream.replace(
+              "error_explanation", partial: 'components/errors',
+              locals: { errors: @post.errors })
+          }
+        end
       else
-        format.html { render :edit, status: :unprocessable_entity, notice: "Post was not updated." }
-        format.json { render json: @post.errors, status: :unprocessable_entity }
+        if @post.update(post_params.except(:tags))
+          format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
+          format.json { render :show, status: :ok, location: @post }
+        else
+          format.turbo_stream {
+            render turbo_stream: turbo_stream.replace(
+              "error_explanation", partial: 'components/errors',
+              locals: { errors: @post.errors })
+          }
+          format.html { render :edit, status: :unprocessable_entity, notice: "Post was not updated." }
+          format.json { render json: @post.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
@@ -89,6 +123,7 @@ class PostsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def post_params
+    puts "params #{params}"
     params.require(:post).permit(:title, :body, :id, :tags)
   end
 end
