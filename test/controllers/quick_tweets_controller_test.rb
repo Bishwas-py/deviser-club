@@ -17,7 +17,7 @@ class QuickTweetsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create quick_tweet" do
     assert_difference("QuickTweet.count") do
-      post quick_tweets_url, params: { quick_tweet: { content: @quick_tweet.content } }
+      post quick_tweets_url, params: { quick_tweet: { content: @quick_tweet.body } }
     end
 
     assert_redirected_to quick_tweet_url(QuickTweet.last)
@@ -34,7 +34,7 @@ class QuickTweetsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update quick_tweet" do
-    patch quick_tweet_url(@quick_tweet), params: { quick_tweet: { content: @quick_tweet.content } }
+    patch quick_tweet_url(@quick_tweet), params: { quick_tweet: { content: @quick_tweet.body } }
     assert_redirected_to quick_tweet_url(@quick_tweet)
   end
 

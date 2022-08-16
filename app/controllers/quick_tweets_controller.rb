@@ -82,6 +82,6 @@ class QuickTweetsController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def quick_tweet_params
-    params.require(:quick_tweet).permit(:content)
+    params.require(:quick_tweet).permit(:body)
   end
 end

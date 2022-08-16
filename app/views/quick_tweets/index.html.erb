@@ -5,6 +5,7 @@
     <%= render "components/tab_menus", path: new_quick_tweet_path, text: "Add a new quick tweet" %>
 
     <div id="quick_tweets" class="posts-seperator">
+      <%= turbo_stream_from :quick_tweets %>
       <%= render @quick_tweets %>
     </div>
   </main>

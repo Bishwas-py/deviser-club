@@ -1,5 +1,5 @@
 class QuickTweet < ApplicationRecord
-  validates :content, presence: true, length: { minimum: 10, maximum: 1000 }, uniqueness: true
+  validates :body, presence: true, length: { minimum: 10, maximum: 1000 }, uniqueness: true
   validate :content_emptiness
   before_save :purify
 
@@ -17,23 +17,23 @@ class QuickTweet < ApplicationRecord
 
   # trim leading and trailing spaces: suggested by @diwash007
   def content_emptiness
-    pure_text = Nokogiri::HTML(content).
+    pure_text = Nokogiri::HTML(body).
       xpath('//text()').map(&:text).join('').
       strip
     if pure_text.length <= 0
-      errors.add :content, "is completely empty, please write something!"
+      errors.add :body, "is completely empty, please write something!"
     end
   end
 
   def purify
-    self.content = ApplicationController.helpers.purify self.content
+    self.body = ApplicationController.helpers.purify self.body
   end
   def title
-    Nokogiri::HTML(self.content).xpath('//text()').map(&:text).join(' ').truncate(100)
+    Nokogiri::HTML(self.body).xpath('//text()').map(&:text).join(' ').truncate(100)
   end
 
   def excerpt
-    Nokogiri::HTML(self.content).xpath('//text()').map(&:text).join(' ').truncate(300)
+    Nokogiri::HTML(self.body).xpath('//text()').map(&:text).join(' ').truncate(300)
   end
 
   def generate_og_image

@@ -14,7 +14,7 @@ class QuickTweetsTest < ApplicationSystemTestCase
     visit quick_tweets_url
     click_on "New quick tweet"
 
-    fill_in "Content", with: @quick_tweet.content
+    fill_in "Content", with: @quick_tweet.body
     click_on "Create Quick tweet"
 
     assert_text "Quick tweet was successfully created"
@@ -25,7 +25,7 @@ class QuickTweetsTest < ApplicationSystemTestCase
     visit quick_tweet_url(@quick_tweet)
     click_on "Edit this quick tweet", match: :first
 
-    fill_in "Content", with: @quick_tweet.content
+    fill_in "Content", with: @quick_tweet.body
     click_on "Update Quick tweet"
 
     assert_text "Quick tweet was successfully updated"
