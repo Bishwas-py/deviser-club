@@ -11,6 +11,7 @@
     <meta property="og:image:type" content="image/png"/>
     <meta property="og:image:width" content="1024"/>
     <meta property="og:image:height" content="512"/>
+    <meta name="msapplication-config" content="/browserconfig.xml" />
 
     <% if yield(:meta).presence %>
       <%= yield(:meta) %>
@@ -25,6 +26,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= favicon_link_tag "#{request.base_url}/fav.png", rel: 'shortcut icon' %>
     <%= favicon_link_tag "#{request.base_url}/fav.png", rel: 'apple-touch-icon', type: 'image/png' %>
+    <%= favicon_link_tag "#{request.base_url}/fav.png", rel: 'mask-icon', type: 'image/png' %>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
