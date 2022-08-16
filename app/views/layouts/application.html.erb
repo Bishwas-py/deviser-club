@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta charset="utf-8">
     <meta name="author" content="github.com/Bishwas-py/deviser-club">
     <meta name="license" content="This webapp is built using github.com/Bishwas-py/deviser-club. Deviser.Club is it's main product!">
     <title><%= yield(:title) %></title>
@@ -29,6 +30,8 @@
     <%= csp_meta_tag %>
     <%= stylesheet_link_tag "tailwind", "dm-sans", "data-turbo-track": "reload" %>
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= render "components/script_tags" %>
+
     <%= javascript_importmap_tags %>
     <%= hotwire_livereload_tags if Rails.env.development? %>
   </head>
