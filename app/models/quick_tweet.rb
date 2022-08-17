@@ -2,7 +2,7 @@ class QuickTweet < ApplicationRecord
   attr_accessor :skip_validations
   attribute :draft, default: true
 
-  validates_with ContentLengthValidator, :minimum=> 10, :maximum=> 450, :word_count=>3, unless: :skip_validations
+  validates_with ContentLengthValidator, :minimum=> 10, :maximum=> 750, :word_count=>3, unless: :skip_validations
   validates :body, presence: true, length: { minimum: 10, maximum: 1000 }, unless: :skip_validations
   validates :body, uniqueness: true
 
