@@ -193,7 +193,8 @@
     }
 
     .bg-authentication {
-        @apply grid place-items-center h-screen bg-slate-100 dark:bg-slate-900;
+        @apply grid place-items-center min-h-screen;
+        @apply bg-slate-100 dark:bg-slate-900;
     }
     .input-box-2 {
         @apply border-0 focus:outline-none focus:ring-0 w-full shadow p-3 rounded;
