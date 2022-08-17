@@ -1,5 +1,5 @@
 class GlobalController < ApplicationController
-  before_action :authenticate_user!, except: [:drafts]
+  before_action :authenticate_user!, only: [:drafts]
 
   def index
     @posts = Post.published.
