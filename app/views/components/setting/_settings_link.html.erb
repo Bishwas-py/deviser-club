@@ -1,8 +1,8 @@
 <div class="h-full w-80 flex md:flex-col md:space-y-4 md:space-x-0 space-x-2 mb-7">
-  <%= link_to edit_profile_index_path, class: "tab-button #{is_active "profile"}" do %>
+  <%= link_to edit_profile_index_path, class: "tab-button #{is_active "profile", "edit"}" do %>
     Tweak Profile
   <% end %>
-  <%= link_to edit_user_registration_path, class: "tab-button #{is_active "devise/registrations"}" do %>
+  <%= link_to edit_user_registration_path, class: "tab-button #{is_active "devise/registrations", "edit"}" do %>
     Account Settings
   <% end %>
 </div>
