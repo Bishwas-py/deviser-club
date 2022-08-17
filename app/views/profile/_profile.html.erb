@@ -1,7 +1,9 @@
 <div class="flex flex-col space-y-5 p-4 lg:p-10">
   <div class="space-y-2">
     <div class="rounded-full p-2 bg-gradient-to-b from-blue-300 to-indigo-400 w-24 h-24">
-      <%= image_tag profile.my_avatar, class: "h-full w-full rounded-full shadow object-cover" %>
+      <%= image_tag profile.my_avatar,
+          class: "h-full w-full rounded-full shadow object-cover",
+          alt: "Article by  #{profile.user.username} | #{profile.name}"%>
     </div>
     <h2 class="text-xl text-neutral-700 font-bold dark:text-neutral-50">
       <%= profile.get_name %>
