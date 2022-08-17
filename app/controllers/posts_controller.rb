@@ -61,18 +61,17 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
-    @post.draft = params[:commit].nil?
+    @post.draft = (@post.draft and params[:commit].nil?)
     create_or_delete_post_tags(@post, params[:post][:tags],)
     respond_to do |format|
-      if @post.draft
+      if params[:commit].nil?
         @post.skip_validations = true
-        if @post.update(post_params.except(:tags))
-          format.turbo_stream {
-            render turbo_stream: turbo_stream.replace(
-              "error_explanation", partial: 'components/errors',
-              locals: { errors: @post.errors })
-          }
-        end
+        @post.update(post_params.except(:tags))
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.replace(
+            "error_explanation", partial: 'components/errors',
+            locals: { errors: @post.errors })
+        }
       else
         if @post.update(post_params.except(:tags))
           format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }

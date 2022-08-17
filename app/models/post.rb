@@ -1,11 +1,13 @@
 class Post < ApplicationRecord
+  include ActiveModel::Validations
+
   attr_accessor :skip_validations
 
-  validates :title,  length: { minimum: 4, maximum: 500 }, unless: :skip_validations
+  validates_with ContentLengthValidator, :minimum=> 70, :maximum=> 99889, unless: :skip_validations
   validates :body,  length: { minimum: 70, maximum: 99889 }, unless: :skip_validations
   validates :draft, uniqueness: { scope: :user_id }, if: :draft?
 
-  validate :content_emptiness
+
   before_save :purify
 
   belongs_to :user, optional: false
@@ -27,13 +29,10 @@ class Post < ApplicationRecord
   scope :published, -> { where(draft: false) }
 
   # trim leading and trailing spaces: suggested by @diwash007
-  def content_emptiness
-    pure_text = Nokogiri::HTML(body).
-      xpath('//text()').map(&:text).join('').
+
+  def pure_text
+    Nokogiri::HTML(body).xpath('//text()').map(&:text).join('').
       strip
-    if pure_text.length <= 0
-      errors.add :post, "is completely empty, please write something!"
-    end
   end
 
   def purify
@@ -62,3 +61,4 @@ class Post < ApplicationRecord
     self.image.attach(io: image_file_io, filename: image_name, content_type: 'image/png')
   end
 end
+

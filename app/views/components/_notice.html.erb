@@ -1,27 +1,29 @@
 <% if notice %>
-  <div id="notification" class="smart-padding py-2 bg-green-50 text-green-500 font-medium flex justify-between"
-       onload="">
-    <span class="text-center w-full">
-      <%= simple_format notice %>
-    </span>
-    <button
-        onclick="document.getElementById('notification').style.display = 'none'"
-        class="rounded-full h-6 w-6 grid place-items-center my-auto bg-teal-700/90 text-white">
-      &times;
-    </button>
+  <div id="error_explanation"
+       class="fixed right-1 top-2 sm:w-fit sm:top-4 sm:right-7 z-50 space-y-2">
+    <div
+      data-controller="self-destroy"
+      class="flex justify-between bg-red-100/70 backdrop-blur w-80 text-red-500 font-medium rounded-xl overflow-hidden">
+      <div class="py-2 px-3 grid place-items-center"><%= simple_format notice %></div>
+      <button
+        class="bg-red-100/70 grid place-items-center
+          px-4 text-2xl md:text-3xl text-white">&times;
+      </button>
+    </div>
   </div>
 <% end %>
 
 <% if alert %>
-  <div id="alert" class="smart-padding py-2 bg-red-50 text-red-500 font-medium flex justify-between"
-       onload="">
-    <span class="text-center w-full">
-      <%= simple_format alert %>
-    </span>
-    <button
-        onclick="document.getElementById('alert').style.display = 'none'"
-        class="rounded-full h-6 w-6 grid place-items-center my-auto bg-rose-700/90 text-white">
-      &times;
-    </button>
+  <div id="error_explanation"
+       class="fixed right-1 top-2 sm:w-fit sm:top-4 sm:right-7 z-50 space-y-2">
+    <div
+      data-controller="self-destroy"
+      class="flex justify-between bg-green-100/70 backdrop-blur w-80 text-green-500 font-medium rounded-xl overflow-hidden">
+      <div class="py-2 px-3 grid place-items-center"><%= simple_format notice %></div>
+      <button
+        class="bg-green-100/70 grid place-items-center
+          px-4 text-2xl md:text-3xl text-white">&times;
+      </button>
+    </div>
   </div>
 <% end %>

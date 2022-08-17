@@ -20,5 +20,6 @@ module DeviserClub
     config.assets.configure do |env|
       env.export_concurrent = false
     end
+    config.autoload_paths += %W[#{config.root}/lib/validators/]
   end
 end

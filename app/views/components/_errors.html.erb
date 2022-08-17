@@ -1,11 +1,15 @@
-<div id="<%= defined?(error_id) ? error_id : "error_explanation" %>">
+<div id="<%= defined?(error_id) ? error_id : "error_explanation" %>"
+     class="fixed right-1 top-2 sm:w-fit sm:top-4 sm:right-7 z-50 space-y-2">
   <% if defined? errors and errors.count > 0 %>
-    <div class="bg-red-50 text-red-500 font-medium">
-      <ul class="py-2 px-3 grid place-items-center">
-        <% errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
-    </div>
+    <% errors.each do |error| %>
+      <div
+        data-controller="self-destroy"
+        class="flex justify-between bg-red-100/70 backdrop-blur w-80 text-red-500 font-medium rounded-xl overflow-hidden">
+        <div class="py-2 px-3 grid place-items-center"><%= error.full_message %></div>
+        <button
+          class="bg-red-100/70 grid place-items-center
+          px-4 text-2xl md:text-3xl text-white">&times;</button>
+      </div>
+    <% end %>
   <% end %>
 </div>
