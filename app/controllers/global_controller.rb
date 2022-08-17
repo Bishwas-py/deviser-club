@@ -1,4 +1,6 @@
 class GlobalController < ApplicationController
+  before_action :authenticate_user!, except: [:drafts]
+
   def index
     @posts = Post.published.
       left_outer_joins(:likes, :bookmarks).group('posts.id').
@@ -10,8 +12,8 @@ class GlobalController < ApplicationController
     @all_posts = (@posts + @quick_tweets).shuffle
   end
   def drafts
-    @posts = Post.where(draft: true)
-    @quick_tweets = QuickTweet.where(draft: true)
+    @posts = Post.where(draft: true, user: current_user)
+    @quick_tweets = QuickTweet.where(draft: true, user: current_user)
     @all_posts = @posts + @quick_tweets
     render(:template => "global/index")
   end
