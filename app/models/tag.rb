@@ -10,7 +10,7 @@ class Tag < ApplicationRecord
 
 
   def mixed_posts
-    self.posts + QuickTweet.where("content ILIKE '%#{self.name}%'")
+    self.posts + QuickTweet.where("body ILIKE '%#{self.name}%'")
   end
 
 end

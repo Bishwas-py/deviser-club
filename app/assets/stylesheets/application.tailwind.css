@@ -9,8 +9,12 @@
         @apply ring;
     }
     .tag-block {
-        @apply bg-neutral-100 px-2 py-1 rounded-lg text-neutral-700 inline-block;
+        @apply bg-neutral-100 px-2 py-1 m-1 rounded-lg text-neutral-700 inline-block;
         @apply dark:bg-neutral-900 dark:text-neutral-100;
+    }
+    .tag-block.active{
+        @apply bg-neutral-200 text-neutral-800;
+        @apply dark:bg-neutral-800 dark:text-neutral-50;
     }
     .main-body {
         @apply dark:bg-slate-900;
