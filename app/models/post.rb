@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   include ActiveModel::Validations
+  attribute :draft, default: true
 
   attr_accessor :skip_validations
 

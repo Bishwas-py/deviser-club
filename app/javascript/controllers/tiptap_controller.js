@@ -36,7 +36,7 @@ export default class extends Controller {
             ],
             onUpdate: ({editor}) => {
                 this.textboxTarget.value = editor.getHTML();
-                if (this.textboxTarget.getAttribute('is_draft') === 'false') {
+                if (this.textboxTarget.getAttribute('is_draft') === 'true') {
                     this.textboxTarget.form.requestSubmit();
                 }
             },
