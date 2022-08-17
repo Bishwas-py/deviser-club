@@ -1,11 +1,11 @@
 <div class="p-3 flex flex-col gap-5">
   <h2 class="power-nav-heading">Latest Posts</h2>
-  <%= render "global/post_titles", posts: Post.first(5) %>
+  <%= render "global/post_titles", posts: Post.published.first(5) %>
 </div>
 <hr/>
 <div class="p-3 flex flex-col gap-5">
   <h2 class="power-nav-heading">Latest Tweets</h2>
-  <%= render "global/quick_tweet_titles", quick_tweets: QuickTweet.first(5) %>
+  <%= render "global/quick_tweet_titles", quick_tweets: QuickTweet.published.first(5) %>
 </div>
 <hr/>
 <div class="p-3 flex flex-col gap-5">

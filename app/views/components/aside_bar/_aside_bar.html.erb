@@ -26,7 +26,7 @@
         <%= render "components/aside_bar/aside_bar_links" %>
         <% if user_signed_in? %>
           <div class="relative">
-            <%= button_tag class: "mx-auto cursor-pointer flex justify-center h-full w-full aside-menu-element #{is_active "profile"}", data: {
+            <%= button_tag class: "mx-auto cursor-pointer flex justify-center h-full w-full aside-menu-element #{is_active "profile", "index"}", data: {
               controller: 'togglebar',
               action: 'togglebar#toggleNavDrop',
               togglebar_body_param: "bottom-nav-bar-body"

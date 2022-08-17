@@ -1,4 +1,4 @@
-<%= link_to root_path, class: "aside-menu-element #{is_active "global"}" do %>
+<%= link_to root_path, class: "aside-menu-element #{is_active "global", "index"}" do %>
   <%= icon "fa-solid", "house-user", class: "self-center" %>
 <% end %>
 <a href="#!" class="aside-menu-element">
@@ -7,10 +7,10 @@
       <span class="bg-red-100/70 rounded-full w-5 h-5 absolute -top-1 backdrop-blur left-3 text-sm grid place-items-center">1</span>
     </span>
 </a>
-<%= link_to bookmark_index_path, class: "aside-menu-element #{is_active "bookmark"}" do %>
+<%= link_to bookmark_index_path, class: "aside-menu-element #{is_active "bookmark", "index"}" do %>
   <%= icon "fa-regular", "bookmark", class: "self-center" %>
 <% end %>
 <hr class="md:block w-7 hidden self-center"/>
-<%= link_to new_post_path, class: "aside-menu-element #{is_active "posts"}" do %>
+<%= link_to new_post_path, class: "aside-menu-element #{is_active "bookmark", "edit"}" do %>
   <%= icon "fa-regular", "edit", class: "self-center" %>
 <% end %>

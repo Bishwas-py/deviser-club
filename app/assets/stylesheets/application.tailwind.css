@@ -119,6 +119,7 @@
     }
     .go-to-btn {
         @apply px-4 py-2 text-lg text-gray-600 hover:text-gray-800;
+        @apply shrink-0;
         @apply hover:font-bold dark:text-gray-100 dark:hover:text-gray-50;
     }
     .go-to-btn.active {

@@ -24,6 +24,8 @@ class Post < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
 
+  scope :published, -> { where(draft: false) }
+
   # trim leading and trailing spaces: suggested by @diwash007
   def content_emptiness
     pure_text = Nokogiri::HTML(body).

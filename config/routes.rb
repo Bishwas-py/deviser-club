@@ -8,8 +8,7 @@ Rails.application.routes.draw do
   root "global#index"
 
   match 'search' => 'global#search', :via => [:post], :as => 'search_content'
-
-  get "/select" => "global#select"
+  match 'draft' => 'global#drafts', :via => [:get], :as => 'drafts'
 
   resources :likes, only: [:create, :destroy]
   resources :tags

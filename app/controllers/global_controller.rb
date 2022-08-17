@@ -1,14 +1,25 @@
 class GlobalController < ApplicationController
   def index
-    @posts = Post.left_outer_joins(:likes, :bookmarks).group('posts.id').order('count(bookmarks.id) desc, count(likes.id) desc').limit(20)
-    @quick_tweets = QuickTweet.left_outer_joins(:likes, :bookmarks).group('quick_tweets.id').order('count(bookmarks.id) desc, count(likes.id) desc, watches desc').limit(20)
+    @posts = Post.published.
+      left_outer_joins(:likes, :bookmarks).group('posts.id').
+      order('count(bookmarks.id) desc, count(likes.id) desc').limit(20)
+    @quick_tweets = QuickTweet.published.
+      left_outer_joins(:likes, :bookmarks).group('quick_tweets.id').
+      order('count(bookmarks.id) desc, count(likes.id) desc, watches desc').limit(20)
 
     @all_posts = (@posts + @quick_tweets).shuffle
   end
-
+  def drafts
+    @posts = Post.where(draft: true)
+    @quick_tweets = QuickTweet.where(draft: true)
+    @all_posts = @posts + @quick_tweets
+    render(:template => "global/index")
+  end
   def search
-    @quick_tweets = QuickTweet.where(self.ssq "content").limit(9)
-    @posts = Post.where("#{self.sq "title"} OR #{self.ssq "body"}").limit(9)
+    @quick_tweets = QuickTweet.published.
+      where(self.ssq "content").limit(9)
+    @posts = Post.published.
+      where("#{self.sq "title"} OR #{self.ssq "body"}").limit(9)
     @users = User.joins(:profile).
       where(
         "#{self.sq "username"} OR #{self.sq "name"} OR #{self.csq "bio"}"

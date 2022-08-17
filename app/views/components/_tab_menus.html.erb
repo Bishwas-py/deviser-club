@@ -1,12 +1,19 @@
 <div class="">
-  <div class="flex justify-end mb-7">
-    <%= link_to quick_tweets_path, class: "go-to-btn #{is_active "quick_tweets"}" do %>
-      <%= icon 'fa-solid', 'truck' %> <span>Quick Tweets</span>
-    <% end %>
-
-    <%= link_to posts_path, class: "go-to-btn #{is_active "posts"}" do %>
-      <%= icon 'fa-solid', 'newspaper' %> <span>Posts</span>
-    <% end %>
+  <div class="flex justify-end w-full  relative">
+    <div class="flex mb-7 w-full overflow-x-scroll no-scrollbar">
+      <%= link_to quick_tweets_path, class: "go-to-btn #{is_active "quick_tweets", "index"}" do %>
+        <%= icon 'fa-solid', 'truck' %> <span>Quick Tweets</span>
+      <% end %>
+      <%= link_to posts_path, class: "go-to-btn #{is_active "posts", "index"}" do %>
+        <%= icon 'fa-solid', 'newspaper' %> <span>Posts</span>
+      <% end %>
+      <% if user_signed_in? %>
+        <%= link_to drafts_path, class: "go-to-btn #{is_active "global", "drafts"}" do %>
+          <%= icon 'fa-solid', 'floppy-disk' %> <span>Drafts</span>
+        <% end %>
+      <% end %>
+    </div>
+    <div class="absolute right-0 h-full w-20 bg-gradient-to-l from-white dark:from-slate-900"></div>
   </div>
   <hr class="dark:border-slate-700"/>
   <%= link_to path, class: "group flex space-x-2 text-center py-5 text-xl" do %>
