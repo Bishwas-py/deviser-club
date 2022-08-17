@@ -1,20 +1,24 @@
 <% if user_signed_in? %>
 
   <div class="relative">
-    <%= button_to "", class: "side-bar-bottom-item #{is_active "profile", "index"}", data: {
-      controller: 'togglebar',
-      action: 'togglebar#toggleNavDrop',
-      togglebar_body_param: "nav-bar-body"
-    } do %>
+    <%= button_to "",
+        "aria-label": "Mobile side bar",
+        class: "side-bar-bottom-item #{is_active "profile", "index"}", data: {
+        controller: 'togglebar',
+        action: 'togglebar#toggleNavDrop',
+        togglebar_body_param: "nav-bar-body"
+      } do %>
       <%= image_tag current_user.profile.my_avatar, class: "w-12 h-12
-              rounded-full object-cover" %>
+              rounded-full object-cover", alt: "#{current_user.username} - #{current_user.profile.name}" %>
     <% end %>
     <div id="nav-bar-body" class="hidden duration-200 absolute left-32 bottom-7 z-20 w-56 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800">
-        <%= render "components/aside_bar/aside_bar_logger_links" %>
+      <%= render "components/aside_bar/aside_bar_logger_links" %>
     </div>
   </div>
 <% else %>
-  <%= link_to new_user_session_path, class: "aside-menu-element dark:bg-slate-700  border-t dark:border-slate-900" do %>
+  <%= link_to new_user_session_path,
+              "aria-label": "Login in to deviser club",
+              class: "aside-menu-element dark:bg-slate-700  border-t dark:border-slate-900" do %>
     <%= icon "fa-solid", "sign-in", class: "self-center dark:text-white" %>
   <% end %>
 <% end %>

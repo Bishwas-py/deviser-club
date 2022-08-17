@@ -39,7 +39,8 @@
             </div>
           </div>
         <% else %>
-          <%= link_to new_user_session_path, class: "aside-menu-element" do %>
+          <%= link_to new_user_session_path, class: "aside-menu-element",
+                      "aria-label": "Login in to deviser club" do %>
             <%= icon "fa-solid", "sign-in", class: "self-center" %>
           <% end %>
         <% end %>
