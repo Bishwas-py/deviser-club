@@ -1,6 +1,7 @@
 <div class="">
-  <div class="flex justify-end w-full  relative">
+  <div class="flex w-full relative">
     <div class="flex mb-7 w-full overflow-x-scroll no-scrollbar">
+      <div class="flex-1"></div>
       <%= link_to quick_tweets_path, class: "go-to-btn #{is_active "quick_tweets", "index"}" do %>
         <%= icon 'fa-solid', 'truck' %> <span>Quick Tweets</span>
       <% end %>
@@ -13,7 +14,7 @@
         <% end %>
       <% end %>
     </div>
-    <div class="absolute right-0 h-full w-20 bg-gradient-to-l from-white dark:from-slate-900"></div>
+    <div class="absolute block sm:hidden right-0 h-full w-20 bg-gradient-to-l from-white dark:from-slate-900"></div>
   </div>
   <hr class="dark:border-slate-700"/>
   <%= link_to path, class: "group flex space-x-2 text-center py-5 text-xl" do %>
