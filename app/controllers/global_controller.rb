@@ -17,7 +17,7 @@ class GlobalController < ApplicationController
   end
   def search
     @quick_tweets = QuickTweet.published.
-      where(self.ssq "content").limit(9)
+      where(self.ssq "body").limit(9)
     @posts = Post.published.
       where("#{self.sq "title"} OR #{self.ssq "body"}").limit(9)
     @users = User.joins(:profile).
