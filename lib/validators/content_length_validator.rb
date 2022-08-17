@@ -5,10 +5,10 @@ class ContentLengthValidator < ActiveModel::Validator
     word_count = options[:word_count] || 6
 
     if max_length_is_eligible(record.pure_text, maximum)
-      record.errors.add :body, "should have text count more than #{minimum}."
+      record.errors.add :body, "should have text count less than #{maximum}."
     end
     if min_length_is_eligible(record.pure_text, minimum)
-      record.errors.add :body, "should have text count less than #{maximum}."
+      record.errors.add :body, "should have text count less than #{minimum}."
     end
     if zero_length_is_eligible(record.pure_text)
       record.errors.add :body, "show not by empty."
