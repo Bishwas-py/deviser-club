@@ -2,22 +2,37 @@ class ContentLengthValidator < ActiveModel::Validator
   def validate(record)
     minimum = options[:minimum]
     maximum = options[:maximum]
-    if length_is_eligible(record.pure_text, minimum, maximum)
-      record.errors.add :body, "should have text count more than #{minimum} and less than #{maximum}."
+    word_count = options[:word_count] || 6
+
+    if max_length_is_eligible(record.pure_text, maximum)
+      record.errors.add :body, "should have text count more than #{minimum}."
     end
-    if word_count_is_less(record.pure_text)
-      record.errors.add :body, "has less tha 6 word count. Write more than 6 words."
+    if min_length_is_eligible(record.pure_text, minimum)
+      record.errors.add :body, "should have text count less than #{maximum}."
+    end
+    if zero_length_is_eligible(record.pure_text)
+      record.errors.add :body, "show not by empty."
+    end
+
+    if word_count_is_less(record.pure_text, word_count)
+      record.errors.add :body, "should have more than #{word_count} words."
     end
   end
 
   private
-  def length_is_eligible(pure_text, minimum, maximum)
-    pure_text.length == 0
-    pure_text.length >= minimum
-    pure_text.length <= maximum
+  def max_length_is_eligible(pure_text, max)
+    not pure_text.length <= max
   end
 
-  def word_count_is_less(pure_text)
-    pure_text.split(' ').count <= 6
+  def min_length_is_eligible(pure_text, min)
+    not pure_text.length >= min
+  end
+
+  def zero_length_is_eligible(pure_text)
+    pure_text.length == 0
+  end
+
+  def word_count_is_less(pure_text, word_count)
+    pure_text.split(' ').count <= word_count
   end
 end

@@ -33,13 +33,12 @@ class PostsController < ApplicationController
     respond_to do |format|
       if @post.draft
         @post.skip_validations = true
-        if @post.save
-          format.turbo_stream {
-            render turbo_stream: turbo_stream.replace(
-              "error_explanation", partial: 'components/errors',
-              locals: { errors: @post.errors })
-          }
-        end
+        @post.save
+        format.turbo_stream {
+          render turbo_stream: turbo_stream.replace(
+            "error_explanation", partial: 'components/errors',
+            locals: { errors: @post.errors })
+        }
         format.turbo_stream
       else
         if @post.save
@@ -61,10 +60,10 @@ class PostsController < ApplicationController
 
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
-    @post.draft = (@post.draft and params[:commit].nil?)
     create_or_delete_post_tags(@post, params[:post][:tags],)
     respond_to do |format|
-      if params[:commit].nil?
+      if @post.draft
+        @post.draft = params[:commit].nil?
         @post.skip_validations = true
         @post.update(post_params.except(:tags))
         format.turbo_stream {

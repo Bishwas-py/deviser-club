@@ -60,7 +60,7 @@ class QuickTweetsController < ApplicationController
 
   # PATCH/PUT /quick_tweets/1 or /quick_tweets/1.json
   def update
-    @quick_tweet.draft = params[:commit].nil?
+    @quick_tweet.draft = (@quick_tweet.draft and params[:commit].nil?)
     respond_to do |format|
       if @quick_tweet.draft
         @quick_tweet.skip_validations = true

@@ -1,10 +1,10 @@
 class QuickTweet < ApplicationRecord
   attr_accessor :skip_validations
 
+  validates_with ContentLengthValidator, :minimum=> 10, :maximum=> 250, :word_count=>3, unless: :skip_validations
   validates :body, presence: true, length: { minimum: 10, maximum: 1000 }, unless: :skip_validations
   validates :body, uniqueness: true
 
-  validate :content_emptiness
   before_save :purify
 
   after_create_commit -> {
@@ -22,16 +22,10 @@ class QuickTweet < ApplicationRecord
   has_one_attached :image, dependent: :destroy
   has_many :bookmarks, as: :bookmarkable, dependent: :destroy
 
-  # trim leading and trailing spaces: suggested by @diwash007
-  def content_emptiness
-    pure_text = Nokogiri::HTML(body).
-      xpath('//text()').map(&:text).join('').
+  def pure_text
+    Nokogiri::HTML(body).xpath('//text()').map(&:text).join('').
       strip
-    if pure_text.length <= 0
-      errors.add :body, "is completely empty, please write something!"
-    end
   end
-
   def purify
     self.body = ApplicationController.helpers.purify self.body
   end

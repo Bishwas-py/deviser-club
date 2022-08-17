@@ -31,12 +31,14 @@ export default class extends Controller {
                 }),
                 Placeholder.configure({
                     placeholder: this.data.get("placeholder"),
-                    emptyNodeClass: 'tiptap-placeholder',})
+                    emptyNodeClass: 'tiptap-placeholder',
+                })
             ],
-            onUpdate: ({ editor }) => {
-                const html = editor.getHTML();
-                this.textboxTarget.value = html;
-                this.textboxTarget.form.requestSubmit();
+            onUpdate: ({editor}) => {
+                this.textboxTarget.value = editor.getHTML();
+                if (this.textboxTarget.getAttribute('is_draft') !== 'false') {
+                    this.textboxTarget.form.requestSubmit();
+                }
             },
             content: this.textboxTarget.value,
             origcontent: `Just Gold Old Text wandering around!`,
@@ -46,12 +48,11 @@ export default class extends Controller {
 
     initialize() {
         let oldEditor = document.querySelector('.ProseMirror');
-        if (oldEditor){
+        if (oldEditor) {
             oldEditor.outerHTML = '';
         }
-        ['click','input', 'keydown', 'keypress', 'change'].forEach( evt =>
-            {
-                this.element.addEventListener(evt, ()=> {
+        ['click', 'input', 'keydown', 'keypress', 'change'].forEach(evt => {
+                this.element.addEventListener(evt, () => {
                     {
                         this.checkActive()
                     }
@@ -98,8 +99,8 @@ export default class extends Controller {
 
         let headerButton = eval(this.headingmarkerTarget);
         for (let i of Array(6).keys()) {
-            let headingName = `h${i+1}`;
-            if (!this.editor.isActive('heading', { level: i+1 })){
+            let headingName = `h${i + 1}`;
+            if (!this.editor.isActive('heading', {level: i + 1})) {
                 numberOfInActiveHeadings += 1;
                 let headingElement = this.headingTarget.querySelector(`#${headingName}`);
                 headingElement.style.backgroundColor = null;

@@ -1,4 +1,7 @@
-<%= content_tag :div, data: { controller: "tiptap", tiptap_placeholder: defined?(placeholder) ? placeholder : "Write your story..."}, class: "editor" do %>
+<%= content_tag :div, data: {
+  controller: "tiptap",
+  tiptap_placeholder: defined?(placeholder) ? placeholder : "Write your story..."},
+  class: "editor" do %>
   <%= content_tag :div, class: "editor-controls sticky top-0 z-20" do %>
     <%= button_tag '', data: { action: "click->tiptap#boldText", tiptap_target: "bold" }, type: "button", class: "group edit-btn font-extralight hover:font-extrabold hover:scale-110" do %>
       <%= icon "fa-solid", "b", class: 'group-hover:scale-125' %>
@@ -29,7 +32,7 @@
     </div>
   <% end %>
 
-  <%= form.hidden_field field, data: { tiptap_target: "textbox" } %>
+  <%= form.hidden_field field, data: { tiptap_target: "textbox" }, is_draft: form.object.draft %>
   <%= content_tag :div, '', data: { tiptap_target: "content" }, class: '' do %>
     <textarea class="ProseMirror"></textarea>
   <% end %>
