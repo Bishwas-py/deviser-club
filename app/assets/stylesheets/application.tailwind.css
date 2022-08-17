@@ -24,7 +24,7 @@
         @apply mx-3 sm:mx-5 md:mx-10 lg:mx-16 xl:mx-20;
     }
     .posts-father {
-        @apply h-auto min-h-screen block mt-7 md:mt-10;
+        @apply h-auto min-h-screen block md:mt-10;
         @apply smart-padding;
     }
     .posts-seperator {
