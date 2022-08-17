@@ -73,7 +73,7 @@ class PostsController < ApplicationController
         }
       else
         if @post.update(post_params.except(:tags))
-          format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
+          format.html { redirect_to post_url(@post), alert: "Post was successfully updated." }
           format.json { render :show, status: :ok, location: @post }
         else
           format.turbo_stream {
@@ -81,7 +81,7 @@ class PostsController < ApplicationController
               "error_explanation", partial: 'components/errors',
               locals: { errors: @post.errors })
           }
-          format.html { render :edit, status: :unprocessable_entity, notice: "Post was not updated." }
+          format.html { render :edit, status: :unprocessable_entity, alert: "Post was not updated." }
           format.json { render json: @post.errors, status: :unprocessable_entity }
         end
       end
@@ -93,7 +93,7 @@ class PostsController < ApplicationController
     @post.destroy
 
     respond_to do |format|
-      format.html { redirect_to posts_url, notice: "Post was successfully destroyed." }
+      format.html { redirect_to posts_url, alert: "Post was successfully destroyed." }
       format.json { head :no_content }
     end
   end
