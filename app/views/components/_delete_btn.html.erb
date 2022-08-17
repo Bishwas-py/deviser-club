@@ -1,11 +1,12 @@
-<div class="relative">
+<div class="relative box">
   <%= button_tag '',
-                 data: {
-                   controller: 'togglebar',
-                   action: 'togglebar#toggleNavDrop',
-                   togglebar_body_param: "deletePost"
-                 },
-                 class: "box rounded-r-xl" do %>
+           title: "Be careful, you're deleting!",
+           "aria-label": "Delete Now!",
+           data: {
+             controller: 'togglebar',
+             action: 'togglebar#toggleNavDrop',
+             togglebar_body_param: "deletePost"
+           } do %>
     <%= icon "fa-solid", "trash" %>
   <% end %>
   <div id='deletePost' class="hidden group absolute flex flex-col w-56 bottom-12 right-0 rounded gap-y-2 bg-rose-100/90 dark:bg-rose-700/90 p-3">

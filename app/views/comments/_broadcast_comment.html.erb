@@ -21,12 +21,7 @@
 
 
 <%= turbo_stream.replace "comments_count_top" do %>
-  <%= turbo_frame_tag "comments_count_top",
-                      data: {
-                        controller: "ring-notification",
-                        ring_notification_comment_uid: comment.user.id,
-                        ring_notification_comment_notification_id: "#audiosource"
-                      } do %>
+  <%= turbo_frame_tag "comments_count_top" do %>
     <span class="text-2xl font-bold">
       Comments(<%= comment.commentable.comments.count %>)
     </span>

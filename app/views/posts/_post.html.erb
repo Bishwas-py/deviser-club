@@ -12,7 +12,7 @@
         <div class="dark:text-slate-50 inline-block text-slate-600 font-light dark:text-slate-100"><%= "#{post.reading_time} #{"minute".pluralize post.reading_time} read" %></div>
       </span>
     <%= link_to post_path(post.friendly_id) do %>
-      <h3 class="break-all font-bold text-3xl mb-2"><%= post.title %></h3>
+      <h2 class="break-all font-bold text-3xl mb-2"><%= post.title %></h2>
       <span class="excerpt">
           <%= sanitize(post.excerpt, tags: %w()).strip.truncate(299) %>
       </span>

@@ -144,6 +144,7 @@
         @apply dark:divide-slate-900 dark:bg-slate-700;
     }
     .post-reaction-box .box {
+        @apply last:rounded-r-xl first:rounded-l-xl;
         @apply p-2 px-4 text-slate-500 hover:text-slate-700 hover:bg-slate-300;
     }
     .rounded-button {
@@ -305,7 +306,7 @@
     }
 
     :is(.ProseMirror, .content-box) p a {
-        @apply text-gray-400 underline underline-offset-0;
+        @apply text-gray-700 underline underline-offset-0;
     }
     :is(.ProseMirror, .content-box) p {
         @apply text-lg sm:text-xl my-2;

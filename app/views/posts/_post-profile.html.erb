@@ -8,7 +8,7 @@
               alt: "#{@post.user.username}: #{@post.user.profile.name}"%>
         </div>
         <div>
-          <div class="text-cyan-500 dark:text-cyan-200 font-light">
+          <div class="text-cyan-900 dark:text-cyan-200 font-light">
             <%= @post.user.profile.get_name %>
           </div>
           <span class="text-slate-600 font-light dark:text-slate-100" title="<%= @post.created_at.to_fs %>"><%= time_ago_in_words(@post.created_at) %></span>
@@ -20,6 +20,7 @@
         <%= render "bookmark/create", bookmarkable: @post %>
         <a
            target="popup"
+           aria-label="Share on Facebook"
            href="https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url %>&amp;src=sdkpreparse"
            data-size="large">
           <%= icon "fab", 'facebook', class: "icon-share" %>
@@ -27,6 +28,7 @@
 
         <a
           target="popup"
+          aria-label="Share on Twitter"
           href="https://twitter.com/intent/tweet?text=<%= "#{@post.title} #{request.original_url}" %>"
           data-size="large">
           <%= icon "fab", 'twitter', class: "icon-share" %>
@@ -34,6 +36,7 @@
 
         <a
           target="popup"
+          aria-label="Share on Linkedin"
           href="https://www.linkedin.com/sharing/share-offsite/?mini=true&url=<%= CGI.escape(request.original_url) %>"
           data-size="large">
           <%= icon "fab", 'linkedin', class: "icon-share" %>

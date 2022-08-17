@@ -16,12 +16,13 @@
     <div class="post-reaction-box">
       <%= render "likes/create", likeable: @quick_tweet %>
       <%= render "bookmark/create", bookmarkable: @quick_tweet %>
-      <%= link_to '', class: "box", data: { controller: "comment" } do %>
+      <%= button_tag '', class: "box", data: { controller: "comment" },
+             "aria-label": "Comments" do %>
         <%= icon 'fa-regular', 'comment' %>
         <%= render "comments/comments_count", count: @comments.count %>
       <% end %>
       <% if current_user == @quick_tweet.user %>
-        <%= link_to edit_quick_tweet_path, class: "box" do %>
+        <%= link_to edit_quick_tweet_path, "aria-label": "Edit Post", class: "box" do %>
           <%= icon "fa-regular", "edit", class: "dark:text-white" %>
         <% end %>
         <%= render "components/delete_btn", delete_path: quick_tweet_path %>

@@ -1,6 +1,6 @@
 <div class="flex flex-row">
   <%# LEFT CONTENT %>
-  <aside class="side-bar">
+  <aside class="side-bar z-30">
     <nav class="h-screen flex flex-col">
       <div class="side-bar-top-item">
         <%= image_tag "fav.png", class: "w-12 rounded-xl", alt: "Deviser ~ Open source blogging platform" %>
@@ -31,8 +31,10 @@
               action: 'togglebar#toggleNavDrop',
               togglebar_body_param: "bottom-nav-bar-body"
             } do %>
-              <%= image_tag current_user.profile.my_avatar, class: "w-7 h-7 sm:w-10 sm:h-10 self-center
-              rounded-full object-cover" %>
+              <%= image_tag current_user.profile.my_avatar,
+                  class: "w-7 h-7 sm:w-10 sm:h-10 self-center
+                    rounded-full object-cover",
+                  alt: "Author: #{current_user.username}"%>
             <% end %>
             <div id="bottom-nav-bar-body" class="hidden duration-200 absolute right-0 bottom-20 sm:bottom-24 right-3 z-20 w-56 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800">
               <%= render "components/aside_bar/aside_bar_logger_links" %>
