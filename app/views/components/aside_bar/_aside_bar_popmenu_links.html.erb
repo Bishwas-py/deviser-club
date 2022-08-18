@@ -11,31 +11,33 @@
           data-controller="togglebar"
           data-togglebar-body-param="right_aside_bar"
           data-action='togglebar#toggleNavDrop'>
-    Toggle Power Nav
+    <%= icon "fas", "bars" %>
+    <span>Toggle Power Nav</span>
   </button>
+  <%= render "components/aside_bar/appearance_toggle" %>
 
   <button type="button"
           class="toogle-bar-item text-left w-full"
           data-controller="togglebar"
           data-action="togglebar#toggleNavDrop"
           data-togglebar-body-param="search-section">
-    Search
+    <%= icon "fas", "search" %>
+    <span>Search</span>
   </button>
-  <%= button_to set_appearance_profile_index_path, class: "toogle-bar-item text-left w-full", data: {controller: "dark-mode"} do %>
-    Toggle Appearance
-  <% end %>
+
 <% end %>
 
 <%= link_to profile_index_path, class: "toogle-bar-item border-gray-200 dark:border-gray-700 border-t" do %>
-  View Profile
+  <%= icon "fas", "user-ninja" %>
+  <span>View Profile</span>
 <% end %>
 <%= link_to edit_user_registration_path, class: "toogle-bar-item" do %>
-  Settings
+  <%= icon "fas", "cog" %>
+  <span>Settings</span>
 <% end %>
 <hr class="border-gray-200 dark:border-gray-700 ">
 <%= button_to destroy_user_session_path, method: :delete,
-              class: "block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform
-                    text-left
-                    dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white w-full" do %>
-  Sign Out
+              class: "toogle-bar-item w-full text-left" do %>
+  <%= icon "fas", "sign-out" %>
+  <span>Settings</span>
 <% end %>

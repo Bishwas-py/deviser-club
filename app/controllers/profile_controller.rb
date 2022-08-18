@@ -16,11 +16,14 @@ class ProfileController < ApplicationController
     else
       profile.appearance = :light
     end
-
     profile.update(appearance: profile.appearance)
+
     respond_to do |format|
-      appearance_json = {mode: profile.appearance}
-      format.turbo_stream { render json: appearance_json }
+      format.turbo_stream {
+        render turbo_stream: turbo_stream.replace(
+          "appearance_toggle", partial: 'components/aside_bar/appearance_toggle',
+          locals: { current_user: current_user})
+      }
     end
   end
 

@@ -86,7 +86,9 @@
         @apply dark:hover:bg-gray-700 dark:bg-gray-800;
     }
     .toogle-bar-item {
-        @apply block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white;
+        @apply block px-4 py-3 text-sm capitalize transition-colors duration-200 transform;
+        @apply space-x-2;
+        @apply text-gray-600 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white;
     }
     .posts-tag {
         @apply px-2 py-1 rounded-lg text-sm text-slate-700 inline-block;
