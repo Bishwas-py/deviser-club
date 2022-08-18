@@ -75,7 +75,7 @@
     }
     .navigational-items {
         @apply dark:bg-transparent border-t bg-white;
-        @apply h-16 sm:h-20 justify-between grid grid-cols-5 divide-x sm:divide-x-0;
+        @apply h-16 sm:h-20 justify-between grid grid-cols-5;
         @apply dark:divide-neutral-800 dark:border-t dark:border-slate-800;
     }
     .aside-menu-element {
