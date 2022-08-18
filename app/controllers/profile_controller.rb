@@ -9,6 +9,21 @@ class ProfileController < ApplicationController
   def index
   end
 
+  def set_appearance
+    profile = current_user.profile
+    if profile.appearance == "light" or profile.appearance.nil?
+      profile.appearance = :dark
+    else
+      profile.appearance = :light
+    end
+
+    profile.update(appearance: profile.appearance)
+    respond_to do |format|
+      appearance_json = {mode: profile.appearance}
+      format.turbo_stream { render json: appearance_json }
+    end
+  end
+
   def edit
   end
 
@@ -23,7 +38,9 @@ class ProfileController < ApplicationController
       end
     end
   end
+
   private
+
   # Use callbacks to share common setup or constraints between actions.
   def set_profile
     @profile = Profile.find_or_create_by(user_id: current_user.id)

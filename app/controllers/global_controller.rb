@@ -17,6 +17,7 @@ class GlobalController < ApplicationController
     @all_posts = @posts + @quick_tweets
     render(:template => "global/index")
   end
+
   def search
     @quick_tweets = QuickTweet.published.
       where(self.ssq "body").limit(9)

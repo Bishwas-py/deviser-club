@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   resources :profile do
     collection do
       get :edit
+      post :set_appearance
     end
   end
 

@@ -3,6 +3,8 @@ class Profile < ApplicationRecord
   validates_uniqueness_of :user_id, message: "Can not have more than one profiles"
   has_one_attached :avatar
 
+  enum :appearance, { light: 0, dark: 1 }
+
   def get_name
     self.name || self.user.username
   end

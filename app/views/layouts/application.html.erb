@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="<% if user_signed_in? %><%= current_user.profile.appearance %><% end %>">
   <%# add class="dark" as HTML attribute for default dark mode #%>
   <head>
     <meta charset="utf-8">
