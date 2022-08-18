@@ -51,8 +51,13 @@
         dark:bg-gray-800 bg-white shrink-0 sticky top-0 min-h-screen h-full w-24;
     }
     .side-bar-top-item {
-        @apply mx-auto flex px-5 justify-center py-7 w-full hover:bg-blue-50;
+        @apply mx-auto px-5 md:py-7 md:w-full;
+        @apply hidden md:block;
+        @apply hover:bg-blue-50;
         @apply dark:hover:bg-sky-900 dark:bg-slate-700;
+    }
+    .side-bar-top-item .platform-icon{
+        @apply sm:w-7 md:w-12 rounded-xl mx-auto my-auto;
     }
     .side-bar-bottom-item {
         @apply mx-auto cursor-pointer flex px-5 justify-center py-7 h-full w-full

@@ -3,7 +3,7 @@
   <div class="w-full flex flex-col md:flex-row-reverse min-w-0">
     <div class="w-full min-w-0">
       <%= yield %>
-      <div class="sticky bottom-0 md:bottom-7  shrink-0">
+      <div class="sticky bottom-20 duration-200 md:bottom-7  shrink-0">
         <% if yield(:down_bar_up_kit).presence %>
           <%# Commenting and react stuff here #%>
           <div class="place-items-center grid mb-7 ">
@@ -15,8 +15,8 @@
 
     <aside class="sticky left-0 bottom-0 md:top-0 h-16 md:h-screen border-r z-30">
       <nav class="h-full md:h-screen navigational-items flex flex-row  md:flex-col">
-        <div class="side-bar-top-item hidden md:block">
-          <%= image_tag "fav.png", class: "w-12 rounded-xl mx-auto", alt: "Deviser ~ Open source blogging platform" %>
+        <div class="side-bar-top-item">
+          <%= image_tag "fav.png", class: "platform-icon", alt: "Deviser ~ Open source blogging platform" %>
         </div>
         <div class="h-full w-full justify-center flex md:flex-col">
           <%= render "components/aside_bar/aside_bar_links" %>
