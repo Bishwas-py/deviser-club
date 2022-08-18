@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-  <div class="relative w-3/12 md:w-24">
+  <div class="relative w-3/12 md:w-full">
     <%= button_tag class: "mx-auto cursor-pointer flex justify-center h-full w-full aside-menu-element #{is_active "profile", "index"}",
              data: {
                controller: 'togglebar',
@@ -17,7 +17,7 @@
     </div>
   </div>
 <% else %>
-  <%= link_to new_user_session_path, class: "aside-menu-element",
+  <%= link_to new_user_session_path, class: "aside-menu-element w-3/12 md:w-full",
               "aria-label": "Login in to deviser club" do %>
     <%= icon "fa-solid", "sign-in", class: "self-center" %>
   <% end %>
