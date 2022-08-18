@@ -7,7 +7,7 @@
 </a>
 
 <% if yield(:right_aside_bar).presence %>
-  <button class="toogle-bar-item text-left w-full border-gray-200 dark:border-gray-700 border-t"
+  <button class="block md:hidden toogle-bar-item text-left w-full border-gray-200 dark:border-gray-700 border-t"
           data-controller="togglebar"
           data-togglebar-body-param="right_aside_bar"
           data-action='togglebar#toggleNavDrop'>
