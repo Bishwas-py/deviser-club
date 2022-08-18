@@ -277,7 +277,7 @@
 
     /* Editor Content CSS */
     .ts-control {
-        @apply dark:bg-green-600;
+        @apply dark:bg-neutral-600/30;
     }
     .edit-title-box {
         @apply block text-4xl focus:border-l focus:border-slate-700 font-light py-2 border-0
