@@ -1,10 +1,10 @@
 <% if user_signed_in? %>
   <div id="appearance_toggle">
-    <%= button_to set_appearance_profile_index_path, class: "toogle-bar-item text-left w-full", data: { controller: "dark-mode" } do %>
+    <%= button_to set_appearance_profile_index_path, class: "toogle-bar-item text-left w-full group", data: { controller: "dark-mode" } do %>
       <% if current_user.profile.dark? %>
-        <%= icon "fas", "sun" %>
+        <%= icon "fas", "sun", class: "group-hover:rotate-180 duration-300" %>
       <% else %>
-        <%= icon "fas", "moon" %>
+        <%= icon "fas", "moon", class: "group-hover:rotate-180 duration-300" %>
       <% end %>
       <span>Toggle Appearance</span>
     <% end %>
