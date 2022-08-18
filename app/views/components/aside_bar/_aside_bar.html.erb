@@ -1,52 +1,27 @@
-<div class="flex flex-row">
+<div class="flex flex-row w-full">
   <%# LEFT CONTENT %>
-  <aside class="side-bar z-30">
-    <nav class="h-screen flex flex-col">
-      <div class="side-bar-top-item">
-        <%= image_tag "fav.png", class: "w-12 rounded-xl", alt: "Deviser ~ Open source blogging platform" %>
-      </div>
-      <div class="navigational-items h-full justify-center flex flex-col">
-        <%= render "components/aside_bar/aside_bar_links" %>
-      </div>
-      <%= render "components/aside_bar/aside_bar_logger" %>
-    </nav>
-  </aside>
-
-  <%# MIDDLE CONTENT %>
-  <div class="w-full min-w-0">
-    <%= yield %>
-    <div class="sticky bottom-0 md:bottom-7 w-full shrink-0">
-      <% if yield(:down_bar_up_kit).presence %>
-        <div class="place-items-center grid mb-7 ">
-          <%= yield (:down_bar_up_kit) %>
+  <div class="w-full flex flex-col-reverse md:flex-row min-w-0">
+    <aside class="sticky left-0 bottom-0 md:top-0 h-16 md:h-screen border-r z-30">
+      <nav class="h-full md:h-screen navigational-items flex flex-row  md:flex-col">
+        <div class="side-bar-top-item hidden md:block">
+          <%= image_tag "fav.png", class: "w-12 rounded-xl mx-auto", alt: "Deviser ~ Open source blogging platform" %>
         </div>
-      <% end %>
-
-      <nav class="md:hidden navigational-items dark:bg-gray-800">
-        <%= render "components/aside_bar/aside_bar_links" %>
-        <% if user_signed_in? %>
-          <div class="relative">
-            <%= button_tag class: "mx-auto cursor-pointer flex justify-center h-full w-full aside-menu-element #{is_active "profile", "index"}", data: {
-              controller: 'togglebar',
-              action: 'togglebar#toggleNavDrop',
-              togglebar_body_param: "bottom-nav-bar-body"
-            } do %>
-              <%= image_tag current_user.profile.my_avatar,
-                  class: "w-7 h-7 sm:w-10 sm:h-10 self-center
-                    rounded-full object-cover",
-                  alt: "Author: #{current_user.username}"%>
-            <% end %>
-            <div id="bottom-nav-bar-body" class="hidden duration-200 absolute right-0 bottom-20 sm:bottom-24 right-3 z-20 w-56 py-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800">
-              <%= render "components/aside_bar/aside_bar_logger_links" %>
-            </div>
-          </div>
-        <% else %>
-          <%= link_to new_user_session_path, class: "aside-menu-element",
-                      "aria-label": "Login in to deviser club" do %>
-            <%= icon "fa-solid", "sign-in", class: "self-center" %>
-          <% end %>
-        <% end %>
+        <div class="h-full w-full justify-center flex md:flex-col">
+          <%= render "components/aside_bar/aside_bar_links" %>
+        </div>
+        <%= render "components/aside_bar/aside_bar_logger" %>
       </nav>
+    </aside>
+    <div class="w-full min-w-0">
+      <%= yield %>
+      <div class="sticky bottom-0 md:bottom-7  shrink-0">
+        <% if yield(:down_bar_up_kit).presence %>
+          <%# Commenting and react stuff here #%>
+          <div class="place-items-center grid mb-7 ">
+            <%= yield (:down_bar_up_kit) %>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 
@@ -71,7 +46,6 @@
     </div>
     <%= render "components/search/search_bar_overlay" %>
   <% end %>
-
 </div>
 
 <% if yield(:below_block).presence %>

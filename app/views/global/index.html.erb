@@ -7,23 +7,24 @@
     <div class="posts-seperator">
       <%= render @all_posts %>
     </div>
+    <footer
+      class="flex bg-white/80 dark:bg-neutral-900/80 dark:text-indigo-100
+                h-24 w-full items-center justify-center border-t dark:border-gray-900">
+      <a
+        class="flex items-center justify-center gap-2"
+        href="https://webmatrices.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Powered by
+        <span class="text-2xl font-bold">Webmatrices</span>
+      </a>
+    </footer>
   </main>
 
   <%= content_for :right_aside_bar do %>
     <%= render "components/latest_posts_and_comment" %>
   <% end %>
 
-  <footer
-    class="flex bg-white/80 dark:bg-neutral-900/80 dark:text-indigo-100
-                h-24 w-full items-center justify-center border-t dark:border-gray-900">
-    <a
-      class="flex items-center justify-center gap-2"
-      href="https://webmatrices.com/"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      Powered by
-      <span class="text-2xl font-bold">Webmatrices</span>
-    </a>
-  </footer>
+
 <% end %>

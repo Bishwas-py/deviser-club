@@ -6,6 +6,7 @@
   </div>
 </a>
 <hr class="border-gray-200 dark:border-gray-700 ">
+
 <% if yield(:right_aside_bar).presence %>
   <button class="toogle-bar-item text-left w-full" data-controller="togglebar"
           data-togglebar-body-param="right_aside_bar"
@@ -28,7 +29,7 @@
 <% end %>
 <hr class="border-gray-200 dark:border-gray-700 ">
 <%= link_to profile_index_path, class: "toogle-bar-item" do %>
-  View Profile
+  View Profile <%= yield(:right_aside_bar).presence %>
 <% end %>
 <%= link_to edit_user_registration_path, class: "toogle-bar-item" do %>
   Settings
