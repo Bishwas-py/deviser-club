@@ -2,10 +2,7 @@
   <%# LEFT CONTENT %>
   <div class="w-full flex flex-col md:flex-row-reverse min-w-0">
     <div class="w-full min-w-0">
-
-      <%= turbo_frame_tag "content_section" do %>
-        <%= yield %>
-      <% end %>
+      <%= yield %>
       <div class="sticky bottom-20 duration-200 md:bottom-7  shrink-0">
         <% if yield(:down_bar_up_kit).presence %>
           <%# Commenting and react stuff here #%>

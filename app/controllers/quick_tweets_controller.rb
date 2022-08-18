@@ -6,7 +6,6 @@ class QuickTweetsController < ApplicationController
   def index
     @quick_tweets = QuickTweet.published
     @quick_tweet = QuickTweet.new
-
   end
 
   # GET /quick_tweets/1 or /quick_tweets/1.json
