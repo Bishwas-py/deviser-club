@@ -5,15 +5,13 @@
     <p class="text-sm text-gray-500 dark:text-gray-400 truncate w-min"><%= current_user.email %></p>
   </div>
 </a>
-<hr class="border-gray-200 dark:border-gray-700 ">
 
 <% if yield(:right_aside_bar).presence %>
-  <button class="toogle-bar-item text-left w-full" data-controller="togglebar"
+  <button class="toogle-bar-item text-left w-full border-gray-200 dark:border-gray-700 border-t"
+          data-controller="togglebar"
           data-togglebar-body-param="right_aside_bar"
           data-action='togglebar#toggleNavDrop'>
-    <div>
-      Toogle Power Nav
-    </div>
+    <div>Toggle Power Nav</div>
   </button>
 
   <%= button_tag class: "toogle-bar-item text-left w-full",
@@ -27,9 +25,8 @@
     </div>
   <% end %>
 <% end %>
-<hr class="border-gray-200 dark:border-gray-700 ">
-<%= link_to profile_index_path, class: "toogle-bar-item" do %>
-  View Profile <%= yield(:right_aside_bar).presence %>
+<%= link_to profile_index_path, class: "toogle-bar-item border-gray-200 dark:border-gray-700 border-t" do %>
+  View Profile
 <% end %>
 <%= link_to edit_user_registration_path, class: "toogle-bar-item" do %>
   Settings

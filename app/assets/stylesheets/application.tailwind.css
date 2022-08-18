@@ -101,10 +101,10 @@
         @apply dark:bg-slate-700 dark:hover:bg-slate-600 dark:hover:text-stone-50 dark:text-stone-100;
     }
     .power-nav {
-        @apply fixed border-l overflow-y-scroll no-scrollbar bg-neutral-50
-        lg:sticky top-0 max-h-screen min-h-screen h-full w-[33rem];
-
-        @apply dark:bg-slate-900 dark:border-slate-800 dark:divide-slate-800;
+        @apply fixed border-l overflow-y-scroll no-scrollbar z-30
+        lg:sticky top-0 max-h-screen min-h-screen h-full w-full md:w-[33rem];
+        @apply bg-neutral-50/90 backdrop-blur;
+        @apply dark:bg-slate-900/90 dark:border-slate-800 dark:divide-slate-800 backdrop-blur;
     }
     .power-nav-heading {
         @apply text-2xl font-extrabold text-neutral-700;

@@ -1,18 +1,18 @@
 <% if user_signed_in? %>
   <div class="relative w-24">
     <%= button_tag class: "mx-auto cursor-pointer flex justify-center h-full w-full aside-menu-element #{is_active "profile", "index"}",
-                   data: {
-                     controller: 'togglebar',
-                     action: 'togglebar#toggleNavDrop',
-                     togglebar_body_param: "bottom-nav-bar-body"
-                   } do %>
+             data: {
+               controller: 'togglebar',
+               action: 'togglebar#toggleNavDrop',
+               togglebar_body_param: "bottom-nav-bar-body"
+             } do %>
       <%= image_tag current_user.profile.my_avatar,
                     class: "w-7 h-7 sm:w-10 sm:h-10 self-center
                       rounded-full object-cover",
                     alt: "Author: #{current_user.username}"%>
     <% end %>
-    <div id="bottom-nav-bar-body" class=" right-0 bottom-20 md:left-28 md:bottom-10 sm:bottom-24 right-3
-                  duration-200 absolute z-20 w-56 pt-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800">
+    <div id="bottom-nav-bar-body" class="hidden right-0 bottom-20 md:left-28 md:bottom-10 sm:bottom-24 right-3
+                  duration-200 absolute z-10 w-56 pt-2 mt-2 overflow-hidden bg-white rounded-md shadow-xl dark:bg-gray-800">
       <%= render "components/aside_bar/aside_bar_logger_links" %>
     </div>
   </div>
