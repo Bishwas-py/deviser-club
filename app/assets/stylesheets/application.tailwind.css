@@ -5,9 +5,6 @@
     h1 {
         @apply block;
     }
-    .field_with_errors * {
-        @apply ring;
-    }
     .tag-block {
         @apply bg-neutral-100 px-2 py-1 m-1 rounded-lg text-neutral-700 inline-block;
         @apply dark:bg-neutral-900 dark:text-neutral-100;
@@ -19,9 +16,6 @@
     .main-body {
         @apply dark:bg-slate-900;
         @apply dark:text-slate-50;
-    }
-    .smart-margin {
-        @apply mx-3 sm:mx-5 md:mx-10 lg:mx-16 xl:mx-20;
     }
     .posts-father {
         @apply h-auto min-h-screen block md:mt-10;
@@ -156,19 +150,9 @@
         @apply last:rounded-r-xl first:rounded-l-xl;
         @apply p-2 px-4 text-slate-500 hover:text-slate-700 hover:bg-slate-300;
     }
-    .rounded-button {
-        @apply rounded-full text-white;
-        @apply py-1 md:py-2 sm:px-4 px-2;
-        @apply hover:scale-110 duration-200;
-        @apply inline-block space-x-3 m-1 sm:w-fit;
-        @apply shadow-lg;
-        @apply hover:shadow-xl;
-        @apply bg-neutral-700;
-        @apply hover:bg-neutral-800;
-
-        @apply dark:bg-gray-50 dark:hover:bg-white dark:text-neutral-800;
+    .smart-padding {
+        @apply px-3 sm:px-5 md:px-10 lg:px-16 xl:px-32;
     }
-
     code {
         @apply font-mono font-medium text-sky-500 dark:text-sky-400;
     }
@@ -274,9 +258,6 @@
     }
     .editor-controls .edit-btn * {
         @apply duration-100;
-    }
-    .smart-padding {
-        @apply px-3 sm:px-5 md:px-10 lg:px-16 xl:px-32;
     }
     .editor-controls .header-option {
         @apply block px-4 py-2 text-sm text-gray-200 font-bold capitalize transition-colors
