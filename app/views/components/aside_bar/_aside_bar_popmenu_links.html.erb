@@ -11,20 +11,21 @@
           data-controller="togglebar"
           data-togglebar-body-param="right_aside_bar"
           data-action='togglebar#toggleNavDrop'>
-    <div>Toggle Power Nav</div>
+    Toggle Power Nav
   </button>
 
-  <%= button_tag class: "toogle-bar-item text-left w-full",
-                 data: {
-                   controller: 'togglebar',
-                   action: 'togglebar#toggleNavDrop',
-                   togglebar_body_param: "search-section"
-                 }      do |form| %>
-    <div>
-      Search
-    </div>
-  <% end %>
+  <button type="button"
+          class="toogle-bar-item text-left w-full"
+          data-controller="togglebar"
+          data-action="togglebar#toggleNavDrop"
+          data-togglebar-body-param="search-section">
+    Search
+  </button>
+  <button data-controller="dark-mode" class="toogle-bar-item text-left w-full">
+    Enable Dark
+  </button>
 <% end %>
+
 <%= link_to profile_index_path, class: "toogle-bar-item border-gray-200 dark:border-gray-700 border-t" do %>
   View Profile
 <% end %>

@@ -45,7 +45,7 @@
         @apply dark:border-gray-800 bg-gray-900;
     }
     .side-bar-top-item {
-        @apply mx-auto px-5 md:py-7 md:w-full;
+        @apply mx-auto px-5 md:py-7 md:w-24;
         @apply hidden md:block;
         @apply hover:bg-blue-50;
         @apply dark:hover:bg-sky-900 dark:bg-slate-700;
