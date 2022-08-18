@@ -47,14 +47,18 @@
         @apply dark:hover:text-blue-100 dark:text-neutral-50;
     }
     .side-bar {
-        @apply dark:border-slate-800
-        dark:bg-gray-800 bg-white shrink-0 sticky top-0 min-h-screen h-full w-24;
+        @apply sticky left-0 bottom-0 md:top-0 h-16 md:h-screen md:border-r z-30;
+        @apply dark:border-gray-800 bg-gray-900;
     }
     .side-bar-top-item {
         @apply mx-auto px-5 md:py-7 md:w-full;
         @apply hidden md:block;
         @apply hover:bg-blue-50;
         @apply dark:hover:bg-sky-900 dark:bg-slate-700;
+    }
+    .side-bar-middle-item {
+        @apply h-full w-full justify-center flex md:flex-col divide-x;
+        @apply dark:divide-gray-800 dark:border-gray-800 border-r md:border-0;
     }
     .side-bar-top-item .platform-icon{
         @apply sm:w-7 md:w-12 rounded-xl mx-auto my-auto;
@@ -76,16 +80,16 @@
     .navigational-items {
         @apply dark:bg-transparent border-t bg-white;
         @apply h-16 sm:h-20 justify-between grid grid-cols-5;
-        @apply dark:divide-neutral-800 dark:border-t dark:border-slate-800;
+        @apply dark:border-t dark:border-slate-800;
     }
     .aside-menu-element {
-        @apply items-stretch flex justify-center p-0 md:px-5 md:py-7 w-full
-        hover:bg-blue-50 text-2xl text-slate-500 hover:text-slate-700
-        dark:text-slate-100 dark:hover:bg-slate-900 dark:hover:text-slate-50;
+        @apply items-stretch flex justify-center p-0 md:px-5 md:py-7 w-full;
+        @apply hover:bg-blue-50 text-2xl text-slate-500 hover:text-slate-700;
+        @apply dark:text-slate-100 dark:hover:bg-stone-800/20 dark:hover:text-slate-50;
     }
     .aside-menu-element.active {
         @apply hover:bg-blue-100 bg-indigo-100;
-        @apply dark:hover:bg-stone-900 dark:bg-stone-900;
+        @apply dark:hover:bg-gray-700 dark:bg-gray-800;
     }
     .toogle-bar-item {
         @apply block px-4 py-3 text-sm text-gray-600 capitalize transition-colors duration-200 transform dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700 dark:hover:text-white;
@@ -247,9 +251,7 @@
         focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5
         py-2.5 text-center mr-3 md:mr-0 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800;
     }
-    .page-posting-section {
-        @apply min-h-screen px-5 sm:px-10 md:px-28 py-10 lg:px-48;
-    }
+
     .page-title-heading {
         @apply font-bold text-slate-600 text-xl md:text-4xl sm:text-2xl mb-4;
     }

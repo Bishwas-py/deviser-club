@@ -6,7 +6,7 @@
 
 <%= render "components/aside_bar/aside_bar" do %>
   <div id="<%= dom_id @post %>" class="w-full py-7 md:py-10">
-    <%= render "posts/post-profile" %>
+    <%= render "posts/post-profile", post: @post %>
     <div class="min-h-screen">
       <div class="content-box min-h-screen smart-padding py-7">
         <div class="space-y-1 space-x-2">

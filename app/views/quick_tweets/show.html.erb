@@ -5,11 +5,9 @@
 <% end %>
 
 <%= render "components/aside_bar/aside_bar" do %>
-  <div class="page-posting-section">
-    <div class="mt-20">
-      <%= turbo_stream_from @quick_tweet, class: "hidden" %>
-      <%= render "tweet_cert", quick_tweet: @quick_tweet %>
-    </div>
+  <div class="mt-20 min-h-screen">
+    <%= turbo_stream_from @quick_tweet, class: "hidden" %>
+    <%= render "tweet_cert", quick_tweet: @quick_tweet %>
   </div>
 
   <%= content_for :down_bar_up_kit do %>

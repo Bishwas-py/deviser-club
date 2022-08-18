@@ -1,22 +1,18 @@
-<div id="<%= dom_id quick_tweet %>_target" class="px-6 py-4 mt-3">
-  <div class="font-bold text-3xl mb-2x break-all"><%= quick_tweet.title.truncate(41) %></div>
+<%= render "posts/post-profile", post: @quick_tweet %>
+
+<div id="<%= dom_id quick_tweet %>_target" class="col-span-2 smart-padding">
   <div class="ml-2 mb-6">
-    <div class="block mb-2">
-      <span class="sweet-info" title="<%= quick_tweet.created_at.to_fs %>">
-      <%= time_ago_in_words(quick_tweet.created_at) %>
-    </span>
-      <span class="sweet-info float-right" title="<%= quick_tweet.created_at.to_fs %>">
-      <%= quick_tweet.watches %> Views
-    </span>
-    </div>
-    <%= link_to profile_show_path(quick_tweet.user.friendly_id) do %>
-      <span class="sweet-info group" title="<%= quick_tweet.created_at.to_fs %>">
-          Posted by <strong class="group-hover:text-indigo-700"><%= quick_tweet.user.username %></strong>
+    <div class="block mb-2 text-right">
+      <span class="sweet-info px-2 py-1 rounded bg-blue-100/20 m-1" title="<%= quick_tweet.created_at.to_fs %>">
+        <%= time_ago_in_words(quick_tweet.created_at) %>
       </span>
-    <% end %>
+      <span class="sweet-info px-2 py-1 rounded bg-blue-100/20 m-1" title="<%= quick_tweet.created_at.to_fs %>">
+        <%= quick_tweet.watches %> Views
+      </span>
+    </div>
   </div>
   <div class="content-box">
-      <%= purify quick_tweet.body %>
+    <%= purify quick_tweet.body %>
   </div>
 </div>
 

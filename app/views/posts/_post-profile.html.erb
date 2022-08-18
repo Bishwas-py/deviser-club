@@ -1,23 +1,23 @@
 <div class="col-span-2 smart-padding">
   <div class="px-1 py-5 font-bold text-neutral-700 object-cover">
     <div class="grid grid-cols-1 md:grid-cols-2">
-      <%= link_to profile_show_path(@post.user.friendly_id), class: "flex space-x-4 mb-2" do %>
+      <%= link_to profile_show_path(post.user.friendly_id), class: "flex space-x-4 mb-2" do %>
         <div class="grid place-items-center">
-          <%= image_tag @post.user.profile.my_avatar,
+          <%= image_tag post.user.profile.my_avatar,
               class: "max-w-fit object-cover h-11 w-11 rounded-full bg-sky-100",
-              alt: "#{@post.user.username}: #{@post.user.profile.name}"%>
+              alt: "#{post.user.username}: #{post.user.profile.name}"%>
         </div>
         <div>
           <div class="text-cyan-900 dark:text-cyan-200 font-light">
-            <%= @post.user.profile.get_name %>
+            <%= post.user.profile.get_name %>
           </div>
-          <span class="text-slate-600 font-light dark:text-slate-100" title="<%= @post.created_at.to_fs %>"><%= time_ago_in_words(@post.created_at) %></span>
+          <span class="text-slate-600 font-light dark:text-slate-100" title="<%= post.created_at.to_fs %>"><%= time_ago_in_words(post.created_at) %></span>
           <span class="mx-1">·</span>
-          <span class="text-slate-600 font-light dark:text-slate-100" title="<%= @post.created_at.to_fs %>"><%= "#{@post.reading_time} #{"minute".pluralize @post.reading_time} read" %></span>
+          <span class="text-slate-600 font-light dark:text-slate-100" title="<%= post.created_at.to_fs %>"><%= "#{post.reading_time} #{"minute".pluralize post.reading_time} read" %></span>
         </div>
       <% end %>
       <div class="flex sm:justify-end space-x-2">
-        <%= render "bookmark/create", bookmarkable: @post %>
+        <%= render "bookmark/create", bookmarkable: post %>
         <a
            target="popup"
            aria-label="Share on Facebook"
@@ -29,7 +29,7 @@
         <a
           target="popup"
           aria-label="Share on Twitter"
-          href="https://twitter.com/intent/tweet?text=<%= "#{@post.title} #{request.original_url}" %>"
+          href="https://twitter.com/intent/tweet?text=<%= "#{post.title} #{request.original_url}" %>"
           data-size="large">
           <%= icon "fab", 'twitter', class: "icon-share" %>
         </a>

@@ -13,12 +13,12 @@
       </div>
     </div>
 
-    <aside class="sticky left-0 bottom-0 md:top-0 h-16 md:h-screen border-r z-30">
+    <aside class="side-bar">
       <nav class="h-full md:h-screen navigational-items flex flex-row  md:flex-col">
         <div class="side-bar-top-item">
           <%= image_tag "fav.png", class: "platform-icon", alt: "Deviser ~ Open source blogging platform" %>
         </div>
-        <div class="h-full w-full justify-center flex md:flex-col divide-x border-r md:border-0">
+        <div class="side-bar-middle-item">
           <%= render "components/aside_bar/aside_bar_links" %>
         </div>
         <%= render "components/aside_bar/aside_bar_logger" %>
