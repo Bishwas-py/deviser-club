@@ -38,6 +38,7 @@ pin "@tiptap/extension-paragraph", to: "node_modules/@tiptap/extension-paragraph
 pin "@tiptap/extension-strike", to: "node_modules/@tiptap/extension-strike/dist/tiptap-extension-strike.esm.js"
 pin "@tiptap/extension-text", to: "node_modules/@tiptap/extension-text/dist/tiptap-extension-text.esm.js"
 pin "@tiptap/extension-link", to: "node_modules/@tiptap/extension-link/dist/tiptap-extension-link.esm.js"
+pin "@tiptap/extension-image", to: "node_modules/@tiptap/extension-image/dist/tiptap-extension-image.esm.js"
 pin "@tiptap/extension-placeholder", to: "node_modules/@tiptap/extension-placeholder/dist/tiptap-extension-placeholder.esm.js"
 pin "linkifyjs", to: "node_modules/linkifyjs/dist/linkify.module.js"
 pin "prosemirror-dropcursor", to: "node_modules/prosemirror-dropcursor/dist/index.js"

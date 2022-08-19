@@ -8,6 +8,8 @@ import Code from "@tiptap/extension-code";
 import Placeholder from "@tiptap/extension-placeholder";
 import CodeBlock from "@tiptap/extension-code-block";
 
+import Image from '@tiptap/extension-image'
+
 let textHandlers = ['bold', 'italic', 'code', 'codeBlock']
 
 // Connects to data-controller="tiptap"
@@ -16,13 +18,15 @@ export default class extends Controller {
 
     connect() {
         this.textboxTarget.hidden = true;
-        console.log(this.textboxTarget.value)
         this.editor = new Editor({
             element: this.contentTarget,
             extensions: [
                 StarterKit,
                 Link.configure({
                     protocols: ['https://', 'mailto'],
+                }),
+                Image.configure({
+                    inline: true,
                 }),
                 Code.configure({}),
                 CodeBlock.configure({
@@ -43,6 +47,11 @@ export default class extends Controller {
             content: this.textboxTarget.value,
             origcontent: `Just Gold Old Text wandering around!`,
         })
+        // console.log(this.editor.view.dom);
+        // temp1.addEventListener('drag', ()=> {console.log('drag')})
+        this.editor.view.dom.addEventListener("input", function() {
+            console.log("input event fired");
+        }, false);
 
     }
 
