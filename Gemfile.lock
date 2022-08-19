@@ -330,6 +330,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap
   capybara
+  concurrent-ruby (~> 1.0)
   debug
   devise (~> 4.8)
   font-awesome-sass (~> 6.1.1)

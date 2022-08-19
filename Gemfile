@@ -86,3 +86,5 @@ gem "tailwindcss-rails", "~> 2.0"
 gem 'friendly_id', '~> 5.4.0'
 
 gem "noticed", "~> 1.5"
+
+gem "concurrent-ruby", "~> 1.0"

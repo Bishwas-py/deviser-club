@@ -6,6 +6,10 @@ class Comment < ApplicationRecord
   validates :body, presence: true, length: { minimum: 2, maximum: 500 }
   has_many :likes, as: :likeable, dependent: :destroy
 
+  after_create_commit :notify_recipient
+  before_destroy :cleanup_notifications
+  has_noticed_notifications model_name: 'Notification'
+
   default_scope { order(created_at: :desc) }
 
   after_create_commit -> {
@@ -19,4 +23,12 @@ class Comment < ApplicationRecord
     broadcast_replace_to commentable, :comments, partial: "comments/comments_count", target: "comments_count_bottom", locals: { count: commentable.comments.count }
   }
 
+  private
+  def notify_recipient
+    CommentNotification.with(comment: self, commentable: commentable).deliver_later(commentable.user)
+  end
+
+  def cleanup_notifications
+    notifications_as_comment.destroy_all
+  end
 end
