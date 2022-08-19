@@ -16,7 +16,7 @@
     </button>
 
     <button type="button" data-action="click->tiptap#setHeading"
-          data-heading-level="1" class="group edit-btn">H 1</button>
+          data-heading-level="1" class="edit-btn">H 1</button>
 
     <div class="relative inline-block">
       <button type="button" class="editor-button-strech" data-controller="togglebar"
@@ -32,6 +32,14 @@
         <% end %>
       </div>
     </div>
+
+    <button type="button"
+            data-controller="togglebar"
+            data-action="togglebar#toggleNavDrop"
+            data-togglebar-body-param="image-inserter"
+            class="group edit-btn">
+      <%= icon "fa-solid", "image", class: 'group-hover:scale-110' %>
+    </button>
 
   <% end %>
 
@@ -51,3 +59,7 @@
     <%= form.submit class: "editor-button-strech float-right px-2" %>
   <% end %>
 <% end %>
+
+<div id="image-inserter" class="hidden z-30 left-0 m-0 fixed top-0 w-full h-screen bg-red-100/70 backdrop-blur">
+
+</div>
