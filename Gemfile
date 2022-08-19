@@ -53,6 +53,7 @@ group :development, :test do
   gem "hotwire-livereload", "~> 1.2"
   gem "mailcatcher", "~> 0.2.4"
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "rspec-rails", "~> 5.1"
 end
 
 group :development do
