@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "2.7.0"
+ruby "3.0.0"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.0.3"
@@ -84,3 +84,5 @@ gem "devise", "~> 4.8"
 gem "tailwindcss-rails", "~> 2.0"
 
 gem 'friendly_id', '~> 5.4.0'
+
+gem "noticed", "~> 1.5"
