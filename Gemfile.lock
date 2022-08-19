@@ -101,6 +101,11 @@ GEM
       unf (>= 0.0.5, < 1.0.0)
     erubi (1.10.0)
     eventmachine (1.2.7)
+    factory_bot (6.2.1)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.2.0)
+      factory_bot (~> 6.2.0)
+      railties (>= 5.0.0)
     ffi (1.15.5)
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
@@ -350,6 +355,7 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.8)
+  factory_bot_rails
   font-awesome-sass (~> 6.1.1)
   friendly_id (~> 5.4.0)
   hotwire-livereload (~> 1.2)
