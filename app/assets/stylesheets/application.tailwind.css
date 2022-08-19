@@ -243,6 +243,21 @@
     }
 
     /* EDITOR CSS */
+    #image-inserter {
+        @apply fixed w-full h-full overflow-scroll z-30 left-0 m-0 fixed top-0 w-full py-7 h-screen;
+        @apply bg-sky-50/90 dark:bg-slate-900/70 backdrop-blur;
+    }
+    #image-inserter .preview-parent {
+        @apply md:px-32 md:py-7 w-full grid place-items-center;
+    }
+    #image-inserter .preview-parent img:not([src]) {
+        @apply hidden;
+    }
+    #image-inserter .uploader-box {
+        @apply rounded w-full max-w-md border-4 border-blue-200 border-dashed;
+        @apply dark:hover:bg-gray-100 dark:hover:bg-gray-900 dark:hover:border-gray-300;
+        @apply hover:bg-blue-100/90 hover:border-black;
+    }
     .editor-controls {
         @apply w-full bg-white/50 dark:bg-black/10 p-2;
         @apply space-y-1 sm:space-y-0 backdrop-blur;
