@@ -11,5 +11,11 @@ export default class extends Controller {
 
     toggleDark(event) {
         document.documentElement.classList.toggle('dark')
+        if (document.title[0]==='\uD83C') {
+            document.title = document.title.replace('🌓 ', '')
+        } else {
+            document.title = '🌓 ' + document.title
+        }
+
     }
 }
