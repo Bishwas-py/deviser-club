@@ -73,7 +73,6 @@ class QuickTweetsController < ApplicationController
         end
       else
         if @quick_tweet.update(quick_tweet_params)
-          @quick_tweet.broadcast_update partial: "quick_tweets/tweet_cert", target: "#{helpers.dom_id(@quick_tweet)}_target"
           @quick_tweet.broadcast_update partial: "quick_tweets/quick_tweet"
           # while updating, the target will be replaced/updated by the partial
           format.html { redirect_to quick_tweet_url(@quick_tweet) }

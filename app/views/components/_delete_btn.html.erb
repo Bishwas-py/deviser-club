@@ -1,14 +1,9 @@
-<div class="relative box">
-  <%= button_tag '',
-           title: "Be careful, you're deleting!",
-           "aria-label": "Delete Now!",
-           data: {
-             controller: 'togglebar',
-             action: 'togglebar#toggleNavDrop',
-             togglebar_body_param: "deletePost"
-           } do %>
+<div class="relative box dark:text-white">
+  <button name="button" type="submit" title="Be careful, you're deleting!"
+          aria-label="Delete Now!" data-controller="togglebar" data-action="togglebar#toggleNavDrop"
+          data-togglebar-body-param="deletePost">
     <%= icon "fa-solid", "trash" %>
-  <% end %>
+  </button>
   <div id='deletePost' class="hidden group absolute flex flex-col w-56 bottom-12 right-0 rounded gap-y-2 bg-rose-100/90 dark:bg-rose-700/90 p-3">
     <span class="font-extrabold text-rose-600 dark:text-rose-100">
       Are you really really sure?

@@ -15,7 +15,7 @@ module ApplicationHelper
       content = content.gsub("\u200D", "").gsub(/\P{Print}|\p{Cf}/, "")
     end
     content = content.strip
-    sanitize(content, tags: %w(strong em p a b h1 h2 h3 h4 h5 h6 ul li pre code), attributes: %w(href))
+    sanitize(content, tags: %w(strong em p a b h1 h2 h3 h4 h5 h6 ul li pre code img blockquote), attributes: %w(href src alt))
   end
 
   def is_active(controller_name, action_name)

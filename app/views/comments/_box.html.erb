@@ -1,9 +1,9 @@
 <%= turbo_stream_from commentable, :comments %>
 
 <div class="hidden dark:text-cyan-50" id="comment-box">
-  <div class="z-20 fixed bg-slate-300/50 backdrop-blur h-screen w-full top-0 right-0" data-controller="comment"></div>
-  <div class="z-20 fixed h-screen w-full md:w-96 top-0 right-0">
-    <div class="float-right p-7 dark:bg-cyan-900 bg-white/90 backdrop-blur shadow-xl w-full h-full flex flex-col">
+  <div class="z-40 fixed bg-slate-300/50 backdrop-blur h-screen w-full top-0 right-0" data-controller="comment"></div>
+  <div class="z-40 fixed h-screen w-full md:w-96 top-0 right-0">
+    <div class="float-right p-7 dark:bg-slate-900/70 backdrop-blur bg-white/70 backdrop-blur shadow-xl w-full h-full flex flex-col">
       <div class="flex justify-end">
         <%= button_tag '', class: "super-rounded-btn", data: { controller: "comment" } do %>
           <%= icon 'fa-solid', 'times', class: "" %>

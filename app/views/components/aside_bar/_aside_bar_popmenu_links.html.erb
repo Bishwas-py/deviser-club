@@ -14,8 +14,6 @@
     <%= icon "fas", "bars" %>
     <span>Toggle Power Nav</span>
   </button>
-  <%= render "components/aside_bar/appearance_toggle" %>
-
   <button type="button"
           class="toogle-bar-item text-left w-full"
           data-controller="togglebar"
@@ -24,8 +22,9 @@
     <%= icon "fas", "search" %>
     <span>Search</span>
   </button>
-
 <% end %>
+
+<%= render "components/aside_bar/appearance_toggle" %>
 
 <%= link_to profile_index_path, class: "toogle-bar-item border-gray-200 dark:border-gray-700 border-t" do %>
   <%= icon "fas", "user-ninja" %>

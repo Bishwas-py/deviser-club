@@ -7,6 +7,7 @@ import Link from "@tiptap/extension-link";
 import Code from "@tiptap/extension-code";
 import Placeholder from "@tiptap/extension-placeholder";
 import CodeBlock from "@tiptap/extension-code-block";
+import Dropcursor from "@tiptap/extension-dropcursor";
 
 import Image from '@tiptap/extension-image'
 
@@ -36,6 +37,10 @@ export default class extends Controller {
                 Placeholder.configure({
                     placeholder: this.data.get("placeholder"),
                     emptyNodeClass: 'tiptap-placeholder',
+                }),
+                Dropcursor.configure({
+                    color: 'green',
+                    width: 5,
                 })
             ],
             onUpdate: ({editor}) => {
@@ -48,10 +53,18 @@ export default class extends Controller {
             origcontent: `Just Gold Old Text wandering around!`,
         })
         // console.log(this.editor.view.dom);
-        // temp1.addEventListener('drag', ()=> {console.log('drag')})
-        this.editor.view.dom.addEventListener("input", function() {
-            console.log("input event fired");
-        }, false);
+        // this.editor.view.dom.addEventListener('dragenter', ()=> {console.log('drag')})
+        // this.editor.view.dom.addEventListener("input", function() {
+        //     console.log("input event fired");
+        // }, false);
+
+        ;['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            this.editor.view.dom.addEventListener(eventName, (e)=>{
+                e.preventDefault()
+                e.stopPropagation()
+                console.log("hey");
+            }, false)
+        })
 
     }
 

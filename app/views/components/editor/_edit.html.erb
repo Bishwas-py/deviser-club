@@ -3,33 +3,36 @@
   tiptap_placeholder: defined?(placeholder) ? placeholder : "Write your story..."},
   class: "editor" do %>
   <%= content_tag :div, class: "editor-controls sticky top-0 z-20" do %>
-    <%= button_tag '', data: { action: "click->tiptap#boldText", tiptap_target: "bold" }, type: "button", class: "group edit-btn font-extralight hover:font-extrabold hover:scale-110" do %>
+    <button type="button" data-action="click->tiptap#boldText"
+          data-tiptap-target="bold"
+          class="group edit-btn font-extralight hover:font-extrabold hover:scale-110">
       <%= icon "fa-solid", "b", class: 'group-hover:scale-125' %>
-    <% end %>
-    <%= button_tag '', data: { action: "click->tiptap#italicText", tiptap_target: "italic" }, type: "button", class: "group edit-btn" do %>
-      <%= icon "fa-solid", "i", class: 'group-hover:rotate-45 group-focus:rotate-0' %>
-    <% end %>
+    </button>
 
-    <%= button_tag '', data: { action: "click->tiptap#setHeading", heading_level: 1 }, type: "button", class: "group edit-btn" do %>
-      H 1
-    <% end %>
+    <button type="button" data-action="click->tiptap#italicText"
+          data-tiptap-target="italic"
+          class="group edit-btn">
+      <%= icon "fa-solid", "i", class: 'group-hover:rotate-45 group-focus:rotate-0' %>
+    </button>
+
+    <button type="button" data-action="click->tiptap#setHeading"
+          data-heading-level="1" class="group edit-btn">H 1</button>
+
     <div class="relative inline-block">
-      <%= button_to "", class: "editor-button-strech", type: "button",
-                    data: {
-                      controller: 'togglebar',
-                      action: 'togglebar#toggleNavDrop',
-                      togglebar_body_param: "heading",
-                      tiptap_target: "headingmarker",
-                    } do %>
+      <button type="button" class="editor-button-strech" data-controller="togglebar"
+              data-action="togglebar#toggleNavDrop" data-togglebar-body-param="heading"
+              data-tiptap-target="headingmarker">
         <span class="mx-2">Heading</span>
         <%= icon "fa", "chevron-down", class: "text-sm w-5 mr-1" %>
-      <% end %>
+      </button>
+
       <div id="heading" data-tiptap-target="heading" class="hidden flex flex-col md:flex-row header-select">
         <% (1..6).each do |level| %>
           <%= render "components/editor/heading_controller", level: level %>
         <% end %>
       </div>
     </div>
+
   <% end %>
 
   <%= form.hidden_field field, data: { tiptap_target: "textbox" }, is_draft: form.object.draft %>
@@ -38,12 +41,13 @@
   <% end %>
 
   <%= content_tag :div, class: "editor-controls rounded p-2 sticky bottom-2" do %>
-    <%= button_tag '', data: { action: "click->tiptap#codeText", tiptap_target: "code" }, type: "button", class: "group edit-btn" do %>
+    <button type="button" data-action="click->tiptap#codeText" data-tiptap-target="code" class="group edit-btn">
       <%= icon "fa-solid", "code", class: 'group-hover:rotate-45 group-focus:rotate-0' %>
-    <% end %>
-    <%= button_tag '', data: { action: "click->tiptap#codeBlockText", tiptap_target: "codeBlock" }, type: "button", class: "group editor-button-strech px-2" do %>
+    </button>
+    <button type="button" data-action="click->tiptap#codeBlockText"
+            data-tiptap-target="codeBlock" class="group editor-button-strech px-2">
       [ <%= icon "fa-solid", "code", class: 'group-hover:text-slate-600 group-focus:text-green-300 group-focus:scale-110' %> ]
-    <% end %>
+    </button>
     <%= form.submit class: "editor-button-strech float-right px-2" %>
   <% end %>
 <% end %>
