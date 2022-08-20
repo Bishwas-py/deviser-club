@@ -191,6 +191,8 @@ GEM
       http (>= 4.0.0)
       rails (>= 5.2.0)
     orm_adapter (0.5.0)
+    pagy (5.10.1)
+      activesupport
     pg (1.4.3)
     public_suffix (5.0.0)
     puma (5.6.4)
@@ -336,6 +338,7 @@ DEPENDENCIES
   jbuilder
   mailcatcher (~> 0.2.4)
   noticed (~> 1.5)
+  pagy (~> 5.10)
   pg
   puma (~> 5.0)
   rails (~> 7.0.3, >= 7.0.3.1)

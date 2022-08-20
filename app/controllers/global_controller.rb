@@ -8,7 +8,6 @@ class GlobalController < ApplicationController
     @quick_tweets = QuickTweet.published.
       left_outer_joins(:likes, :bookmarks).group('quick_tweets.id').
       order('count(bookmarks.id) desc, count(likes.id) desc, watches desc').limit(20)
-
     @all_posts = (@posts + @quick_tweets).shuffle
   end
   def drafts

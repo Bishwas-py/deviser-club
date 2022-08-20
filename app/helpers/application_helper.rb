@@ -1,4 +1,6 @@
 module ApplicationHelper
+  include Pagy::Frontend
+
   def clean_links html
     html.gsub!(/\<a href=["'](.*?)["']\>(.*?)\<\/a\>/mi, '<a href="\1?source=deviser_club.com" class="link" rel="nofollow">\2</a>')
     html.html_safe
