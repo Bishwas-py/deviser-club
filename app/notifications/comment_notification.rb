@@ -7,4 +7,16 @@ class CommentNotification < Noticed::Base
   def url
     params[:comment].commentable
   end
+
+  def message
+    @commentable = params[:comment].commentable
+    @comment = Comment.find(params[:comment][:id])
+    @user = User.find(@comment.user_id)
+    { :partial => 'notification/notifications/comment',
+      :locals => {
+        commentable: @commentable,
+        comment: @comment,
+        user: @user
+      } }
+  end
 end

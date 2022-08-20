@@ -2,12 +2,11 @@
 
 <%= render "components/navbar" do %>
   <div class="h-full min-h-screen py-16">
-    <div class="flex flex-col">
-      <div class="rounded-t border border-b-0 max-w-xl mx-auto px-6 py-8 text-2xl">
+    <div class="flex flex-col px-3">
+      <div class="rounded-t border border-b-0 max-w-md sm:max-w-xl mx-auto px-6 py-8 text-2xl">
         <div class="mb-4">
           <span class="font-medium text-gray-600 dark:text-gray-200">
-            Chanting
-            on:
+            Chanting on:
           </span>
           <h1 class="inline font-extrabold text-neutral-700 dark:text-neutral-200">
             <%= @comment.commentable.title %>

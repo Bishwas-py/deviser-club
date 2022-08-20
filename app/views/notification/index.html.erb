@@ -7,9 +7,9 @@
       <hr/>
     </div>
     <div class="flex flex-col gap-3 px-7">
-      <% @unread_comment_notification.each do |notification| %>
+      <% @unread.each do |notification| %>
         <%= link_to notification.to_notification.url, class: "" do %>
-            <%= render "notification/notifications/comment", comment: notification.params[:comment] %>
+            <%= render notification.to_notification.message %>
         <% end %>
       <% end %>
     </div>

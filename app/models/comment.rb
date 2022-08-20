@@ -29,6 +29,4 @@ class Comment < ApplicationRecord
   def cleanup_notifications
     notifications_as_comment.destroy_all
   end
-
-
 end

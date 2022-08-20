@@ -57,6 +57,7 @@ end
 
 group :development do
   gem "web-console"
+  gem "debug"
 end
 
 group :production do

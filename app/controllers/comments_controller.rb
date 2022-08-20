@@ -2,6 +2,7 @@ class CommentsController < ApplicationController
   before_action :authenticate_user!
   def show
     @comment = Comment.friendly.find(params[:id])
+    @comment.notifications_as_comment.mark_as_read!
   end
 
   def create
