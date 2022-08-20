@@ -16,12 +16,21 @@ class CommentNotification < Noticed::Base
   # param :post
 
   # Define helper methods to make rendering easier.
-  #
+
   # def message
-  #   t(".message")
+  #   @commentable = params[:comment].commentable
+  #   @comment = Comment.find(params[:comment][:id])
+  #   @user = User.find(@comment.user_id)
+  #   # "#{@user.username} commented on \"#{@commentable.title.truncate(10)}\""
+  #   ActionController::Base.new.render_to_string(:partial => 'notification/notifications/comment',
+  #                    :layout => false, :locals => {
+  #       commentable: @commentable,
+  #       comment: @comment,
+  #       user: @user
+  #     })
   # end
-  #
-  # def url
-  #   post_path(params[:post])
-  # end
+
+  def url
+    params[:comment].commentable
+  end
 end

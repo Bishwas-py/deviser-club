@@ -1,0 +1,15 @@
+<div class="notification
+      flex gap-2 rounded border p-3">
+  <div class="w-9 h-9">
+    <%= image_tag comment.user.profile.my_avatar, class: "w-full h-full self-center rounded-full object-cover",
+                  alt: "#{comment.user.username} - #{comment.user.profile.name}: Deviser" %>
+  </div>
+
+  <div class="my-auto">
+    <%= link_to comment.user.profile.get_name, profile_show_path(comment.user.profile),  class: "font-bold" %>
+    commented on
+    "<%= link_to comment.commentable.title, comment.commentable, class: "link" %>"
+    <strong>"<%= comment.body.truncate(42) %>"</strong>, by
+    <strong><%= comment.commentable.user.username %></strong>
+  </div>
+</div>

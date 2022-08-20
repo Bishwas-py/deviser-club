@@ -176,7 +176,7 @@
     }
 
     .link {
-        @apply text-teal-500;
+        @apply text-gray-900;
         @apply font-bold;
         @apply hover:text-blue-500;
     }

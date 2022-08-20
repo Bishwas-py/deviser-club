@@ -1,0 +1,20 @@
+<%= content_for(:title, "#{@unread.count && "(#{@unread.count})"} Notifications") %>
+
+<%= render "components/aside_bar/aside_bar" do %>
+  <div class="space-y-5 w-full min-h-screen lg:px-16 py-7 md:py-10">
+    <div class="px-3">
+      <h1 class="font-bold text-xl md:text-2xl lg:text-4xl">Notifications</h1>
+      <hr/>
+    </div>
+    <div class="flex flex-col gap-3 px-7">
+      <% @unread_comment_notification.each do |notification| %>
+        <%= link_to notification.to_notification.url, class: "" do %>
+            <%= render "notification/notifications/comment", comment: notification.params[:comment] %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+  <%= content_for :right_aside_bar do %>
+    <%= render "components/latest_posts_and_comment" %>
+  <% end %>
+<% end %>

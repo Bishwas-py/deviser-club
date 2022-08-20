@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'notification/index'
   resources :profile do
     collection do
       get :edit
@@ -11,6 +12,7 @@ Rails.application.routes.draw do
   match 'search' => 'global#search', :via => [:post], :as => 'search_content'
   match 'draft' => 'global#drafts', :via => [:get], :as => 'drafts'
 
+  resources :notification
   resources :likes, only: [:create, :destroy]
   resources :tags
   resources :admin
