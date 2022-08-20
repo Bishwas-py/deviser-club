@@ -1,5 +1,9 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!
+  def show
+    @comment = Comment.friendly.find(params[:id])
+  end
+
   def create
     @comment = current_user.comments.create(comment_params)
     @comment.body = helpers.purify @comment.body
@@ -36,8 +40,8 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-    puts "n_params: #{params}"
     params.require(:comment).permit(:body, :commentable_id, :commentable_type)
   end
+
 
 end

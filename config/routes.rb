@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   resources :bookmark, only: [:create, :destroy, :index]
   resources :posts
   resources :quick_tweets, path: :tweet
-  resources :comments, only: [:create, :destroy, :update]
+  resources :comments, only: [:create, :destroy, :update, :show]
 
   match '@:id' => 'profile#show', :via => [:get], :as => 'profile_show'
 

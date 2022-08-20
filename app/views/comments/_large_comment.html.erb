@@ -1,9 +1,9 @@
-<div class="w-full h-fit group min-w-0">
+<div class="w-full text-2xl h-fit group min-w-0 ">
   <div class="w-full flex flex-col gap-2 py-2">
-    <%= link_to profile_show_path(comment.user.friendly_id), class: "flex gap-x-2" do %>
-      <%= image_tag comment.user.profile.my_avatar, class: "w-8 h-8 my-auto rounded-full object-cover bg-rose-50", alt: "Deviser User" %>
+    <%= link_to profile_show_path(comment.user.friendly_id), class: "flex gap-x-3" do %>
+      <%= image_tag comment.user.profile.my_avatar, class: "w-12 h-12 my-auto rounded-full object-cover bg-rose-50", alt: "Deviser User" %>
       <div class="flex flex-col">
-          <span class="my-auto font-light text-sm">
+          <span class="my-auto font-light">
             <%= comment.user.username %>
           </span>
         <span class="sweet-info" title="<%= comment.created_at.to_fs %>">

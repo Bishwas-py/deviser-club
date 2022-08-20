@@ -1,6 +1,6 @@
 <div class="notification
-      flex flex-col gap-2 rounded border p-3">
-  <div class="flex">
+      min-w-0 flex flex-col gap-2 rounded border py-8 px-7 shadow dark:shadow-gray-200">
+  <div class="flex gap-3">
     <div class="w-10 h-10">
       <%= image_tag comment.user.profile.my_avatar, class: "w-full h-full self-center rounded-full object-cover",
                     alt: "#{comment.user.username} - #{comment.user.profile.name}: Deviser" %>
@@ -9,12 +9,13 @@
       <%= link_to comment.user.profile.get_name, profile_show_path(comment.user.profile),  class: "font-bold" %>
       commented on
       "<%= link_to comment.commentable.title, comment.commentable, class: "link" %>"
-      <%# , by<strong><%= comment.commentable.user.username ></strong> #%>
     </div>
   </div>
-  <div class="rounded p-3 border">
-    <p>
+
+  <%= link_to comment_path(comment), class:"relative rounded p-3 border mt-3" do %>
+    <p class="break-words">
       <%= clean_links sanitize(comment.body, tags: %w(strong em a b code), attributes: %w(href)) %>
     </p>
-  </div>
+    <div class="view-btn w-fit py-0 -top-5 right-3 absolute">See</div>
+  <% end %>
 </div>
