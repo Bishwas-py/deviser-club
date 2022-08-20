@@ -21,7 +21,9 @@ class Comment < ApplicationRecord
 
   private
   def notify_recipient
-    CommentNotification.with(comment: self, commentable: commentable).deliver_later(commentable.user)
+    if self.user != commentable.user
+      CommentNotification.with(comment: self, commentable: commentable).deliver_later(commentable.user)
+    end
   end
 
   def cleanup_notifications

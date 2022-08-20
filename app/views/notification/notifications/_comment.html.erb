@@ -6,7 +6,7 @@
                     alt: "#{comment.user.username} - #{comment.user.profile.name}: Deviser" %>
     </div>
     <div class="my-auto">
-      <%= link_to comment.user.profile.get_name, profile_show_path(comment.user.profile),  class: "font-bold" %>
+      <%= link_to comment.user.profile.get_name, profile_show_path(comment.user),  class: "link" %>
       commented on
       "<%= link_to comment.commentable.title, comment.commentable, class: "link" %>"
     </div>
