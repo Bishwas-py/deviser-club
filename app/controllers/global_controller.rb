@@ -14,11 +14,11 @@ class GlobalController < ApplicationController
       format.turbo_stream   # responds to POST requests to /posts
     end
   end
+
   def drafts
     @posts = Post.where(draft: true, user: current_user)
     @quick_tweets = QuickTweet.where(draft: true, user: current_user)
-    @all_posts = @posts + @quick_tweets
-    render(:template => "global/index")
+    @drafts = @posts + @quick_tweets
   end
 
   def search

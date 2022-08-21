@@ -17,6 +17,10 @@ Rails.application.routes.draw do
   resources :notification do
     collection do
       post :index
+      get :read
+      post :read
+      get :all
+      post :all
     end
   end
 

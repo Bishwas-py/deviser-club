@@ -1,23 +1,7 @@
 <%= content_for(:title, "#{@notifications.count && "(#{@notifications.count})"} Notifications") %>
 
-<%= render "components/aside_bar/aside_bar" do %>
-  <div class="space-y-5 w-full min-h-screen lg:px-16 py-7 md:py-10">
-    <div class="px-3">
-      <h1 class="font-bold text-xl md:text-2xl lg:text-4xl">Notifications</h1>
-      <hr/>
-    </div>
+<%= render "notification/layer" do %>
     <div class="flex flex-col gap-3 px-7" id="notifications">
       <%= render partial: "notification/notification", collection: @notifications %>
     </div>
-
-    <div class="flex justify-center mb-12">
-      <div id="load-more-btn" class="w-full max-w-lg">
-        <%= button_to "Load More", pagy_url_for(@pagy, @pagy.next), class:"view-btn w-full dark:hover:bg-black/50" %>
-      </div>
-    </div>
-
-  </div>
-  <%= content_for :right_aside_bar do %>
-    <%= render "components/latest_posts_and_comment" %>
-  <% end %>
 <% end %>
