@@ -2,13 +2,17 @@ class GlobalController < ApplicationController
   before_action :authenticate_user!, only: [:drafts]
 
   def index
-    @posts = Post.published.
-      left_outer_joins(:likes, :bookmarks).group('posts.id').
-      order('count(bookmarks.id) desc, count(likes.id) desc').limit(20)
-    @quick_tweets = QuickTweet.published.
+    @q_pagy, @quick_tweets = pagy(QuickTweet.published.
       left_outer_joins(:likes, :bookmarks).group('quick_tweets.id').
-      order('count(bookmarks.id) desc, count(likes.id) desc, watches desc').limit(20)
-    @all_posts = (@posts + @quick_tweets).shuffle
+      order('count(bookmarks.id) desc, count(likes.id) desc, watches desc'), items: 12)
+    @p_pagy, @posts = pagy(Post.published.
+      left_outer_joins(:likes, :bookmarks).group('posts.id').
+      order('count(bookmarks.id) desc, count(likes.id) desc'), items: 12)
+
+    respond_to do |format|
+      format.html           # responds to GET requests to /posts
+      format.turbo_stream   # responds to POST requests to /posts
+    end
   end
   def drafts
     @posts = Post.where(draft: true, user: current_user)
