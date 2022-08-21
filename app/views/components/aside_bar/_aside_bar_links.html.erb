@@ -1,29 +1,43 @@
 <%= link_to root_path,
-    "aria-label": "Homepage to deviser club",
-    class: "aside-menu-element #{is_active "global", "index"}" do %>
+            "aria-label": "Homepage to deviser club",
+            class: "aside-menu-element #{is_active "global", "index"}" do %>
   <%= icon "fa-solid", "house-user", class: "self-center" %>
 <% end %>
-<%= link_to notification_index_path,
-            "aria-label": "Notifications",
-            class: "aside-menu-element #{is_active "notification", "index"}" do %>
+<% if user_signed_in? %>
+  <% @notifications = Notification.where(recipient: current_user).newest_first.unread %>
+  <%= link_to @notifications.count > 0 ? unread_notification_index_path : notification_index_path,
+              "aria-label": "Notifications",
+              class: "aside-menu-element #{is_active "notification", "index"} #{is_active "notification", "unread"}
+              #{is_active "notification", "read"}" do %>
     <span class="relative self-center">
       <%= icon "fa-regular", "bell", class: "self-center" %>
-      <% @notifications = Notification.where(recipient: current_user).newest_first.unread %>
       <% if @notifications.count > 0 %>
           <span class="bg-red-100/70 rounded-full w-5 h-5 absolute -top-1 backdrop-blur left-3 text-sm grid place-items-center">
             <%= @notifications.count %>
           </span>
       <% end %>
     </span>
-<% end %>
-<%= link_to bookmark_index_path,
-    "aria-label": "Bookmark to deviser club",
-    class: "aside-menu-element #{is_active "bookmark", "index"}" do %>
-  <%= icon "fa-regular", "bookmark", class: "self-center" %>
+  <% end %>
+  <%= link_to bookmark_index_path,
+              "aria-label": "Bookmark to deviser club",
+              class: "aside-menu-element #{is_active "bookmark", "index"}" do %>
+    <%= icon "fa-regular", "bookmark", class: "self-center" %>
+  <% end %>
+<% else %>
+  <%= link_to posts_path,
+              "aria-label": "Posts",
+              class: "aside-menu-element #{is_active "posts", "index"}" do %>
+    <%= icon "fa-regular", "newspaper", class: "self-center" %>
+  <% end %>
+  <%= link_to quick_tweets_path,
+              "aria-label": "Quick Tweets",
+              class: "aside-menu-element #{is_active "quick_tweets", "index"}" do %>
+    <%= icon "fa-solid", "truck-fast", class: "self-center" %>
+  <% end %>
 <% end %>
 <hr class="md:block w-7 hidden self-center"/>
 <%= link_to new_post_path,
-    "aria-label": "New Post",
-    class: "aside-menu-element #{is_active "posts", "index"}" do %>
+            "aria-label": "New Post",
+            class: "aside-menu-element #{is_active "posts", "index"}" do %>
   <%= icon "fa-regular", "edit", class: "self-center" %>
 <% end %>
