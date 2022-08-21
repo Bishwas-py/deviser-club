@@ -2,10 +2,10 @@ class GlobalController < ApplicationController
   before_action :authenticate_user!, only: [:drafts]
 
   def index
-    @q_pagy, @quick_tweets = pagy(QuickTweet.published.
+    @quick_tweets = QuickTweet.published.
       left_outer_joins(:likes, :bookmarks).group('quick_tweets.id').
-      order('count(bookmarks.id) desc, count(likes.id) desc, watches desc'), items: 12)
-    @p_pagy, @posts = pagy(Post.published.
+      order('count(bookmarks.id) desc, count(likes.id) desc, watches desc').limit(7)
+    @pagy, @posts = pagy(Post.published.
       left_outer_joins(:likes, :bookmarks).group('posts.id').
       order('count(bookmarks.id) desc, count(likes.id) desc'), items: 12)
 
