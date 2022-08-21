@@ -12,8 +12,8 @@
         <div class="space-y-1 space-x-2">
           <%= render @post.tags %>
         </div>
-        <h1 class="break-all"><%= @post.title %></h1>
-        <div class="break-all">
+        <h1 class="break-words"><%= @post.title %></h1>
+        <div class="break-words">
           <%= @post.body.html_safe %>
         </div>
       </div>

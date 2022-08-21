@@ -1,0 +1,10 @@
+<div class="notification
+      min-w-0 flex flex-col gap-2 rounded border py-8 px-7 shadow dark:shadow-gray-200">
+
+  <%= render notification.to_notification.message %>
+  <% if notification.unread? %>
+    <div class="text-right" id="<%= "mark-read-#{notification.id}" %>">
+      <%= button_to 'Mark As Read!', mark_read_notification_index_path(id: notification.id), class: "view-btn w-fit" %>
+    </div>
+  <% end %>
+</div>

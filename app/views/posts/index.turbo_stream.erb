@@ -1,0 +1,11 @@
+<%= turbo_stream.append "posts" do %>
+  <%= render @posts %>
+<% end %>
+
+<%= turbo_stream.update "load-more-btn" do %>
+  <% if @pagy.next.present? %>
+    <%= button_to "Load More", pagy_url_for(@pagy, @pagy.next), class: "view-btn w-full dark:hover:bg-black/50" %>
+  <% else %>
+    <%= button_tag "No More Posts", class: "view-btn w-full ", disabled: true %>
+  <% end %>
+<% end %>

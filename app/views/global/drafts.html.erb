@@ -5,13 +5,7 @@
   <main id="all_posts" class="posts-father">
     <%= render "components/tab_menus", path: new_quick_tweet_path, text: "Add a new quick tweet" %>
     <div class="posts-seperator" id="all-posts">
-      <%= render @posts %>
-      <%= render @quick_tweets %>
-    </div>
-    <div class="flex justify-center mb-12">
-      <div id="load-more-btn" class="w-full">
-        <%= button_to "Load More", pagy_url_for(@pagy, @pagy.next), class:"view-btn w-full dark:hover:bg-black/50" %>
-      </div>
+      <%= render @drafts %>
     </div>
 
     <footer

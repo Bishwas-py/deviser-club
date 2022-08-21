@@ -3,17 +3,19 @@
   <%# add class="dark" as HTML attribute for default dark mode #%>
   <head>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="shortcut icon" href="<%= "#{request.base_url}/fav.png" %>">
+    <link rel="apple-touch-icon" href="<%= "#{request.base_url}/fav.png" %>">
     <meta name="author" content="github.com/Bishwas-py/deviser-club">
     <meta name="license" content="This webapp is built using github.com/Bishwas-py/deviser-club. Deviser.Club is it's main product!">
-    <title><%= yield(:title) %></title>
 
+    <title><%= yield(:title) %></title>
     <%= yield (:content_up) %>
 
     <meta property="og:image:type" content="image/png"/>
     <meta property="og:image:width" content="1024"/>
     <meta property="og:image:height" content="512"/>
     <meta name="msapplication-config" content="/browserconfig.xml" />
-
     <% if yield(:meta).presence %>
       <%= yield(:meta) %>
     <% else %>
@@ -24,11 +26,6 @@
             content="A creative blogging platform for creative writers, bloggers and developers. Open Source blogging platform with instant articles and blogging features."/>
       <meta property="article:tag" content="creative writing platform, medium alternative, blogging platform, anynomous posting"/>
     <% end %>
-
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= favicon_link_tag "#{request.base_url}/fav.png", rel: 'shortcut icon' %>
-    <%= favicon_link_tag "#{request.base_url}/fav.png", rel: 'apple-touch-icon', type: 'image/png' %>
-    <%= favicon_link_tag "#{request.base_url}/fav.png", rel: 'mask-icon', type: 'image/png' %>
 
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>

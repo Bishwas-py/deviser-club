@@ -4,8 +4,12 @@ class QuickTweetsController < ApplicationController
 
   # GET /quick_tweets or /quick_tweets.json
   def index
-    @quick_tweets = QuickTweet.published
     @quick_tweet = QuickTweet.new
+    @pagy, @quick_tweets = pagy(QuickTweet.published, items: 15)
+    respond_to do |format|
+      format.html if request.method == "GET"           # responds to GET requests to /tweets
+      format.turbo_stream if request.method == "POST"           # responds to POST requests to /tweets
+    end
   end
 
   # GET /quick_tweets/1 or /quick_tweets/1.json

@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby "3.0.0"
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
-gem "rails", "~> 7.0.3"
+gem "rails", "~> 7.0.3", ">= 7.0.3.1"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
@@ -59,6 +59,7 @@ end
 
 group :development do
   gem "web-console"
+  gem "debug"
 end
 
 group :production do
@@ -90,3 +91,9 @@ gem "tailwindcss-rails", "~> 2.0"
 gem 'friendly_id', '~> 5.4.0'
 
 gem "noticed", "~> 1.5"
+
+gem "concurrent-ruby", "~> 1.0"
+
+gem "foreman", "~> 0.87.2"
+
+gem "pagy", "~> 5.10"

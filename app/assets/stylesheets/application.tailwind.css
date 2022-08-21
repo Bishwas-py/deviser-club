@@ -40,6 +40,15 @@
         @apply text-neutral-500 hover:text-blue-800;
         @apply dark:hover:text-blue-100 dark:text-neutral-50;
     }
+    .line-bar {
+        @apply flex-row flex gap-5 mt-4;
+    }
+    .line-bar .line-tab {
+        @apply px-3 py-2;
+    }
+    .line-bar .line-tab.active {
+        @apply  border-b font-bold;
+    }
     .side-bar {
         @apply sticky left-0 bottom-0 md:top-0 h-16 md:h-screen md:border-r z-30;
         @apply dark:border-gray-800 bg-gray-900;
@@ -176,9 +185,20 @@
     }
 
     .link {
-        @apply text-teal-500;
+        @apply text-stone-700;
         @apply font-bold;
-        @apply hover:text-blue-500;
+        @apply hover:text-teal-900;
+
+        @apply dark:text-sky-100;
+        @apply dark:hover:text-sky-50;
+    }
+    .view-btn {
+        @apply p-2 rounded border shadow dark:shadow-white/40;
+        @apply bg-white hover:bg-gray-200;
+        @apply dark:hover:bg-neutral-800 dark:bg-slate-900 ;
+    }
+    .view-btn[disabled] {
+        @apply bg-gray-200 dark:hover:bg-gray-800 dark:bg-gray-700/10;
     }
     .tab-button {
         @apply text-sm md:text-xl hover:underline cursor-pointer py-2 px-4 rounded-xl;

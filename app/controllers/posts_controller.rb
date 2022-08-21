@@ -4,7 +4,11 @@ class PostsController < ApplicationController
 
   # GET /posts or /posts.json
   def index
-    @posts = Post.published
+    @pagy, @posts = pagy(Post.published, items: 15)
+    respond_to do |format|
+      format.html if request.method == "GET"           # responds to GET requests to /posts
+      format.turbo_stream if request.method == "POST"           # responds to POST requests to /posts
+    end
   end
 
   # GET /posts/1 or /posts/1.json

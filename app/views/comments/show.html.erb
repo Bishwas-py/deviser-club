@@ -1,0 +1,23 @@
+<%= content_for(:title, "#{@comment.body.truncate(99)}") %>
+
+<%= render "components/navbar" do %>
+  <div class="h-full min-h-screen py-16">
+    <div class="flex flex-col px-3">
+      <div class="rounded-t border border-b-0 max-w-md sm:max-w-xl mx-auto px-6 py-8 text-2xl">
+        <div class="mb-4">
+          <span class="font-medium text-gray-600 dark:text-gray-200">
+            Chanting on:
+          </span>
+          <h1 class="inline font-extrabold text-neutral-700 dark:text-neutral-200">
+            <%= @comment.commentable.title %>
+          </h1>
+        </div>
+        <%= link_to "View #{@comment.commentable.model_name.name}", @comment.commentable,
+                    class: "view-btn" %>
+      </div>
+      <div class="rounded border p-7 w-full mx-auto max-w-3xl shadow dark:shadow-gray-200">
+        <%= render "comments/large_comment", comment: @comment %>
+      </div>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,19 @@
+
+<div class="flex gap-3">
+  <div class="w-10 shrink-0 h-10">
+    <%= image_tag comment.user.profile.my_avatar, class: "w-full h-full self-center rounded-full object-cover",
+                  alt: "#{comment.user.username} - #{comment.user.profile.name}: Deviser" %>
+  </div>
+  <div class="my-auto">
+    <%= link_to comment.user.profile.get_name, profile_show_path(comment.user),  class: "link" %>
+    commented on
+    "<%= link_to comment.commentable.title, comment.commentable, class: "link" %>"
+  </div>
+</div>
+
+<%= link_to comment_path(comment), class:"relative rounded p-3 border mt-3" do %>
+  <p class="break-words">
+    <%= clean_links sanitize(comment.body, tags: %w(strong em a b code), attributes: %w(href)) %>
+  </p>
+  <div class="view-btn w-fit py-0 -top-5 right-3 absolute">See</div>
+<% end %>

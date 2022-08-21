@@ -1,0 +1,7 @@
+<%= content_for(:title, "#{@notifications.count && "(#{@notifications.count})"} Notifications") %>
+
+<%= render "notification/layer" do %>
+    <div class="flex flex-col gap-3 px-7" id="notifications">
+      <%= render partial: "notification/notification", collection: @notifications %>
+    </div>
+<% end %>

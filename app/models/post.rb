@@ -4,7 +4,7 @@ class Post < ApplicationRecord
 
   attr_accessor :skip_validations
 
-  validates_with ContentLengthValidator, :minimum=> 70, :maximum=> 99889, :word_count=>200, unless: :skip_validations
+  validates_with ContentLengthValidator, :minimum=> 70, :maximum=> 199889, :word_count=>200, unless: :skip_validations
   validates :draft, uniqueness: { scope: :user_id }, if: :draft?
 
   before_save :purify
@@ -12,6 +12,10 @@ class Post < ApplicationRecord
   belongs_to :user, optional: false
 
   has_many :comments, as: :commentable, dependent: :destroy
+
+  has_noticed_notifications model_name: 'Notification'
+  has_many :notifications, through: :user, dependent: :destroy
+
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :bookmarks, as: :bookmarkable, dependent: :destroy
 
@@ -59,5 +63,6 @@ class Post < ApplicationRecord
     image_file_io, image_name = ApplicationController.helpers.create_og_image(self.title)
     self.image.attach(io: image_file_io, filename: image_name, content_type: 'image/png')
   end
+
 end
 

@@ -6,17 +6,32 @@ class Comment < ApplicationRecord
   validates :body, presence: true, length: { minimum: 2, maximum: 500 }
   has_many :likes, as: :likeable, dependent: :destroy
 
+  after_create_commit :notify_recipient
+  before_destroy :cleanup_notifications
+  has_noticed_notifications model_name: 'Notification'
+
   default_scope { order(created_at: :desc) }
 
-  after_create_commit -> {
-    broadcast_prepend_to commentable, :comments, target: "#{dom_id commentable}_comments",
-                               partial:  "comments/broadcast_comment",
-                               locals: { comment: self }
-  #  pushed to this listener: turbo_stream_from commentable, :comments
-  }
+  extend FriendlyId
+  friendly_id :body, use: :slugged
 
-  after_commit -> {
-    broadcast_replace_to commentable, :comments, partial: "comments/comments_count", target: "comments_count_bottom", locals: { count: commentable.comments.count }
-  }
+  def normalize_friendly_id(string)
+    super[0..12]
+  end
 
+  def title
+    self.body.truncate(100)
+  end
+
+
+  private
+  def notify_recipient
+    if self.user != commentable.user
+      CommentNotification.with(comment: self, commentable: commentable).deliver_later(commentable.user)
+    end
+  end
+
+  def cleanup_notifications
+    notifications_as_comment.destroy_all
+  end
 end

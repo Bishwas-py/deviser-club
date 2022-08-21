@@ -1,0 +1,14 @@
+
+  <div class="flex gap-x-3">
+    <div class="w-10 shrink-0 h-10 relative">
+      <%= image_tag like.user.profile.my_avatar, class: "w-full h-full self-center rounded-full object-cover",
+                    alt: "#{like.user.username} - #{like.user.profile.name}: Deviser" %>
+      <%= icon "fa-solid", "heart", class: "text-rose-500 bg-rose-50 p-0.5 rounded-full absolute bottom-0 -right-2 text-[12px]" %>
+    </div>
+    <div class="my-auto">
+      <%= link_to like.user.profile.get_name, profile_show_path(like.user),  class: "link" %>
+      hearted on your
+      <%= like.likeable.model_name.name.downcase %>:
+      "<%= link_to like.likeable.title, like.likeable, class: "link" %>"
+    </div>
+  </div>

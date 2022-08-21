@@ -5,6 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable, authentication_keys: [:login]
   after_save :create_profile
 
+  has_many :notifications, as: :recipient, dependent: :destroy
+
   validates_format_of :username, with: /^[a-zA-Z0-9_\.]*$/, :multiline => true
 
   has_many :comments, dependent: :destroy

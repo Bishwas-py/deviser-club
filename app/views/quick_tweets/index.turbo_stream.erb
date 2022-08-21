@@ -1,0 +1,14 @@
+<%= turbo_stream.append "quick_tweets" do %>
+  <%= render @quick_tweets %>
+<% end %>
+
+<%= turbo_stream.update "load-more-btn" do %>
+  <% if @pagy.next.present? %>
+    <%= button_to "Load More", pagy_url_for(@pagy, @pagy.next), class: "view-btn w-full dark:hover:bg-black/50" %>
+  <% else %>
+    <%= button_tag "No More Posts", class: "view-btn w-full ", disabled: true %>
+  <% end %>
+<% end %>
+
+<%# I could have make a template for this, but I though doing this would
+be good for near future customization purposes #%>
