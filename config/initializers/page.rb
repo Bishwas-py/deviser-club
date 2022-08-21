@@ -1,1 +1,0 @@
-require 'pagy/extras/support'
