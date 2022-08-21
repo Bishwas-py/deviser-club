@@ -7,8 +7,8 @@ class QuickTweetsController < ApplicationController
     @quick_tweet = QuickTweet.new
     @pagy, @quick_tweets = pagy(QuickTweet.published, items: 15)
     respond_to do |format|
-      format.html           # responds to GET requests to /tweets
-      format.turbo_stream   # responds to POST requests to /tweets
+      format.html if request.method == "GET"           # responds to GET requests to /tweets
+      format.turbo_stream if request.method == "POST"           # responds to POST requests to /tweets
     end
   end
 

@@ -8,7 +8,12 @@
             class: "aside-menu-element #{is_active "notification", "index"}" do %>
     <span class="relative self-center">
       <%= icon "fa-regular", "bell", class: "self-center" %>
-      <span class="bg-red-100/70 rounded-full w-5 h-5 absolute -top-1 backdrop-blur left-3 text-sm grid place-items-center">1</span>
+      <% @notifications = Notification.where(recipient: current_user).newest_first.unread %>
+      <% if @notifications.count > 0 %>
+          <span class="bg-red-100/70 rounded-full w-5 h-5 absolute -top-1 backdrop-blur left-3 text-sm grid place-items-center">
+            <%= @notifications.count %>
+          </span>
+      <% end %>
     </span>
 <% end %>
 <%= link_to bookmark_index_path,

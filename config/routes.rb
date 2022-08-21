@@ -19,8 +19,9 @@ Rails.application.routes.draw do
       post :index
       get :read
       post :read
-      get :all
-      post :all
+      get :unread
+      post :unread
+      post :mark_read
     end
   end
 

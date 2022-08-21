@@ -6,8 +6,8 @@ class PostsController < ApplicationController
   def index
     @pagy, @posts = pagy(Post.published, items: 15)
     respond_to do |format|
-      format.html           # responds to GET requests to /posts
-      format.turbo_stream   # responds to POST requests to /posts
+      format.html if request.method == "GET"           # responds to GET requests to /posts
+      format.turbo_stream if request.method == "POST"           # responds to POST requests to /posts
     end
   end
 

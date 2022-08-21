@@ -19,6 +19,11 @@ class Comment < ApplicationRecord
     super[0..12]
   end
 
+  def title
+    self.body.truncate(100)
+  end
+
+
   private
   def notify_recipient
     if self.user != commentable.user

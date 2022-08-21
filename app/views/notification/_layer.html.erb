@@ -3,9 +3,9 @@
     <div class="px-3">
       <h1 class="font-bold text-xl md:text-2xl lg:text-4xl">Notifications</h1>
       <div class="line-bar">
-        <%= link_to "Unread", notification_index_path, class: "line-tab #{is_active 'notification', 'index'}" %>
+        <%= link_to "All", notification_index_path, class: "line-tab #{is_active 'notification', 'index'}" %>
         <%= link_to "Read", read_notification_index_path, class: "line-tab #{is_active 'notification', 'read'}" %>
-        <%= link_to "All", all_notification_index_path, class: "line-tab #{is_active 'notification', 'all'}" %>
+        <%= link_to "Unread", unread_notification_index_path, class: "line-tab #{is_active 'notification', 'unread'}" %>
       </div>
       <hr/>
     </div>

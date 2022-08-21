@@ -44,7 +44,7 @@
         @apply flex-row flex gap-5 mt-4;
     }
     .line-bar .line-tab {
-        @apply p-2;
+        @apply px-3 py-2;
     }
     .line-bar .line-tab.active {
         @apply  border-b font-bold;
