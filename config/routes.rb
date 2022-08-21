@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  get 'notification/index'
+
   resources :profile do
     collection do
       get :edit
@@ -14,7 +14,12 @@ Rails.application.routes.draw do
   post '/', :to => "global#index"
   root "global#index"
 
-  resources :notification
+  resources :notification do
+    collection do
+      post :index
+    end
+  end
+
   resources :likes, only: [:create, :destroy]
   resources :tags
   resources :admin

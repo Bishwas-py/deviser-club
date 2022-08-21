@@ -12,7 +12,7 @@ class CommentNotification < Noticed::Base
     @commentable = params[:comment].commentable
     @comment = Comment.find(params[:comment][:id])
     @user = User.find(@comment.user_id)
-    { :partial => 'notification/notifications/comment',
+    { :partial => 'notification/components/comment',
       :locals => {
         commentable: @commentable,
         comment: @comment,

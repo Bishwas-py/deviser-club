@@ -7,7 +7,6 @@
       <%= render @posts %>
     </div>
     <div class="flex justify-center mb-12">
-      <%#== pagy_next_link(@pagy, text: 'Load More', link_extra: 'id="next_link" class="view-btn"') %>
       <div id="load-more-btn" class="w-full">
         <%= button_to "Load More", pagy_url_for(@pagy, @pagy.next), class:"view-btn w-full dark:hover:bg-black/50" %>
       </div>

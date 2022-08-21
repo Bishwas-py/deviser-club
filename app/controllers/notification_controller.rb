@@ -1,6 +1,5 @@
 class NotificationController < ApplicationController
   def index
-    @unread = Notification.where(recipient: current_user).newest_first.limit(9).unread
-    @unread = Notification.where(recipient: current_user).newest_first.limit(9).unread
+    @pagy, @notifications = pagy(Notification.where(recipient: current_user).newest_first.unread, items: 2)
   end
 end
