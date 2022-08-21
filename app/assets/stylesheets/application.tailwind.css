@@ -197,6 +197,9 @@
         @apply bg-white hover:bg-gray-200;
         @apply dark:hover:bg-neutral-800 dark:bg-slate-900 ;
     }
+    .view-btn[disabled] {
+        @apply bg-gray-200 dark:hover:bg-gray-800;
+    }
     .tab-button {
         @apply text-sm md:text-xl hover:underline cursor-pointer py-2 px-4 rounded-xl;
         @apply bg-purple-50 dark:bg-neutral-800;

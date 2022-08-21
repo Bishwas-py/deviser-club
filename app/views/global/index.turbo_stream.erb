@@ -7,7 +7,7 @@
   <% if @q_pagy.next.present? or @p_pagy.next.present? %>
     <%= button_to "Load More", pagy_url_for(@q_pagy, @q_pagy.next), class: "view-btn w-full dark:hover:bg-black/50" %>
   <% else %>
-    <%= button_tag "No More Posts", class: "view-btn w-full bg-gray-200 dark:hover:bg-gray-800", disabled: true %>
+    <%= button_tag "No More Posts", class: "view-btn w-full ", disabled: true %>
   <% end %>
 <% end %>
 

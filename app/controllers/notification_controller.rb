@@ -15,7 +15,10 @@ class NotificationController < ApplicationController
   end
 
   def mark_read
-    notification = Notification.find_by(recipient: current_user, id: params[:id])
-    notification.mark_as_read!
+    @notification = Notification.find_by(recipient: current_user, id: params[:id])
+    @notification.mark_as_read!
+    respond_to do |format|
+      format.turbo_stream if request.method == "POST"
+    end
   end
 end

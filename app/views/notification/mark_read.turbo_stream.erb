@@ -1,0 +1,3 @@
+<%= turbo_stream.update "mark-read-#{@notification.id}" do %>
+  <%= button_tag 'Read!', class: "view-btn w-fit", disabled: true%>
+<% end %>
