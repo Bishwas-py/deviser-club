@@ -50,9 +50,11 @@ gem "bootsnap", require: false
 gem "image_processing", "~> 1.2"
 
 group :development, :test do
+  gem "factory_bot_rails"
   gem "hotwire-livereload", "~> 1.2"
   gem "mailcatcher", "~> 0.2.4"
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "rspec-rails", "~> 5.1"
 end
 
 group :development do
@@ -69,6 +71,8 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem "capybara"
   gem "selenium-webdriver"
+  gem "shoulda-matchers", "~> 5.0"
+  gem "simplecov", require: false
   gem "webdrivers"
 end
 

@@ -53,3 +53,7 @@ app/bg-img/*
 
 *.swp
 config/credentials.yml.enc
+
+# Simplecov
+
+/coverage
