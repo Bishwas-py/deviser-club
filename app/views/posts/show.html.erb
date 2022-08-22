@@ -30,7 +30,7 @@
   <% end %>
 
   <%= content_for :down_bar_up_kit do %>
-    <div class="post-reaction-box h-10" >
+    <div class="post-reaction-box" >
       <%= render "likes/create", likeable: @post %>
       <%= render "comments/btn", comments: @comments %>
       <% if current_user == @post.user %>

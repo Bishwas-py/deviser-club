@@ -153,7 +153,7 @@
         dark:focus:ring-blue-400 focus:ring dark:text-white dark:bg-gray-800 focus:outline-none;
     }
     .post-reaction-box {
-        @apply rounded-xl z-10  bg-slate-200 flex text-right w-fit;
+        @apply rounded-xl z-10  h-10 bg-slate-200 flex text-right w-fit;
         @apply divide-x divide-blue-200 shadow flex;
         @apply dark:divide-slate-900 dark:bg-slate-700;
     }
