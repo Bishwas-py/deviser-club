@@ -1,5 +1,5 @@
 <% if user_signed_in? %>
-  <%= turbo_frame_tag "#{likeable.model_name.name}-#{likeable.id}", class: "box" do %>
+  <%= turbo_frame_tag "#{likeable.model_name.name}-#{likeable.id}", class: "box w-14" do %>
     <% like = current_user.likes.find_by(likeable: likeable) %>
     <% if like.nil? %>
       <%= button_to likes_path, "aria-label": "Like",

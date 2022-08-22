@@ -1,0 +1,6 @@
+<%= button_tag '', class: "box", data: { controller: "comment" }, "aria-label": "Comment" do %>
+  <span>
+    <%= icon 'fa-regular', 'comment' %>
+    <%= render "comments/comments_count", count: @comments.count %>
+  </span>
+<% end %>

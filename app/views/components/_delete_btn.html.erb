@@ -1,14 +1,15 @@
-<div class="relative box dark:text-white">
-  <button name="button" type="submit" title="Be careful, you're deleting!"
+<div class="relative box" style="padding: 0 !important;">
+  <button class="w-14 h-full" name="button" type="submit" title="Be careful, you're deleting!"
           aria-label="Delete Now!" data-controller="togglebar" data-action="togglebar#toggleNavDrop"
           data-togglebar-body-param="deletePost">
     <%= icon "fa-solid", "trash" %>
   </button>
-  <div id='deletePost' class="hidden group absolute flex flex-col w-56 bottom-12 right-0 rounded gap-y-2 bg-rose-100/90 dark:bg-rose-700/90 p-3">
+  <div id='deletePost' class=" group absolute flex flex-col w-56 bottom-12 right-0 rounded gap-y-2
+  bg-white/70 dark:bg-black/70 p-3 backdrop-blur">
     <span class="font-extrabold text-rose-600 dark:text-rose-100">
       Are you really really sure?
     </span>
-    <%= button_to delete_path, method: :delete, class: "space-x-2 rounded-full bg-rose-400/20 px-4 py-2" do %>
+    <%= button_to delete_path, method: :delete, class: "view-btn rounded-full bg-rose-400/20 px-4 py-2" do %>
       <%= icon "fa-solid", "trash", class: "my-auto group-hover:animate-bounce" %>
       <span>Delete, OK!</span>
     <% end %>

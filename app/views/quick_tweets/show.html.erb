@@ -13,15 +13,10 @@
   <%= content_for :down_bar_up_kit do %>
     <div class="post-reaction-box">
       <%= render "likes/create", likeable: @quick_tweet %>
-      <button name="button" type="submit" class="box dark:text-white"
-              data-controller="comment" aria-label="Comments">
-        <%= icon 'fa-regular', 'comment' %>
-        <%= render "comments/comments_count", count: @comments.count %>
-      </button>
+      <%= render "comments/btn", comments: @comments %>
+
       <% if current_user == @quick_tweet.user %>
-        <%= link_to edit_quick_tweet_path, "aria-label": "Edit Post", class: "box" do %>
-          <%= icon "fa-regular", "edit", class: "dark:text-white" %>
-        <% end %>
+        <%= render "components/edit_btn", edit_path: edit_quick_tweet_path %>
         <%= render "components/delete_btn", delete_path: quick_tweet_path %>
       <% end %>
     </div>

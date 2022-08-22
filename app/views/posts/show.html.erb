@@ -30,17 +30,11 @@
   <% end %>
 
   <%= content_for :down_bar_up_kit do %>
-    <div class="post-reaction-box" >
+    <div class="post-reaction-box h-10" >
       <%= render "likes/create", likeable: @post %>
-
-      <%= button_tag '', class: "box", data: { controller: "comment" }, "aria-label": "Comment" do %>
-        <%= icon 'fa-regular', 'comment' %>
-        <%= render "comments/comments_count", count: @comments.count %>
-      <% end %>
+      <%= render "comments/btn", comments: @comments %>
       <% if current_user == @post.user %>
-        <%= link_to edit_post_path, "aria-label": "Edit Post", class: "box" do %>
-          <%= icon "fa-regular", "edit" %>
-        <% end %>
+        <%= render "components/edit_btn", edit_path: edit_post_path %>
         <%= render "components/delete_btn", delete_path: post_path %>
       <% end %>
     </div>
