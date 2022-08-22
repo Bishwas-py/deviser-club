@@ -14,10 +14,23 @@ I am still figuring out the docker part. So, I will make a straight
 forward installation guide for now.
 
 ### Straight Forward Installation
-To install Deviser Club, you need to have `Ruby 2.7` installed. `Ruby 2.7` is the default version of Ruby.
+To install Deviser Club, you need to have `Ruby 3.0.0` installed. `Ruby 3.0.0` should be installed in the system, you can use `RVM` or any other version manager.
+
+[Install `RVM`](https://github.com/rvm/ubuntu_rvm), `ruby3.0.0` and run `bundle`...
 
 ```bash
-sudo apt-get install ruby
+rvm install "ruby-3.0.0"
+```
+
+If some permission issues pop while installing `Ruby 3` with RVM, try below code:
+```bash
+rvmsudo rvm get stable --auto-dotfiles
+rvm fix-permissions system
+rvm group add rvm $USER
+rvm fix-permissions user
+rvmsudo rvm get stable --auto-dotfiles
+rvm install "ruby-3.0.0"
+rvm fix-permissions system; rvm fix-permissions user
 ```
 
 Now you have to install  a dependency for OG Image generation Deviser Club.
