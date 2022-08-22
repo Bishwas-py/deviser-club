@@ -108,9 +108,9 @@ export default class extends Controller {
         textHandlers.forEach(h => {
             let normalButton = eval(`this.${h}Target`);
             if (this.editor.isActive(h)) {
-                normalButton.style.backgroundColor = "transparent";
+                normalButton.style.backgroundColor = "rgb(1,2,2,0.9)";
                 normalButton.style.border = "1px solid rgb(128, 0, 255, 0.5)";
-                normalButton.style.color = "rgb(85, 0, 255, 0.5)";
+                normalButton.style.color = "white";
             } else {
                 normalButton.style.color = null;
                 normalButton.style.backgroundColor = null;
@@ -137,7 +137,7 @@ export default class extends Controller {
             headerButton.classList.remove('ring-slate/50')
         } else {
             headerButton.classList.add('ring-1')
-            headerButton.style.backgroundColor = "transparent";
+            headerButton.style.backgroundColor = "rgb(1,2,2,0.7)";
 
             headerButton.classList.add('ring-slate/50 dark:text-slate-300')
         }
