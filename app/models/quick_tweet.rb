@@ -6,8 +6,6 @@ class QuickTweet < ApplicationRecord
   validates :body, presence: true, length: { minimum: 10, maximum: 1000 }, unless: :skip_validations
   validates :body, uniqueness: true
 
-
-
   before_save :purify
 
   after_create_commit -> {
@@ -32,6 +30,10 @@ class QuickTweet < ApplicationRecord
   belongs_to :user, optional: true
   has_one_attached :image, dependent: :destroy
   has_many :bookmarks, as: :bookmarkable, dependent: :destroy
+
+  def should_generate_new_friendly_id?
+    true
+  end
 
   def pure_text
     Nokogiri::HTML(body).xpath('//text()').map(&:text).join('').
