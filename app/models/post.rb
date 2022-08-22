@@ -4,7 +4,7 @@ class Post < ApplicationRecord
 
   attr_accessor :skip_validations
 
-  validates_with ContentLengthValidator, :minimum=> 70, :maximum=> 199889, :word_count=>200, unless: :skip_validations
+  validates_with ContentLengthValidator, :minimum=> 70, :maximum=> 199889, :word_count=>100, unless: :skip_validations
   validates :draft, uniqueness: { scope: :user_id }, if: :draft?
 
   before_save :purify

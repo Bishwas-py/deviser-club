@@ -29,14 +29,16 @@ Rails.application.routes.draw do
   resources :tags
   resources :admin
   resources :bookmark, only: [:create, :destroy, :index]
+
   resources :posts do
     collection do
-      post :index
+      post :pagy_index, :path => :p
     end
   end
+
   resources :quick_tweets, path: :tweet do
     collection do
-      post :index
+      post :pagy_index, :path => :p
     end
   end
   resources :comments, only: [:create, :destroy, :update, :show]

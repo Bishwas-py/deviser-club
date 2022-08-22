@@ -6,9 +6,13 @@ class QuickTweetsController < ApplicationController
   def index
     @quick_tweet = QuickTweet.new
     @pagy, @quick_tweets = pagy(QuickTweet.published, items: 15)
+  end
+
+  def pagy_index
+    @pagy, @quick_tweets = pagy(QuickTweet.published, items: 7)
+
     respond_to do |format|
-      format.html if request.method == "GET"           # responds to GET requests to /tweets
-      format.turbo_stream if request.method == "POST"           # responds to POST requests to /tweets
+      format.turbo_stream
     end
   end
 

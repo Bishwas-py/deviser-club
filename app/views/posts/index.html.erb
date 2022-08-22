@@ -6,11 +6,13 @@
     <div id="posts" class="posts-seperator">
       <%= render @posts %>
     </div>
-    <div class="flex justify-center mb-12">
-      <div id="load-more-btn" class="w-full">
-        <%= button_to "Load More", pagy_url_for(@pagy, @pagy.next), class:"view-btn w-full dark:hover:bg-black/50" %>
+    <% if @pagy.next %>
+      <div class="flex justify-center mb-12">
+        <div id="load-more-btn" class="w-full">
+          <%= button_to "Load More", pagy_index_posts_path(page: @pagy.next), class:"view-btn w-full dark:hover:bg-black/50" %>
+        </div>
       </div>
-    </div>
+    <% end %>
   </main>
   <%= content_for :right_aside_bar do %>
     <%= render "components/latest_posts_and_comment" %>
