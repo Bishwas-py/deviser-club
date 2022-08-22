@@ -7,6 +7,8 @@ class Post < ApplicationRecord
   validates_with ContentLengthValidator, :minimum=> 70, :maximum=> 199889, :word_count=>100, unless: :skip_validations
   validates :draft, uniqueness: { scope: :user_id }, if: :draft?
 
+  validates :title, presence: true, unless: :skip_validations
+
   before_save :purify
 
   belongs_to :user, optional: false
@@ -27,6 +29,14 @@ class Post < ApplicationRecord
   default_scope { order(created_at: :desc) }
 
   scope :published, -> { where(draft: false) }
+
+  after_save_commit -> {
+    if self.body.present? and self.title.present?
+      if (self.previous_changes.has_key?(:body) and not self.draft?) or self.previous_changes.has_key?(:draft)
+        self.generate_og_image
+      end
+    end
+  }
 
   # trim leading and trailing spaces: suggested by @diwash007
 

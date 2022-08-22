@@ -4,7 +4,6 @@ class QuickTweetsController < ApplicationController
 
   # GET /quick_tweets or /quick_tweets.json
   def index
-    @quick_tweet = QuickTweet.new
     @pagy, @quick_tweets = pagy(QuickTweet.published, items: 15)
   end
 
@@ -52,7 +51,6 @@ class QuickTweetsController < ApplicationController
         format.turbo_stream
       else
         if @quick_tweet.save
-          @quick_tweet.generate_og_image
           format.html { redirect_to quick_tweet_url(@quick_tweet) }
           format.json { render :show, status: :created, location: @quick_tweet }
         else
@@ -72,7 +70,7 @@ class QuickTweetsController < ApplicationController
     respond_to do |format|
       if @quick_tweet.draft
         @quick_tweet.skip_validations = true
-        if @quick_tweet.update(quick_tweet_params.except(:tags))
+        if @quick_tweet.update(quick_tweet_params)
           format.turbo_stream {
             render turbo_stream: turbo_stream.replace(
               "error_explanation", partial: 'components/errors',

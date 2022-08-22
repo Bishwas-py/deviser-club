@@ -50,7 +50,6 @@ class PostsController < ApplicationController
         format.turbo_stream
       else
         if @post.save
-          @post.generate_og_image
           format.html { redirect_to post_url(@post) }
           format.json { render :show, status: :created, location: @post }
         else
@@ -69,6 +68,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
     create_or_delete_post_tags(@post, params[:post][:tags],)
+    @post.draft = (@post.draft and params[:commit].nil?)
     respond_to do |format|
       if @post.draft
         @post.draft = params[:commit].nil?
@@ -94,6 +94,7 @@ class PostsController < ApplicationController
         end
       end
     end
+
   end
 
   # DELETE /posts/1 or /posts/1.json
