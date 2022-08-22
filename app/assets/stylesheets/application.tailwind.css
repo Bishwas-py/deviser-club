@@ -193,7 +193,7 @@
         @apply dark:hover:text-sky-50;
     }
     .view-btn {
-        @apply p-2 rounded border dark:border-gray-700 shadow dark:shadow-gray-800/40;
+        @apply p-2 rounded border shadow dark:border-gray-700 dark:shadow-gray-800/40;
         @apply bg-white hover:bg-gray-200;
         @apply dark:hover:bg-slate-800 dark:bg-slate-900;
     }
