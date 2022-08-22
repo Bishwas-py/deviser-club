@@ -13,9 +13,6 @@ class Post < ApplicationRecord
 
   has_many :comments, as: :commentable, dependent: :destroy
 
-  has_noticed_notifications model_name: 'Notification'
-  has_many :notifications, through: :user, dependent: :destroy
-
   has_many :likes, as: :likeable, dependent: :destroy
   has_many :bookmarks, as: :bookmarkable, dependent: :destroy
 
