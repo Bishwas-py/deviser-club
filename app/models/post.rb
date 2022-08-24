@@ -66,6 +66,7 @@ class Post < ApplicationRecord
     Post.joins(:tags). # You need to query the Post table
     where.not(posts: { id: self.id }). # Exclude this post
     where(tags: { id: self.tags.ids }). # Get similar tags
+    or(Post.where(user: self.user)).
       group(:id)
   end
 
