@@ -14,7 +14,7 @@
       <%= render "profile/profile", profile: @profile %>
     </div>
     <div id="posts" class="w-full">
-      <%= render @profile.user.posts+@profile.user.quick_tweets %>
+      <%= render (@profile.user.quick_tweets+@profile.user.posts).slice(1, 14).shuffle %>
     </div>
   </main>
   <%= content_for :right_aside_bar do %>
