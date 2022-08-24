@@ -34,6 +34,14 @@ config/database.yml
 
 /public/*
 !/public/fav.png
+!/public/android-chrome-512x512.png
+!/public/favicon-16x16.png
+!/public/favicon.ico
+!/public/robots.txt
+!/public/android-chrome-192x192.png
+!/public/apple-touch-icon.png
+!/public/favicon-32x32.png
+!/public/site.webmanifest
 
 dbdeviser_club
 # Ignore master key for decrypting credentials and more.
