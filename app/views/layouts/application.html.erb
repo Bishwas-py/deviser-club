@@ -4,8 +4,12 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <link rel="shortcut icon" href="<%= "#{request.base_url}/fav.png" %>">
-    <link rel="apple-touch-icon" href="<%= "#{request.base_url}/fav.png" %>">
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="<%= "#{request.base_url}/apple-touch-icon.png" %>">
+    <link rel="icon" type="image/png" sizes="32x32" href="<%= "#{request.base_url}/favicon-32x32.png" %>">
+    <link rel="icon" type="image/png" sizes="16x16" href="<%= "#{request.base_url}/favicon-16x16.png" %>">
+    <link rel="manifest" href="<%= "#{request.base_url}/site.webmanifest" %>">
+
     <meta name="author" content="github.com/Bishwas-py/deviser-club">
     <meta name="license" content="This webapp is built using github.com/Bishwas-py/deviser-club. Deviser.Club is it's main product!">
 
@@ -15,7 +19,7 @@
     <meta property="og:image:type" content="image/png"/>
     <meta property="og:image:width" content="1024"/>
     <meta property="og:image:height" content="512"/>
-    <meta name="msapplication-config" content="/browserconfig.xml" />
+
     <% if yield(:meta).presence %>
       <%= yield(:meta) %>
     <% else %>
