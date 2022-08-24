@@ -1,7 +1,6 @@
 class LikesController < ApplicationController
   def create
     respond_to do |format|
-      puts "like_params: #{like_params}, params: #{params}"
       @like = current_user.likes.create(like_params)
       if @like.save
         format.turbo_stream {

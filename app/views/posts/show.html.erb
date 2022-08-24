@@ -34,10 +34,10 @@
       <%= render "likes/create", likeable: @post %>
       <%= render "comments/btn", comments: @comments %>
       <% if can? :update, @post %>
-        <%= render "components/edit_btn", edit_path: edit_post_path %>
+        <%= render "components/edit_btn", edit_path: edit_post_path(@post.id) %>
       <% end %>
       <% if can? :destroy, @post %>
-        <%= render "components/delete_btn", delete_path: post_path %>
+        <%= render "components/delete_btn", delete_path: post_path(@post.id) %>
       <% end %>
     </div>
   <% end %>

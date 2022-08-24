@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: %i[ show edit update destroy ]
+  before_action :set_post, only: %i[ edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
 
   authorize_resource
@@ -19,6 +19,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
+    @post = Post.friendly.find(params[:id])
     @comments = @post.comments.order(created_at: :desc)
   end
 
@@ -127,7 +128,7 @@ class PostsController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_post
-    @post = Post.friendly.find(params[:id])
+    @post = Post.find(params[:id])
   end
 
   # Only allow a list of trusted parameters through.
