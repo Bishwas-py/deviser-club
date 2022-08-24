@@ -1,41 +1,48 @@
-<div class="w-full h-fit group min-w-0 bg-white/20">
+<div class="w-full h-fit group min-w-0 bg-white/20 p-2 rounded">
+
   <div class="w-full flex flex-col gap-2 py-2">
-    <%= link_to profile_show_path(comment.user.friendly_id), class: "flex gap-x-2 w-full" do %>
-      <%= image_tag comment.user.profile.my_avatar, class: "w-8 h-8 my-auto rounded-full object-cover bg-rose-50", alt: "Deviser User" %>
-      <div class="flex flex-col">
-          <span class="my-auto font-light text-sm">
-            <%= comment.user.username %>
-          </span>
-        <span class="sweet-info" title="<%= comment.created_at.to_fs %>">
+    <div class="flex justify-between w-full">
+      <div class="flex gap-x-2 w-full">
+        <%= link_to profile_show_path(comment.user.friendly_id) do %>
+          <%= image_tag comment.user.profile.my_avatar, class: "w-8 h-8 my-auto rounded-full object-cover bg-rose-50", alt: "Deviser User" %>
+        <% end %>
+        <div class="flex flex-col">
+          <%= link_to profile_show_path(comment.user.friendly_id), class: "link" do %>
+            <span class="my-auto font-light text-sm">
+              <%= comment.user.username %>
+            </span>
+          <% end %>
+          <span class="sweet-info" title="<%= comment.created_at.to_fs %>">
             <%= time_ago_in_words(comment.created_at) %>
           </span>
-      </div>
-    <% end %>
-    <p class="break-words">
-      <%= clean_links sanitize(comment.body, tags: %w(strong em a b code), attributes: %w(href)) %>
-    </p>
-  </div>
-  <% if can? :destroy, comment %>
-    <div class="float-right">
-      <div class="hidden relative" id="comments-more-btn-<%= comment.id %>">
-        <div class="absolute bottom-3 right-0 w-32">
-
-          <%= button_to comment_path(comment.id), method: :delete,
-                        class: "view-btn rounded-0 w-full" do %>
-            <%= icon "fa-solid", "trash", class: "my-0.5 float-left" %> Delete
-          <% end %>
         </div>
       </div>
-      <button
-        class="super-rounded-btn bg-gray-300 hover:bg-gray-100"
-        data-controller="togglebar"
-        data-togglebar-body-param="comments-more-btn-<%= comment.id %>"
-        data-action='togglebar#toggleNavDrop'>
-        <%= icon "fa-solid", "ellipsis" %>
-      </button>
+      <% if can? :destroy, comment %>
+        <div class="my-auto">
+          <div class="hidden relative" id="comments-more-btn-<%= comment.id %>">
+            <div class="absolute bottom-3 right-0 w-32">
+
+              <%= button_to comment_path(comment.id), method: :delete,
+                            class: "view-btn rounded-0 w-full" do %>
+                <%= icon "fa-solid", "trash", class: "my-0.5 float-left" %> Delete
+              <% end %>
+            </div>
+          </div>
+          <button
+            class="super-rounded-btn bg-gray-300 hover:bg-gray-100 scale-75"
+            data-controller="togglebar"
+            data-togglebar-body-param="comments-more-btn-<%= comment.id %>"
+            data-action='togglebar#toggleNavDrop'>
+            <%= icon "fa-solid", "ellipsis" %>
+          </button>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-  <div class="flex flex-row">
-    <%= render "likes/create", likeable: comment %>
+      <p class="break-words">
+        <%= clean_links sanitize(comment.body, tags: %w(strong em a b code), attributes: %w(href)) %>
+      </p>
+    </div>
+    <div class="flex flex-row">
+      <%= render "likes/create", likeable: comment %>
+    </div>
   </div>
-</div>

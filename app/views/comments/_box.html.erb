@@ -15,7 +15,7 @@
         <% end %>
         <div class="bg-white dark:bg-black/80 w-full flex flex-col gap-2 shadow rounded-md px-3 py-2">
           <div class="flex gap-x-2">
-            <%= image_tag user_signed_in? ? current_user.profile.my_avatar : "fav.png", class: "w-7 rounded-full object-cover bg-rose-50", alt: "Deviser User" %>
+            <%= image_tag user_signed_in? ? current_user.profile.my_avatar : "fav.png", class: "h-7 w-7 rounded-full object-cover bg-rose-50", alt: "Deviser User" %>
             <span class="my-auto font-light text-sm">
             <%= user_signed_in? ? current_user.username : "Anon" %>
           </span>
@@ -23,7 +23,7 @@
           <%= render "comments/form", commentable: commentable %>
         </div>
       </div>
-      <div class="grid gap-3 mt-5 overflow-y-scroll cute-scroll" id="<%= "#{dom_id commentable}_comments" %>">
+      <div class="grid gap-3 mt-5 cute-scroll" id="<%= "#{dom_id commentable}_comments" %>">
         <%= render comments, user: current_user %>
       </div>
     </div>
