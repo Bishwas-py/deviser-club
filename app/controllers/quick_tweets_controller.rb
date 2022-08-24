@@ -1,6 +1,7 @@
 class QuickTweetsController < ApplicationController
   before_action :set_quick_tweet, only: %i[ show edit update destroy ]
   before_action :authenticate_user!, only: %i[ edit update create destroy ]
+  authorize_resource
 
   # GET /quick_tweets or /quick_tweets.json
   def index

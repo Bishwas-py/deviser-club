@@ -33,8 +33,10 @@
     <div class="post-reaction-box" >
       <%= render "likes/create", likeable: @post %>
       <%= render "comments/btn", comments: @comments %>
-      <% if current_user == @post.user %>
+      <% if can? :update, @post %>
         <%= render "components/edit_btn", edit_path: edit_post_path %>
+      <% end %>
+      <% if can? :destroy, @post %>
         <%= render "components/delete_btn", delete_path: post_path %>
       <% end %>
     </div>

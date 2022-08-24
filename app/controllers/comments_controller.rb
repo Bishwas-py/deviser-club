@@ -1,5 +1,7 @@
 class CommentsController < ApplicationController
-  before_action :authenticate_user!
+  before_action :authenticate_user!, except: [:show]
+  authorize_resource
+
   def show
     @comment = Comment.friendly.find(params[:id])
     @comment.notifications_as_comment.mark_as_read!
