@@ -5,7 +5,7 @@ class QuickTweetsController < ApplicationController
 
   # GET /quick_tweets or /quick_tweets.json
   def index
-    @pagy, @quick_tweets = pagy(QuickTweet.published, items: 15)
+    @pagy, @quick_tweets = pagy(QuickTweet.published, items: 2)
   end
 
   def pagy_index

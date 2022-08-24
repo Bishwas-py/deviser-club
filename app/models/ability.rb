@@ -4,7 +4,7 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can :read, [Post, QuickTweet], draft: false
+    can [:read, :pagy_index], [Post, QuickTweet], draft: false
     can :read, Comment
 
     return unless user.present?
