@@ -97,3 +97,5 @@ gem "concurrent-ruby", "~> 1.0"
 gem "foreman", "~> 0.87.2"
 
 gem "pagy", "~> 5.10"
+
+gem 'cancancan'
