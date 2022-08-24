@@ -1,7 +1,8 @@
-<%= turbo_stream_from post %>
-<div class="group w-full" id="<%= dom_id post %>">
+<% if can? :read, post %>
+  <%= turbo_stream_from post %>
+  <div class="group w-full" id="<%= dom_id post %>">
 
-  <div class="post-box">
+    <div class="post-box">
       <span class="text-neutral-500 space-x-2 block mb-2" title="Author: <%= post.user.profile.get_name %>">
        <%= link_to profile_show_path(post.user.friendly_id), class: "author-info group inline-block mb-2", title: "Author: #{post.user.profile.get_name}" do %>
         Posted by <strong><%= post.user.profile.get_name %></strong>
@@ -11,25 +12,26 @@
         </span>
         <div class="dark:text-slate-50 inline-block text-slate-600 font-light dark:text-slate-100"><%= "#{post.reading_time} #{"minute".pluralize post.reading_time} read" %></div>
       </span>
-    <%= link_to post_path(post.friendly_id) do %>
-      <h2 class="break-words font-bold text-3xl mb-2"><%= post.title %></h2>
-      <span class="excerpt">
+      <%= link_to post_path(post.friendly_id) do %>
+        <h2 class="break-words font-bold text-3xl mb-2"><%= post.title %></h2>
+        <span class="excerpt">
           <%= sanitize(post.excerpt, tags: %w()).strip.truncate(299) %>
       </span>
-    <% end %>
-    <div>
-      <% post.tags.each do |tag| %>
-        <%= link_to tag_path(tag.friendly_id) do %>
+      <% end %>
+      <div>
+        <% post.tags.each do |tag| %>
+          <%= link_to tag_path(tag.friendly_id) do %>
         <span class="tag-block" title="<%= tag.created_at.to_fs %>">
           <%= icon "fa-solid", "tag", class: "mr-2" %>
           <%= tag.name %>
         </span>
+          <% end %>
         <% end %>
-      <% end %>
+      </div>
+      <div class="text-neutral-500 dark:text-neutral-50 text-right" title="<%= post.created_at.to_fs %>">
+        <%= time_ago_in_words(post.created_at) %>
+      </div>
     </div>
-    <div class="text-neutral-500 dark:text-neutral-50 text-right" title="<%= post.created_at.to_fs %>">
-      <%= time_ago_in_words(post.created_at) %>
-    </div>
-  </div>
 
-</div>
+  </div>
+<% end %>
