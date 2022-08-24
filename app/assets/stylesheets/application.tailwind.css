@@ -41,10 +41,10 @@
         @apply dark:hover:text-blue-100 dark:text-neutral-50;
     }
     .line-bar {
-        @apply flex-row flex gap-5 mt-4;
+        @apply flex-row flex gap-5 mt-4 border-b;
     }
     .line-bar .line-tab {
-        @apply px-3 py-2;
+        @apply px-3 py-2 hover:border-b;
     }
     .line-bar .line-tab.active {
         @apply  border-b font-bold;
