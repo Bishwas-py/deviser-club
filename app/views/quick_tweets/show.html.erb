@@ -15,10 +15,10 @@
       <%= render "likes/create", likeable: @quick_tweet %>
       <%= render "comments/btn", comments: @comments %>
 
-      <% if can? :update, @quick_tweets %>
+      <% if can? :update, @quick_tweet %>
         <%= render "components/edit_btn", edit_path: edit_quick_tweet_path %>
       <% end %>
-      <% if can? :destroy, @quick_tweets %>
+      <% if can? :destroy, @quick_tweet %>
         <%= render "components/delete_btn", delete_path: quick_tweet_path %>
       <% end %>
     </div>
