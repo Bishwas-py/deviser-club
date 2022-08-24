@@ -1,29 +1,3 @@
-<%= content_for(:title, "#{@profile.user.username} - Deviser") %>
-
-<%= render "components/aside_bar/aside_bar" do %>
-  <main class="profile-box">
-    <div class="hidden lg:block">
-      <div class="content-box">
-        <h1 class=""><%= @profile.get_name %></h1>
-      </div>
-      <h3 class="font-light text-lg px-1">
-        <%= @profile.bio %>
-      </h3>
-
-    </div>
-    <div class="line-bar p-0 m-0">
-      <%= link_to "All", notification_index_path, class: "line-tab #{is_active 'notification', 'index'}" %>
-      <%= link_to "Read", read_notification_index_path, class: "line-tab #{is_active 'notification', 'read'}" %>
-      <%= link_to "Unread", unread_notification_index_path, class: "line-tab #{is_active 'notification', 'unread'}" %>
-    </div>
-    <div class="lg:hidden">
-      <%= render "profile/profile", profile: @profile %>
-    </div>
-    <div id="posts" class="w-full">
-      <%= render (@profile.user.quick_tweets+@profile.user.posts).slice(0, 14).shuffle %>
-    </div>
-  </main>
-  <%= content_for :right_aside_bar do %>
-    <%= render "profile/profile", profile: @profile %>
-  <% end %>
+<%= render "profile/layout" do %>
+  <%= render (@profile.user.quick_tweets + @profile.user.posts).slice(0, 14).shuffle %>
 <% end %>

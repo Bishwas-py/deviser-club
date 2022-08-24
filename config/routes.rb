@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  match '@:id' => 'profile#show', :via => [:get], :as => 'profile_show'
+  match '@:id/tweets' => 'profile#quick_tweets', :via => [:get], :as => 'user_quick_tweets'
+  match '@:id/posts' => 'profile#posts', :via => [:get], :as => 'user_posts'
+  match '@:id/comments' => 'profile#comments', :via => [:get], :as => 'user_comments'
 
   resources :profile do
     collection do
@@ -42,8 +46,6 @@ Rails.application.routes.draw do
     end
   end
   resources :comments, only: [:create, :destroy, :update, :show]
-
-  match '@:id' => 'profile#show', :via => [:get], :as => 'profile_show'
 
   devise_for :users,
              :path => 'accounts',

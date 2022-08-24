@@ -6,6 +6,21 @@ class ProfileController < ApplicationController
     @profile = User.friendly.find(params[:id]).profile
   end
 
+  def quick_tweets
+    @profile = User.friendly.find(params[:id]).profile
+    render(:template => "profile/quick_tweets")
+  end
+
+  def posts
+    @profile = User.friendly.find(params[:id]).profile
+    render(:template => "profile/posts")
+  end
+
+  def comments
+    @profile = User.friendly.find(params[:id]).profile
+    render(:template => "profile/comments")
+  end
+
   def index
   end
 
@@ -22,7 +37,7 @@ class ProfileController < ApplicationController
       format.turbo_stream {
         render turbo_stream: turbo_stream.replace(
           "appearance_toggle", partial: 'components/aside_bar/appearance_toggle',
-          locals: { current_user: current_user})
+          locals: { current_user: current_user })
       }
     end
   end

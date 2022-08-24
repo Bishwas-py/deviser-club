@@ -1,0 +1,29 @@
+<%= content_for(:title, "#{@profile.user.username} - Deviser") %>
+
+<%= render "components/aside_bar/aside_bar" do %>
+  <main class="profile-box">
+    <div class="hidden lg:block">
+      <div class="content-box">
+        <h1 class=""><%= @profile.get_name %></h1>
+      </div>
+      <h3 class="font-light text-lg px-1">
+        <%= @profile.bio %>
+      </h3>
+
+    </div>
+    <div class="lg:hidden">
+      <%= render "profile/profile", profile: @profile %>
+    </div>
+    <div class="line-bar pt-7">
+      <%= link_to "Tweets", user_quick_tweets_path(@profile.user.username), class: "line-tab #{is_active "profile", "quick_tweets"}" %>
+      <%= link_to "Posts", user_posts_path(@profile.user.username), class: "line-tab #{is_active "profile", "posts"}" %>
+      <%= link_to "Comments", user_comments_path(@profile.user.username), class: "line-tab #{is_active "profile", "comments"}" %>
+    </div>
+    <div id="content-box" class="w-full">
+      <%= yield %>
+    </div>
+  </main>
+  <%= content_for :right_aside_bar do %>
+    <%= render "profile/profile", profile: @profile %>
+  <% end %>
+<% end %>

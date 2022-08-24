@@ -41,13 +41,17 @@
         @apply dark:hover:text-blue-100 dark:text-neutral-50;
     }
     .line-bar {
-        @apply flex-row flex gap-5 mt-4 border-b;
+        @apply flex-row flex gap-5 border-b;
     }
     .line-bar .line-tab {
-        @apply px-3 py-2 hover:border-b;
+        @apply px-3 py-2 border-b border-transparent;
+        @apply hover:border-gray-400;
+        @apply dark:hover:border-gray-100;
     }
     .line-bar .line-tab.active {
         @apply  border-b font-bold;
+        @apply border-gray-400;
+        @apply dark:border-gray-100;
     }
     .side-bar {
         @apply sticky left-0 bottom-0 md:top-0 h-16 md:h-screen md:border-r z-30;
