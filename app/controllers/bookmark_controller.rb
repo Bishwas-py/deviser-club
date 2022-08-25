@@ -10,7 +10,11 @@ class BookmarkController < ApplicationController
       @bookmark = current_user.bookmarks.create(bookmark_params)
       if @bookmark.save
         format.turbo_stream {
-          render turbo_stream: turbo_stream.replace("#{@bookmark.bookmarkable.model_name.name}-#{@bookmark.bookmarkable.id}_bookmarks", partial: "bookmark/create", locals: { bookmarkable: @bookmark.bookmarkable })
+          render turbo_stream: turbo_stream.replace(
+            "#{@bookmark.bookmarkable.model_name.name}-#{@bookmark.bookmarkable.id}_bookmarks",
+            partial: "bookmark/create",
+            locals: { bookmarkable: @bookmark.bookmarkable }
+          )
         }
       else
         format.html { redirect_to @bookmark.bookmarkable, notice: "Unable to bookmark." }

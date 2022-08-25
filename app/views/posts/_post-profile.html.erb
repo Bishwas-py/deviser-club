@@ -4,8 +4,8 @@
       <%= link_to profile_show_path(post.user.friendly_id), class: "flex space-x-4 mb-2" do %>
         <div class="grid place-items-center">
           <%= image_tag post.user.profile.my_avatar,
-                        class: "max-w-fit object-cover h-11 w-11 rounded-full bg-sky-100",
-                        alt: "#{post.user.username}: #{post.user.profile.name}" %>
+              class: "max-w-fit object-cover h-11 w-11 rounded-full bg-sky-100",
+              alt: "#{post.user.username}: #{post.user.profile.name}"%>
         </div>
         <div>
           <div class="text-cyan-900 dark:text-cyan-200 font-light">
@@ -19,10 +19,10 @@
       <div class="flex sm:justify-end space-x-2">
         <%= render "bookmark/create", bookmarkable: post %>
         <a
-          target="popup"
-          aria-label="Share on Facebook"
-          href="https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url %>&amp;src=sdkpreparse"
-          data-size="large">
+           target="popup"
+           aria-label="Share on Facebook"
+           href="https://www.facebook.com/sharer/sharer.php?u=<%= request.original_url %>&amp;src=sdkpreparse"
+           data-size="large">
           <%= icon "fab", 'facebook', class: "icon-share" %>
         </a>
 
@@ -41,6 +41,7 @@
           data-size="large">
           <%= icon "fab", 'linkedin', class: "icon-share" %>
         </a>
+        <%= render "draft/create", draftable: post %>
       </div>
     </div>
 

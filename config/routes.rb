@@ -33,6 +33,7 @@ Rails.application.routes.draw do
   resources :tags
   resources :admin
   resources :bookmark, only: [:create, :destroy, :index]
+  resources :draft, only: [:create, :destroy]
 
   resources :posts do
     collection do
