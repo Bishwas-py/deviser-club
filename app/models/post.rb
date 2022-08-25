@@ -1,11 +1,9 @@
 class Post < ApplicationRecord
   include ActiveModel::Validations
-  attribute :draft, default: true
 
   attr_accessor :skip_validations
 
   validates_with ContentLengthValidator, :minimum=> 70, :maximum=> 199889, :word_count=>100, unless: :skip_validations
-  validates :draft, uniqueness: { scope: :user_id }, if: :draft?
 
   validates :title, presence: true, unless: :skip_validations
 
@@ -25,23 +23,28 @@ class Post < ApplicationRecord
 
   extend FriendlyId
   friendly_id :title, use: :slugged
+
+  has_one :draft, as: :draftable, dependent: :destroy
+
+  scope :published, -> { where.missing(:draft) }
+  scope :unpublished, -> { where.associated(:draft) }
+
+  def publish
+    self.draft = nil
+    self.save
+  end
+
   def should_generate_new_friendly_id?
     true
   end
 
   default_scope { order(created_at: :desc) }
 
-  scope :published, -> { where(draft: false) }
-
   after_save_commit -> {
-    if self.body.present? and self.title.present?
-      if (self.previous_changes.has_key?(:body) and not self.draft?) or self.previous_changes.has_key?(:draft)
-        self.generate_og_image
-      end
+    if self.body.present? and self.previous_changes.has_key?(:body)
+      self.generate_og_image
     end
   }
-
-  # trim leading and trailing spaces: suggested by @diwash007
 
   def pure_text
     Nokogiri::HTML(body).xpath('//text()').map(&:text).join('').

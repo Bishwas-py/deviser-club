@@ -41,10 +41,9 @@
             class="group edit-btn">
       <%= icon "fa-solid", "image", class: 'group-hover:scale-110' %>
     </button>
-
   <% end %>
 
-  <%= form.hidden_field field, data: { tiptap_target: "textbox" }, is_draft: form.object.draft %>
+  <%= form.hidden_field field, data: { tiptap_target: "textbox" } %>
   <%= content_tag :div, '', data: { tiptap_target: "content" }, class: '' do %>
     <textarea class="ProseMirror"></textarea>
   <% end %>
@@ -58,7 +57,7 @@
       [ <%= icon "fa-solid", "code", class: 'group-hover:text-slate-600 group-focus:text-green-300 group-focus:scale-110' %>
       ]
     </button>
-    <%= form.submit class: "editor-button-strech float-right px-2" %>
+    <%= form.submit class: "editor-button-strech float-right px-2", "data-controller": "clear-cache" %>
   <% end %>
 
 

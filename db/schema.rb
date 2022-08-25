@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_20_052105) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_25_015935) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,6 +62,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_20_052105) do
     t.index ["slug"], name: "index_comments_on_slug", unique: true
   end
 
+  create_table "drafts", force: :cascade do |t|
+    t.integer "draftable_id"
+    t.string "draftable_type"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "friendly_id_slugs", force: :cascade do |t|
     t.string "slug", null: false
     t.integer "sluggable_id", null: false
@@ -100,7 +108,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_20_052105) do
     t.datetime "updated_at", null: false
     t.bigint "user_id"
     t.string "slug"
-    t.boolean "draft", default: false
     t.index ["slug"], name: "index_posts_on_slug", unique: true
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
@@ -122,7 +129,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_20_052105) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.bigint "user_id"
-    t.boolean "draft", default: false
     t.index ["user_id"], name: "index_quick_tweets_on_user_id"
   end
 

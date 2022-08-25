@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :quick_tweets, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :likes, dependent: :destroy
+  has_many :drafts, dependent: :destroy
   has_many :bookmarks, dependent: :destroy
   has_one :profile
   has_many :tags, foreign_key: :created_by_id, dependent: :destroy

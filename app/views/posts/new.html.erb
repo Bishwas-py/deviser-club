@@ -4,15 +4,19 @@
   <%= form_with(model: @post, class: "w-full") do |form| %>
     <div class="my-5">
       <%= form.text_field :title,
+                          data: {
+                            controller: "input-cache"
+                          },
                           placeholder: 'Story Title',
                           class: "edit-title-box" %>
     </div>
     <div class="my-5">
-      <%= form.text_field :tags,
-                          value: @post.tags.map(&:name).join(','),
-                          data: { controller: "select",
-                                  select_json_selects:Tag.all.to_json(:only => [:name])
-                          } %>
+      <%= form.hidden_field :tags,
+          value: @post.tags.map(&:name).join(','),
+          data: { controller: "select",
+                  select_json_selects: Tag.all.to_json(:only => [:name])
+          }
+      %>
     </div>
     <%= render "components/editor/edit", field: :body, form: form %>
   <% end %>

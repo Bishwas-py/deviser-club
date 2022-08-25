@@ -16,9 +16,7 @@ class GlobalController < ApplicationController
   end
 
   def drafts
-    @posts = Post.where(draft: true, user: current_user)
-    @quick_tweets = QuickTweet.where(draft: true, user: current_user)
-    @drafts = @posts + @quick_tweets
+    @drafts = Draft.all
   end
 
   def search

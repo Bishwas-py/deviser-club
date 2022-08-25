@@ -1,18 +1,19 @@
 <%= content_for(:title, "Edit: #{@post.title} - Deviser Post") %>
 
 <%= render "posts/editor", editing_status: "Saved!", editing_title: "Editing the post..." do %>
-  <%= form_with(model: @post, class: "w-full") do |form| %>
+  <%= form_with(model: @post, url: post_path(@post.id), class: "w-full") do |form| %>
     <div class="my-5">
       <%= form.text_field :title,
                           placeholder: 'Story Title',
                           class: "edit-title-box" %>
     </div>
     <div class="my-5">
-      <%= form.text_field :tags,
+      <%= form.hidden_field :tags,
           value: @post.tags.map(&:name).join(','),
           data: { controller: "select",
               select_json_selects:Tag.all.to_json(:only => [:name])
-          } %>
+          }
+      %>
     </div>
     <%= render "components/editor/edit", field: :body, form: form %>
   <% end %>

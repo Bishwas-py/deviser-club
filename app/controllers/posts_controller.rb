@@ -1,7 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, only: %i[ edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
-
   authorize_resource
 
   # GET /posts or /posts.json
@@ -25,7 +24,7 @@ class PostsController < ApplicationController
 
   # GET /posts/new
   def new
-    @post = Post.find_by(draft: true, user: current_user) || Post.new
+    @post = Post.new(user: current_user)
   end
 
   # GET /posts/1/edit
@@ -34,36 +33,21 @@ class PostsController < ApplicationController
 
   # POST /posts or /posts.json
   def create
-    @post = Post.find_by(draft: true, user: current_user) || Post.new(post_params.except(:tags))
-    @post.title = post_params[:title]
-    @post.body = post_params[:body]
-    @post.draft = params[:commit].nil?
-
+    @post = Post.new(post_params.except(:tags))
     create_or_delete_post_tags(@post, params[:post][:tags],)
     @post.user = current_user
     respond_to do |format|
-      if @post.draft
-        @post.skip_validations = true
-        @post.save
+      if @post.save
+        format.html { redirect_to post_url(@post) }
+        format.json { render :show, status: :created, location: @post }
+      else
         format.turbo_stream {
           render turbo_stream: turbo_stream.replace(
             "error_explanation", partial: 'components/errors',
             locals: { errors: @post.errors })
         }
-        format.turbo_stream
-      else
-        if @post.save
-          format.html { redirect_to post_url(@post) }
-          format.json { render :show, status: :created, location: @post }
-        else
-          format.turbo_stream {
-            render turbo_stream: turbo_stream.replace(
-              "error_explanation", partial: 'components/errors',
-              locals: { errors: @post.errors })
-          }
-          format.html { render :new, status: :unprocessable_entity }
-          format.json { render json: @post.errors, status: :unprocessable_entity }
-        end
+        format.html { render :new, status: :unprocessable_entity }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -71,30 +55,18 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1 or /posts/1.json
   def update
     create_or_delete_post_tags(@post, params[:post][:tags],)
-    @post.draft = (@post.draft and params[:commit].nil?)
     respond_to do |format|
-      if @post.draft
-        @post.draft = params[:commit].nil?
-        @post.skip_validations = true
-        @post.update(post_params.except(:tags))
+      if @post.update(post_params.except(:tags))
+        format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
+        format.json { render :show, status: :ok, location: @post }
+      else
         format.turbo_stream {
           render turbo_stream: turbo_stream.replace(
             "error_explanation", partial: 'components/errors',
             locals: { errors: @post.errors })
         }
-      else
-        if @post.update(post_params.except(:tags))
-          format.html { redirect_to post_url(@post), notice: "Post was successfully updated." }
-          format.json { render :show, status: :ok, location: @post }
-        else
-          format.turbo_stream {
-            render turbo_stream: turbo_stream.replace(
-              "error_explanation", partial: 'components/errors',
-              locals: { errors: @post.errors })
-          }
-          format.html { render :edit, status: :unprocessable_entity, notice: "Post was not updated." }
-          format.json { render json: @post.errors, status: :unprocessable_entity }
-        end
+        format.html { render :edit, status: :unprocessable_entity, notice: "Post was not updated." }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
       end
     end
 
