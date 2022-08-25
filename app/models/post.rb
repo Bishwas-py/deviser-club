@@ -34,6 +34,10 @@ class Post < ApplicationRecord
     self.save
   end
 
+  def unpublish
+    self.draft.save
+  end
+
   def should_generate_new_friendly_id?
     true
   end

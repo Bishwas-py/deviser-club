@@ -1,9 +1,11 @@
 class QuickTweet < ApplicationRecord
+  include ActiveModel::Validations
+
   attr_accessor :skip_validations
 
   validates_with ContentLengthValidator, :minimum => 10, :maximum => 1750, :word_count => 3, unless: :skip_validations
   validates :body, presence: true, length: { minimum: 10, maximum: 1000 }, unless: :skip_validations
-  validates :body, uniqueness: true
+  validates :body, uniqueness: { scope: :user_id }
 
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
@@ -13,10 +15,19 @@ class QuickTweet < ApplicationRecord
 
   has_one :draft, as: :draftable, dependent: :destroy
 
+  before_save :purify
+
   scope :published, -> { where.missing(:draft) }
   scope :unpublished, -> { where.associated(:draft) }
 
-  before_save :purify
+  def publish
+    self.draft = nil
+    self.save
+  end
+
+  def unpublish
+    self.draft.save
+  end
 
   after_create_commit -> {
     broadcast_prepend_to :quick_tweets, target: "quick_tweets", locals: { quick_tweets: :quick_tweets }
