@@ -8,7 +8,7 @@
                           class: "edit-title-box" %>
     </div>
     <div class="my-5">
-      <%= form.hidden_field :tags,
+      <%= form.text_field :tags,
           value: @post.tags.map(&:name).join(','),
           data: { controller: "select",
               select_json_selects:Tag.all.to_json(:only => [:name])
