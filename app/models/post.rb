@@ -29,6 +29,10 @@ class Post < ApplicationRecord
   scope :published, -> { where.missing(:draft) }
   scope :unpublished, -> { where.associated(:draft) }
 
+  def is_published
+    self.draft.nil?
+  end
+
   def publish
     self.draft = nil
     self.save

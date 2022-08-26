@@ -7,9 +7,10 @@ class QuickTweet < ApplicationRecord
   validates :body, presence: true, length: { minimum: 10, maximum: 1000 }, unless: :skip_validations
   validates :body, uniqueness: { scope: :user_id }
 
+  belongs_to :user, optional: true
+
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :likes, as: :likeable, dependent: :destroy
-  belongs_to :user, optional: true
   has_one_attached :image, dependent: :destroy
   has_many :bookmarks, as: :bookmarkable, dependent: :destroy
 
@@ -19,6 +20,10 @@ class QuickTweet < ApplicationRecord
 
   scope :published, -> { where.missing(:draft) }
   scope :unpublished, -> { where.associated(:draft) }
+
+  def is_published
+    self.draft.nil?
+  end
 
   def publish
     self.draft = nil

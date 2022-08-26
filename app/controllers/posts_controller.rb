@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :load_post, only: [:show] # required for proper functioning of cancancan
   before_action :set_post, only: %i[ edit update destroy ]
   before_action :authenticate_user!, except: [:index, :show]
   authorize_resource
@@ -18,7 +19,6 @@ class PostsController < ApplicationController
 
   # GET /posts/1 or /posts/1.json
   def show
-    @post = Post.friendly.find(params[:id])
     @comments = @post.comments.order(created_at: :desc)
   end
 
@@ -83,6 +83,10 @@ class PostsController < ApplicationController
   end
 
   private
+
+  def load_post # load post is required for authorization of posts with cancancan
+    @post = Post.friendly.find(params[:id])
+  end
 
   def create_or_delete_post_tags(post, tags)
     post.taggables.destroy_all

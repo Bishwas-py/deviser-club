@@ -4,7 +4,8 @@ class Ability
   include CanCan::Ability
 
   def initialize(user)
-    can [:read, :pagy_index], [Post, QuickTweet], draft: false
+    can [:read, :pagy_index], [Post, QuickTweet], is_published: true
+
     can :read, Comment
     can :read, Bookmark
 
