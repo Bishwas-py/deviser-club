@@ -1,7 +1,6 @@
 <% if can? :read, post %>
   <%= turbo_stream_from post %>
   <div class="group w-full" id="<%= dom_id post %>">
-
     <div class="post-box">
       <span class="text-neutral-500 space-x-2 block mb-2" title="Author: <%= post.user.profile.get_name %>">
        <%= link_to profile_show_path(post.user.friendly_id), class: "author-info group inline-block mb-2", title: "Author: #{post.user.profile.get_name}" do %>
@@ -32,6 +31,5 @@
         <%= time_ago_in_words(post.created_at) %>
       </div>
     </div>
-
   </div>
 <% end %>
