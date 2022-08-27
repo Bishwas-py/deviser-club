@@ -15,9 +15,9 @@
       <%= render "profile/profile", profile: @profile %>
     </div>
     <div class="line-bar pt-7">
-      <%= link_to "Tweets", user_quick_tweets_path(@profile.user.username), class: "line-tab #{is_active "profile", "quick_tweets"}" %>
-      <%= link_to "Posts", user_posts_path(@profile.user.username), class: "line-tab #{is_active "profile", "posts"}" %>
-      <%= link_to "Comments", user_comments_path(@profile.user.username), class: "line-tab #{is_active "profile", "comments"}" %>
+      <%= link_to "Tweets", user_quick_tweets_path(@profile.user.friendly_id), class: "line-tab #{is_active "profile", "quick_tweets"}" %>
+      <%= link_to "Posts", user_posts_path(@profile.user.friendly_id), class: "line-tab #{is_active "profile", "posts"}" %>
+      <%= link_to "Comments", user_comments_path(@profile.user.friendly_id), class: "line-tab #{is_active "profile", "comments"}" %>
     </div>
     <div id="content-box" class="w-full">
       <%= yield %>
