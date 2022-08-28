@@ -3,6 +3,9 @@ class Comment < ApplicationRecord
 
   belongs_to :commentable, polymorphic: true
   belongs_to :user
+  belongs_to :parent, class_name: 'Comment', optional: true
+  has_many :comments, foreign_key: :parent_id
+
   validates :body, presence: true, length: { minimum: 2, maximum: 500 }
   has_many :likes, as: :likeable, dependent: :destroy
 
@@ -23,6 +26,9 @@ class Comment < ApplicationRecord
     self.body.truncate(100)
   end
 
+  def hash_id
+    Digest::SHA1.hexdigest(self.id.to_s)
+  end
 
   private
   def notify_recipient
@@ -34,4 +40,5 @@ class Comment < ApplicationRecord
   def cleanup_notifications
     notifications_as_comment.destroy_all
   end
+
 end

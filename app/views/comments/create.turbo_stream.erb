@@ -1,7 +1,13 @@
-<%= turbo_stream.prepend "#{dom_id @comment.commentable}_comments" do %>
-  <%= render @comment %>
-<% end %>
+<% if @comment.parent_id.nil? %>
+  <%= turbo_stream.prepend "#{dom_id @comment.commentable}_comments" do %>
+    <%= render @comment %>
+  <% end %>
 
-<%= turbo_stream.replace @comment.commentable.comments.new do %>
-  <%= render "comments/form", commentable: @comment.commentable %>
+  <%= turbo_stream.replace "form_for_new" do %>
+    <%= render "comments/form", commentable: @comment.commentable, parent_id: @comment.parent_id %>
+  <% end %>
+<% else %>
+  <%= turbo_stream.prepend "comment_parent_#{@comment.parent_id}" do %>
+    <%= render "comments/child_comment", comment: @comment %>
+  <% end %>
 <% end %>

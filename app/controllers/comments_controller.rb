@@ -7,6 +7,13 @@ class CommentsController < ApplicationController
     @comment.notifications_as_comment.mark_as_read!
   end
 
+  def form
+    respond_to do |format|
+      @comment = Comment.friendly.find(params[:id])
+      format.turbo_stream
+    end
+  end
+
   def create
     @comment = current_user.comments.create(comment_params)
     @comment.body = helpers.purify @comment.body
@@ -16,7 +23,11 @@ class CommentsController < ApplicationController
         format.turbo_stream
       else
         format.turbo_stream {
-          render turbo_stream: turbo_stream.replace("comment_error_explanation", partial: 'components/errors', locals: { errors: @comment.errors })
+          render turbo_stream: turbo_stream.replace(
+            "comment_error_explanation",
+            partial: 'components/errors',
+            locals: { errors: @comment.errors }
+          )
         }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
       end
@@ -43,7 +54,7 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit(:body, :commentable_id, :commentable_type)
+    params.require(:comment).permit(:body, :commentable_id, :commentable_type, :parent_id)
   end
 
 

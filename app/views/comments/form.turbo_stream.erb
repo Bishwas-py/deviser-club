@@ -1,0 +1,12 @@
+<%= turbo_stream.replace "comment_form_#{params[:id]}" do %>
+  <%= render 'comments/form', commentable: @comment.commentable, parent_id: params[:id] %>
+<% end %>
+
+
+<%= turbo_stream.replace "reply_btn_#{@comment.id}" do %>
+  <%= button_tag 'Reply', data: {
+    controller: "togglebar",
+    togglebar_body_param: "form_for_#{@comment.id}",
+    action: 'togglebar#toggleNavDrop'
+  } %>
+<% end %>

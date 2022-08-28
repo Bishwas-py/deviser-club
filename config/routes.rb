@@ -3,6 +3,7 @@ Rails.application.routes.draw do
   match '@:id/tweets' => 'profile#quick_tweets', :via => [:get], :as => 'user_quick_tweets'
   match '@:id/posts' => 'profile#posts', :via => [:get], :as => 'user_posts'
   match '@:id/comments' => 'profile#comments', :via => [:get], :as => 'user_comments'
+  match 'comments/form/:id' => 'comments#form', :via => [:post], :as => 'comments_form'
 
   resources :profile do
     collection do

@@ -1,17 +1,31 @@
-
-<%= form_for commentable.comments.new do |form| %>
+<%= form_for commentable.comments.new, html: { id: "form_for_#{parent_id || "new"}" } do |form| %>
   <!-- HEY -->
   <%= render "components/errors", error_id: "comment_error_explanation" %>
 
   <!-- /HEY -->
   <%= form.hidden_field :commentable_id, value: commentable.id %>
 
-
   <%= form.hidden_field :commentable_type, value: commentable.model_name.name %>
+
+  <%= form.hidden_field :parent_id, value: parent_id %>
+
   <div class="my-5">
     <%= form.text_area :body, placeholder: "Your thoughts on this", rows: 3, class: "dark:bg-white/10 w-full border-0 focus:outline-0 focus:ring-0" %>
   </div>
   <div class="flex justify-end">
-    <%= form.submit "Reply", class: "dark:bg-slate-300/10 dark:text-neutral-50 rounded-lg px-2 py-1 bg-green-600 text-white inline-block font-medium cursor-pointer" %>
+    <% submit_btn = "dark:bg-slate-300/10 dark:text-neutral-50 rounded-lg px-2 py-1 bg-green-600 text-white inline-block font-medium cursor-pointer" %>
+    <% if parent_id.nil? %>
+      <%= form.submit "Reply", class: submit_btn %>
+    <% else %>
+
+
+<!--      data-heading-level-->
+<!--      , onclick: "this.parentNode.parentNode.classList.toggle('hidden');"-->
+      <%= form.submit "Reply", class: submit_btn, data: {
+        controller: "reply-submit",
+        form_id: "form_for_#{parent_id}",
+        action: 'reply-submit#toggleForWhileReplying'
+      } %>
+    <% end %>
   </div>
 <% end %>

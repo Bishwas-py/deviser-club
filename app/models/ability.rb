@@ -11,6 +11,6 @@ class Ability
 
     return unless user.present?
     can [:read, :update, :new, :create, :destroy], [Post, QuickTweet], user: user
-    can [:read, :update, :new, :create, :destroy], Comment, user: user
+    can [:read, :update, :new, :create, :destroy, :form], Comment, user: user
   end
 end

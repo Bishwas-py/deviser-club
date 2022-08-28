@@ -3,7 +3,6 @@ class QuickTweetsController < ApplicationController
   before_action :authenticate_user!, only: %i[ edit update create destroy ]
   authorize_resource
 
-  # GET /quick_tweets or /quick_tweets.json
   def index
     @pagy, @quick_tweets = pagy(QuickTweet.published, items: 5)
   end
@@ -16,22 +15,18 @@ class QuickTweetsController < ApplicationController
     end
   end
 
-  # GET /quick_tweets/1 or /quick_tweets/1.json
   def show
     @quick_tweet.update(watches: @quick_tweet.watches + 1)
     @comments = @quick_tweet.comments.order(created_at: :desc)
   end
 
-  # GET /quick_tweets/new
   def new
     @quick_tweet = QuickTweet.new
   end
 
-  # GET /quick_tweets/1/edit
   def edit
   end
 
-  # POST /quick_tweets or /quick_tweets.json
   def create
     @quick_tweet = QuickTweet.new(quick_tweet_params)
     @quick_tweet.ip_field = request.remote_ip
@@ -51,7 +46,6 @@ class QuickTweetsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /quick_tweets/1 or /quick_tweets/1.json
   def update
     respond_to do |format|
       if @quick_tweet.update(quick_tweet_params)
@@ -68,7 +62,6 @@ class QuickTweetsController < ApplicationController
     end
   end
 
-  # DELETE /quick_tweets/1 or /quick_tweets/1.json
   def destroy
     @quick_tweet.destroy
     respond_to do |format|
@@ -78,13 +71,10 @@ class QuickTweetsController < ApplicationController
   end
 
   private
-
-  # Use callbacks to share common setup or constraints between actions.
   def set_quick_tweet
     @quick_tweet = QuickTweet.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def quick_tweet_params
     params.require(:quick_tweet).permit(:body, :commit)
   end

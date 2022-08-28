@@ -4,7 +4,6 @@ class PostsController < ApplicationController
   before_action :authenticate_user!, except: [:index, :show]
   authorize_resource
 
-  # GET /posts or /posts.json
   def index
     @pagy, @posts = pagy(Post.published, items: 15)
   end
@@ -17,21 +16,17 @@ class PostsController < ApplicationController
     end
   end
 
-  # GET /posts/1 or /posts/1.json
   def show
     @comments = @post.comments.order(created_at: :desc)
   end
 
-  # GET /posts/new
   def new
     @post = Post.new(user: current_user)
   end
 
-  # GET /posts/1/edit
   def edit
   end
 
-  # POST /posts or /posts.json
   def create
     @post = Post.new(post_params.except(:tags))
     create_or_delete_post_tags(@post, params[:post][:tags],)
@@ -52,7 +47,6 @@ class PostsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /posts/1 or /posts/1.json
   def update
     create_or_delete_post_tags(@post, params[:post][:tags],)
     respond_to do |format|
@@ -72,7 +66,6 @@ class PostsController < ApplicationController
 
   end
 
-  # DELETE /posts/1 or /posts/1.json
   def destroy
     @post.destroy
 
@@ -84,7 +77,8 @@ class PostsController < ApplicationController
 
   private
 
-  def load_post # load post is required for authorization of posts with cancancan
+  def load_post
+    # Load post is required for authorization of posts with cancancan
     @post = Post.friendly.find(params[:id])
   end
 
@@ -102,12 +96,10 @@ class PostsController < ApplicationController
     end
   end
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
   end
 
-  # Only allow a list of trusted parameters through.
   def post_params
     params.require(:post).permit(:title, :body, :id, :tags)
   end
