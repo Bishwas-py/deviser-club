@@ -1,4 +1,13 @@
 <div class="w-full text-2xl h-fit group min-w-0 ">
+  <% if comment.parent.present? %>
+    <blockquote
+      onclick="document.getElementById('<%= comment.parent.hash_id %>').scrollIntoView({behavior: 'smooth'});"
+      class="cursor-pointer text-lg px-2 py-1 rounded bg-gray-200/20 border-b-2 shadow border-black">
+      Replying to:
+      <%= link_to comment.parent.user.profile.get_name, profile_show_path(comment.parent.user.friendly_id),  class: "link"%>
+      <p>"<%= comment.parent.body.truncate(45) %>"</p>
+    </blockquote>
+  <% end %>
   <div class="w-full flex flex-col gap-2 py-2">
     <%= link_to profile_show_path(comment.user.friendly_id), class: "flex gap-x-3" do %>
       <%= image_tag comment.user.profile.my_avatar, class: "w-12 h-12 my-auto rounded-full object-cover bg-rose-50", alt: "Deviser User" %>
@@ -17,11 +26,17 @@
   </div>
   <div class="flex flex-row justify-between">
     <%= render "likes/create", likeable: comment %>
-    <% if can? :destroy, comment %>
-      <%= button_to comment, method: :delete,
-                    class: "p-2 px-4 hover:text-rose-800 text-slate-500 focus:text-sky-500 duration-400" do %>
-        <%= icon "fa-solid", "trash" %>
-      <% end %>
-    <% end %>
+
+    <div id="<%= "reply_btn_#{comment.id}" %>">
+      <%= button_to 'Reply', comments_form_path(comment.id) %>
+    </div>
+
   </div>
+
+  <%= turbo_frame_tag "comment_form_#{comment.id}" %>
 </div>
+<% if user_signed_in? %>
+  <%= turbo_frame_tag "comment_parent_#{comment.id}", class: "flex flex-col ml-3 space-y-2" do %>
+    <%= render partial: "comments/comment", collection: comment.comments.where(user: current_user), as: :comment %>
+  <% end %>
+<% end %>
