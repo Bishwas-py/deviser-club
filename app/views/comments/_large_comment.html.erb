@@ -30,11 +30,11 @@
     <div id="<%= "reply_btn_#{comment.id}" %>">
       <%= button_to 'Reply', comments_form_path(comment.id) %>
     </div>
-
   </div>
 
   <%= turbo_frame_tag "comment_form_#{comment.id}" %>
 </div>
+
 <% if user_signed_in? %>
   <%= turbo_frame_tag "comment_parent_#{comment.id}", class: "flex flex-col ml-3 space-y-2" do %>
     <%= render partial: "comments/comment", collection: comment.comments.where(user: current_user), as: :comment %>
