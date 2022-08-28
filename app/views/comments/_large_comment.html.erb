@@ -37,6 +37,6 @@
 
 <% if user_signed_in? %>
   <%= turbo_frame_tag "comment_parent_#{comment.id}", class: "flex flex-col ml-3 space-y-2" do %>
-    <%= render partial: "comments/comment", collection: comment.comments.where(user: current_user), as: :comment %>
+    <%= render partial: "comments/large_comment", collection: comment.comments.where(user: current_user), as: :comment %>
   <% end %>
 <% end %>
