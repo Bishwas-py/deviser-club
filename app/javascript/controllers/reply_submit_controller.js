@@ -10,8 +10,7 @@ export default class extends Controller {
     event.preventDefault();
     event.stopPropagation();
     const form = document.getElementById(event.target.dataset.formId);
-    let rs = form.requestSubmit();
-    console.log(rs)
+    form.requestSubmit();
     form.classList.toggle('hidden');
     form.querySelector("textarea").value="";
   }

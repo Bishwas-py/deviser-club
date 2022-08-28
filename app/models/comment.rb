@@ -31,9 +31,14 @@ class Comment < ApplicationRecord
   end
 
   private
+
   def notify_recipient
-    if self.user != commentable.user
-      CommentNotification.with(comment: self, commentable: commentable).deliver_later(commentable.user)
+    if self.parent_id.nil?
+      if self.user != commentable.user
+        CommentNotification.with(comment: self, commentable: commentable).deliver_later(commentable.user)
+      end
+    else
+      CommentNotification.with(comment: self, commentable: commentable).deliver_later(self.parent.user)
     end
   end
 

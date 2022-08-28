@@ -4,7 +4,6 @@
 
     <div class="flex justify-between w-full">
       <div class="flex gap-x-2 w-full">
-
         <%= link_to profile_show_path(comment.user.friendly_id), class: "shrink-0" do %>
           <%= image_tag comment.user.profile.my_avatar, class: "w-8 h-8 my-auto rounded-full object-cover bg-rose-50", alt: "Deviser User" %>
         <% end %>
@@ -20,9 +19,6 @@
           </span>
           </div>
           <div class="shrink-0"></div>
-        </div>
-        <div class="text-sm">
-          #<%= comment.hash_id.slice(0, 7) %>
         </div>
       </div>
       <% if can? :destroy, comment %>
@@ -52,7 +48,9 @@
   </div>
   <div class="flex flex-row justify-between">
     <%= render "likes/create", likeable: comment %>
-    <%= button_to 'Reply', comments_form_path(comment.id) %>
+    <div id="<%= "reply_btn_#{comment.id}" %>">
+      <%= button_to 'Reply', comments_form_path(comment.id) %>
+    </div>
   </div>
 </div>
 
