@@ -38,7 +38,6 @@ class CommentsController < ApplicationController
     respond_to do |format|
       @comment = current_user.comments.find(params[:id])
       @comment.destroy
-      @comment.broadcast_remove_to [@comment.commentable, :comments], target: "#{helpers.dom_id @comment}"
       format.html { redirect_to @comment.commentable, notice: "Comment was successfully destroyed." }
       format.json { head :no_content }
     end
