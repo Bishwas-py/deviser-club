@@ -1,6 +1,6 @@
 class QuickTweetsController < ApplicationController
   before_action :set_quick_tweet, only: %i[ show edit update destroy ]
-  before_action :authenticate_user!, only: %i[ edit update create destroy ]
+  before_action :authenticate_user!, only: %i[ new edit update create destroy ]
   authorize_resource
 
   def index
