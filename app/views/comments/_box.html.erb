@@ -9,23 +9,26 @@
           <%= icon 'fa-solid', 'times', class: "" %>
         <% end %>
       </div>
-      <div class="flex flex-col gap-3">
+      <div class="flex flex-col mb-2">
         <%= turbo_frame_tag "comments_count_top", class: "text-2xl font-bold" do %>
           Comments(<%= commentable.comments.count %>)
         <% end %>
+      </div>
+      <div class="overflow-y-scroll cute-scroll rounded">
         <div class="bg-white dark:bg-black/80 w-full flex flex-col gap-2 shadow rounded-md px-3 py-2">
           <div class="flex gap-x-2">
             <%= image_tag user_signed_in? ? current_user.profile.my_avatar : "fav.png", class: "h-7 w-7 rounded-full object-cover bg-rose-50", alt: "Deviser User" %>
             <span class="my-auto font-light text-sm">
-                <%= user_signed_in? ? current_user.username : "Anon" %>
-              </span>
+                    <%= user_signed_in? ? current_user.username : "Anon" %>
+                  </span>
           </div>
           <%= render "comments/form", commentable: commentable, parent_id: nil %>
         </div>
+        <div class="grid gap-3 mt-5 rounded" id="<%= "#{dom_id commentable}_comments" %>">
+          <%= render comments.where(parent_id: nil), user: current_user %>
+        </div>
       </div>
-      <div class="grid gap-3 mt-5 overflow-y-scroll cute-scroll rounded" id="<%= "#{dom_id commentable}_comments" %>">
-        <%= render comments.where(parent_id: nil), user: current_user %>
-      </div>
+
     </div>
   </div>
 </div>

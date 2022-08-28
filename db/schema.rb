@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_27_191827) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_28_121634) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -153,6 +153,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_27_191827) do
     t.index ["created_by_id"], name: "index_tags_on_created_by_id"
     t.index ["modified_by_id"], name: "index_tags_on_modified_by_id"
     t.index ["slug"], name: "index_tags_on_slug", unique: true
+  end
+
+  create_table "trashes", force: :cascade do |t|
+    t.integer "trashable_id"
+    t.string "trashable_type"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|

@@ -1,60 +1,62 @@
-<div class="w-full h-fit group min-w-0 bg-white/20 p-2 rounded" id="<%= comment.hash_id %>">
-
-  <div class="w-full flex flex-col gap-2 py-2">
-
-    <div class="flex justify-between w-full">
-      <div class="flex gap-x-2 w-full">
-        <%= link_to profile_show_path(comment.user.friendly_id), class: "shrink-0" do %>
-          <%= image_tag comment.user.profile.my_avatar, class: "w-8 h-8 my-auto rounded-full object-cover bg-rose-50", alt: "Deviser User" %>
-        <% end %>
-        <div class="flex flex-row justify-between w-full">
-          <div class="flex flex-col">
-            <%= link_to profile_show_path(comment.user.friendly_id), class: "link" do %>
+<% if comment.is_trashed %>
+  <%= render "comments/deleted", hash_id: comment.hash_id %>
+<% else %>
+  <div class="w-full h-fit group min-w-0 bg-white/20 p-2 rounded" id="<%= comment.hash_id %>">
+    <div class="w-full flex flex-col gap-2 py-2">
+      <div class="flex justify-between w-full">
+        <div class="flex gap-x-2 w-full">
+          <%= link_to profile_show_path(comment.user.friendly_id), class: "shrink-0" do %>
+            <%= image_tag comment.user.profile.my_avatar, class: "w-8 h-8 my-auto rounded-full object-cover bg-rose-50", alt: "Deviser User" %>
+          <% end %>
+          <div class="flex flex-row justify-between w-full">
+            <div class="flex flex-col">
+              <%= link_to profile_show_path(comment.user.friendly_id), class: "link" do %>
             <span class="my-auto font-light text-sm">
               <%= comment.user.username %>
             </span>
-            <% end %>
-            <span class="sweet-info" title="<%= comment.created_at.to_fs %>">
+              <% end %>
+              <span class="sweet-info" title="<%= comment.created_at.to_fs %>">
             <%= time_ago_in_words(comment.created_at) %>
           </span>
-          </div>
-          <div class="shrink-0"></div>
-        </div>
-      </div>
-      <% if can? :destroy, comment %>
-        <div class="my-auto">
-          <div class="hidden relative" id="comments-more-btn-<%= comment.id %>">
-            <div class="absolute bottom-3 right-0 w-32">
-
-              <%= button_to comment_path(comment.id), method: :delete,
-                            class: "view-btn rounded-0 w-full" do %>
-                <%= icon "fa-solid", "trash", class: "my-0.5 float-left" %> Delete
-              <% end %>
             </div>
+            <div class="shrink-0"></div>
           </div>
-          <button
-            class="super-rounded-btn bg-gray-300 hover:bg-gray-100 scale-75"
-            data-controller="togglebar"
-            data-togglebar-body-param="comments-more-btn-<%= comment.id %>"
-            data-action='togglebar#toggleNavDrop'>
-            <%= icon "fa-solid", "ellipsis" %>
-          </button>
         </div>
-      <% end %>
+        <% if can? :destroy, comment %>
+          <div class="my-auto">
+            <div class="hidden relative" id="comments-more-btn-<%= comment.id %>">
+              <div class="absolute bottom-3 right-0 w-32">
+                <%= button_to comments_trash_path(comment.id),
+                              class: "view-btn rounded-0 w-full" do %>
+                  <%= icon "fa-solid", "trash", class: "my-0.5 float-left" %> Trash It
+                <% end %>
+              </div>
+            </div>
+            <button
+              class="super-rounded-btn bg-gray-300 hover:bg-gray-100 scale-75"
+              data-controller="togglebar"
+              data-togglebar-body-param="comments-more-btn-<%= comment.id %>"
+              data-action='togglebar#toggleNavDrop'>
+              <%= icon "fa-solid", "ellipsis" %>
+            </button>
+          </div>
+        <% end %>
+      </div>
+      <p class="break-words">
+        <%= clean_links sanitize(comment.body, tags: %w(strong em a b code), attributes: %w(href)) %>
+      </p>
     </div>
-    <p class="break-words">
-      <%= clean_links sanitize(comment.body, tags: %w(strong em a b code), attributes: %w(href)) %>
-    </p>
-  </div>
-  <div class="flex flex-row justify-between">
-    <%= render "likes/create", likeable: comment %>
-    <div id="<%= "reply_btn_#{comment.id}" %>">
-      <%= button_to 'Reply', comments_form_path(comment.id) %>
+    <div class="flex flex-row justify-between">
+      <%= render "likes/create", likeable: comment %>
+      <div id="<%= "reply_btn_#{comment.id}" %>">
+        <%= button_to 'Reply', comments_form_path(comment.id) %>
+      </div>
     </div>
   </div>
-</div>
 
-<%= turbo_frame_tag "comment_form_#{comment.id}" %>
+  <%= turbo_frame_tag "comment_form_#{comment.id}" %>
+<% end %>
+
 <%= content_tag :div, id: "comment_parent_#{comment.id}", class: "pl-2 space-y-3" do %>
   <%= render partial: "comments/child_comment", collection: comment.comments, as: :comment %>
 <% end %>
