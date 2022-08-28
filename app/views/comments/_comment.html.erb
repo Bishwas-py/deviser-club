@@ -1,20 +1,28 @@
 <div class="w-full h-fit group min-w-0 bg-white/20 p-2 rounded" id="<%= comment.hash_id %>">
 
   <div class="w-full flex flex-col gap-2 py-2">
+
     <div class="flex justify-between w-full">
       <div class="flex gap-x-2 w-full">
-        <%= link_to profile_show_path(comment.user.friendly_id) do %>
+
+        <%= link_to profile_show_path(comment.user.friendly_id), class: "shrink-0" do %>
           <%= image_tag comment.user.profile.my_avatar, class: "w-8 h-8 my-auto rounded-full object-cover bg-rose-50", alt: "Deviser User" %>
         <% end %>
-        <div class="flex flex-col">
-          <%= link_to profile_show_path(comment.user.friendly_id), class: "link" do %>
+        <div class="flex flex-row justify-between w-full">
+          <div class="flex flex-col">
+            <%= link_to profile_show_path(comment.user.friendly_id), class: "link" do %>
             <span class="my-auto font-light text-sm">
               <%= comment.user.username %>
             </span>
-          <% end %>
-          <span class="sweet-info" title="<%= comment.created_at.to_fs %>">
+            <% end %>
+            <span class="sweet-info" title="<%= comment.created_at.to_fs %>">
             <%= time_ago_in_words(comment.created_at) %>
           </span>
+          </div>
+          <div class="shrink-0"></div>
+        </div>
+        <div class="text-sm">
+          #<%= comment.hash_id.slice(0, 7) %>
         </div>
       </div>
       <% if can? :destroy, comment %>
@@ -46,8 +54,9 @@
     <%= render "likes/create", likeable: comment %>
     <%= button_to 'Reply', comments_form_path(comment.id) %>
   </div>
-  <%= turbo_frame_tag "comment_form_#{comment.id}" %>
-  <%= content_tag :div, id: "comment_parent_#{comment.id}", class: "pl-2" do %>
-    <%= render partial: "comments/child_comment", collection: comment.comments, as: :comment %>
-  <% end %>
 </div>
+
+<%= turbo_frame_tag "comment_form_#{comment.id}" %>
+<%= content_tag :div, id: "comment_parent_#{comment.id}", class: "pl-2 space-y-3" do %>
+  <%= render partial: "comments/child_comment", collection: comment.comments, as: :comment %>
+<% end %>

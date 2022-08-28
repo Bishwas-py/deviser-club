@@ -1,12 +1,10 @@
-<div class="w-full h-fit group min-w-0 border-gray-700/40 border-l p-2 ml-2" id="<%= comment.hash_id %>">
+<div class="w-full h-fit group min-w-0 border-gray-700/40 border-l-4 shadow rounded p-2" id="<%= comment.hash_id %>">
   <blockquote
     onclick="document.getElementById('<%= comment.parent.hash_id %>').scrollIntoView({behavior: 'smooth'});"
-    class="cursor-pointer px-2 py-1 bg-gray-400/30 border-l-2 border-black">
-    Replying to:  <%= link_to comment.parent.user.profile.get_name, profile_show_path(comment.parent.user.friendly_id),
-                              class: "link"%>
-    <p>
-      "<%= comment.parent.body.truncate(45) %>"
-    </p>
+    class="cursor-pointer text-sm px-2 py-1 rounded bg-gray-200/20 border-b-2 shadow border-black">
+    Replying to:
+    <%= link_to comment.parent.user.profile.get_name, profile_show_path(comment.parent.user.friendly_id),  class: "link"%>
+    <p>"<%= comment.parent.body.truncate(45) %>"</p>
   </blockquote>
   <div class="w-full flex flex-col gap-2 py-2">
     <div class="flex justify-between w-full">
@@ -61,6 +59,7 @@
 
   <%= turbo_frame_tag "comment_form_#{comment.id}" %>
 </div>
-<%= turbo_frame_tag "comment_parent_#{comment.id}", class: "flex flex-col" do %>
+
+<%= turbo_frame_tag "comment_parent_#{comment.id}", class: "flex flex-col ml-3 space-y-2" do %>
   <%= render partial: "comments/child_comment", collection: comment.comments, as: :comment %>
 <% end %>
