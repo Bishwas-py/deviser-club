@@ -1,7 +1,7 @@
 <% if comment.is_trashed %>
   <%= render "comments/deleted", hash_id: comment.hash_id %>
 <% else %>
-  <div class="w-full h-fit group min-w-0 bg-white/20 p-2 rounded" id="<%= comment.hash_id %>">
+  <div class="w-full h-fit group min-w-0 border-slate-700/40 border-b-4 shadow p-2 rounded" id="<%= comment.hash_id %>">
     <div class="w-full flex flex-col gap-2 py-2">
       <div class="flex justify-between w-full">
         <div class="flex gap-x-2 w-full">

@@ -6,8 +6,10 @@
   </div>
   <div class="my-auto">
     <%= link_to comment.user.profile.get_name, profile_show_path(comment.user),  class: "link" %>
-      commented on
-      "<%= link_to comment.commentable.title, comment.commentable, class: "link" %>"
+    replied on your comment
+    "<%= link_to comment.parent.body.truncate(22), comment.parent.commentable, class: "link" %>" on
+    <%= comment.commentable.model_name.name.downcase %>
+    "<%= link_to comment.commentable.title, comment.commentable, class: "link" %>"
   </div>
 </div>
 
