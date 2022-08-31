@@ -57,10 +57,13 @@ class Comment < ApplicationRecord
         CommentNotification.with(comment: self, commentable: commentable).deliver_later(commentable.user)
       end
     else
-      if self.user != commentable.user
+      commenter_equals_parent_commenter = self.user == self.parent.user
+      unless commenter_equals_parent_commenter
         ReplyNotification.with(comment: self, commentable: commentable).deliver_later(self.parent.user)
       end
-      if self.parent.user != commentable.user
+
+      commenter_equals_with_author = self.user == commentable.user
+      unless commenter_equals_with_author
         CommentNotification.with(comment: self, commentable: commentable).deliver_later(commentable.user)
       end
     end
